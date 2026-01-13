@@ -1,0 +1,10 @@
+# Rename this file to CNAME (no extension) and add your custom domain
+# For thomaslbohn.com, use:
+# thomaslbohn.com
+# 
+# Or for www subdomain:
+# www.thomaslbohn.com
+# 
+# After creating the CNAME file, configure your DNS settings in Cloudflare as described in DEPLOYMENT.md
+# 
+# Note: GitHub will automatically create this file when you configure the custom domain in Settings > Pages

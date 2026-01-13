@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Modern Theme Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --text-primary: #1a1a1a;
+  --text-secondary: #6b7280;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --border: #e5e7eb;
+  --link: #3b82f6;
+  --link-hover: #2563eb;
+}
+
+[data-theme="xanga"] {
+  /* Xanga Theme Colors - 2000s nostalgia */
+  --bg-primary: #ffffff;
+  --bg-secondary: #ffffcc;
+  --text-primary: #000000;
+  --text-secondary: #333333;
+  --accent: #ff00ff;
+  --accent-hover: #cc00cc;
+  --border: #000000;
+  --link: #0000ff;
+  --link-hover: #ff00ff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Modern Theme Styles */
+body:not([data-theme="xanga"]) {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  line-height: 1.6;
+}
+
+/* Xanga Theme Styles */
+body[data-theme="xanga"] {
+  font-family: 'Comic Sans MS', 'Trebuchet MS', Arial, sans-serif;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='stars' x='0' y='0' width='20' height='20' patternUnits='userSpaceOnUse'%3E%3Ctext x='10' y='15' font-size='12' fill='%23ff00ff'%3E★%3C/text%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100' height='100' fill='url(%23stars)' opacity='0.1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  border: 3px solid var(--border);
+}
+
+body[data-theme="xanga"] a {
+  text-decoration: underline;
+  color: var(--link);
+}
+
+body[data-theme="xanga"] a:hover {
+  text-decoration: none;
+  background-color: var(--bg-secondary);
+  color: var(--link-hover);
+}
+
+body[data-theme="xanga"] h1,
+body[data-theme="xanga"] h2,
+body[data-theme="xanga"] h3 {
+  text-shadow: 2px 2px 0px var(--accent);
+  letter-spacing: 1px;
+}
+
+body[data-theme="xanga"] .border {
+  border-width: 2px !important;
+  border-style: solid !important;
+}
+
+body[data-theme="xanga"] button {
+  border: 2px solid var(--border) !important;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+}
+
+body[data-theme="xanga"] .bg-bg-secondary {
+  background-color: var(--bg-secondary) !important;
+  border: 1px dashed var(--border);
+}
+
+/* Scrollbar styling for Xanga mode */
+body[data-theme="xanga"] ::-webkit-scrollbar {
+  width: 16px;
+}
+
+body[data-theme="xanga"] ::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border: 2px solid var(--border);
+}
+
+body[data-theme="xanga"] ::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border: 2px solid var(--border);
+}
+
+body[data-theme="xanga"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-hover);
+}
+
+/* Utility classes */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2rem;
+  }
+}
