@@ -24,8 +24,8 @@ export function Header() {
       <div className="container mx-auto px-4 py-4">
         <nav className="flex items-center justify-between">
           <div className="flex items-center space-x-6">
-            <Link href="/" className="text-xl font-bold text-accent hover:text-accent-hover transition-colors">
-              Tom Bohn
+            <Link href="/" className="text-xl font-bold text-accent hover:text-accent-hover transition-colors font-mono tracking-wider">
+              THOMASLBOHN.COM
             </Link>
             <div className="hidden md:flex space-x-6">
               {navItems.map((item) => {

@@ -1,71 +1,138 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Home() {
   return (
     <div className="container mx-auto px-4 py-12">
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-5xl font-bold mb-6 text-text-primary">
-          Welcome
-        </h1>
-        <p className="text-xl text-text-secondary mb-8 leading-relaxed">
-          Welcome to my personal website. Here you'll find my thoughts, projects, 
-          and various corners of the internet where I exist.
-        </p>
+      <div className="max-w-6xl mx-auto">
+        {/* Role tag */}
+        <p className="text-sm text-accent mb-4 font-mono">{'>'} SOFTWARE ENGINEER</p>
         
-        <div className="grid md:grid-cols-2 gap-6 mt-12">
-          <Link
-            href="/about"
-            className="p-6 border border-border rounded-lg hover:border-accent hover:shadow-lg transition-all bg-bg-secondary"
-          >
-            <h2 className="text-2xl font-semibold mb-2 text-accent">About</h2>
-            <p className="text-text-secondary">
-              Learn more about me, my background, and what I'm passionate about.
+        {/* Main content area - two column layout */}
+        <div className="grid md:grid-cols-2 gap-12 mb-16">
+          {/* Left column - Name and bio */}
+          <div>
+            <h1 className="text-6xl md:text-7xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Tom
+              </span>
+              {' '}
+              <span className="bg-gradient-to-r from-blue-600 to-pink-600 bg-clip-text text-transparent">
+                Bohn
+              </span>
+            </h1>
+            <p className="text-lg text-text-secondary leading-relaxed mb-4">
+              Software engineer and technical leader specializing in Salesforce development, 
+              data engineering, and cloud architecture. Building scalable solutions and 
+              leading teams to deliver impactful technology solutions.
             </p>
-          </Link>
-
-          <Link
-            href="/blog"
-            className="p-6 border border-border rounded-lg hover:border-accent hover:shadow-lg transition-all bg-bg-secondary"
-          >
-            <h2 className="text-2xl font-semibold mb-2 text-accent">Blog</h2>
-            <p className="text-text-secondary">
-              Thoughts, tutorials, and random musings on technology and life.
+            <p className="text-lg text-text-secondary leading-relaxed">
+              Currently working on enterprise-level Salesforce implementations and data 
+              warehouse solutions. Passionate about clean code, best practices, and 
+              mentoring the next generation of developers.{' '}
+              <a 
+                href="/contact" 
+                className="text-link hover:text-link-hover underline"
+              >
+                Get in touch
+              </a>.
             </p>
-          </Link>
-
-          <Link
-            href="/projects"
-            className="p-6 border border-border rounded-lg hover:border-accent hover:shadow-lg transition-all bg-bg-secondary"
-          >
-            <h2 className="text-2xl font-semibold mb-2 text-accent">Projects</h2>
-            <p className="text-text-secondary">
-              A collection of projects I've worked on and things I've built.
-            </p>
-          </Link>
-
-          <Link
-            href="/hub"
-            className="p-6 border border-border rounded-lg hover:border-accent hover:shadow-lg transition-all bg-bg-secondary"
-          >
-            <h2 className="text-2xl font-semibold mb-2 text-accent">Hub</h2>
-            <p className="text-text-secondary">
-              All the places you can find me online - a personal link hub.
-            </p>
-          </Link>
+          </div>
+          
+          {/* Right column - Profile picture */}
+          <div className="flex justify-center md:justify-end">
+            <div className="relative w-64 h-80 md:w-80 md:h-96">
+              <div className="absolute inset-0 border-2 border-accent/30 rounded-lg" 
+                   style={{
+                     clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+                     borderTopLeftRadius: '0.5rem',
+                     borderTopRightRadius: '0.5rem',
+                   }}
+              />
+              <div className="relative w-full h-full rounded-lg overflow-hidden bg-bg-secondary">
+                <Image
+                  src="/profile.jpg"
+                  alt="Tom Bohn"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              {/* Bottom border accent */}
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600" />
+            </div>
+          </div>
         </div>
 
-        <div className="mt-12 p-6 border border-border rounded-lg bg-bg-secondary">
-          <h2 className="text-2xl font-semibold mb-4 text-text-primary">Quick Links</h2>
-          <div className="flex flex-wrap gap-4">
-            <Link href="/links" className="text-link hover:text-link-hover underline">
-              Bookmarks & Tools
-            </Link>
-            <Link href="/certifications" className="text-link hover:text-link-hover underline">
-              Certifications & Learning
-            </Link>
-            <Link href="/contact" className="text-link hover:text-link-hover underline">
-              Get in Touch
-            </Link>
+        {/* Project Cards Section */}
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold mb-8 text-text-primary font-mono">// MY WORK</h2>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Medium Card */}
+            <div className="border-2 border-border rounded-lg p-8 bg-bg-secondary hover:border-accent transition-all">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-12 bg-accent rounded flex items-center justify-center text-white font-bold text-xl">
+                  M
+                </div>
+                <h3 className="text-3xl font-bold text-text-primary">Medium</h3>
+              </div>
+              <p className="text-text-secondary mb-6 leading-relaxed">
+                Writing about software engineering, Salesforce development, data engineering, 
+                and technical leadership. Sharing insights, tutorials, and experiences from 
+                building enterprise solutions.
+              </p>
+              <div className="mb-6">
+                <p className="text-sm font-semibold text-text-primary mb-3 font-mono">RECENT ARTICLES:</p>
+                <ul className="space-y-2 text-text-secondary">
+                  <li className="flex items-start gap-2">
+                    <span className="text-accent mt-1">→</span>
+                    <span>Check out my latest articles on Medium</span>
+                  </li>
+                </ul>
+              </div>
+              <a
+                href="https://medium.com/@bohn.tl"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block text-link hover:text-link-hover underline font-semibold"
+              >
+                READ ON MEDIUM →
+              </a>
+            </div>
+
+            {/* GitHub Card */}
+            <div className="border-2 border-border rounded-lg p-8 bg-bg-secondary hover:border-accent transition-all">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-12 bg-gray-800 rounded flex items-center justify-center">
+                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482C19.138 20.197 22 16.442 22 12.017 22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <h3 className="text-3xl font-bold text-text-primary">GitHub</h3>
+              </div>
+              <p className="text-text-secondary mb-6 leading-relaxed">
+                Open source projects, code samples, and contributions. Exploring new 
+                technologies, building tools, and sharing code with the developer community.
+              </p>
+              <div className="mb-6">
+                <p className="text-sm font-semibold text-text-primary mb-3 font-mono">FEATURED REPOS:</p>
+                <ul className="space-y-2 text-text-secondary">
+                  <li className="flex items-start gap-2">
+                    <span className="text-accent mt-1">→</span>
+                    <span>Check out my repositories and contributions</span>
+                  </li>
+                </ul>
+              </div>
+              <a
+                href="https://github.com/TOM-BOHN"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block text-link hover:text-link-hover underline font-semibold"
+              >
+                VIEW ON GITHUB →
+              </a>
+            </div>
           </div>
         </div>
       </div>
