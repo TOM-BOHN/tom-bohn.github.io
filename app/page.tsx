@@ -13,11 +13,11 @@ export default function Home() {
           {/* Left column - Name and bio */}
           <div>
             <h1 className="text-6xl md:text-7xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Tom
+              <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
+                Thomas
               </span>
               {' '}
-              <span className="bg-gradient-to-r from-blue-600 to-pink-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-blue-900 to-blue-800 bg-clip-text text-transparent">
                 Bohn
               </span>
             </h1>
@@ -52,14 +52,14 @@ export default function Home() {
               <div className="relative w-full h-full rounded-lg overflow-hidden bg-bg-secondary">
                 <Image
                   src="/profile.jpg"
-                  alt="Tom Bohn"
+                  alt="Thomas Bohn"
                   fill
                   className="object-cover"
                   priority
                 />
               </div>
               {/* Bottom border accent */}
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600" />
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-500 to-blue-900" />
             </div>
           </div>
         </div>

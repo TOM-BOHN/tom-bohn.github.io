@@ -8,22 +8,27 @@ import { Footer } from '@/components/Footer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Tom Bohn',
+  title: 'Thomas Bohn',
   description: 'Personal website and blog',
   metadataBase: new URL('https://thomaslbohn.com'),
   alternates: {
     canonical: 'https://thomaslbohn.com',
   },
+  icons: {
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
   openGraph: {
-    title: 'Tom Bohn',
+    title: 'Thomas Bohn',
     description: 'Personal website and blog',
     url: 'https://thomaslbohn.com',
-    siteName: 'Tom Bohn',
+    siteName: 'Thomas Bohn',
     type: 'website',
   },
   twitter: {
     card: 'summary',
-    title: 'Tom Bohn',
+    title: 'Thomas Bohn',
     description: 'Personal website and blog',
   },
 }
