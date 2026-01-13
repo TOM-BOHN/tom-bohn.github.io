@@ -10,6 +10,22 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Tom Bohn',
   description: 'Personal website and blog',
+  metadataBase: new URL('https://thomaslbohn.com'),
+  alternates: {
+    canonical: 'https://thomaslbohn.com',
+  },
+  openGraph: {
+    title: 'Tom Bohn',
+    description: 'Personal website and blog',
+    url: 'https://thomaslbohn.com',
+    siteName: 'Tom Bohn',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Tom Bohn',
+    description: 'Personal website and blog',
+  },
 }
 
 export default function RootLayout({
