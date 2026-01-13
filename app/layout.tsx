@@ -14,6 +14,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://thomaslbohn.com',
   },
+  icons: {
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
   openGraph: {
     title: 'Tom Bohn',
     description: 'Personal website and blog',
