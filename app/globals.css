@@ -8,11 +8,11 @@
   --bg-secondary: #f8f9fa;
   --text-primary: #1a1a1a;
   --text-secondary: #6b7280;
-  --accent: #3b82f6;
-  --accent-hover: #2563eb;
+  --accent: #f97316;
+  --accent-hover: #ea580c;
   --border: #e5e7eb;
-  --link: #3b82f6;
-  --link-hover: #2563eb;
+  --link: #f97316;
+  --link-hover: #ea580c;
 }
 
 [data-theme="xanga"] {

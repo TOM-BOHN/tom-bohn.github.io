@@ -5,7 +5,7 @@ export function Footer() {
     <footer className="border-t border-border bg-bg-secondary py-8 mt-auto">
       <div className="container mx-auto px-4">
         <div className="text-center text-text-secondary text-sm">
-          <p>&copy; {currentYear} Tom Bohn. All rights reserved.</p>
+          <p>&copy; {currentYear} Thomas Bohn. All rights reserved.</p>
           <p className="mt-2">
             Built with{' '}
             <a
