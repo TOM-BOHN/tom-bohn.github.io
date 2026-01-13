@@ -36,4 +36,4 @@ This site is configured for GitHub Pages. After building, the `out/` directory c
 
 ## Custom Domain
 
-To use a custom domain, create a `CNAME` file in the `public/` directory with your domain name.
+The `CNAME` file is located in the `public/` directory. This ensures it's included in the static export and deployed to GitHub Pages.
