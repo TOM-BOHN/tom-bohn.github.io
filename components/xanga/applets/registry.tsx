@@ -13,7 +13,7 @@ export type XangaAppletDefinition = {
 }
 
 export const XANGA_APPLETS: XangaAppletDefinition[] = [
-  { id: 'music', title: 'Music Player (90s)', Component: MusicPlayerApplet, enabled: true },
+  { id: 'music', title: 'Vibe Tunes', Component: MusicPlayerApplet, enabled: true },
   { id: 'weather', title: 'Weather (Chicago)', Component: ChicagoWeatherApplet, enabled: true },
   { id: 'now-listening', title: "Now Listening", Component: NowListeningApplet, enabled: true },
 ]
