@@ -77,6 +77,13 @@ html[data-theme="xanga"] body {
   min-height: 100vh;
 }
 
+/* Keep ONE shadow on the overall Xanga content area */
+html[data-theme="xanga"] body .xanga-shell {
+  background-color: var(--bg-tertiary);
+  border: 4px solid var(--border);
+  box-shadow: 8px 8px 0px var(--accent-navy);
+}
+
 html[data-theme="xanga"] body a {
   text-decoration: underline;
   color: var(--link);
@@ -85,15 +92,14 @@ html[data-theme="xanga"] body a {
 
 html[data-theme="xanga"] body a:hover {
   text-decoration: none;
-  background-color: var(--accent);
   color: var(--bg-primary);
-  padding: 2px 4px;
+  background-color: var(--accent);
+  box-shadow: inset 0 -2px 0 var(--accent-navy);
 }
 
 html[data-theme="xanga"] body h1,
 html[data-theme="xanga"] body h2,
 html[data-theme="xanga"] body h3 {
-  text-shadow: 3px 3px 0px var(--accent-navy), -1px -1px 0px var(--accent);
   letter-spacing: 2px;
   color: var(--text-primary);
 }
@@ -120,7 +126,6 @@ html[data-theme="xanga"] body [class*="border"] {
 
 html[data-theme="xanga"] body button {
   border: 4px solid var(--border) !important;
-  text-shadow: 2px 2px 0px var(--accent-navy);
   font-weight: bold;
   padding: 8px 16px !important;
   background-color: var(--bg-secondary) !important;
@@ -138,7 +143,6 @@ html[data-theme="xanga"] body [class*="bg-bg-secondary"] {
   background-color: var(--bg-secondary) !important;
   border: 4px solid var(--border-navy) !important;
   padding: 16px !important;
-  box-shadow: 4px 4px 0px var(--accent);
 }
 
 html[data-theme="xanga"] body .bg-bg-primary,
@@ -155,7 +159,6 @@ html[data-theme="xanga"] body .xanga-main-content > div {
   border: 4px solid var(--border-navy);
   padding: 20px;
   margin: 16px 0;
-  box-shadow: 6px 6px 0px var(--accent);
 }
 
 /* Xanga sidebar layout tweaks */
@@ -170,13 +173,11 @@ html[data-theme="xanga"] body .xanga-applet {
 html[data-theme="xanga"] body header {
   background-color: var(--bg-tertiary) !important;
   border-bottom: 4px solid var(--border) !important;
-  box-shadow: 0 4px 0px var(--accent-navy);
 }
 
 html[data-theme="xanga"] body footer {
   background-color: var(--bg-tertiary) !important;
   border-top: 4px solid var(--border) !important;
-  box-shadow: 0 -4px 0px var(--accent-navy);
 }
 
 /* Card styling for Xanga mode */
@@ -189,14 +190,12 @@ html[data-theme="xanga"] body section {
   border-radius: 0 !important;
   padding: 20px !important;
   margin: 16px 0 !important;
-  box-shadow: 6px 6px 0px var(--accent) !important;
 }
 
 html[data-theme="xanga"] body [class*="rounded-lg"]:hover,
 html[data-theme="xanga"] body [class*="card"]:hover {
-  box-shadow: 8px 8px 0px var(--accent), 2px 2px 0px var(--accent-navy) !important;
-  transform: translate(-2px, -2px);
-  transition: all 0.2s ease;
+  border-color: var(--border) !important;
+  transition: border-color 0.2s ease;
 }
 
 /* Text colors for Xanga mode */
