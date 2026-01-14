@@ -19,6 +19,38 @@ type ItunesLookupEpisode = {
   trackViewUrl?: string
 }
 
+function jsonp<T>(url: string): Promise<T> {
+  return new Promise((resolve, reject) => {
+    const callbackName = `__jsonp_cb_${Math.random().toString(36).slice(2)}`
+    const sep = url.includes('?') ? '&' : '?'
+    const script = document.createElement('script')
+    const timeout = window.setTimeout(() => {
+      cleanup()
+      reject(new Error('JSONP timed out'))
+    }, 10000)
+
+    function cleanup() {
+      window.clearTimeout(timeout)
+      // @ts-expect-error - dynamic cleanup
+      delete window[callbackName]
+      script.remove()
+    }
+
+    // @ts-expect-error - JSONP callback
+    window[callbackName] = (data: T) => {
+      cleanup()
+      resolve(data)
+    }
+
+    script.src = `${url}${sep}callback=${encodeURIComponent(callbackName)}`
+    script.onerror = () => {
+      cleanup()
+      reject(new Error('JSONP failed to load'))
+    }
+    document.body.appendChild(script)
+  })
+}
+
 function formatDateMaybe(s: string | undefined): string | undefined {
   if (!s) return undefined
   const d = new Date(s)
@@ -50,9 +82,7 @@ export function NowListeningApplet() {
           SHOWS.map(async (show) => {
             try {
               const url = `https://itunes.apple.com/lookup?id=${show.collectionId}&entity=podcastEpisode&limit=1`
-              const res = await fetch(url)
-              if (!res.ok) throw new Error(`iTunes failed (${res.status})`)
-              const json = (await res.json()) as any
+              const json = (await jsonp<any>(url)) as any
               const results = Array.isArray(json?.results) ? (json.results as ItunesLookupEpisode[]) : []
               const episode = results.find((r) => r.wrapperType === 'podcastEpisode' || r.kind === 'podcast-episode')
 

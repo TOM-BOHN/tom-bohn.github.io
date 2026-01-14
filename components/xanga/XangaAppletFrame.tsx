@@ -7,12 +7,12 @@ export function XangaAppletFrame({
 }) {
   return (
     <section className="xanga-applet border-4 border-border bg-bg-secondary">
-      <div className="border-b-4 border-border bg-bg-primary px-3 py-2">
-        <h3 className="text-sm font-bold tracking-widest uppercase text-text-primary">
+      <div className="px-3 pt-3">
+        <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-accent whitespace-nowrap">
           {title}
         </h3>
       </div>
-      <div className="p-3">{children}</div>
+      <div className="p-3 pt-2">{children}</div>
     </section>
   )
 }
