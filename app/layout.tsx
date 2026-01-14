@@ -4,6 +4,7 @@ import './globals.css'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { XangaShell } from '@/components/XangaShell'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -45,7 +46,7 @@ export default function RootLayout({
           <div className="min-h-screen flex flex-col">
             <Header />
             <main className="flex-grow">
-              {children}
+              <XangaShell>{children}</XangaShell>
             </main>
             <Footer />
           </div>

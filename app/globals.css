@@ -134,13 +134,23 @@ body[data-theme="xanga"] [class*="bg-bg-primary"] {
 }
 
 /* Containerized boxes for Xanga mode */
-body[data-theme="xanga"] main > div,
-body[data-theme="xanga"] .container > div {
+body[data-theme="xanga"] main > div:not(.xanga-shell),
+body[data-theme="xanga"] .container > div,
+body[data-theme="xanga"] .xanga-main-content > div {
   background-color: var(--bg-secondary);
   border: 4px solid var(--border-navy);
   padding: 20px;
   margin: 16px 0;
   box-shadow: 6px 6px 0px var(--accent);
+}
+
+/* Xanga sidebar layout tweaks */
+body[data-theme="xanga"] .xanga-shell .container {
+  max-width: 100%;
+}
+
+body[data-theme="xanga"] .xanga-applet {
+  border-radius: 0 !important;
 }
 
 body[data-theme="xanga"] header {
