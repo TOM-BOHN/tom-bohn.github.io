@@ -47,22 +47,24 @@ export default function About() {
           {/* Right column - About content */}
           <div className="prose prose-lg max-w-none">
             <section className="mb-8">
-              <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono">// ABOUT ME</h2>
+              <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono">
+                {'// ABOUT ME'}
+              </h2>
               <div className="text-text-secondary leading-relaxed space-y-4">
                 <p>
-                  I'm a software engineer and technical leader with a passion for building 
+                  I&apos;m a software engineer and technical leader with a passion for building 
                   scalable, maintainable solutions. My expertise spans Salesforce development, 
                   data engineering, cloud architecture, and team leadership.
                 </p>
                 <p>
-                  Throughout my career, I've focused on delivering high-quality enterprise 
+                  Throughout my career, I&apos;ve focused on delivering high-quality enterprise 
                   solutions that solve real business problems. I specialize in Salesforce 
                   platform development, working with Apex, Lightning Web Components, Flows, 
                   and the broader Salesforce ecosystem to build custom applications and 
                   integrations.
                 </p>
                 <p>
-                  In addition to hands-on development, I'm passionate about data engineering 
+                  In addition to hands-on development, I&apos;m passionate about data engineering 
                   and building robust data pipelines. I work with modern data stack tools 
                   including dbt, Spark, Trino, and various cloud data warehouses to transform 
                   raw data into actionable insights.
@@ -70,26 +72,28 @@ export default function About() {
                 <p>
                   As a technical leader, I believe in the power of mentorship and knowledge 
                   sharing. I enjoy working with teams to establish best practices, improve 
-                  code quality, and foster a culture of continuous learning. I'm particularly 
+                  code quality, and foster a culture of continuous learning. I&apos;m particularly 
                   interested in agentic SDLC processes and spec-driven development methodologies 
                   that help teams deliver better software faster.
                 </p>
                 <p>
-                  When I'm not coding, I'm likely writing about software engineering, 
+                  When I&apos;m not coding, I&apos;m likely writing about software engineering, 
                   contributing to open source projects, or exploring new technologies. 
                   I believe in the importance of giving back to the developer community 
                   and sharing knowledge through writing, speaking, and open source contributions.
                 </p>
                 <p>
-                  I'm always interested in connecting with fellow developers, discussing 
+                  I&apos;m always interested in connecting with fellow developers, discussing 
                   technical challenges, and exploring opportunities to collaborate on 
-                  interesting projects. Feel free to reach out if you'd like to connect!
+                  interesting projects. Feel free to reach out if you&apos;d like to connect!
                 </p>
               </div>
             </section>
 
             <section className="mb-8">
-              <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono">// TECHNICAL EXPERTISE</h2>
+              <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono">
+                {'// TECHNICAL EXPERTISE'}
+              </h2>
               <div className="text-text-secondary">
                 <p className="mb-3">
                   <strong className="text-text-primary">Salesforce Platform:</strong> Apex, Lightning Web Components, 
@@ -111,9 +115,11 @@ export default function About() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono">// GET IN TOUCH</h2>
+              <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono">
+                {'// GET IN TOUCH'}
+              </h2>
               <p className="text-text-secondary leading-relaxed mb-4">
-                I'm always open to discussing new opportunities, technical challenges, 
+                I&apos;m always open to discussing new opportunities, technical challenges, 
                 or potential collaborations. Feel free to reach out through any of the 
                 channels below.
               </p>
