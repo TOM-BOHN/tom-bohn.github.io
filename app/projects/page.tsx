@@ -8,7 +8,7 @@ export default async function Projects() {
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold mb-6 text-text-primary">Projects</h1>
         <p className="text-xl text-text-secondary mb-12">
-          A collection of projects I've worked on
+          A collection of projects I&apos;ve worked on
         </p>
 
         {projects.length === 0 ? (

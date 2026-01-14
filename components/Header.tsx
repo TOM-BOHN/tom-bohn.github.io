@@ -4,6 +4,89 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTheme } from './ThemeProvider'
 
+function ThemeIcon({ theme }: { theme: 'light' | 'dark' | 'xanga' }) {
+  if (theme === 'light') {
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        width="18"
+        height="18"
+        aria-hidden="true"
+        className="block"
+      >
+        <path
+          fill="currentColor"
+          d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12Zm0-16a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1Zm0 18a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1ZM2 12a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1Zm18 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1ZM4.22 4.22a1 1 0 0 1 1.42 0l.7.7a1 1 0 1 1-1.4 1.42l-.72-.7a1 1 0 0 1 0-1.42Zm13.44 13.44a1 1 0 0 1 1.42 0l.7.7a1 1 0 1 1-1.4 1.42l-.72-.7a1 1 0 0 1 0-1.42ZM19.78 4.22a1 1 0 0 1 0 1.42l-.7.7a1 1 0 1 1-1.42-1.4l.7-.72a1 1 0 0 1 1.42 0ZM6.34 17.66a1 1 0 0 1 0 1.42l-.7.7a1 1 0 1 1-1.42-1.4l.72-.72a1 1 0 0 1 1.4 0Z"
+        />
+      </svg>
+    )
+  }
+
+  if (theme === 'dark') {
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        width="18"
+        height="18"
+        aria-hidden="true"
+        className="block"
+      >
+        <path
+          fill="currentColor"
+          d="M21 14.5A8.5 8.5 0 0 1 9.5 3a.75.75 0 0 0-.86-.98A10 10 0 1 0 21.98 15.36a.75.75 0 0 0-.98-.86Z"
+        />
+      </svg>
+    )
+  }
+
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="18"
+      height="18"
+      aria-hidden="true"
+      className="block"
+    >
+      <path
+        fill="currentColor"
+        d="M12 2 9.5 8H3l5.25 3.9L6.5 18 12 14.2 17.5 18l-1.75-6.1L21 8h-6.5L12 2Z"
+      />
+    </svg>
+  )
+}
+
+function ThemeIconButton({
+  value,
+  active,
+  onClick,
+}: {
+  value: 'light' | 'dark' | 'xanga'
+  active: boolean
+  onClick: () => void
+}) {
+  const label = value === 'xanga' ? 'Xanga' : value === 'dark' ? 'Dark' : 'Light'
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={active}
+      aria-label={`${label} theme`}
+      title={`${label} theme`}
+      className={`relative group w-9 h-9 flex items-center justify-center transition-colors ${
+        active
+          ? 'bg-bg-secondary text-accent'
+          : 'bg-transparent text-text-primary hover:bg-bg-secondary'
+      }`}
+    >
+      <ThemeIcon theme={value} />
+      <span className="sr-only">{label}</span>
+      <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded border border-border bg-bg-primary px-2 py-1 text-[11px] text-text-primary opacity-0 shadow-sm transition-opacity group-hover:opacity-100">
+        {label}
+      </span>
+    </button>
+  )
+}
+
 const navItems = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
@@ -17,7 +100,7 @@ const navItems = [
 
 export function Header() {
   const pathname = usePathname()
-  const { theme, toggleTheme } = useTheme()
+  const { theme, setTheme } = useTheme()
 
   return (
     <header className="border-b border-border bg-bg-primary sticky top-0 z-50 backdrop-blur-sm bg-opacity-90">
@@ -47,13 +130,18 @@ export function Header() {
               })}
             </div>
           </div>
-          <button
-            onClick={toggleTheme}
-            className="px-4 py-2 bg-accent text-white rounded hover:bg-accent-hover transition-colors text-sm font-semibold"
-            aria-label="Toggle theme"
-          >
-            {theme === 'modern' ? '🎨 Xanga Mode' : '✨ Modern Mode'}
-          </button>
+          <div className="flex items-center gap-2">
+            <div className="inline-flex overflow-hidden">
+              {(['light', 'dark', 'xanga'] as const).map((t) => (
+                <ThemeIconButton
+                  key={t}
+                  value={t}
+                  active={theme === t}
+                  onClick={() => setTheme(t)}
+                />
+              ))}
+            </div>
+          </div>
         </nav>
         {/* Mobile menu */}
         <div className="md:hidden mt-4 pb-2">
