@@ -17,7 +17,7 @@ const navItems = [
 
 export function Header() {
   const pathname = usePathname()
-  const { theme, toggleTheme } = useTheme()
+  const { theme, setTheme } = useTheme()
 
   return (
     <header className="border-b border-border bg-bg-primary sticky top-0 z-50 backdrop-blur-sm bg-opacity-90">
@@ -47,13 +47,31 @@ export function Header() {
               })}
             </div>
           </div>
-          <button
-            onClick={toggleTheme}
-            className="px-4 py-2 bg-accent text-white rounded hover:bg-accent-hover transition-colors text-sm font-semibold"
-            aria-label="Toggle theme"
-          >
-            {theme === 'modern' ? '🎨 Xanga Mode' : '✨ Modern Mode'}
-          </button>
+          <div className="flex items-center gap-2">
+            <span className="hidden sm:inline text-xs font-semibold text-text-secondary">
+              Theme:
+            </span>
+            <div className="inline-flex border-2 border-border overflow-hidden">
+              {(['light', 'dark', 'xanga'] as const).map((t) => {
+                const active = theme === t
+                return (
+                  <button
+                    key={t}
+                    type="button"
+                    onClick={() => setTheme(t)}
+                    aria-pressed={active}
+                    className={`px-3 py-2 text-xs font-bold tracking-widest uppercase transition-colors ${
+                      active
+                        ? 'bg-accent text-white'
+                        : 'bg-bg-secondary text-text-secondary hover:bg-accent hover:text-white'
+                    }`}
+                  >
+                    {t}
+                  </button>
+                )
+              })}
+            </div>
+          </div>
         </nav>
         {/* Mobile menu */}
         <div className="md:hidden mt-4 pb-2">

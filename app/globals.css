@@ -15,6 +15,19 @@
   --link-hover: #ea580c;
 }
 
+[data-theme="dark"] {
+  /* Modern Dark Theme Colors */
+  --bg-primary: #0b1220;
+  --bg-secondary: #111a2e;
+  --text-primary: #e5e7eb;
+  --text-secondary: #93a4b8;
+  --accent: #f97316;
+  --accent-hover: #fb923c;
+  --border: #22314a;
+  --link: #93c5fd;
+  --link-hover: #fbbf24;
+}
+
 [data-theme="xanga"] {
   /* Xanga Theme Colors - 2000s nostalgia with orange and navy */
   --bg-primary: #0a0a0a;
@@ -46,7 +59,8 @@ body {
 }
 
 /* Modern Theme Styles */
-body:not([data-theme="xanga"]) {
+html[data-theme="light"] body,
+html[data-theme="dark"] body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -54,7 +68,7 @@ body:not([data-theme="xanga"]) {
 }
 
 /* Xanga Theme Styles */
-body[data-theme="xanga"] {
+html[data-theme="xanga"] body {
   font-family: 'Comic Sans MS', 'Trebuchet MS', 'Arial Rounded MT Bold', Arial, sans-serif;
   background-color: var(--bg-primary);
   background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='stars' x='0' y='0' width='20' height='20' patternUnits='userSpaceOnUse'%3E%3Ccircle cx='10' cy='10' r='1' fill='%23fbbf24' opacity='0.6'/%3E%3Ccircle cx='5' cy='5' r='0.5' fill='%2360a5fa' opacity='0.4'/%3E%3Ccircle cx='15' cy='15' r='0.5' fill='%23f97316' opacity='0.4'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100' height='100' fill='url(%23stars)'/%3E%3C/svg%3E");
@@ -63,48 +77,48 @@ body[data-theme="xanga"] {
   min-height: 100vh;
 }
 
-body[data-theme="xanga"] a {
+html[data-theme="xanga"] body a {
   text-decoration: underline;
   color: var(--link);
   font-weight: bold;
 }
 
-body[data-theme="xanga"] a:hover {
+html[data-theme="xanga"] body a:hover {
   text-decoration: none;
   background-color: var(--accent);
   color: var(--bg-primary);
   padding: 2px 4px;
 }
 
-body[data-theme="xanga"] h1,
-body[data-theme="xanga"] h2,
-body[data-theme="xanga"] h3 {
+html[data-theme="xanga"] body h1,
+html[data-theme="xanga"] body h2,
+html[data-theme="xanga"] body h3 {
   text-shadow: 3px 3px 0px var(--accent-navy), -1px -1px 0px var(--accent);
   letter-spacing: 2px;
   color: var(--text-primary);
 }
 
-body[data-theme="xanga"] h1 {
+html[data-theme="xanga"] body h1 {
   font-size: 2.5em;
   text-transform: uppercase;
 }
 
-body[data-theme="xanga"] h2 {
+html[data-theme="xanga"] body h2 {
   font-size: 2em;
 }
 
-body[data-theme="xanga"] h3 {
+html[data-theme="xanga"] body h3 {
   font-size: 1.5em;
 }
 
-body[data-theme="xanga"] .border,
-body[data-theme="xanga"] [class*="border"] {
+html[data-theme="xanga"] body .border,
+html[data-theme="xanga"] body [class*="border"] {
   border-width: 4px !important;
   border-style: solid !important;
   border-color: var(--border) !important;
 }
 
-body[data-theme="xanga"] button {
+html[data-theme="xanga"] body button {
   border: 4px solid var(--border) !important;
   text-shadow: 2px 2px 0px var(--accent-navy);
   font-weight: bold;
@@ -113,30 +127,30 @@ body[data-theme="xanga"] button {
   color: var(--text-primary) !important;
 }
 
-body[data-theme="xanga"] button:hover {
+html[data-theme="xanga"] body button:hover {
   background-color: var(--accent) !important;
   color: var(--bg-primary) !important;
   border-color: var(--accent-navy) !important;
 }
 
-body[data-theme="xanga"] .bg-bg-secondary,
-body[data-theme="xanga"] [class*="bg-bg-secondary"] {
+html[data-theme="xanga"] body .bg-bg-secondary,
+html[data-theme="xanga"] body [class*="bg-bg-secondary"] {
   background-color: var(--bg-secondary) !important;
   border: 4px solid var(--border-navy) !important;
   padding: 16px !important;
   box-shadow: 4px 4px 0px var(--accent);
 }
 
-body[data-theme="xanga"] .bg-bg-primary,
-body[data-theme="xanga"] [class*="bg-bg-primary"] {
+html[data-theme="xanga"] body .bg-bg-primary,
+html[data-theme="xanga"] body [class*="bg-bg-primary"] {
   background-color: var(--bg-tertiary) !important;
   border: 4px solid var(--border) !important;
 }
 
 /* Containerized boxes for Xanga mode */
-body[data-theme="xanga"] main > div:not(.xanga-shell),
-body[data-theme="xanga"] .container > div,
-body[data-theme="xanga"] .xanga-main-content > div {
+html[data-theme="xanga"] body main > div:not(.xanga-shell),
+html[data-theme="xanga"] body .container > div,
+html[data-theme="xanga"] body .xanga-main-content > div {
   background-color: var(--bg-secondary);
   border: 4px solid var(--border-navy);
   padding: 20px;
@@ -145,31 +159,31 @@ body[data-theme="xanga"] .xanga-main-content > div {
 }
 
 /* Xanga sidebar layout tweaks */
-body[data-theme="xanga"] .xanga-shell .container {
+html[data-theme="xanga"] body .xanga-shell .container {
   max-width: 100%;
 }
 
-body[data-theme="xanga"] .xanga-applet {
+html[data-theme="xanga"] body .xanga-applet {
   border-radius: 0 !important;
 }
 
-body[data-theme="xanga"] header {
+html[data-theme="xanga"] body header {
   background-color: var(--bg-tertiary) !important;
   border-bottom: 4px solid var(--border) !important;
   box-shadow: 0 4px 0px var(--accent-navy);
 }
 
-body[data-theme="xanga"] footer {
+html[data-theme="xanga"] body footer {
   background-color: var(--bg-tertiary) !important;
   border-top: 4px solid var(--border) !important;
   box-shadow: 0 -4px 0px var(--accent-navy);
 }
 
 /* Card styling for Xanga mode */
-body[data-theme="xanga"] [class*="rounded-lg"],
-body[data-theme="xanga"] [class*="card"],
-body[data-theme="xanga"] article,
-body[data-theme="xanga"] section {
+html[data-theme="xanga"] body [class*="rounded-lg"],
+html[data-theme="xanga"] body [class*="card"],
+html[data-theme="xanga"] body article,
+html[data-theme="xanga"] body section {
   background-color: var(--bg-secondary) !important;
   border: 4px solid var(--border-navy) !important;
   border-radius: 0 !important;
@@ -178,36 +192,36 @@ body[data-theme="xanga"] section {
   box-shadow: 6px 6px 0px var(--accent) !important;
 }
 
-body[data-theme="xanga"] [class*="rounded-lg"]:hover,
-body[data-theme="xanga"] [class*="card"]:hover {
+html[data-theme="xanga"] body [class*="rounded-lg"]:hover,
+html[data-theme="xanga"] body [class*="card"]:hover {
   box-shadow: 8px 8px 0px var(--accent), 2px 2px 0px var(--accent-navy) !important;
   transform: translate(-2px, -2px);
   transition: all 0.2s ease;
 }
 
 /* Text colors for Xanga mode */
-body[data-theme="xanga"] p,
-body[data-theme="xanga"] span,
-body[data-theme="xanga"] div {
+html[data-theme="xanga"] body p,
+html[data-theme="xanga"] body span,
+html[data-theme="xanga"] body div {
   color: var(--text-secondary);
 }
 
-body[data-theme="xanga"] [class*="text-text-primary"] {
+html[data-theme="xanga"] body [class*="text-text-primary"] {
   color: var(--text-primary) !important;
 }
 
-body[data-theme="xanga"] [class*="text-text-secondary"] {
+html[data-theme="xanga"] body [class*="text-text-secondary"] {
   color: var(--text-secondary) !important;
 }
 
-body[data-theme="xanga"] [class*="text-accent"] {
+html[data-theme="xanga"] body [class*="text-accent"] {
   color: var(--accent) !important;
 }
 
 /* Input and form elements */
-body[data-theme="xanga"] input,
-body[data-theme="xanga"] textarea,
-body[data-theme="xanga"] select {
+html[data-theme="xanga"] body input,
+html[data-theme="xanga"] body textarea,
+html[data-theme="xanga"] body select {
   border: 4px solid var(--border) !important;
   background-color: var(--bg-secondary) !important;
   color: var(--text-primary) !important;
@@ -215,31 +229,31 @@ body[data-theme="xanga"] select {
   font-family: inherit !important;
 }
 
-body[data-theme="xanga"] input:focus,
-body[data-theme="xanga"] textarea:focus,
-body[data-theme="xanga"] select:focus {
+html[data-theme="xanga"] body input:focus,
+html[data-theme="xanga"] body textarea:focus,
+html[data-theme="xanga"] body select:focus {
   border-color: var(--accent-navy) !important;
   outline: 4px solid var(--accent) !important;
   outline-offset: 2px;
 }
 
 /* Scrollbar styling for Xanga mode */
-body[data-theme="xanga"] ::-webkit-scrollbar {
+html[data-theme="xanga"] body ::-webkit-scrollbar {
   width: 20px;
 }
 
-body[data-theme="xanga"] ::-webkit-scrollbar-track {
+html[data-theme="xanga"] body ::-webkit-scrollbar-track {
   background: var(--bg-secondary);
   border: 4px solid var(--border);
 }
 
-body[data-theme="xanga"] ::-webkit-scrollbar-thumb {
+html[data-theme="xanga"] body ::-webkit-scrollbar-thumb {
   background: var(--accent);
   border: 3px solid var(--border-navy);
   border-radius: 0;
 }
 
-body[data-theme="xanga"] ::-webkit-scrollbar-thumb:hover {
+html[data-theme="xanga"] body ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-hover);
   border-color: var(--accent-light);
 }

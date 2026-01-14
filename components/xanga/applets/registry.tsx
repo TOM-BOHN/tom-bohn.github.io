@@ -6,6 +6,7 @@ import { MusicPlayerApplet } from './MusicPlayerApplet'
 import { ChicagoWeatherApplet } from './ChicagoWeatherApplet'
 import { NowListeningApplet } from './NowListeningApplet'
 import { XangaHistoryApplet } from './XangaHistoryApplet'
+import { HitCounterApplet } from './HitCounterApplet'
 
 export type XangaAppletDefinition = {
   id: string
@@ -20,5 +21,6 @@ export const XANGA_APPLETS: XangaAppletDefinition[] = [
   { id: 'weather', title: 'Weather (Chicago)', Component: ChicagoWeatherApplet, enabled: true },
   { id: 'now-listening', title: "Now Listening", Component: NowListeningApplet, enabled: true },
   { id: 'xanga-history', title: 'Xanga History', Component: XangaHistoryApplet, enabled: true },
+  { id: 'hit-counter', title: 'Hit Counter', Component: HitCounterApplet, enabled: true },
 ]
 
