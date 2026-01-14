@@ -74,8 +74,8 @@ function ThemeIconButton({
       title={`${label} theme`}
       className={`relative group w-9 h-9 flex items-center justify-center transition-colors ${
         active
-          ? 'bg-accent text-white'
-          : 'bg-bg-secondary text-text-secondary hover:bg-accent hover:text-white'
+          ? 'bg-bg-secondary text-accent'
+          : 'bg-transparent text-text-primary hover:bg-bg-secondary'
       }`}
     >
       <ThemeIcon theme={value} />
@@ -131,7 +131,7 @@ export function Header() {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <div className="inline-flex border-2 border-border overflow-hidden">
+            <div className="inline-flex overflow-hidden">
               {(['light', 'dark', 'xanga'] as const).map((t) => (
                 <ThemeIconButton
                   key={t}

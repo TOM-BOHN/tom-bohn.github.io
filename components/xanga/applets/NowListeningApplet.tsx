@@ -62,11 +62,30 @@ const SHOWS: Array<{
   id: string
   name: string
   collectionId: number
+  feedUrl: string
   siteUrl?: string
 }> = [
-  { id: 'planet-money', name: 'Planet Money', collectionId: 290783428, siteUrl: 'https://www.npr.org/podcasts/510289/planet-money' },
-  { id: 'hard-fork', name: 'Hard Fork', collectionId: 1528594034, siteUrl: 'https://www.nytimes.com/column/hard-fork' },
-  { id: 'search-engine', name: 'Search Engine', collectionId: 1614253637, siteUrl: 'https://www.searchengine.show/' },
+  {
+    id: 'planet-money',
+    name: 'Planet Money',
+    collectionId: 290783428,
+    feedUrl: 'https://feeds.npr.org/510289/podcast.xml',
+    siteUrl: 'https://www.npr.org/podcasts/510289/planet-money',
+  },
+  {
+    id: 'hard-fork',
+    name: 'Hard Fork',
+    collectionId: 1528594034,
+    feedUrl: 'https://feeds.simplecast.com/6HKOhNgS',
+    siteUrl: 'https://www.nytimes.com/column/hard-fork',
+  },
+  {
+    id: 'search-engine',
+    name: 'Search Engine',
+    collectionId: 1614253637,
+    feedUrl: 'https://feeds.megaphone.fm/search-engine',
+    siteUrl: 'https://www.searchengine.show/',
+  },
 ]
 
 export function NowListeningApplet() {
@@ -81,10 +100,48 @@ export function NowListeningApplet() {
         const shows = await Promise.all(
           SHOWS.map(async (show) => {
             try {
-              const url = `https://itunes.apple.com/lookup?id=${show.collectionId}&entity=podcastEpisode&limit=1`
-              const json = (await jsonp<any>(url)) as any
-              const results = Array.isArray(json?.results) ? (json.results as ItunesLookupEpisode[]) : []
-              const episode = results.find((r) => r.wrapperType === 'podcastEpisode' || r.kind === 'podcast-episode')
+              // Prefer iTunes JSONP (fast, no CORS), but fall back to RSS via AllOrigins
+              // for environments where JSONP is blocked (extensions/CSP).
+              let episode: ItunesLookupEpisode | undefined
+              try {
+                const url = `https://itunes.apple.com/lookup?id=${show.collectionId}&entity=podcastEpisode&limit=1`
+                const json = (await jsonp<any>(url)) as any
+                const results = Array.isArray(json?.results)
+                  ? (json.results as ItunesLookupEpisode[])
+                  : []
+                episode = results.find(
+                  (r) =>
+                    r.wrapperType === 'podcastEpisode' || r.kind === 'podcast-episode'
+                )
+              } catch {
+                episode = undefined
+              }
+
+              if (!episode) {
+                const rssProxy = `https://api.allorigins.win/raw?url=${encodeURIComponent(show.feedUrl)}`
+                const rssRes = await fetch(rssProxy)
+                if (rssRes.ok) {
+                  const xml = await rssRes.text()
+                  const doc = new DOMParser().parseFromString(xml, 'text/xml')
+                  const item = doc.querySelector('item')
+                  const title = item?.querySelector('title')?.textContent ?? undefined
+                  const link = item?.querySelector('link')?.textContent ?? undefined
+                  const pubDate = item?.querySelector('pubDate')?.textContent ?? undefined
+
+                  if (title || link || pubDate) {
+                    return {
+                      id: show.id,
+                      name: show.name,
+                      siteUrl: show.siteUrl,
+                      latest: {
+                        title,
+                        link: link ?? show.siteUrl,
+                        pubDate,
+                      },
+                    } satisfies NowListeningShow
+                  }
+                }
+              }
 
               return {
                 id: show.id,

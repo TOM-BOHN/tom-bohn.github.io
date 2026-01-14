@@ -117,8 +117,9 @@ html[data-theme="xanga"] body h3 {
   font-size: 1.5em;
 }
 
-html[data-theme="xanga"] body .border,
-html[data-theme="xanga"] body [class*="border"] {
+/* Only bulk-up borders inside the Xanga content area (not the header/theme controls) */
+html[data-theme="xanga"] body .xanga-shell .border,
+html[data-theme="xanga"] body .xanga-shell [class*="border"] {
   border-width: 4px !important;
   border-style: solid !important;
   border-color: var(--border) !important;
@@ -172,12 +173,12 @@ html[data-theme="xanga"] body .xanga-applet {
 
 html[data-theme="xanga"] body header {
   background-color: var(--bg-tertiary) !important;
-  border-bottom: 4px solid var(--border) !important;
+  border-bottom: 1px solid var(--border-navy) !important;
 }
 
 html[data-theme="xanga"] body footer {
   background-color: var(--bg-tertiary) !important;
-  border-top: 4px solid var(--border) !important;
+  border-top: 1px solid var(--border-navy) !important;
 }
 
 /* Card styling for Xanga mode */

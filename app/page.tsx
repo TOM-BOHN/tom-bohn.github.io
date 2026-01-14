@@ -41,25 +41,28 @@ export default function Home() {
           
           {/* Right column - Profile picture */}
           <div className="flex justify-center md:justify-end">
-            <div className="relative w-64 h-80 md:w-80 md:h-96">
-              <div className="absolute inset-0 border-2 border-accent/30 rounded-lg" 
-                   style={{
-                     clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
-                     borderTopLeftRadius: '0.5rem',
-                     borderTopRightRadius: '0.5rem',
-                   }}
-              />
-              <div className="relative w-full h-full rounded-lg overflow-hidden bg-bg-secondary">
-                <Image
-                  src="/profile.jpg"
-                  alt="Thomas Bohn"
-                  fill
-                  className="object-cover"
-                  priority
+            <div className="w-64 md:w-80">
+              <div className="relative h-80 md:h-96">
+                <div
+                  className="absolute inset-0 border-2 border-accent/30 rounded-lg"
+                  style={{
+                    clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+                    borderTopLeftRadius: '0.5rem',
+                    borderTopRightRadius: '0.5rem',
+                  }}
                 />
+                <div className="relative w-full h-full rounded-lg overflow-hidden bg-bg-secondary">
+                  <Image
+                    src="/profile.jpg"
+                    alt="Thomas Bohn"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
               </div>
-              {/* Bottom border accent */}
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-500 to-blue-900" />
+              {/* Bottom border accent (below image, not over it) */}
+              <div className="h-1 bg-gradient-to-r from-orange-500 to-blue-900" />
             </div>
           </div>
         </div>
