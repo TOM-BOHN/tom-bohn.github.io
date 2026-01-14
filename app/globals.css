@@ -138,22 +138,20 @@ html[data-theme="xanga"] body .xanga-shell button:hover {
   border-color: var(--accent-navy) !important;
 }
 
-html[data-theme="xanga"] body .bg-bg-secondary,
-html[data-theme="xanga"] body [class*="bg-bg-secondary"] {
+/* Keep modern header stable: only restyle these inside Xanga shell */
+html[data-theme="xanga"] body .xanga-shell .bg-bg-secondary,
+html[data-theme="xanga"] body .xanga-shell [class*="bg-bg-secondary"] {
   background-color: var(--bg-secondary) !important;
-  border: 4px solid var(--border-navy) !important;
-  padding: 16px !important;
 }
 
-html[data-theme="xanga"] body .bg-bg-primary,
-html[data-theme="xanga"] body [class*="bg-bg-primary"] {
+html[data-theme="xanga"] body .xanga-shell .bg-bg-primary,
+html[data-theme="xanga"] body .xanga-shell [class*="bg-bg-primary"] {
   background-color: var(--bg-tertiary) !important;
-  border: 4px solid var(--border) !important;
 }
 
 /* Containerized boxes for Xanga mode */
 html[data-theme="xanga"] body main > div:not(.xanga-shell),
-html[data-theme="xanga"] body .container > div,
+html[data-theme="xanga"] body .xanga-shell .container > div,
 html[data-theme="xanga"] body .xanga-main-content > div {
   background-color: var(--bg-secondary);
   border: 4px solid var(--border-navy);
