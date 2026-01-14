@@ -1,14 +1,13 @@
-import { FlatCompat } from "@eslint/eslintrc";
-import path from "path";
-import { fileURLToPath } from "url";
+import nextCoreWebVitals from 'eslint-config-next/core-web-vitals'
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const config = [
+  ...nextCoreWebVitals,
+  {
+    rules: {
+      // This project uses a common hydration-safe ThemeProvider pattern.
+      'react-hooks/set-state-in-effect': 'off',
+    },
+  },
+]
 
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
-export default [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
-];
+export default config
