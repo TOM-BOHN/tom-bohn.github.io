@@ -6,23 +6,9 @@ export function MusicPlayerApplet() {
   const albumUrl =
     'https://soundcloud.com/explosionsinthesky/sets/the-earth-is-not-a-cold-dead-1'
 
-  // SoundCloud-provided API playlist URL (from embed code)
-  const playlistApiUrl =
-    'https://api.soundcloud.com/playlists/soundcloud%3Aplaylists%3A771565368'
-
+  // Use SoundCloud-provided embed src verbatim (avoids encoding edge cases).
   const embedUrl =
-    'https://w.soundcloud.com/player/?' +
-    new URLSearchParams({
-      url: playlistApiUrl,
-      color: '#e1dfde',
-      auto_play: 'false',
-      hide_related: 'false',
-      show_comments: 'true',
-      show_user: 'true',
-      show_reposts: 'false',
-      show_teaser: 'true',
-      visual: 'true',
-    }).toString()
+    'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A771565368&color=%23e1dfde&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true'
 
   return (
     <div className="space-y-2">

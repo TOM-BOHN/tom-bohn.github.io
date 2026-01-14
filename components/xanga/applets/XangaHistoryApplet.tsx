@@ -8,7 +8,7 @@ export function XangaHistoryApplet() {
         platforms.
       </p>
 
-      <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs">
+      <div className="flex items-center gap-2 text-xs whitespace-nowrap overflow-x-auto">
         <a href="https://en.wikipedia.org/wiki/Xanga" target="_blank" rel="noopener noreferrer">
           Wikipedia
         </a>

@@ -6,6 +6,13 @@ type CountApiResponse = {
   value: number
 }
 
+async function fetchJsonViaAllOrigins<T>(url: string): Promise<T> {
+  const proxied = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`
+  const res = await fetch(proxied)
+  if (!res.ok) throw new Error(`Proxy failed (${res.status})`)
+  return (await res.json()) as T
+}
+
 function padCounter(n: number, digits = 7): string {
   const s = String(Math.max(0, Math.floor(n)))
   return s.length >= digits ? s : '0'.repeat(digits - s.length) + s
@@ -33,9 +40,8 @@ export function HitCounterApplet() {
           ? `https://api.countapi.xyz/hit/${encodeURIComponent(namespace)}/${encodeURIComponent(key)}`
           : `https://api.countapi.xyz/get/${encodeURIComponent(namespace)}/${encodeURIComponent(key)}`
 
-        const res = await fetch(url)
-        if (!res.ok) throw new Error(`Counter failed (${res.status})`)
-        const json = (await res.json()) as CountApiResponse
+        // CountAPI often fails CORS in-browser; proxy via AllOrigins for reliability.
+        const json = await fetchJsonViaAllOrigins<CountApiResponse>(url)
 
         if (shouldIncrement) {
           sessionStorage.setItem(sessionKey, '1')
