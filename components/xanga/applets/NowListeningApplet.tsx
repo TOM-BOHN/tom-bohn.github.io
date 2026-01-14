@@ -2,23 +2,21 @@
 
 import { useEffect, useMemo, useState } from 'react'
 
-type PodcastApiShow = {
+type NowListeningShow = {
   id: string
   name: string
-  feedUrl: string
   siteUrl?: string
-  latest?: {
-    title?: string
-    link?: string
-    pubDate?: string
-    audioUrl?: string
-  }
+  latest?: { title?: string; link?: string; pubDate?: string }
   error?: string
 }
 
-type PodcastApiResponse = {
-  shows: PodcastApiShow[]
-  updatedAt: string
+type ItunesLookupEpisode = {
+  wrapperType?: string
+  kind?: string
+  trackName?: string
+  releaseDate?: string
+  episodeUrl?: string
+  trackViewUrl?: string
 }
 
 function formatDateMaybe(s: string | undefined): string | undefined {
@@ -28,8 +26,19 @@ function formatDateMaybe(s: string | undefined): string | undefined {
   return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
 }
 
+const SHOWS: Array<{
+  id: string
+  name: string
+  collectionId: number
+  siteUrl?: string
+}> = [
+  { id: 'planet-money', name: 'Planet Money', collectionId: 290783428, siteUrl: 'https://www.npr.org/podcasts/510289/planet-money' },
+  { id: 'hard-fork', name: 'Hard Fork', collectionId: 1528594034, siteUrl: 'https://www.nytimes.com/column/hard-fork' },
+  { id: 'search-engine', name: 'Search Engine', collectionId: 1614253637, siteUrl: 'https://www.searchengine.show/' },
+]
+
 export function NowListeningApplet() {
-  const [data, setData] = useState<PodcastApiResponse | null>(null)
+  const [data, setData] = useState<{ shows: NowListeningShow[]; updatedAt: string } | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
@@ -37,10 +46,40 @@ export function NowListeningApplet() {
     ;(async () => {
       try {
         setError(null)
-        const res = await fetch('/api/podcasts')
-        if (!res.ok) throw new Error(`Podcasts failed (${res.status})`)
-        const json = (await res.json()) as PodcastApiResponse
-        if (!cancelled) setData(json)
+        const shows = await Promise.all(
+          SHOWS.map(async (show) => {
+            try {
+              const url = `https://itunes.apple.com/lookup?id=${show.collectionId}&entity=podcastEpisode&limit=1`
+              const res = await fetch(url)
+              if (!res.ok) throw new Error(`iTunes failed (${res.status})`)
+              const json = (await res.json()) as any
+              const results = Array.isArray(json?.results) ? (json.results as ItunesLookupEpisode[]) : []
+              const episode = results.find((r) => r.wrapperType === 'podcastEpisode' || r.kind === 'podcast-episode')
+
+              return {
+                id: show.id,
+                name: show.name,
+                siteUrl: show.siteUrl,
+                latest: episode
+                  ? {
+                      title: episode.trackName,
+                      link: episode.episodeUrl ?? episode.trackViewUrl ?? show.siteUrl,
+                      pubDate: episode.releaseDate,
+                    }
+                  : undefined,
+              } satisfies NowListeningShow
+            } catch (e) {
+              return {
+                id: show.id,
+                name: show.name,
+                siteUrl: show.siteUrl,
+                error: e instanceof Error ? e.message : 'Unknown error',
+              } satisfies NowListeningShow
+            }
+          })
+        )
+
+        if (!cancelled) setData({ shows, updatedAt: new Date().toISOString() })
       } catch (e) {
         if (!cancelled) setError(e instanceof Error ? e.message : 'Podcasts failed')
       }
@@ -64,7 +103,7 @@ export function NowListeningApplet() {
     <div className="space-y-3">
       {shows.map((show) => {
         const title = show.latest?.title ?? 'Latest episode'
-        const link = show.latest?.link ?? show.siteUrl ?? show.feedUrl
+        const link = show.latest?.link ?? show.siteUrl ?? '#'
         const date = formatDateMaybe(show.latest?.pubDate)
 
         return (
@@ -76,9 +115,13 @@ export function NowListeningApplet() {
               <p className="text-sm text-text-secondary">Feed error: {show.error}</p>
             ) : (
               <p className="text-sm text-text-secondary">
-                <a href={link} target="_blank" rel="noopener noreferrer">
-                  {title}
-                </a>
+                {link === '#' ? (
+                  <span>{title}</span>
+                ) : (
+                  <a href={link} target="_blank" rel="noopener noreferrer">
+                    {title}
+                  </a>
+                )}
                 {date ? <span className="text-xs"> {' — '} {date}</span> : null}
               </p>
             )}
