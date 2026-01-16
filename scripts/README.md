@@ -7,6 +7,7 @@ This directory contains scripts organized by service/platform for extracting and
 Each subdirectory contains scripts and documentation for a specific badge/credential platform:
 
 - **`credly-badge/`** - Scripts for extracting and organizing badges from Credly profiles
+- **`trailhead-badge/`** - Scripts for extracting and organizing badges from Salesforce Trailhead profiles
 
 ## Adding New Platforms
 

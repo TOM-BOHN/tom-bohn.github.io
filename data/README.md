@@ -7,10 +7,13 @@ This directory contains all data files for the website, organized by concern.
 ```
 data/
 ├── badges/              # Badge/credential data by source
-│   └── credly/          # Credly-specific badge data
+│   ├── credly/          # Credly-specific badge data
+│   │   ├── raw.json     # Raw extracted badge data
+│   │   ├── cached.json  # Processed badge data with metadata
+│   │   └── organized.json # Badges organized by category
+│   └── trailhead/       # Trailhead-specific badge data
 │       ├── raw.json     # Raw extracted badge data
-│       ├── cached.json  # Processed badge data with metadata
-│       └── organized.json # Badges organized by category
+│       └── cached.json  # Processed badge data with metadata
 ├── learning/            # Learning section data
 │   ├── learning.json    # Certification groups and learning goals
 │   ├── setup-notes.md   # Setup instructions for badge images
