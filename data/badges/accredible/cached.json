@@ -1,0 +1,79 @@
+{
+  "profileUrl": "https://www.credential.net/profile/thomasbohn/wallet",
+  "extractedAt": "2026-01-16T18:44:10.853Z",
+  "processedAt": "2026-01-16T18:45:29.063Z",
+  "credentials": [
+    {
+      "id": "accredible-15892313117835993414105051537299",
+      "name": "Certified Information Management Professional - Ex Level",
+      "cleanName": "Certified Information Management Professional - Ex Level",
+      "issuer": "eLearningCurve",
+      "imageUrl": "/badges/accredible/certified-information-management-professional-ex-l-accredible-15892313117835993414105051537299.png",
+      "imageAlt": "Certified Information Management Professional - Ex Level",
+      "description": "",
+      "url": "https://www.credential.net/profile/thomasbohn/wallet",
+      "verifyUrl": null,
+      "issueDate": "February 24, 2023"
+    },
+    {
+      "id": "accredible-15892306859455684948954359160521",
+      "name": "Certified Information Management Professional - Ex Level",
+      "cleanName": "Certified Information Management Professional - Ex Level",
+      "issuer": "eLearningCurve",
+      "imageUrl": "/badges/accredible/certified-information-management-professional-ex-l-accredible-15892306859455684948954359160521.png",
+      "imageAlt": "Certified Information Management Professional - Ex Level",
+      "description": "",
+      "url": "https://www.credential.net/profile/thomasbohn/wallet",
+      "verifyUrl": null,
+      "issueDate": "February 24, 2023"
+    },
+    {
+      "id": "accredible-15892302281730459319206211681333",
+      "name": "Certified Information Management Professional - Ex Level",
+      "cleanName": "Certified Information Management Professional - Ex Level",
+      "issuer": "eLearningCurve",
+      "imageUrl": "/badges/accredible/certified-information-management-professional-ex-l-accredible-15892302281730459319206211681333.png",
+      "imageAlt": "Certified Information Management Professional - Ex Level",
+      "description": "",
+      "url": "https://www.credential.net/profile/thomasbohn/wallet",
+      "verifyUrl": null,
+      "issueDate": "February 24, 2023"
+    },
+    {
+      "id": "accredible-15892291022737649970348010158096",
+      "name": "Certified Data Steward - Ex Level",
+      "cleanName": "Certified Data Steward - Ex Level",
+      "issuer": "eLearningCurve",
+      "imageUrl": "/badges/accredible/certified-data-steward-ex-level-accredible-15892291022737649970348010158096.png",
+      "imageAlt": "Certified Data Steward - Ex Level",
+      "description": "",
+      "url": "https://www.credential.net/profile/thomasbohn/wallet",
+      "verifyUrl": null,
+      "issueDate": "February 13, 2023"
+    },
+    {
+      "id": "accredible-15892279424016336847443662978381",
+      "name": "Certified Data Steward - Ex Level",
+      "cleanName": "Certified Data Steward - Ex Level",
+      "issuer": "eLearningCurve",
+      "imageUrl": "/badges/accredible/certified-data-steward-ex-level-accredible-15892279424016336847443662978381.png",
+      "imageAlt": "Certified Data Steward - Ex Level",
+      "description": "",
+      "url": "https://www.credential.net/profile/thomasbohn/wallet",
+      "verifyUrl": null,
+      "issueDate": "February 13, 2023"
+    },
+    {
+      "id": "accredible-15892281764931364455813213927034",
+      "name": "Certified Data Steward - Ex Level",
+      "cleanName": "Certified Data Steward - Ex Level",
+      "issuer": "eLearningCurve",
+      "imageUrl": "/badges/accredible/certified-data-steward-ex-level-accredible-15892281764931364455813213927034.png",
+      "imageAlt": "Certified Data Steward - Ex Level",
+      "description": "",
+      "url": "https://www.credential.net/profile/thomasbohn/wallet",
+      "verifyUrl": null,
+      "issueDate": "February 13, 2023"
+    }
+  ]
+}

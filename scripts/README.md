@@ -8,6 +8,7 @@ Each subdirectory contains scripts and documentation for a specific badge/creden
 
 - **`credly-badge/`** - Scripts for extracting and organizing badges from Credly profiles
 - **`trailhead-badge/`** - Scripts for extracting and organizing badges from Salesforce Trailhead profiles
+- **`accredible-badge/`** - Scripts for extracting and organizing credentials from Accredible (credential.net) wallets
 
 ## Adding New Platforms
 

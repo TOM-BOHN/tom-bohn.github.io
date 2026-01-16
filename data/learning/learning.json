@@ -3,35 +3,55 @@
     {
       "id": "cimp",
       "title": "CIMP - Certified Information Management Professional",
-      "description": "Certified Information Management Professional with expertise in information governance, records management, and data lifecycle management",
+      "description": "Certified Information Management Professional (CIMP) certifications with expertise in information governance, records management, and data lifecycle management. Includes CIMP Ex Level certifications in Data Quality, Data Governance, Master Data Management, and Metadata Management.",
       "badgeImages": [
         {
-          "src": "/badges/cimp-badge-1.png",
-          "alt": "CIMP Certification Badge 1",
-          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+          "src": "/badges/cimp/cimp_ex_level_master_data_management.png",
+          "alt": "Certified Information Management Professional - Ex Level - Master Data Management",
+          "url": "https://www.credential.net/f31556fc-13c0-4801-8fc5-f8a3738ed9cf#acc.dBaOgstN"
         },
         {
-          "src": "/badges/cimp-badge-2.png",
-          "alt": "CIMP Certification Badge 2",
-          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+          "src": "/badges/cimp/cimp_ex_level_data_quality.png",
+          "alt": "Certified Information Management Professional - Ex Level - Data Quality",
+          "url": "https://www.credential.net/714f85e2-fd39-4b97-82a3-52faa8e48b8d#acc.QRLn35vW"
         },
         {
-          "src": "/badges/cimp-badge-3.png",
-          "alt": "CIMP Certification Badge 3",
-          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+          "src": "/badges/cimp/cimp_ex_level_data_governamnce.png",
+          "alt": "Certified Information Management Professional - Ex Level - Data Governance",
+          "url": "https://www.credential.net/197b19b3-f45a-4991-a60c-382999d18e39#acc.RwsoTWnN"
         },
         {
-          "src": "/badges/cimp-badge-4.png",
-          "alt": "CIMP Certification Badge 4",
-          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+          "src": "/badges/cimp/cimp_ex_level_metadata_management.png",
+          "alt": "Certified Information Management Professional - Ex Level - Metadata Management",
+          "url": "https://www.credential.net/7c01c821-d92f-481c-9b52-e8ba678336bf#acc.2bLkGJty"
         }
       ],
-      "learnMoreUrl": "https://www.arma.org/page/cimp",
-      "viewCertsUrl": "https://www.credly.com/users/thomasbohn",
+      "learnMoreUrl": "https://ecm.elearningcurve.com/CIMP-Rulebook-s/122.htm",
+      "viewCertsUrl": "https://www.credential.net/profile/thomasbohn/wallet",
       "metadata": [
         {
           "label": "Certifications",
-          "value": "4+"
+          "value": "4"
+        }
+      ]
+    },
+    {
+      "id": "cds",
+      "title": "CDS - Certified Data Steward",
+      "description": "Certified Data Steward (CDS) certification demonstrating expertise in data stewardship, data quality management, and data governance practices.",
+      "badgeImages": [
+        {
+          "src": "/badges/cimp/cds_ex_level_certified_data_steward.png",
+          "alt": "Certified Data Steward - Ex Level",
+          "url": "https://www.credential.net/d3cbdd52-5fae-48e9-a9b0-bb20f5c48b51#acc.Sq1NkxiW"
+        }
+      ],
+      "learnMoreUrl": "https://ecm.elearningcurve.com/CDS-Rulebook-s/153.htm",
+      "viewCertsUrl": "https://www.credential.net/profile/thomasbohn/wallet",
+      "metadata": [
+        {
+          "label": "Certifications",
+          "value": "1"
         }
       ]
     },
@@ -161,8 +181,8 @@
           "url": "https://www.salesforce.com/trailblazer/thomasbohn"
         }
       ],
-      "learnMoreUrl": "https://trailhead.salesforce.com/",
-      "viewCertsUrl": "https://www.credly.com/users/thomasbohn",
+      "learnMoreUrl": "https://trailhead.salesforce.com/en/credentials/architectoverview/",
+      "viewCertsUrl": "https://www.salesforce.com/trailblazer/thomasbohn",
       "metadata": [
         {
           "label": "Certifications",
@@ -377,7 +397,7 @@
           "url": "https://www.credly.com/users/thomasbohn"
         }
       ],
-      "learnMoreUrl": "https://edmcouncil.org/",
+      "learnMoreUrl": "https://edmcouncil.org/training/#data-analytics-certification-programs",
       "viewCertsUrl": "https://www.credly.com/users/thomasbohn",
       "metadata": [
         {
@@ -393,7 +413,7 @@
     {
       "id": "professional-agile",
       "title": "Professional Agile Certifications",
-      "description": "Scaled Agile Framework (SAFe) and Professional Scrum certifications for enterprise agility and team effectiveness",
+      "description": "Scaled Agile Framework (SAFe), Professional Scrum (Scrum.org), and Certified Scrum (Scrum Alliance) certifications for enterprise agility and team effectiveness",
       "badgeImages": [
         {
           "src": "https://images.credly.com/size/340x340/images/969ca68c-6793-4ebc-b35a-1d2663ad3c26/cert_mark_SA_badge_large_300px.png",
@@ -409,9 +429,14 @@
           "src": "https://images.credly.com/size/340x340/images/591762c5-fae7-49c6-b326-e1756979928d/image.png",
           "alt": "Professional Scrum Product Owner™ I (PSPO I)",
           "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "/badges/scrum_alliance/scrum_alliance_cspo_product_owner.png",
+          "alt": "Certified Scrum Product Owner (CSPO)",
+          "url": "https://www.credly.com/users/thomasbohn"
         }
       ],
-      "learnMoreUrl": "https://scaledagile.com/",
+      "learnMoreUrl": "https://www.scrum.org/professional-scrum-certifications",
       "viewCertsUrl": "https://www.credly.com/users/thomasbohn",
       "metadata": [
         {
@@ -424,6 +449,100 @@
         },
         {
           "label": "Scrum Alliance Certifications",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "git",
+      "title": "Git Certification",
+      "description": "Git Foundations certification from Microsoft Learn demonstrating proficiency in version control and Git workflows",
+      "badgeImages": [
+        {
+          "src": "/badges/microsoft/github_foundations.svg",
+          "alt": "Git Foundations",
+          "url": "https://learn.microsoft.com/api/credentials/share/en-us/ThomasBohn-8985/ABCB2353588755F?sharingId=A34BC4CE7C5F4EA3"
+        }
+      ],
+      "learnMoreUrl": "https://learn.microsoft.com/credentials/",
+      "viewCertsUrl": "https://learn.microsoft.com/api/credentials/share/en-us/ThomasBohn-8985/ABCB2353588755F?sharingId=A34BC4CE7C5F4EA3",
+      "metadata": [
+        {
+          "label": "Certifications",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "hackerrank",
+      "title": "HackerRank Skill Certifications",
+      "description": "Verified skill certifications in programming, problem solving, and SQL from HackerRank",
+      "badgeImages": [
+        {
+          "src": "/badges/hackerrank/problem_solving_basic_certificate.png",
+          "alt": "Problem Solving (Basic) Certificate",
+          "url": "https://www.hackerrank.com/certificates/0d18f423ab9b"
+        },
+        {
+          "src": "/badges/hackerrank/python_basic_certificate.png",
+          "alt": "Python (Basic) Certificate",
+          "url": "https://www.hackerrank.com/certificates/59fa4eb18678"
+        },
+        {
+          "src": "/badges/hackerrank/sql_advanced_certificate.png",
+          "alt": "SQL (Advanced) Certificate",
+          "url": "https://www.hackerrank.com/certificates/108190ffda85"
+        },
+        {
+          "src": "/badges/hackerrank/sql_intermediate_certificate.png",
+          "alt": "SQL (Intermediate) Certificate",
+          "url": "https://www.hackerrank.com/certificates/a51b89806e03"
+        },
+        {
+          "src": "/badges/hackerrank/sql_basic_certificate.png",
+          "alt": "SQL (Basic) Certificate",
+          "url": "https://www.hackerrank.com/certificates/7eb508ac035f"
+        }
+      ],
+      "learnMoreUrl": "https://www.hackerrank.com/skills-verification",
+      "viewCertsUrl": "https://www.hackerrank.com/profile/bohn_tl",
+      "metadata": [
+        {
+          "label": "Certifications",
+          "value": "5"
+        }
+      ]
+    },
+    {
+      "id": "dbt-databricks",
+      "title": "dbt & Databricks Certifications",
+      "description": "Data transformation and analytics platform certifications including dbt (data build tool) and Databricks Academy credentials",
+      "badgeImages": [
+        {
+          "src": "/badges/dbt/dbt_developer.png",
+          "alt": "dbt Developer",
+          "url": "https://www.credential.net/2157b462-336b-42f0-9e45-d9636bab1236#acc.EzRcrDoL"
+        },
+        {
+          "src": "/badges/dbt/dbt_fundamentals.png",
+          "alt": "dbt Fundamentals",
+          "url": "https://www.credential.net/978d1cf6-58dd-4f2e-a1db-8a43d15c0c0e#acc.ScoWisDy"
+        },
+        {
+          "src": "/badges/databricks/databricks_fundamentals.png",
+          "alt": "Academy Accreditation - Databricks Fundamentals",
+          "url": "https://www.credential.net/d3cbdd52-5fae-48e9-a9b0-bb20f5c48b51#acc.NxYyOPEc"
+        }
+      ],
+      "learnMoreUrl": "https://www.getdbt.com/dbt-certification",
+      "viewCertsUrl": "https://www.credential.net/profile/thomasbohn/wallet",
+      "metadata": [
+        {
+          "label": "dbt Certifications",
+          "value": "2"
+        },
+        {
+          "label": "Databricks Certifications",
           "value": "1"
         }
       ]
