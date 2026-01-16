@@ -6,11 +6,16 @@ export default async function Blog() {
 
   return (
     <div className="container mx-auto px-4 py-12">
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-4xl font-bold mb-6 text-text-primary">Blog</h1>
-        <p className="text-xl text-text-secondary mb-12">
-          Thoughts, tutorials, and random musings
-        </p>
+      <div className="max-w-6xl mx-auto">
+        <div className="mb-12">
+          <p className="text-sm text-accent mb-4 font-mono">{'>'} SOFTWARE ENGINEER</p>
+          <h1 className="text-2xl font-semibold mb-4 text-text-primary font-mono">
+            {'// BLOG'}
+          </h1>
+          <p className="text-text-secondary leading-relaxed">
+            Thoughts, tutorials, and random musings
+          </p>
+        </div>
 
         {posts.length === 0 ? (
           <div className="text-center py-12 border border-border rounded-lg bg-bg-secondary">
@@ -27,7 +32,7 @@ export default async function Blog() {
                 className="border border-border rounded-lg p-6 hover:border-accent hover:shadow-lg transition-all bg-bg-secondary"
               >
                 <Link href={`/blog/${post.slug}`}>
-                  <h2 className="text-2xl font-semibold mb-2 text-accent hover:text-accent-hover">
+                  <h2 className="text-2xl font-semibold mb-2 text-text-primary hover:text-accent transition-colors">
                     {post.title}
                   </h2>
                 </Link>

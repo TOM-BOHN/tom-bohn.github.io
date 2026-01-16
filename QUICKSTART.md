@@ -84,7 +84,7 @@ Edit `data/certifications.json`:
 ```
 
 ### 6. Add Hub Links
-Edit `data/hub.json`:
+Edit `data/hub/hub.json`:
 ```json
 [
   {

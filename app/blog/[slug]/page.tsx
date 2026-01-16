@@ -18,16 +18,22 @@ export default async function BlogPost({ params }: { params: { slug: string } })
 
   return (
     <div className="container mx-auto px-4 py-12">
-      <div className="max-w-3xl mx-auto">
-        <Link
-          href="/blog"
-          className="text-link hover:text-link-hover underline mb-6 inline-block"
-        >
-          ← Back to Blog
-        </Link>
+      <div className="max-w-6xl mx-auto">
+        <div className="mb-8">
+          <Link
+            href="/blog"
+            className="text-link hover:text-link-hover underline mb-4 inline-block"
+          >
+            ← Back to Blog
+          </Link>
+          <p className="text-sm text-accent mb-4 font-mono">{'>'} SOFTWARE ENGINEER</p>
+          <h1 className="text-2xl font-semibold mb-4 text-text-primary font-mono">
+            {'// BLOG'}
+          </h1>
+        </div>
 
-        <article className="prose prose-lg max-w-none">
-          <h1 className="text-4xl font-bold mb-4 text-text-primary">{post.title}</h1>
+        <article className="prose prose-lg max-w-3xl">
+          <h2 className="text-4xl font-bold mb-4 text-text-primary">{post.title}</h2>
           <p className="text-text-secondary text-sm mb-8">
             {new Date(post.date).toLocaleDateString('en-US', {
               year: 'numeric',

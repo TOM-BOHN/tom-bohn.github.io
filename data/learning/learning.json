@@ -1,0 +1,466 @@
+{
+  "accomplished": [
+    {
+      "id": "cimp",
+      "title": "CIMP - Certified Information Management Professional",
+      "description": "Certified Information Management Professional with expertise in information governance, records management, and data lifecycle management",
+      "badgeImages": [
+        {
+          "src": "/badges/cimp-badge-1.png",
+          "alt": "CIMP Certification Badge 1",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+        },
+        {
+          "src": "/badges/cimp-badge-2.png",
+          "alt": "CIMP Certification Badge 2",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+        },
+        {
+          "src": "/badges/cimp-badge-3.png",
+          "alt": "CIMP Certification Badge 3",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+        },
+        {
+          "src": "/badges/cimp-badge-4.png",
+          "alt": "CIMP Certification Badge 4",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+        }
+      ],
+      "learnMoreUrl": "https://www.arma.org/page/cimp",
+      "viewCertsUrl": "https://www.credly.com/users/thomasbohn",
+      "metadata": [
+        {
+          "label": "Certifications",
+          "value": "4+"
+        }
+      ]
+    },
+    {
+      "id": "salesforce-core",
+      "title": "Salesforce Core Platform",
+      "description": "Comprehensive Salesforce certifications covering core platform capabilities, administration, development, and specialized solutions",
+      "badgeImages": [
+        {
+          "src": "/badges/trailhead/salesforce-certified-application-architect.png",
+          "alt": "Salesforce Certified Application Architect",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+        },
+        {
+          "src": "/badges/trailhead/salesforce-certified-system-architect.png",
+          "alt": "Salesforce Certified System Architect",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+        },
+        {
+          "src": "/badges/trailhead/salesforce-certified-b2b-solution-architect.png",
+          "alt": "Salesforce Certified B2B Solution Architect",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+        },
+        {
+          "src": "/badges/trailhead/salesforce-certified-platform-data-architect.png",
+          "alt": "Salesforce Certified Platform Data Architect",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+        },
+        {
+          "src": "/badges/trailhead/salesforce-certified-platform-development-lifecycle-and-deployment-architect.png",
+          "alt": "Salesforce Certified Platform Development Lifecycle and Deployment Architect",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+        },
+        {
+          "src": "/badges/trailhead/salesforce-certified-platform-identity-and-access-management-architect.png",
+          "alt": "Salesforce Certified Platform Identity and Access Management Architect",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+        },
+        {
+          "src": "/badges/trailhead/salesforce-certified-platform-integration-architect.png",
+          "alt": "Salesforce Certified Platform Integration Architect",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+        },
+        {
+          "src": "/badges/trailhead/salesforce-certified-platform-sharing-and-visibility-architect.png",
+          "alt": "Salesforce Certified Platform Sharing and Visibility Architect",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+        },
+        {
+          "src": "/badges/trailhead/salesforce-certified-data-cloud-consultant.png",
+          "alt": "Salesforce Certified Data Cloud Consultant",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+        },
+        {
+          "src": "/badges/trailhead/salesforce-certified-sales-cloud-consultant.png",
+          "alt": "Salesforce Certified Sales Cloud Consultant",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+        },
+        {
+          "src": "/badges/trailhead/salesforce-certified-service-cloud-consultant.png",
+          "alt": "Salesforce Certified Service Cloud Consultant",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+        },
+        {
+          "src": "/badges/trailhead/salesforce-certified-crm-analytics-and-einstein-discovery-consultant.png",
+          "alt": "Salesforce Certified CRM Analytics and Einstein Discovery Consultant",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+        },
+        {
+          "src": "/badges/trailhead/salesforce-certified-agentforce-specialist.png",
+          "alt": "Salesforce Certified Agentforce Specialist",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+        },
+        {
+          "src": "/badges/trailhead/salesforce-certified-platform-administrator.png",
+          "alt": "Salesforce Certified Platform Administrator",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+        },
+        {
+          "src": "/badges/trailhead/salesforce-certified-platform-administrator-ii.png",
+          "alt": "Salesforce Certified Platform Administrator II",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+        },
+        {
+          "src": "/badges/trailhead/salesforce-certified-business-analyst.png",
+          "alt": "Salesforce Certified Business Analyst",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+        },
+        {
+          "src": "/badges/trailhead/salesforce-certified-platform-app-builder.png",
+          "alt": "Salesforce Certified Platform App Builder",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+        },
+        {
+          "src": "/badges/trailhead/salesforce-certified-platform-developer.png",
+          "alt": "Salesforce Certified Platform Developer",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+        },
+        {
+          "src": "/badges/trailhead/salesforce-certified-ai-associate.png",
+          "alt": "Salesforce Certified AI Associate",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+        },
+        {
+          "src": "/badges/trailhead/salesforce-certified-sales-foundations.png",
+          "alt": "Salesforce Certified Sales Foundations",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+        },
+        {
+          "src": "/badges/trailhead/salesforce-certified-platform-foundations.png",
+          "alt": "Salesforce Certified Platform Foundations",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+        },
+        {
+          "src": "/badges/trailhead/salesforce-status-all-star-ranger.png",
+          "alt": "All Star Ranger",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+        },
+        {
+          "src": "/badges/trailhead/salesforce-status-agentblazer-legend-2025.png",
+          "alt": "Agentblazer Legend 2025",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+        },
+        {
+          "src": "/badges/trailhead/salesforce-status-agentblazer-legend-2026.png",
+          "alt": "Agentblazer Legend 2026",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+        }
+      ],
+      "learnMoreUrl": "https://trailhead.salesforce.com/",
+      "viewCertsUrl": "https://www.credly.com/users/thomasbohn",
+      "metadata": [
+        {
+          "label": "Certifications",
+          "value": "21"
+        },
+        {
+          "label": "Trailhead Ranger",
+          "value": "All Star Ranger"
+        },
+        {
+          "label": "Badge Count",
+          "value": "900+"
+        },
+        {
+          "label": "Agentblazer",
+          "value": "6 (2025 + 2026)"
+        }
+      ]
+    },
+    {
+      "id": "tableau",
+      "title": "Tableau Certifications",
+      "description": "Comprehensive Tableau certifications covering data visualization, analytics, administration, and platform expertise",
+      "badgeImages": [
+        {
+          "src": "https://images.credly.com/size/340x340/images/0b35f7f4-5661-4c33-813a-909cf657422a/image.png",
+          "alt": "Explore, Analyze, and Share Data - Author",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/6a9bf8ce-e6d2-4606-8d95-41d0633864db/create-experiences-2048.png",
+          "alt": "Create and Embed Custom Experiences",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/be88f6f0-659e-4455-abe6-03d185c9d64d/design-information-2048.png",
+          "alt": "Design Informative and Visually Appealing Dashboards",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/7ae75e1c-ee4c-4182-856e-a17445a7be4b/drive-culture-2048.png",
+          "alt": "Drive Data Culture and Strategies",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/1d990658-9cad-46c4-879e-921eac871195/manage-data-2048.png",
+          "alt": "Manage Data Sources and Data Quality",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/5415f6f5-90b5-4a5c-b4f5-e05b06066809/build-community-2048.png",
+          "alt": "Build Community to Promote Data Culture",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/9e38eff5-2348-4f2e-b226-fa0150731390/build-visualizations-2048.png",
+          "alt": "Build Visualizations and Dashboards",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/96008483-a3d7-4591-a392-f5fe5b45ef85/transform-data-2048.png",
+          "alt": "Connect to and Transform Data",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/aeec417d-38b2-4489-92f5-971059d47691/create-dashboards-2048.png",
+          "alt": "Create Views and Dashboards",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/b62f5495-4e72-4a87-bcc9-b6c90e6c6a8d/explore-data-2048.png",
+          "alt": "Explore and Analyze Data",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/b981ce06-65f0-48a6-9105-df9876a081a8/start-tableau-2048.png",
+          "alt": "Get Started with",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/82e99942-72c6-4f27-9f50-efc58e409a65/interact-dashboards-2048.png",
+          "alt": "Interact with Dashboards and Reports",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/43d5b097-a874-403f-8a9f-0f1e61c71876/manage-server-2048.png",
+          "alt": "Manage and Maintain Tableau Server",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/2133a772-5bc2-4813-89d9-a85bf90f8c11/manage-sites-2048.png",
+          "alt": "Manage and Maintain Tableau Sites",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/27858aca-eaa0-42d5-8ecb-5657ca044e8a/publish-content-2048.png",
+          "alt": "Publish and Manage Content",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/7690d315-6ea6-4996-9b52-5c4e6679e6f2/Server-Admin-600X600.png",
+          "alt": "Tableau Server Administrator",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/5bd41c5a-42c7-4f8b-98bc-a4670408ba82/Data-Steward-600X600.png",
+          "alt": "Tableau Data Steward",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/399b9e09-09b3-47bd-908f-3ea4f957a0d9/Site-Admin-600X600.png",
+          "alt": "Tableau Site Administrator",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/ef3e7933-f1f1-4bba-9b10-f278188c72ad/image.png",
+          "alt": "Tableau Desktop Specialist",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/4bb1c5b4-0ef4-40e5-9df0-227b60a49551/Analyst-600X600.png",
+          "alt": "Tableau Analyst",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/d3fcdfef-0038-4005-a0e5-d2cbb0a1e1df/Badges_final_9.24.19_CP600_edits_Executive-Sponsor.png",
+          "alt": "Tableau Executive Sponsor",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/c08e3457-8b19-4ddc-ab89-1a5d2aa587c1/Consumer-600X600.png",
+          "alt": "Tableau Consumer",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/ca22848a-1a06-4a06-9287-c1cfb6636626/Designer-600X600.png",
+          "alt": "Tableau Designer",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/0e568f74-68e2-404e-ae25-d67fa0b5c848/Author-600X600.png",
+          "alt": "Tableau Author",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/7b32e191-f8c1-48b5-a9ce-c43cbbe84cc3/image.png",
+          "alt": "Tableau Certified Architect",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/40da97de-e0bc-49c6-94ce-15bb86c0d139/image.png",
+          "alt": "Tableau Server Certified Associate",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/8a521eb5-0468-43a0-9f55-ed094dfbd0d7/image.png",
+          "alt": "Tableau Certified Consultant",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/86c6e021-f78c-4397-b7fc-8a7c1f8804ab/image.png",
+          "alt": "Tableau Desktop Certified Associate",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "/badges/trailhead/salesforce-certified-tableau-desktop-foundations.png",
+          "alt": "Salesforce Certified Tableau Desktop Foundations",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn"
+        }
+      ],
+      "learnMoreUrl": "https://www.tableau.com/learn/certification",
+      "viewCertsUrl": "https://www.credly.com/users/thomasbohn",
+      "metadata": [
+        {
+          "label": "Certifications",
+          "value": "6"
+        },
+        {
+          "label": "Badges",
+          "value": "23"
+        }
+      ]
+    },
+    {
+      "id": "data-governance",
+      "title": "Data Governance & Management",
+      "description": "Certifications in data governance, knowledge graphs, and data management frameworks from Enterprise Data Management Council (EDMCouncil) and Alation",
+      "badgeImages": [
+        {
+          "src": "https://images.credly.com/size/340x340/images/fac215d8-8fe6-424b-859b-094ed5147d3a/OKG_Certified_2011.png",
+          "alt": "Open Knowledge Graph Certified",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/d1a8d0cc-bab2-4449-9eda-e7561955ee0d/blob",
+          "alt": "DCAM Certified V2",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/40a82a10-d520-4e5f-921f-7d0bf6f37525/blob",
+          "alt": "Alation Data Governance Advocate",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/826c700d-6ed3-435f-8693-8d063e156af7/blob",
+          "alt": "Alation Data Steward",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/65abd167-70ae-49e7-b78d-b7a2c6542f16/blob",
+          "alt": "Get to Know Alation",
+          "url": "https://www.credly.com/users/thomasbohn"
+        }
+      ],
+      "learnMoreUrl": "https://edmcouncil.org/",
+      "viewCertsUrl": "https://www.credly.com/users/thomasbohn",
+      "metadata": [
+        {
+          "label": "EDM Council Certifications",
+          "value": "2"
+        },
+        {
+          "label": "Alation Badges",
+          "value": "3"
+        }
+      ]
+    },
+    {
+      "id": "professional-agile",
+      "title": "Professional Agile Certifications",
+      "description": "Scaled Agile Framework (SAFe) and Professional Scrum certifications for enterprise agility and team effectiveness",
+      "badgeImages": [
+        {
+          "src": "https://images.credly.com/size/340x340/images/969ca68c-6793-4ebc-b35a-1d2663ad3c26/cert_mark_SA_badge_large_300px.png",
+          "alt": "Certified SAFe® 5 Agilist",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/a2790314-008a-4c3d-9553-f5e84eb359ba/image.png",
+          "alt": "Professional Scrum Master™ I (PSM I)",
+          "url": "https://www.credly.com/users/thomasbohn"
+        },
+        {
+          "src": "https://images.credly.com/size/340x340/images/591762c5-fae7-49c6-b326-e1756979928d/image.png",
+          "alt": "Professional Scrum Product Owner™ I (PSPO I)",
+          "url": "https://www.credly.com/users/thomasbohn"
+        }
+      ],
+      "learnMoreUrl": "https://scaledagile.com/",
+      "viewCertsUrl": "https://www.credly.com/users/thomasbohn",
+      "metadata": [
+        {
+          "label": "SAFe Certifications",
+          "value": "1"
+        },
+        {
+          "label": "Scrum.org Certifications",
+          "value": "2"
+        },
+        {
+          "label": "Scrum Alliance Certifications",
+          "value": "1"
+        }
+      ]
+    }
+  ],
+  "planning": [
+    {
+      "id": "goal-1",
+      "title": "Complete Advanced Salesforce Architect Certification",
+      "description": "Achieve the highest level of Salesforce architecture certification",
+      "completed": false,
+      "targetDate": "2025-Q2",
+      "notes": "Focus on integration patterns and enterprise architecture"
+    },
+    {
+      "id": "goal-2",
+      "title": "Earn 3 New CIMP Specializations",
+      "description": "Expand CIMP expertise with specialized certifications",
+      "completed": false,
+      "targetDate": "2025-Q3",
+      "notes": "Targeting data governance and compliance specializations"
+    },
+    {
+      "id": "goal-3",
+      "title": "Complete 50 Trailhead Modules",
+      "description": "Continue learning on Trailhead platform",
+      "completed": false,
+      "targetDate": "2025-12-31",
+      "notes": "Focus on AI and automation modules"
+    },
+    {
+      "id": "goal-4",
+      "title": "Achieve Microsoft Azure Fundamentals",
+      "description": "Build cloud platform knowledge with Azure certification",
+      "completed": false,
+      "targetDate": "2025-Q4",
+      "notes": "Starting with fundamentals, then moving to specialized tracks"
+    }
+  ]
+}

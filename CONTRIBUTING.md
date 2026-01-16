@@ -42,7 +42,7 @@ tom-bohn.github.io/
 - Add certification objects with relevant fields
 
 ### Hub Links
-- Edit `data/hub.json`
+- Edit `data/hub/hub.json`
 - Add link objects for your online presence
 
 ## Building for Production

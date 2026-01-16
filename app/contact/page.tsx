@@ -1,11 +1,16 @@
 export default function Contact() {
   return (
     <div className="container mx-auto px-4 py-12">
-      <div className="max-w-2xl mx-auto">
-        <h1 className="text-4xl font-bold mb-6 text-text-primary">Contact</h1>
-        <p className="text-xl text-text-secondary mb-12">
-          Get in touch with me through any of these channels
-        </p>
+      <div className="max-w-6xl mx-auto">
+        <div className="mb-12">
+          <p className="text-sm text-accent mb-4 font-mono">{'>'} SOFTWARE ENGINEER</p>
+          <h1 className="text-2xl font-semibold mb-4 text-text-primary font-mono">
+            {'// CONTACT'}
+          </h1>
+          <p className="text-text-secondary leading-relaxed">
+            Get in touch with me through any of these channels
+          </p>
+        </div>
 
         <div className="space-y-6">
           <div className="border border-border rounded-lg p-6 bg-bg-secondary">
