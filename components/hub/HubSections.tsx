@@ -6,9 +6,11 @@ import { HubSectionData } from '@/lib/hub'
 
 interface HubSectionsProps {
   sections: HubSectionData[]
+  expandAll: () => void
+  collapseAll: () => void
 }
 
-export function HubSections({ sections }: HubSectionsProps) {
+export function HubSections({ sections, expandAll, collapseAll }: HubSectionsProps) {
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set())
   const [allExpanded, setAllExpanded] = useState(false)
 
@@ -31,82 +33,39 @@ export function HubSections({ sections }: HubSectionsProps) {
     })
   }
 
-  const expandAll = () => {
-    const allIds = new Set(sections.map((s) => s.id))
-    setExpandedSections(allIds)
-    setAllExpanded(true)
-  }
+  // Sync with parent expand/collapse functions
+  useEffect(() => {
+    const handleExpandAll = () => {
+      const allIds = new Set(sections.map((s) => s.id))
+      setExpandedSections(allIds)
+      setAllExpanded(true)
+    }
+    const handleCollapseAll = () => {
+      setExpandedSections(new Set())
+      setAllExpanded(false)
+    }
 
-  const collapseAll = () => {
-    setExpandedSections(new Set())
-    setAllExpanded(false)
-  }
+    // Store handlers for parent access
+    ;(window as any).__hubExpandAll = handleExpandAll
+    ;(window as any).__hubCollapseAll = handleCollapseAll
+
+    return () => {
+      delete (window as any).__hubExpandAll
+      delete (window as any).__hubCollapseAll
+    }
+  }, [sections])
 
   return (
     <div>
-      <div className="flex justify-end mb-6">
-        <div className="flex items-center gap-1 border border-border rounded-lg bg-bg-primary p-1">
-          <button
-            onClick={expandAll}
-            className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded transition-colors"
-            aria-label="Expand all sections"
-            title="Expand all sections"
-          >
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-            <span className="sr-only">Expand all</span>
-            <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded border border-border bg-bg-primary px-2 py-1 text-xs text-text-primary opacity-0 shadow-sm transition-opacity group-hover:opacity-100 z-10">
-              Expand all
-            </span>
-          </button>
-          <button
-            onClick={collapseAll}
-            className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded transition-colors"
-            aria-label="Collapse all sections"
-            title="Collapse all sections"
-          >
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M5 15l7-7 7 7"
-              />
-            </svg>
-            <span className="sr-only">Collapse all</span>
-            <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded border border-border bg-bg-primary px-2 py-1 text-xs text-text-primary opacity-0 shadow-sm transition-opacity group-hover:opacity-100 z-10">
-              Collapse all
-            </span>
-          </button>
-        </div>
-      </div>
-      <div>
-        {sections.map((section) => (
-          <HubSection
-            key={section.id}
-            title={section.title}
-            links={section.links}
-            isExpanded={expandedSections.has(section.id)}
-            onToggle={() => toggleSection(section.id)}
-          />
-        ))}
-      </div>
+      {sections.map((section) => (
+        <HubSection
+          key={section.id}
+          title={section.title}
+          links={section.links}
+          isExpanded={expandedSections.has(section.id)}
+          onToggle={() => toggleSection(section.id)}
+        />
+      ))}
     </div>
   )
 }

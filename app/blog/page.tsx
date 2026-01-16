@@ -14,7 +14,7 @@ export default async function Blog() {
             {'// BLOG'}
           </h1>
           <p className="text-text-secondary leading-relaxed">
-            Thoughts, tutorials, and random musings
+            Frameworks, insights, and practical approaches to software engineering, data governance, and technical leadership.
           </p>
         </div>
 
@@ -34,9 +34,20 @@ export default async function Blog() {
               >
                 <div className="flex items-start justify-between gap-4 mb-2">
                   <Link href={`/blog/${post.slug}/`} className="flex-1">
-                    <h2 className="text-2xl font-semibold mb-2 text-text-primary hover:text-accent transition-colors">
-                      {post.title}
-                    </h2>
+                    {post.title.includes(':') ? (
+                      <div>
+                        <h2 className="text-2xl font-semibold mb-1 text-text-primary hover:text-accent transition-colors">
+                          {post.title.split(':')[0]}
+                        </h2>
+                        <p className="text-lg text-text-secondary font-medium">
+                          {post.title.split(':').slice(1).join(':').trim()}
+                        </p>
+                      </div>
+                    ) : (
+                      <h2 className="text-2xl font-semibold mb-2 text-text-primary hover:text-accent transition-colors">
+                        {post.title}
+                      </h2>
+                    )}
                   </Link>
                   {post.mediumUrl && (
                     <a

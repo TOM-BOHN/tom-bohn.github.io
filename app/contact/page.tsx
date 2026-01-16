@@ -27,7 +27,7 @@ export default function Contact() {
             {'// CONTACT'}
           </h1>
           <p className="text-text-secondary leading-relaxed">
-            Get in touch with me through any of these channels
+            I'm always open to discussing new opportunities, technical challenges, or potential collaborations. Reach out through any of the channels below.
           </p>
         </div>
 
