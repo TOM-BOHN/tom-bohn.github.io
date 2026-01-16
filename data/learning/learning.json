@@ -227,7 +227,11 @@
       "metadata": [
         {
           "label": "Certifications",
-          "value": "28"
+          "value": "5"
+        },
+        {
+          "label": "Badges",
+          "value": "23"
         }
       ]
     },
@@ -266,8 +270,12 @@
       "viewCertsUrl": "https://www.credly.com/users/thomasbohn",
       "metadata": [
         {
-          "label": "Certifications",
-          "value": "5"
+          "label": "EDM Council Certifications",
+          "value": "2"
+        },
+        {
+          "label": "Alation Badges",
+          "value": "3"
         }
       ]
     },

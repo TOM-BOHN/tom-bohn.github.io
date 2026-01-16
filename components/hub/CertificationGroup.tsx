@@ -169,15 +169,26 @@ export function CertificationGroup({ group, isExpanded: controlledExpanded, onTo
         className="overflow-hidden transition-all duration-300 ease-in-out"
         style={{ maxHeight: typeof height === 'number' ? `${height}px` : 'none' }}
       >
-        <div ref={contentRef} className="px-6 pb-6">
+        <div ref={contentRef} className="pr-6 pb-6 pl-[56px]">
           {group.description && (
             <p className="text-text-secondary mb-4">{group.description}</p>
           )}
           {group.badgeImages.length > 0 ? (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-              {group.badgeImages.map((badge, idx) => (
-                <BadgeImage key={idx} badge={badge} />
-              ))}
+              {[...group.badgeImages]
+                .sort((a, b) => {
+                  const certificationKeywords = ['CERTIFIED', 'CERTIFICATE', 'SPECIALIST', 'ARCHITECT', 'CONSULTANT', 'ASSOCIATE', 'CERTIFICATION']
+                  const aUpper = a.alt.toUpperCase()
+                  const bUpper = b.alt.toUpperCase()
+                  const aIsCertified = certificationKeywords.some(keyword => aUpper.includes(keyword))
+                  const bIsCertified = certificationKeywords.some(keyword => bUpper.includes(keyword))
+                  if (aIsCertified && !bIsCertified) return -1
+                  if (!aIsCertified && bIsCertified) return 1
+                  return 0
+                })
+                .map((badge, idx) => (
+                  <BadgeImage key={idx} badge={badge} />
+                ))}
             </div>
           ) : (
             <p className="text-text-secondary italic text-sm">
