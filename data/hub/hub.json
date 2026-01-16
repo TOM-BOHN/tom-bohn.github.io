@@ -1,0 +1,71 @@
+{
+  "sections": [
+    {
+      "id": "credentials",
+      "title": "Credential Hubs",
+      "links": [
+        {
+          "id": "credly",
+          "title": "Credly",
+          "url": "https://www.credly.com/users/thomasbohn",
+          "description": "Digital badges and professional certifications"
+        },
+        {
+          "id": "credential-net",
+          "title": "Credential.net",
+          "url": "https://www.credential.net/profile/thomasbohn/wallet",
+          "description": "Digital credential wallet and verified achievements"
+        }
+      ]
+    },
+    {
+      "id": "writing",
+      "title": "Writing",
+      "links": [
+        {
+          "id": "medium",
+          "title": "Medium",
+          "url": "https://medium.com/@bohn.tl",
+          "description": "Articles and writing on software engineering, data science, and technology"
+        }
+      ]
+    },
+    {
+      "id": "social",
+      "title": "Social",
+      "links": [
+        {
+          "id": "linkedin",
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/thomaslbohn/",
+          "description": "Professional network and career updates"
+        }
+      ]
+    },
+    {
+      "id": "development",
+      "title": "Development",
+      "links": [
+        {
+          "id": "github",
+          "title": "GitHub",
+          "url": "https://github.com/TOM-BOHN",
+          "description": "Open source projects, code samples, and contributions"
+        }
+      ]
+    },
+    {
+      "id": "learning",
+      "title": "Learning",
+      "type": "learning",
+      "links": [
+        {
+          "id": "trailhead",
+          "title": "Trailhead",
+          "url": "https://www.salesforce.com/trailblazer/thomasbohn",
+          "description": "Salesforce learning profile, badges, and certifications"
+        }
+      ]
+    }
+  ]
+}

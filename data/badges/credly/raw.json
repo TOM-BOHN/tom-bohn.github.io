@@ -1,0 +1,752 @@
+[
+  {
+    "id": "badge-0",
+    "name": "Certified SAFe® 5 AgilistSAFe by Scaled Agile, Inc.",
+    "issuer": "Certified SAFe® 5 AgilistSAFe by Scaled Agile, Inc.",
+    "imageUrl": "https://images.credly.com/size/128x128/images/969ca68c-6793-4ebc-b35a-1d2663ad3c26/cert_mark_SA_badge_large_300px.png",
+    "issueDate": "Certified SAFe® 5 AgilistSAFe by Scaled Agile, Inc.Expires Feb 20, 2026",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-0"
+  },
+  {
+    "id": "badge-1",
+    "name": "Certified SAFe® 5 AgilistSAFe by Scaled Agile, Inc.",
+    "issuer": "Certified SAFe® 5 AgilistSAFe by Scaled Agile, Inc.",
+    "imageUrl": "https://images.credly.com/size/128x128/images/969ca68c-6793-4ebc-b35a-1d2663ad3c26/cert_mark_SA_badge_large_300px.png",
+    "issueDate": "Certified SAFe® 5 AgilistSAFe by Scaled Agile, Inc.Expires Feb 20, 2026",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-1"
+  },
+  {
+    "id": "badge-3",
+    "name": "Certified SAFe® 5 AgilistSAFe by Scaled Agile, Inc.",
+    "issuer": "Certified SAFe® 5 AgilistSAFe by Scaled Agile, Inc.",
+    "imageUrl": "https://images.credly.com/size/128x128/images/969ca68c-6793-4ebc-b35a-1d2663ad3c26/cert_mark_SA_badge_large_300px.png",
+    "issueDate": "Certified SAFe® 5 AgilistSAFe by Scaled Agile, Inc.Expires Feb 20, 2026",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-3"
+  },
+  {
+    "id": "badge-4",
+    "name": "Certified SAFe® 5 AgilistSAFe by Scaled Agile, Inc.",
+    "issuer": "Certified SAFe® 5 AgilistSAFe by Scaled Agile, Inc.",
+    "imageUrl": "https://images.credly.com/size/128x128/images/969ca68c-6793-4ebc-b35a-1d2663ad3c26/cert_mark_SA_badge_large_300px.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-4"
+  },
+  {
+    "id": "badge-13",
+    "name": "Explore, Analyze, and Share Data - AuthorTableau",
+    "issuer": "Explore, Analyze, and Share Data - AuthorTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/0b35f7f4-5661-4c33-813a-909cf657422a/image.png",
+    "issueDate": "Explore, Analyze, and Share Data - AuthorTableauIssued Jan 26, 2023",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-13"
+  },
+  {
+    "id": "badge-14",
+    "name": "Explore, Analyze, and Share Data - AuthorTableau",
+    "issuer": "Explore, Analyze, and Share Data - AuthorTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/0b35f7f4-5661-4c33-813a-909cf657422a/image.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-14"
+  },
+  {
+    "id": "badge-23",
+    "name": "Open Knowledge Graph CertifiedEDM Association",
+    "issuer": "Open Knowledge Graph CertifiedEDM Association",
+    "imageUrl": "https://images.credly.com/size/128x128/images/fac215d8-8fe6-424b-859b-094ed5147d3a/OKG_Certified_2011.png",
+    "issueDate": "Open Knowledge Graph CertifiedEDM AssociationIssued Jan 19, 2023",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-23"
+  },
+  {
+    "id": "badge-24",
+    "name": "Open Knowledge Graph CertifiedEDM Association",
+    "issuer": "Open Knowledge Graph CertifiedEDM Association",
+    "imageUrl": "https://images.credly.com/size/128x128/images/fac215d8-8fe6-424b-859b-094ed5147d3a/OKG_Certified_2011.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-24"
+  },
+  {
+    "id": "badge-33",
+    "name": "Alation Data Governance AdvocateAlation University",
+    "issuer": "Alation Data Governance AdvocateAlation University",
+    "imageUrl": "https://images.credly.com/size/128x128/images/40a82a10-d520-4e5f-921f-7d0bf6f37525/blob",
+    "issueDate": "Alation Data Governance AdvocateAlation UniversityIssued May 12, 2022",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-33"
+  },
+  {
+    "id": "badge-34",
+    "name": "Alation Data Governance AdvocateAlation University",
+    "issuer": "Alation Data Governance AdvocateAlation University",
+    "imageUrl": "https://images.credly.com/size/128x128/images/40a82a10-d520-4e5f-921f-7d0bf6f37525/blob",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-34"
+  },
+  {
+    "id": "badge-43",
+    "name": "DCAM Certified V2EDM Association",
+    "issuer": "DCAM Certified V2EDM Association",
+    "imageUrl": "https://images.credly.com/size/128x128/images/d1a8d0cc-bab2-4449-9eda-e7561955ee0d/blob",
+    "issueDate": "DCAM Certified V2EDM AssociationIssued Feb 25, 2022",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-43"
+  },
+  {
+    "id": "badge-44",
+    "name": "DCAM Certified V2EDM Association",
+    "issuer": "DCAM Certified V2EDM Association",
+    "imageUrl": "https://images.credly.com/size/128x128/images/d1a8d0cc-bab2-4449-9eda-e7561955ee0d/blob",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-44"
+  },
+  {
+    "id": "badge-53",
+    "name": "Professional Scrum Master™ I (PSM I)Scrum.org",
+    "issuer": "Professional Scrum Master™ I (PSM I)Scrum.org",
+    "imageUrl": "https://images.credly.com/size/128x128/images/a2790314-008a-4c3d-9553-f5e84eb359ba/image.png",
+    "issueDate": "Professional Scrum Master™ I (PSM I)Scrum.orgIssued Feb 4, 2022",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-53"
+  },
+  {
+    "id": "badge-54",
+    "name": "Professional Scrum Master™ I (PSM I)Scrum.org",
+    "issuer": "Professional Scrum Master™ I (PSM I)Scrum.org",
+    "imageUrl": "https://images.credly.com/size/128x128/images/a2790314-008a-4c3d-9553-f5e84eb359ba/image.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-54"
+  },
+  {
+    "id": "badge-63",
+    "name": "Professional Scrum Product Owner™ I (PSPO I)Scrum.org",
+    "issuer": "Professional Scrum Product Owner™ I (PSPO I)Scrum.org",
+    "imageUrl": "https://images.credly.com/size/128x128/images/591762c5-fae7-49c6-b326-e1756979928d/image.png",
+    "issueDate": "Professional Scrum Product Owner™ I (PSPO I)Scrum.orgIssued Feb 4, 2022",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-63"
+  },
+  {
+    "id": "badge-64",
+    "name": "Professional Scrum Product Owner™ I (PSPO I)Scrum.org",
+    "issuer": "Professional Scrum Product Owner™ I (PSPO I)Scrum.org",
+    "imageUrl": "https://images.credly.com/size/128x128/images/591762c5-fae7-49c6-b326-e1756979928d/image.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-64"
+  },
+  {
+    "id": "badge-73",
+    "name": "Create and Embed Custom ExperiencesTableau",
+    "issuer": "Create and Embed Custom ExperiencesTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/6a9bf8ce-e6d2-4606-8d95-41d0633864db/create-experiences-2048.png",
+    "issueDate": "Create and Embed Custom ExperiencesTableauIssued Dec 14, 2021",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-73"
+  },
+  {
+    "id": "badge-74",
+    "name": "Create and Embed Custom ExperiencesTableau",
+    "issuer": "Create and Embed Custom ExperiencesTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/6a9bf8ce-e6d2-4606-8d95-41d0633864db/create-experiences-2048.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-74"
+  },
+  {
+    "id": "badge-83",
+    "name": "Design Informative and Visually Appealing DashboardsTableau",
+    "issuer": "Design Informative and Visually Appealing DashboardsTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/be88f6f0-659e-4455-abe6-03d185c9d64d/design-information-2048.png",
+    "issueDate": "Design Informative and Visually Appealing DashboardsTableauIssued Dec 14, 2021",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-83"
+  },
+  {
+    "id": "badge-84",
+    "name": "Design Informative and Visually Appealing DashboardsTableau",
+    "issuer": "Design Informative and Visually Appealing DashboardsTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/be88f6f0-659e-4455-abe6-03d185c9d64d/design-information-2048.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-84"
+  },
+  {
+    "id": "badge-93",
+    "name": "Drive Data Culture and StrategiesTableau",
+    "issuer": "Drive Data Culture and StrategiesTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/7ae75e1c-ee4c-4182-856e-a17445a7be4b/drive-culture-2048.png",
+    "issueDate": "Drive Data Culture and StrategiesTableauIssued Dec 14, 2021",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-93"
+  },
+  {
+    "id": "badge-94",
+    "name": "Drive Data Culture and StrategiesTableau",
+    "issuer": "Drive Data Culture and StrategiesTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/7ae75e1c-ee4c-4182-856e-a17445a7be4b/drive-culture-2048.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-94"
+  },
+  {
+    "id": "badge-103",
+    "name": "Manage Data Sources and Data QualityTableau",
+    "issuer": "Manage Data Sources and Data QualityTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/1d990658-9cad-46c4-879e-921eac871195/manage-data-2048.png",
+    "issueDate": "Manage Data Sources and Data QualityTableauIssued Dec 14, 2021",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-103"
+  },
+  {
+    "id": "badge-104",
+    "name": "Manage Data Sources and Data QualityTableau",
+    "issuer": "Manage Data Sources and Data QualityTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/1d990658-9cad-46c4-879e-921eac871195/manage-data-2048.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-104"
+  },
+  {
+    "id": "badge-113",
+    "name": "Build Community to Promote Data CultureTableau",
+    "issuer": "Build Community to Promote Data CultureTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/5415f6f5-90b5-4a5c-b4f5-e05b06066809/build-community-2048.png",
+    "issueDate": "Build Community to Promote Data CultureTableauIssued Dec 10, 2021",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-113"
+  },
+  {
+    "id": "badge-114",
+    "name": "Build Community to Promote Data CultureTableau",
+    "issuer": "Build Community to Promote Data CultureTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/5415f6f5-90b5-4a5c-b4f5-e05b06066809/build-community-2048.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-114"
+  },
+  {
+    "id": "badge-123",
+    "name": "Build Visualizations and DashboardsTableau",
+    "issuer": "Build Visualizations and DashboardsTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/9e38eff5-2348-4f2e-b226-fa0150731390/build-visualizations-2048.png",
+    "issueDate": "Build Visualizations and DashboardsTableauIssued Dec 10, 2021",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-123"
+  },
+  {
+    "id": "badge-124",
+    "name": "Build Visualizations and DashboardsTableau",
+    "issuer": "Build Visualizations and DashboardsTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/9e38eff5-2348-4f2e-b226-fa0150731390/build-visualizations-2048.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-124"
+  },
+  {
+    "id": "badge-133",
+    "name": "Connect to and Transform DataTableau",
+    "issuer": "Connect to and Transform DataTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/96008483-a3d7-4591-a392-f5fe5b45ef85/transform-data-2048.png",
+    "issueDate": "Connect to and Transform DataTableauIssued Dec 10, 2021",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-133"
+  },
+  {
+    "id": "badge-134",
+    "name": "Connect to and Transform DataTableau",
+    "issuer": "Connect to and Transform DataTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/96008483-a3d7-4591-a392-f5fe5b45ef85/transform-data-2048.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-134"
+  },
+  {
+    "id": "badge-143",
+    "name": "Create Views and DashboardsTableau",
+    "issuer": "Create Views and DashboardsTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/aeec417d-38b2-4489-92f5-971059d47691/create-dashboards-2048.png",
+    "issueDate": "Create Views and DashboardsTableauIssued Dec 10, 2021",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-143"
+  },
+  {
+    "id": "badge-144",
+    "name": "Create Views and DashboardsTableau",
+    "issuer": "Create Views and DashboardsTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/aeec417d-38b2-4489-92f5-971059d47691/create-dashboards-2048.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-144"
+  },
+  {
+    "id": "badge-153",
+    "name": "Explore and Analyze DataTableau",
+    "issuer": "Explore and Analyze DataTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/b62f5495-4e72-4a87-bcc9-b6c90e6c6a8d/explore-data-2048.png",
+    "issueDate": "Explore and Analyze DataTableauIssued Dec 10, 2021",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-153"
+  },
+  {
+    "id": "badge-154",
+    "name": "Explore and Analyze DataTableau",
+    "issuer": "Explore and Analyze DataTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/b62f5495-4e72-4a87-bcc9-b6c90e6c6a8d/explore-data-2048.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-154"
+  },
+  {
+    "id": "badge-163",
+    "name": "Get Started with TableauTableau",
+    "issuer": "Get Started with TableauTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/b981ce06-65f0-48a6-9105-df9876a081a8/start-tableau-2048.png",
+    "issueDate": "Get Started with TableauTableauIssued Dec 10, 2021",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-163"
+  },
+  {
+    "id": "badge-164",
+    "name": "Get Started with TableauTableau",
+    "issuer": "Get Started with TableauTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/b981ce06-65f0-48a6-9105-df9876a081a8/start-tableau-2048.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-164"
+  },
+  {
+    "id": "badge-173",
+    "name": "Interact with Dashboards and ReportsTableau",
+    "issuer": "Interact with Dashboards and ReportsTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/82e99942-72c6-4f27-9f50-efc58e409a65/interact-dashboards-2048.png",
+    "issueDate": "Interact with Dashboards and ReportsTableauIssued Dec 10, 2021",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-173"
+  },
+  {
+    "id": "badge-174",
+    "name": "Interact with Dashboards and ReportsTableau",
+    "issuer": "Interact with Dashboards and ReportsTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/82e99942-72c6-4f27-9f50-efc58e409a65/interact-dashboards-2048.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-174"
+  },
+  {
+    "id": "badge-183",
+    "name": "Manage and Maintain Tableau ServerTableau",
+    "issuer": "Manage and Maintain Tableau ServerTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/43d5b097-a874-403f-8a9f-0f1e61c71876/manage-server-2048.png",
+    "issueDate": "Manage and Maintain Tableau ServerTableauIssued Dec 10, 2021",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-183"
+  },
+  {
+    "id": "badge-184",
+    "name": "Manage and Maintain Tableau ServerTableau",
+    "issuer": "Manage and Maintain Tableau ServerTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/43d5b097-a874-403f-8a9f-0f1e61c71876/manage-server-2048.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-184"
+  },
+  {
+    "id": "badge-193",
+    "name": "Manage and Maintain Tableau SitesTableau",
+    "issuer": "Manage and Maintain Tableau SitesTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/2133a772-5bc2-4813-89d9-a85bf90f8c11/manage-sites-2048.png",
+    "issueDate": "Manage and Maintain Tableau SitesTableauIssued Dec 10, 2021",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-193"
+  },
+  {
+    "id": "badge-194",
+    "name": "Manage and Maintain Tableau SitesTableau",
+    "issuer": "Manage and Maintain Tableau SitesTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/2133a772-5bc2-4813-89d9-a85bf90f8c11/manage-sites-2048.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-194"
+  },
+  {
+    "id": "badge-203",
+    "name": "Publish and Manage ContentTableau",
+    "issuer": "Publish and Manage ContentTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/27858aca-eaa0-42d5-8ecb-5657ca044e8a/publish-content-2048.png",
+    "issueDate": "Publish and Manage ContentTableauIssued Dec 10, 2021",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-203"
+  },
+  {
+    "id": "badge-204",
+    "name": "Publish and Manage ContentTableau",
+    "issuer": "Publish and Manage ContentTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/27858aca-eaa0-42d5-8ecb-5657ca044e8a/publish-content-2048.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-204"
+  },
+  {
+    "id": "badge-213",
+    "name": "Tableau Server AdministratorTableau",
+    "issuer": "Tableau Server AdministratorTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/7690d315-6ea6-4996-9b52-5c4e6679e6f2/Server-Admin-600X600.png",
+    "issueDate": "Tableau Server AdministratorTableauIssued Jun 23, 2021",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-213"
+  },
+  {
+    "id": "badge-214",
+    "name": "Tableau Server AdministratorTableau",
+    "issuer": "Tableau Server AdministratorTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/7690d315-6ea6-4996-9b52-5c4e6679e6f2/Server-Admin-600X600.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-214"
+  },
+  {
+    "id": "badge-223",
+    "name": "Tableau Data StewardTableau",
+    "issuer": "Tableau Data StewardTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/5bd41c5a-42c7-4f8b-98bc-a4670408ba82/Data-Steward-600X600.png",
+    "issueDate": "Tableau Data StewardTableauIssued Jan 26, 2021",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-223"
+  },
+  {
+    "id": "badge-224",
+    "name": "Tableau Data StewardTableau",
+    "issuer": "Tableau Data StewardTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/5bd41c5a-42c7-4f8b-98bc-a4670408ba82/Data-Steward-600X600.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-224"
+  },
+  {
+    "id": "badge-233",
+    "name": "Tableau Site AdministratorTableau",
+    "issuer": "Tableau Site AdministratorTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/399b9e09-09b3-47bd-908f-3ea4f957a0d9/Site-Admin-600X600.png",
+    "issueDate": "Tableau Site AdministratorTableauIssued Jul 21, 2020",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-233"
+  },
+  {
+    "id": "badge-234",
+    "name": "Tableau Site AdministratorTableau",
+    "issuer": "Tableau Site AdministratorTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/399b9e09-09b3-47bd-908f-3ea4f957a0d9/Site-Admin-600X600.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-234"
+  },
+  {
+    "id": "badge-243",
+    "name": "Tableau Desktop SpecialistTableau",
+    "issuer": "Tableau Desktop SpecialistTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/ef3e7933-f1f1-4bba-9b10-f278188c72ad/image.png",
+    "issueDate": "Tableau Desktop SpecialistTableauIssued Jul 17, 2020",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-243"
+  },
+  {
+    "id": "badge-244",
+    "name": "Tableau Desktop SpecialistTableau",
+    "issuer": "Tableau Desktop SpecialistTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/ef3e7933-f1f1-4bba-9b10-f278188c72ad/image.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-244"
+  },
+  {
+    "id": "badge-253",
+    "name": "Tableau Desktop SpecialistTableau",
+    "issuer": "Tableau Desktop SpecialistTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/ef3e7933-f1f1-4bba-9b10-f278188c72ad/image.png",
+    "issueDate": "Tableau Desktop SpecialistTableauIssued Jul 17, 2020",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-253"
+  },
+  {
+    "id": "badge-254",
+    "name": "Tableau Desktop SpecialistTableau",
+    "issuer": "Tableau Desktop SpecialistTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/ef3e7933-f1f1-4bba-9b10-f278188c72ad/image.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-254"
+  },
+  {
+    "id": "badge-263",
+    "name": "Tableau AnalystTableau",
+    "issuer": "Tableau AnalystTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/4bb1c5b4-0ef4-40e5-9df0-227b60a49551/Analyst-600X600.png",
+    "issueDate": "Tableau AnalystTableauIssued Jul 14, 2020",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-263"
+  },
+  {
+    "id": "badge-264",
+    "name": "Tableau AnalystTableau",
+    "issuer": "Tableau AnalystTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/4bb1c5b4-0ef4-40e5-9df0-227b60a49551/Analyst-600X600.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-264"
+  },
+  {
+    "id": "badge-273",
+    "name": "Tableau Executive SponsorTableau",
+    "issuer": "Tableau Executive SponsorTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/d3fcdfef-0038-4005-a0e5-d2cbb0a1e1df/Badges_final_9.24.19_CP600_edits_Executive-Sponsor.png",
+    "issueDate": "Tableau Executive SponsorTableauIssued Jul 13, 2020",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-273"
+  },
+  {
+    "id": "badge-274",
+    "name": "Tableau Executive SponsorTableau",
+    "issuer": "Tableau Executive SponsorTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/d3fcdfef-0038-4005-a0e5-d2cbb0a1e1df/Badges_final_9.24.19_CP600_edits_Executive-Sponsor.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-274"
+  },
+  {
+    "id": "badge-283",
+    "name": "Tableau ConsumerTableau",
+    "issuer": "Tableau ConsumerTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/c08e3457-8b19-4ddc-ab89-1a5d2aa587c1/Consumer-600X600.png",
+    "issueDate": "Tableau ConsumerTableauIssued Jul 8, 2020",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-283"
+  },
+  {
+    "id": "badge-284",
+    "name": "Tableau ConsumerTableau",
+    "issuer": "Tableau ConsumerTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/c08e3457-8b19-4ddc-ab89-1a5d2aa587c1/Consumer-600X600.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-284"
+  },
+  {
+    "id": "badge-293",
+    "name": "Tableau DesignerTableau",
+    "issuer": "Tableau DesignerTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/ca22848a-1a06-4a06-9287-c1cfb6636626/Designer-600X600.png",
+    "issueDate": "Tableau DesignerTableauIssued Jul 7, 2020",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-293"
+  },
+  {
+    "id": "badge-294",
+    "name": "Tableau DesignerTableau",
+    "issuer": "Tableau DesignerTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/ca22848a-1a06-4a06-9287-c1cfb6636626/Designer-600X600.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-294"
+  },
+  {
+    "id": "badge-303",
+    "name": "Tableau AuthorTableau",
+    "issuer": "Tableau AuthorTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/0e568f74-68e2-404e-ae25-d67fa0b5c848/Author-600X600.png",
+    "issueDate": "Tableau AuthorTableauIssued Jun 26, 2020",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-303"
+  },
+  {
+    "id": "badge-304",
+    "name": "Tableau AuthorTableau",
+    "issuer": "Tableau AuthorTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/0e568f74-68e2-404e-ae25-d67fa0b5c848/Author-600X600.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-304"
+  },
+  {
+    "id": "badge-313",
+    "name": "Alation Data StewardAlation University",
+    "issuer": "Alation Data StewardAlation University",
+    "imageUrl": "https://images.credly.com/size/128x128/images/826c700d-6ed3-435f-8693-8d063e156af7/blob",
+    "issueDate": "Alation Data StewardAlation UniversityExpired Jun 22, 2025",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-313"
+  },
+  {
+    "id": "badge-314",
+    "name": "Alation Data StewardAlation University",
+    "issuer": "Alation Data StewardAlation University",
+    "imageUrl": "https://images.credly.com/size/128x128/images/826c700d-6ed3-435f-8693-8d063e156af7/blob",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-314"
+  },
+  {
+    "id": "badge-323",
+    "name": "Get to Know AlationAlation University",
+    "issuer": "Get to Know AlationAlation University",
+    "imageUrl": "https://images.credly.com/size/128x128/images/65abd167-70ae-49e7-b78d-b7a2c6542f16/blob",
+    "issueDate": "Get to Know AlationAlation UniversityExpired Jun 22, 2025",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-323"
+  },
+  {
+    "id": "badge-333",
+    "name": "Tableau Certified ArchitectTableau",
+    "issuer": "Tableau Certified ArchitectTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/7b32e191-f8c1-48b5-a9ce-c43cbbe84cc3/image.png",
+    "issueDate": "Tableau Certified ArchitectTableauExpired Jul 2, 2023",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-333"
+  },
+  {
+    "id": "badge-334",
+    "name": "Tableau Certified ArchitectTableau",
+    "issuer": "Tableau Certified ArchitectTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/7b32e191-f8c1-48b5-a9ce-c43cbbe84cc3/image.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-334"
+  },
+  {
+    "id": "badge-343",
+    "name": "Tableau Server Certified AssociateTableau",
+    "issuer": "Tableau Server Certified AssociateTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/40da97de-e0bc-49c6-94ce-15bb86c0d139/image.png",
+    "issueDate": "Tableau Server Certified AssociateTableauExpired Jun 29, 2023",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-343"
+  },
+  {
+    "id": "badge-344",
+    "name": "Tableau Server Certified AssociateTableau",
+    "issuer": "Tableau Server Certified AssociateTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/40da97de-e0bc-49c6-94ce-15bb86c0d139/image.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-344"
+  },
+  {
+    "id": "badge-353",
+    "name": "Tableau Certified ConsultantTableau",
+    "issuer": "Tableau Certified ConsultantTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/8a521eb5-0468-43a0-9f55-ed094dfbd0d7/image.png",
+    "issueDate": "Tableau Certified ConsultantTableauExpired Jun 28, 2023",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-353"
+  },
+  {
+    "id": "badge-354",
+    "name": "Tableau Certified ConsultantTableau",
+    "issuer": "Tableau Certified ConsultantTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/8a521eb5-0468-43a0-9f55-ed094dfbd0d7/image.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-354"
+  },
+  {
+    "id": "badge-363",
+    "name": "Tableau Desktop Certified AssociateTableau",
+    "issuer": "Tableau Desktop Certified AssociateTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/86c6e021-f78c-4397-b7fc-8a7c1f8804ab/image.png",
+    "issueDate": "Tableau Desktop Certified AssociateTableauExpired Jul 21, 2022",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-363"
+  },
+  {
+    "id": "badge-364",
+    "name": "Tableau Desktop Certified AssociateTableau",
+    "issuer": "Tableau Desktop Certified AssociateTableau",
+    "imageUrl": "https://images.credly.com/size/128x128/images/86c6e021-f78c-4397-b7fc-8a7c1f8804ab/image.png",
+    "issueDate": "",
+    "description": "",
+    "tags": [],
+    "credlyUrl": "https://www.credly.com/badges/badge-364"
+  }
+]
