@@ -272,30 +272,15 @@
       ]
     },
     {
-      "id": "safe",
-      "title": "SAFe (Scaled Agile Framework)",
-      "description": "Scaled Agile Framework certifications for enterprise agility",
+      "id": "professional-agile",
+      "title": "Professional Agile Certifications",
+      "description": "Scaled Agile Framework (SAFe) and Professional Scrum certifications for enterprise agility and team effectiveness",
       "badgeImages": [
         {
           "src": "https://images.credly.com/size/340x340/images/969ca68c-6793-4ebc-b35a-1d2663ad3c26/cert_mark_SA_badge_large_300px.png",
-          "alt": "Certified SAFe® 5 AgilistSAFe by",
+          "alt": "Certified SAFe® 5 Agilist",
           "url": "https://www.credly.com/badges/badge-0"
-        }
-      ],
-      "learnMoreUrl": "https://scaledagile.com/",
-      "viewCertsUrl": "https://www.credly.com/users/thomasbohn",
-      "metadata": [
-        {
-          "label": "Certifications",
-          "value": "1"
-        }
-      ]
-    },
-    {
-      "id": "scrum",
-      "title": "Professional Scrum Certifications",
-      "description": "Professional Scrum Master and Product Owner certifications from Scrum.org",
-      "badgeImages": [
+        },
         {
           "src": "https://images.credly.com/size/340x340/images/a2790314-008a-4c3d-9553-f5e84eb359ba/image.png",
           "alt": "Professional Scrum Master™ I (PSM I)",
@@ -307,12 +292,20 @@
           "url": "https://www.credly.com/badges/badge-63"
         }
       ],
-      "learnMoreUrl": "https://www.scrum.org/",
+      "learnMoreUrl": "https://scaledagile.com/",
       "viewCertsUrl": "https://www.credly.com/users/thomasbohn",
       "metadata": [
         {
-          "label": "Certifications",
+          "label": "SAFe Certifications",
+          "value": "1"
+        },
+        {
+          "label": "Scrum.org Certifications",
           "value": "2"
+        },
+        {
+          "label": "Scrum Alliance Certifications",
+          "value": "1"
         }
       ]
     }
