@@ -1,4 +1,26 @@
 {
+  "education": [
+    {
+      "id": "cu-boulder",
+      "institution": "University of Colorado Boulder",
+      "degree": "Master of Science - MS, Data Science",
+      "startDate": "2023",
+      "endDate": "2026",
+      "logo": "/education/msds_boulder.png",
+      "skills": ["Data Analysis", "Python (Programming Language)"]
+    },
+    {
+      "id": "northwestern",
+      "institution": "Northwestern University",
+      "degree": "Bachelor of Science - BS, Industrial Engineering and Management Sciences, Economics",
+      "startDate": "Sep 2005",
+      "endDate": "Jun 2009",
+      "logo": "/education/iems_northwestern.jpg",
+      "activities": ["Institute of Industrial Engineers (IIE)", "Engineers for a Sustainable World (ESW)", "Willard Residential College", "Prospective Student Coordinator", "McCormick Peer Advisor"],
+      "courses": ["Probability", "Statistics", "Quality Improvement", "Reliability Engineering", "Deterministic and Stochastic Optimization and Modeling", "Macro and Micro Economic Theory", "Econometrics", "Database"],
+      "skills": ["Data Analysis", "Statistics"]
+    }
+  ],
   "accomplished": [
     {
       "id": "cimp",

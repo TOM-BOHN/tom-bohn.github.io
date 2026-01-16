@@ -3,26 +3,26 @@
 import { useState, useRef, useEffect } from 'react'
 import { CertificationGroup, CertificationGroupData } from './CertificationGroup'
 import { LearningGoals, LearningGoal } from './LearningGoals'
+import { Education } from './Education'
+import { EducationEntry } from '@/lib/hub'
 
 interface LearningSectionProps {
+  education?: EducationEntry[]
   accomplished: CertificationGroupData[]
   planning: LearningGoal[]
   onGoalToggle?: (id: string) => void
 }
 
 export function LearningSection({
+  education,
   accomplished,
   planning,
   onGoalToggle,
 }: LearningSectionProps) {
   const [isAccomplishedExpanded, setIsAccomplishedExpanded] = useState(true)
   const [isPlanningExpanded, setIsPlanningExpanded] = useState(true)
-  const [expandedGroups, setExpandedGroups] = useState<Set<string>>(
-    new Set(accomplished.map(g => g.id))
-  )
-  const [expandedGoals, setExpandedGoals] = useState<Set<string>>(
-    new Set(planning.map(g => g.id))
-  )
+  const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set())
+  const [expandedGoals, setExpandedGoals] = useState<Set<string>>(new Set())
   const accomplishedContentRef = useRef<HTMLDivElement>(null)
   const planningContentRef = useRef<HTMLDivElement>(null)
   const [accomplishedHeight, setAccomplishedHeight] = useState<number | 'auto'>('auto')
@@ -86,6 +86,11 @@ export function LearningSection({
 
   return (
     <div className="space-y-8">
+      {/* Education */}
+      {education && education.length > 0 && (
+        <Education education={education} />
+      )}
+
       {/* What I've Accomplished */}
       <div className="border-2 border-border rounded-lg bg-bg-secondary overflow-hidden">
         <div className="px-6 py-4 flex items-center justify-between gap-4">

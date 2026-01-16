@@ -71,7 +71,7 @@ interface CertificationGroupProps {
 }
 
 export function CertificationGroup({ group, isExpanded: controlledExpanded, onToggle }: CertificationGroupProps) {
-  const [internalExpanded, setInternalExpanded] = useState(true)
+  const [internalExpanded, setInternalExpanded] = useState(false)
   const isExpanded = controlledExpanded !== undefined ? controlledExpanded : internalExpanded
   const contentRef = useRef<HTMLDivElement>(null)
   const [height, setHeight] = useState<number | 'auto'>('auto')
