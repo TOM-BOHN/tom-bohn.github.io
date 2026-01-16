@@ -87,16 +87,39 @@ function ThemeIconButton({
   )
 }
 
-const navItems = [
+// Public navigation items (always visible)
+const publicNavItems = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/blog', label: 'Blog' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/links', label: 'Links' },
-  { href: '/certifications', label: 'Learning' },
-  { href: '/hub', label: 'Hub' },
   { href: '/contact', label: 'Contact' },
 ]
+
+// VIP navigation items (require Cloudflare login)
+const vipNavItems = [
+  { href: '/hub', label: 'Hub' },
+  { href: '/links', label: 'Links' },
+  { href: '/certifications', label: 'Learning' },
+  { href: '/projects', label: 'Projects' },
+]
+
+// Lock icon component for VIP items
+function LockIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="14"
+      height="14"
+      aria-hidden="true"
+      className={className}
+    >
+      <path
+        fill="currentColor"
+        d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10z"
+      />
+    </svg>
+  )
+}
 
 export function Header() {
   const pathname = usePathname()
@@ -110,8 +133,9 @@ export function Header() {
             <Link href="/" className="text-xl font-bold text-accent hover:text-accent-hover transition-colors font-mono tracking-wider">
               THOMASLBOHN.COM
             </Link>
-            <div className="hidden md:flex space-x-6">
-              {navItems.map((item) => {
+            <div className="hidden md:flex items-center space-x-6">
+              {/* Public navigation items */}
+              {publicNavItems.map((item) => {
                 const isActive = pathname === item.href || 
                   (item.href !== '/' && pathname?.startsWith(item.href))
                 return (
@@ -125,6 +149,33 @@ export function Header() {
                     }`}
                   >
                     {item.label}
+                  </Link>
+                )
+              })}
+              
+              {/* Visual separator */}
+              <div className="h-4 w-px bg-border" aria-hidden="true" />
+              
+              {/* VIP navigation items */}
+              {vipNavItems.map((item) => {
+                const isActive = pathname === item.href || 
+                  (item.href !== '/' && pathname?.startsWith(item.href))
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`group relative flex items-center gap-1.5 transition-colors ${
+                      isActive
+                        ? 'text-accent font-semibold'
+                        : 'text-text-secondary hover:text-text-primary'
+                    }`}
+                    title="VIP Content - Login Required"
+                  >
+                    <LockIcon className="opacity-60 group-hover:opacity-100 transition-opacity" />
+                    <span>{item.label}</span>
+                    <span className="absolute -top-1 -right-1 text-[9px] font-bold text-accent opacity-0 group-hover:opacity-100 transition-opacity">
+                      VIP
+                    </span>
                   </Link>
                 )
               })}
@@ -145,24 +196,57 @@ export function Header() {
         </nav>
         {/* Mobile menu */}
         <div className="md:hidden mt-4 pb-2">
-          <div className="flex flex-wrap gap-2">
-            {navItems.map((item) => {
-              const isActive = pathname === item.href || 
-                (item.href !== '/' && pathname?.startsWith(item.href))
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`px-3 py-1 rounded text-sm transition-colors ${
-                    isActive
-                      ? 'bg-accent text-white'
-                      : 'bg-bg-secondary text-text-secondary hover:bg-accent hover:text-white'
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              )
-            })}
+          <div className="flex flex-col gap-3">
+            {/* Public navigation items */}
+            <div className="flex flex-wrap gap-2">
+              {publicNavItems.map((item) => {
+                const isActive = pathname === item.href || 
+                  (item.href !== '/' && pathname?.startsWith(item.href))
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`px-3 py-1 rounded text-sm transition-colors ${
+                      isActive
+                        ? 'bg-accent text-white'
+                        : 'bg-bg-secondary text-text-secondary hover:bg-accent hover:text-white'
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                )
+              })}
+            </div>
+            
+            {/* Visual separator */}
+            <div className="flex items-center gap-2">
+              <div className="flex-1 h-px bg-border" aria-hidden="true" />
+              <span className="text-xs text-text-secondary/60 px-2">VIP</span>
+              <div className="flex-1 h-px bg-border" aria-hidden="true" />
+            </div>
+            
+            {/* VIP navigation items */}
+            <div className="flex flex-wrap gap-2">
+              {vipNavItems.map((item) => {
+                const isActive = pathname === item.href || 
+                  (item.href !== '/' && pathname?.startsWith(item.href))
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`group relative px-3 py-1 rounded text-sm transition-colors flex items-center gap-1.5 ${
+                      isActive
+                        ? 'bg-accent text-white'
+                        : 'bg-bg-secondary/70 text-text-secondary hover:bg-accent hover:text-white border border-border/50'
+                    }`}
+                    title="VIP Content - Login Required"
+                  >
+                    <LockIcon className={isActive ? 'opacity-100' : 'opacity-60'} />
+                    <span>{item.label}</span>
+                  </Link>
+                )
+              })}
+            </div>
           </div>
         </div>
       </div>

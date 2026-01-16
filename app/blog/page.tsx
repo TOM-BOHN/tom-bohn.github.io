@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { getBlogPosts } from '@/lib/blog'
+import { FaMedium } from 'react-icons/fa'
 
 export default async function Blog() {
   const posts = await getBlogPosts()
@@ -31,11 +32,25 @@ export default async function Blog() {
                 key={post.slug}
                 className="border border-border rounded-lg p-6 hover:border-accent hover:shadow-lg transition-all bg-bg-secondary"
               >
-                <Link href={`/blog/${post.slug}`}>
-                  <h2 className="text-2xl font-semibold mb-2 text-text-primary hover:text-accent transition-colors">
-                    {post.title}
-                  </h2>
-                </Link>
+                <div className="flex items-start justify-between gap-4 mb-2">
+                  <Link href={`/blog/${post.slug}/`} className="flex-1">
+                    <h2 className="text-2xl font-semibold mb-2 text-text-primary hover:text-accent transition-colors">
+                      {post.title}
+                    </h2>
+                  </Link>
+                  {post.mediumUrl && (
+                    <a
+                      href={post.mediumUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-shrink-0 p-2 hover:bg-bg-primary rounded transition-colors"
+                      title="Read on Medium"
+                      aria-label="Read on Medium"
+                    >
+                      <FaMedium className="w-5 h-5 text-text-secondary hover:text-black transition-colors" />
+                    </a>
+                  )}
+                </div>
                 <p className="text-text-secondary text-sm mb-4">
                   {new Date(post.date).toLocaleDateString('en-US', {
                     year: 'numeric',
@@ -47,7 +62,7 @@ export default async function Blog() {
                   {post.excerpt}
                 </p>
                 <Link
-                  href={`/blog/${post.slug}`}
+                  href={`/blog/${post.slug}/`}
                   className="inline-block mt-4 text-link hover:text-link-hover underline"
                 >
                   Read more →
