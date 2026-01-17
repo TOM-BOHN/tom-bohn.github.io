@@ -267,3 +267,127 @@ html[data-theme="xanga"] body ::-webkit-scrollbar-thumb:hover {
     padding: 0 2rem;
   }
 }
+
+/* Blog content styling */
+.blog-content {
+  line-height: 1.75;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.blog-content p {
+  margin-bottom: 1.25em;
+  line-height: 1.75;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  text-align: left;
+}
+
+.blog-content p:last-child {
+  margin-bottom: 0;
+}
+
+.blog-content h1,
+.blog-content h2,
+.blog-content h3,
+.blog-content h4,
+.blog-content h5,
+.blog-content h6 {
+  margin-top: 2em;
+  margin-bottom: 1em;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.blog-content h1:first-child,
+.blog-content h2:first-child,
+.blog-content h3:first-child {
+  margin-top: 0;
+}
+
+.blog-content ul,
+.blog-content ol {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  padding-left: 1.625em;
+}
+
+.blog-content li {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  line-height: 1.75;
+}
+
+.blog-content ul {
+  list-style-type: disc;
+}
+
+.blog-content ol {
+  list-style-type: decimal;
+}
+
+.blog-content li > p {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+
+.blog-content li > *:first-child {
+  margin-top: 0;
+}
+
+.blog-content li > *:last-child {
+  margin-bottom: 0;
+}
+
+.blog-content strong {
+  font-weight: 600;
+}
+
+.blog-content em {
+  font-style: italic;
+}
+
+.blog-content a {
+  color: var(--link);
+  text-decoration: underline;
+}
+
+.blog-content a:hover {
+  color: var(--link-hover);
+}
+
+.blog-content code {
+  background-color: var(--bg-secondary);
+  padding: 0.125em 0.375em;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+}
+
+.blog-content pre {
+  background-color: var(--bg-secondary);
+  padding: 1em;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+.blog-content pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+.blog-content blockquote {
+  border-left: 4px solid var(--accent);
+  padding-left: 1em;
+  margin: 1.5em 0;
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+.blog-content hr {
+  margin: 2em 0;
+  border: none;
+  border-top: 1px solid var(--border);
+}

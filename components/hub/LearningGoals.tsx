@@ -19,7 +19,7 @@ interface LearningGoalItemProps {
 }
 
 function LearningGoalItem({ goal, onToggle, isExpanded: controlledExpanded, onToggleExpanded }: LearningGoalItemProps) {
-  const [internalExpanded, setInternalExpanded] = useState(true)
+  const [internalExpanded, setInternalExpanded] = useState(false)
   const isExpanded = controlledExpanded !== undefined ? controlledExpanded : internalExpanded
   const goalContentRef = useRef<HTMLDivElement>(null)
   const [goalHeight, setGoalHeight] = useState<number | 'auto'>('auto')

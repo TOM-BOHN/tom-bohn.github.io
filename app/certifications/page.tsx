@@ -18,6 +18,7 @@ export default async function Certifications() {
         </div>
 
         <LearningSection
+          education={learningData.education}
           accomplished={learningData.accomplished}
           planning={learningData.planning}
         />

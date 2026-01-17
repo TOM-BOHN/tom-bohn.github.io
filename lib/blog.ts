@@ -12,6 +12,7 @@ export interface BlogPost {
   date: string
   excerpt: string
   content: string
+  mediumUrl?: string
 }
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
@@ -41,6 +42,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
           date: data.date || new Date().toISOString(),
           excerpt,
           content: contentHtml,
+          mediumUrl: data.mediumUrl,
         }
       })
   )
@@ -75,5 +77,6 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
     date: data.date || new Date().toISOString(),
     excerpt,
     content: contentHtml,
+    mediumUrl: data.mediumUrl,
   }
 }

@@ -11,9 +11,12 @@ data/
 │   │   ├── raw.json     # Raw extracted badge data
 │   │   ├── cached.json  # Processed badge data with metadata
 │   │   └── organized.json # Badges organized by category
-│   └── trailhead/       # Trailhead-specific badge data
-│       ├── raw.json     # Raw extracted badge data
-│       └── cached.json  # Processed badge data with metadata
+│   ├── trailhead/       # Trailhead-specific badge data
+│   │   ├── raw.json     # Raw extracted badge data
+│   │   └── cached.json  # Processed badge data with metadata
+│   └── accredible/      # Accredible-specific credential data
+│       ├── raw.json     # Raw extracted credential data
+│       └── cached.json  # Processed credential data with metadata
 ├── learning/            # Learning section data
 │   ├── learning.json    # Certification groups and learning goals
 │   ├── setup-notes.md   # Setup instructions for badge images

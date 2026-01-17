@@ -53,13 +53,13 @@ function getBrandIcon(linkId: string, linkTitle: string) {
       bgColor: '#fff4f0'
     }
   }
-  if (id.includes('credential') || title.includes('credential')) {
-    return { 
+  if (id.includes('accredible') || title.includes('accredible') || id.includes('credential') || title.includes('credential')) {
+    return {
       icon: (
         <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
         </svg>
-      ), 
+      ),
       color: '#0066cc',
       bgColor: '#e6f2ff'
     }

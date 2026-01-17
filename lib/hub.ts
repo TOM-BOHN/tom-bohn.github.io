@@ -47,7 +47,20 @@ export interface LearningGoal {
   notes?: string
 }
 
+export interface EducationEntry {
+  id: string
+  institution: string
+  degree: string
+  startDate: string
+  endDate: string
+  logo?: string
+  activities?: string[]
+  courses?: string[]
+  skills?: string[]
+}
+
 export interface LearningData {
+  education?: EducationEntry[]
   accomplished: CertificationGroupData[]
   planning: LearningGoal[]
 }

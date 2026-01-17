@@ -30,7 +30,7 @@ function BadgeImage({ badge }: BadgeImageProps) {
   const [imageError, setImageError] = useState(false)
 
   const content = (
-    <div className="relative aspect-square w-full rounded-lg overflow-hidden border-2 border-border hover:border-accent transition-all group bg-bg-secondary">
+    <div className="relative aspect-square w-full rounded-lg overflow-hidden border-2 border-border hover:border-accent transition-all group bg-bg-secondary scale-[0.8] origin-center">
       {imageError ? (
         <div className="flex items-center justify-center h-full text-text-secondary text-xs text-center p-2">
           {badge.alt}
@@ -71,7 +71,7 @@ interface CertificationGroupProps {
 }
 
 export function CertificationGroup({ group, isExpanded: controlledExpanded, onToggle }: CertificationGroupProps) {
-  const [internalExpanded, setInternalExpanded] = useState(true)
+  const [internalExpanded, setInternalExpanded] = useState(false)
   const isExpanded = controlledExpanded !== undefined ? controlledExpanded : internalExpanded
   const contentRef = useRef<HTMLDivElement>(null)
   const [height, setHeight] = useState<number | 'auto'>('auto')
@@ -174,7 +174,7 @@ export function CertificationGroup({ group, isExpanded: controlledExpanded, onTo
             <p className="text-text-secondary mb-4">{group.description}</p>
           )}
           {group.badgeImages.length > 0 ? (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-2">
               {[...group.badgeImages]
                 .sort((a, b) => {
                   const certificationKeywords = ['CERTIFIED', 'CERTIFICATE', 'SPECIALIST', 'ARCHITECT', 'CONSULTANT', 'ASSOCIATE', 'CERTIFICATION']

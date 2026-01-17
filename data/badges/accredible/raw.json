@@ -1,0 +1,102 @@
+{
+  "profileUrl": "https://www.credential.net/profile/thomasbohn/wallet",
+  "extractedAt": "2026-01-16T20:34:31.766Z",
+  "credentials": [
+    {
+      "id": "accredible-17582028165559324757066718472812",
+      "name": "Academy Accreditation - Databricks Fundamentals",
+      "issuer": "Databricks Academy",
+      "imageUrl": "/badges/databricks/databricks_fundamentals.png",
+      "imageAlt": "Academy Accreditation - Databricks Fundamentals",
+      "description": "",
+      "url": "https://www.credential.net/profile/thomasbohn/wallet",
+      "verifyUrl": "https://www.credential.net/d3cbdd52-5fae-48e9-a9b0-bb20f5c48b51#acc.NxYyOPEc",
+      "issueDate": "July 13, 2025",
+      "rawText": ""
+    },
+    {
+      "id": "accredible-16842542657912596630930906693556",
+      "name": "Certified Information Management Professional - Ex Level - Master Data Management",
+      "issuer": "eLearningCurve",
+      "imageUrl": "/badges/cimp/cimp_ex_level_master_data_management.png",
+      "imageAlt": "Certified Information Management Professional - Ex Level - Master Data Management",
+      "description": "",
+      "url": "https://www.credential.net/profile/thomasbohn/wallet",
+      "verifyUrl": "https://www.credential.net/f31556fc-13c0-4801-8fc5-f8a3738ed9cf#acc.dBaOgstN",
+      "issueDate": "June 13, 2025",
+      "rawText": ""
+    },
+    {
+      "id": "accredible-1515275793999",
+      "name": "Certified Information Management Professional - Ex Level - Data Quality",
+      "issuer": "eLearningCurve",
+      "imageUrl": "/badges/cimp/cimp_ex_level_data_quality.png",
+      "imageAlt": "Certified Information Management Professional - Ex Level - Data Quality",
+      "description": "",
+      "url": "https://www.credential.net/profile/thomasbohn/wallet",
+      "verifyUrl": "https://www.credential.net/714f85e2-fd39-4b97-82a3-52faa8e48b8d#acc.QRLn35vW",
+      "issueDate": "February 24, 2023",
+      "rawText": ""
+    },
+    {
+      "id": "accredible-15892313117835993414105051537299",
+      "name": "Certified Information Management Professional - Ex Level - Data Governance",
+      "issuer": "eLearningCurve",
+      "imageUrl": "/badges/cimp/cimp_ex_level_data_governamnce.png",
+      "imageAlt": "Certified Information Management Professional - Ex Level - Data Governance",
+      "description": "",
+      "url": "https://www.credential.net/profile/thomasbohn/wallet",
+      "verifyUrl": "https://www.credential.net/197b19b3-f45a-4991-a60c-382999d18e39#acc.RwsoTWnN",
+      "issueDate": "February 24, 2023",
+      "rawText": ""
+    },
+    {
+      "id": "accredible-15892306859455684948954359160521",
+      "name": "dbt Developer",
+      "issuer": "dbt Labs",
+      "imageUrl": "/badges/dbt/dbt_developer.png",
+      "imageAlt": "dbt Developer",
+      "description": "",
+      "url": "https://www.credential.net/profile/thomasbohn/wallet",
+      "verifyUrl": "https://www.credential.net/2157b462-336b-42f0-9e45-d9636bab1236#acc.EzRcrDoL",
+      "issueDate": "February 24, 2023",
+      "rawText": ""
+    },
+    {
+      "id": "accredible-15892302281730459319206211681333",
+      "name": "dbt Fundamentals",
+      "issuer": "dbt Labs",
+      "imageUrl": "/badges/dbt/dbt_fundamentals.png",
+      "imageAlt": "dbt Fundamentals",
+      "description": "",
+      "url": "https://www.credential.net/profile/thomasbohn/wallet",
+      "verifyUrl": "https://www.credential.net/978d1cf6-58dd-4f2e-a1db-8a43d15c0c0e#acc.ScoWisDy",
+      "issueDate": "February 24, 2023",
+      "rawText": ""
+    },
+    {
+      "id": "accredible-1515276355008",
+      "name": "Certified Data Steward - Ex Level",
+      "issuer": "eLearningCurve",
+      "imageUrl": "/badges/cimp/cds_ex_level_certified_data_steward.png",
+      "imageAlt": "Certified Data Steward - Ex Level",
+      "description": "",
+      "url": "https://www.credential.net/profile/thomasbohn/wallet",
+      "verifyUrl": "https://www.credential.net/d3cbdd52-5fae-48e9-a9b0-bb20f5c48b51#acc.Sq1NkxiW",
+      "issueDate": "February 13, 2023",
+      "rawText": ""
+    },
+    {
+      "id": "accredible-15892291022737649970348010158096",
+      "name": "Certified Information Management Professional - Ex Level - Metadata Management",
+      "issuer": "eLearningCurve",
+      "imageUrl": "/badges/cimp/cimp_ex_level_metadata_management.png",
+      "imageAlt": "Certified Information Management Professional - Ex Level - Metadata Management",
+      "description": "",
+      "url": "https://www.credential.net/profile/thomasbohn/wallet",
+      "verifyUrl": "https://www.credential.net/7c01c821-d92f-481c-9b52-e8ba678336bf#acc.2bLkGJty",
+      "issueDate": "February 13, 2023",
+      "rawText": ""
+    }
+  ]
+}
