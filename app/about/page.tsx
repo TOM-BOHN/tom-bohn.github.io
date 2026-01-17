@@ -89,6 +89,12 @@ export default function About() {
                   helps others navigate the intersection of data, AI, and product management.
                 </p>
                 <p>
+                  I&apos;m passionate about continuous learning and community engagement. 
+                  I believe in sharing knowledge through publications, open source contributions, 
+                  and thought leadership that helps others navigate the intersection of data, AI, 
+                  and product management.
+                </p>
+                <p>
                   I&apos;m always interested in connecting with fellow product managers, data 
                   professionals, and technical leaders. Whether it&apos;s discussing data products, 
                   AI strategy, or exploring collaboration opportunities, feel free to reach out!
@@ -98,34 +104,158 @@ export default function About() {
 
             <section className="mb-8">
               <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono">
+                {'// PERSONAL HIGHLIGHTS'}
+              </h2>
+              <div className="text-text-secondary leading-relaxed space-y-3">
+                <p className="flex items-start gap-2">
+                  <span className="text-accent mt-1">🎓</span>
+                  <span>
+                    <strong className="text-text-primary">Lifelong Learner:</strong> Continuously expanding my knowledge 
+                    through formal education, certifications, and hands-on experimentation with emerging technologies.
+                  </span>
+                </p>
+                <p className="flex items-start gap-2">
+                  <span className="text-accent mt-1">📚</span>
+                  <span>
+                    <strong className="text-text-primary">Knowledge Sharing:</strong> Published articles on data governance, 
+                    technical leadership, and best practices to help others in the field.
+                  </span>
+                </p>
+                <p className="flex items-start gap-2">
+                  <span className="text-accent mt-1">🌱</span>
+                  <span>
+                    <strong className="text-text-primary">Growth Mindset:</strong> Always exploring new technologies, 
+                    methodologies, and approaches to solve complex problems.
+                  </span>
+                </p>
+                <p className="flex items-start gap-2">
+                  <span className="text-accent mt-1">💡</span>
+                  <span>
+                    <strong className="text-text-primary">Innovation:</strong> Bridging the gap between academic research 
+                    and practical business applications to deliver real-world value.
+                  </span>
+                </p>
+              </div>
+            </section>
+
+            <section className="mb-8">
+              <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono">
+                {'// WHAT DRIVES ME'}
+              </h2>
+              <div className="text-text-secondary leading-relaxed space-y-3">
+                <p className="flex items-start gap-2">
+                  <span className="text-accent mt-1">🧩</span>
+                  <span>
+                    <strong className="text-text-primary">Solving Complex Problems:</strong> Using data to uncover insights 
+                    that drive business value and inform strategic decision-making.
+                  </span>
+                </p>
+                <p className="flex items-start gap-2">
+                  <span className="text-accent mt-1">👥</span>
+                  <span>
+                    <strong className="text-text-primary">Building Teams:</strong> Creating environments where data professionals 
+                    can thrive, grow, and deliver their best work.
+                  </span>
+                </p>
+                <p className="flex items-start gap-2">
+                  <span className="text-accent mt-1">🚀</span>
+                  <span>
+                    <strong className="text-text-primary">Continuous Innovation:</strong> Staying at the forefront of AI/ML 
+                    developments and applying cutting-edge techniques to solve real business challenges.
+                  </span>
+                </p>
+                <p className="flex items-start gap-2">
+                  <span className="text-accent mt-1">💼</span>
+                  <span>
+                    <strong className="text-text-primary">Making Impact:</strong> Contributing to projects that improve 
+                    decision-making, outcomes, and the overall effectiveness of data-driven organizations.
+                  </span>
+                </p>
+              </div>
+            </section>
+
+            <section className="mb-8">
+              <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono">
                 {'// TECHNICAL EXPERTISE'}
               </h2>
-              <div className="text-text-secondary">
-                <p className="mb-3">
-                  <strong className="text-text-primary">AI & Machine Learning:</strong> Large Language Models (LLM), 
-                  Prompt Engineering, GenAI, Agentforce, Metadata AI, Model Interpretability
+              <div className="text-text-secondary space-y-3">
+                <p className="flex items-start gap-2">
+                  <span className="text-accent mt-1">🤖</span>
+                  <span>
+                    <strong className="text-text-primary">AI & Machine Learning:</strong> Large Language Models (LLM), 
+                    Prompt Engineering, GenAI, Agentforce, Metadata AI, Model Interpretability
+                  </span>
                 </p>
-                <p className="mb-3">
-                  <strong className="text-text-primary">Data Management & Analytics:</strong> Data Management Maturity (DMM), 
-                  Data Governance, Data Architecture, Metadata Management, Data Quality, dbt, Spark, Trino, 
-                  Snowflake, Data Warehousing, ETL/ELT Pipelines
+                <p className="flex items-start gap-2">
+                  <span className="text-accent mt-1">📊</span>
+                  <span>
+                    <strong className="text-text-primary">Data Management & Analytics:</strong> Data Management Maturity (DMM), 
+                    Data Governance, Data Architecture, Metadata Management, Data Quality, dbt, Spark, Trino, 
+                    Snowflake, Data Warehousing, ETL/ELT Pipelines
+                  </span>
                 </p>
-                <p className="mb-3">
-                  <strong className="text-text-primary">Salesforce Platform:</strong> Sales Cloud, Service Cloud, 
-                  CRM Analytics (Einstein Analytics), Platform Development, Apex, Lightning Web Components, 
-                  Flows, Salesforce DX, Integration Patterns
+                <p className="flex items-start gap-2">
+                  <span className="text-accent mt-1">☁️</span>
+                  <span>
+                    <strong className="text-text-primary">Salesforce Platform:</strong> Sales Cloud, Service Cloud, 
+                    CRM Analytics (Einstein Analytics), Platform Development, Apex, Lightning Web Components, 
+                    Flows, Salesforce DX, Integration Patterns
+                  </span>
                 </p>
-                <p className="mb-3">
-                  <strong className="text-text-primary">Data Visualization & BI:</strong> Tableau, Qlikview, 
-                  MicroStrategy, Business Intelligence, Dashboard Design, Analytics Strategy
+                <p className="flex items-start gap-2">
+                  <span className="text-accent mt-1">📈</span>
+                  <span>
+                    <strong className="text-text-primary">Data Visualization & BI:</strong> Tableau, Qlikview, 
+                    MicroStrategy, Business Intelligence, Dashboard Design, Analytics Strategy
+                  </span>
                 </p>
-                <p className="mb-3">
-                  <strong className="text-text-primary">Programming & Languages:</strong> Python, R, SQL (PostgreSQL, 
-                  Teradata, Oracle, HiveQL, SOQL), JavaScript, TypeScript, Bash, Java, C++
+                <p className="flex items-start gap-2">
+                  <span className="text-accent mt-1">💻</span>
+                  <span>
+                    <strong className="text-text-primary">Programming & Languages:</strong> Python, R, SQL (PostgreSQL, 
+                    Teradata, Oracle, HiveQL, SOQL), JavaScript, TypeScript, Bash, Java, C++
+                  </span>
+                </p>
+                <p className="flex items-start gap-2">
+                  <span className="text-accent mt-1">⚙️</span>
+                  <span>
+                    <strong className="text-text-primary">Product & Process:</strong> Product Strategy, Program Management, 
+                    Solution Architecture, SDLC, Agile Methodologies, Change Management, Organizational Transformation
+                  </span>
+                </p>
+              </div>
+            </section>
+
+            <section className="mb-8">
+              <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono">
+                {'// ABOUT THIS PAGE'}
+              </h2>
+              <div className="text-text-secondary leading-relaxed space-y-4">
+                <p>
+                  Everything you see here I designed myself and implemented with the help of{' '}
+                  <strong className="text-text-primary">Cursor AI agents</strong>. The website is built with{' '}
+                  <strong className="text-text-primary">React</strong> and <strong className="text-text-primary">Next.js</strong>, 
+                  using <strong className="text-text-primary">TypeScript</strong> for type safety and{' '}
+                  <strong className="text-text-primary">Tailwind CSS</strong> as the design system. 
+                  The pages are statically generated by Next.js and deployed as a static site.
                 </p>
                 <p>
-                  <strong className="text-text-primary">Product & Process:</strong> Product Strategy, Program Management, 
-                  Solution Architecture, SDLC, Agile Methodologies, Change Management, Organizational Transformation
+                  Blog content is written in Markdown and processed with{' '}
+                  <strong className="text-text-primary">remark</strong> for rendering. 
+                  Icons are provided by <strong className="text-text-primary">react-icons</strong>, 
+                  and the site uses a custom design system built on top of Tailwind CSS with a focus on 
+                  accessibility and responsive design.
+                </p>
+                <p>
+                  If you are curious, you can explore the code for this website on my{' '}
+                  <a
+                    href="https://github.com/TOM-BOHN/tom-bohn.github.io"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-link hover:text-link-hover underline font-semibold"
+                  >
+                    GitHub
+                  </a>.
                 </p>
               </div>
             </section>
