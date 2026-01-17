@@ -33,6 +33,7 @@ Create markdown files in `content/blog/`:
   title: "Your Post Title"
   date: "2024-01-15"
   excerpt: "A brief description"
+  mediumUrl: "https://medium.com/@yourusername/your-post-slug"  # Optional: link to Medium article
   ---
   
   Your content here...
@@ -117,8 +118,20 @@ Edit CSS variables in `app/globals.css`:
 ### Styling
 The site uses Tailwind CSS. You can customize the theme in `tailwind.config.ts`.
 
+## Tech Stack
+
+- **Framework**: Next.js 16.1.1 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Icons**: react-icons
+- **Content**: Markdown with remark
+
 ## Deployment
 
 The site is configured for automatic deployment to GitHub Pages via GitHub Actions. Just push to the `main` branch!
 
 For custom domain setup, see `DEPLOYMENT.md`.
+
+## Built with Cursor AI
+
+This website was designed and implemented with the help of [Cursor AI](https://cursor.com), an AI-powered code editor that assists with development workflows.
