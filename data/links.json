@@ -23,6 +23,12 @@
       "title": "Grammarly",
       "url": "https://app.grammarly.com/",
       "description": "Writing assistant login"
+    },
+    {
+      "id": "substack",
+      "title": "Substack",
+      "url": "https://substack.com/@thomasbohn?utm_campaign=profile&utm_medium=profile-page",
+      "description": "Writing and publishing platform"
     }
   ],
   "Development Apps": [
@@ -101,6 +107,234 @@
       "title": "uv",
       "url": "https://docs.astral.sh/uv/",
       "description": "Python package manager"
+    }
+  ],
+  "Languages & Frameworks": [
+    {
+      "id": "python",
+      "title": "Python",
+      "url": "https://docs.python.org/",
+      "description": "Python programming language documentation"
+    },
+    {
+      "id": "r",
+      "title": "R",
+      "url": "https://www.r-project.org/",
+      "description": "R statistical computing environment"
+    },
+    {
+      "id": "sql",
+      "title": "SQL",
+      "url": "https://www.w3schools.com/sql/",
+      "description": "Structured Query Language reference"
+    },
+    {
+      "id": "bash",
+      "title": "Bash",
+      "url": "https://www.gnu.org/software/bash/manual/",
+      "description": "Bash shell scripting documentation"
+    },
+    {
+      "id": "salesforce",
+      "title": "Salesforce",
+      "url": "https://developer.salesforce.com/docs",
+      "description": "Salesforce platform development documentation"
+    }
+  ],
+  "Data Science & AI": [
+    {
+      "id": "pandas",
+      "title": "Pandas",
+      "url": "https://pandas.pydata.org/docs/",
+      "description": "Data manipulation and analysis library"
+    },
+    {
+      "id": "numpy",
+      "title": "NumPy",
+      "url": "https://numpy.org/doc/",
+      "description": "Numerical computing library for Python"
+    },
+    {
+      "id": "scikit-learn",
+      "title": "Scikit-Learn",
+      "url": "https://scikit-learn.org/stable/",
+      "description": "Machine learning library for Python"
+    },
+    {
+      "id": "scipy",
+      "title": "SciPy",
+      "url": "https://docs.scipy.org/",
+      "description": "Scientific computing library"
+    },
+    {
+      "id": "tensorflow",
+      "title": "TensorFlow",
+      "url": "https://www.tensorflow.org/learn",
+      "description": "Machine learning and deep learning framework"
+    },
+    {
+      "id": "pytorch",
+      "title": "PyTorch",
+      "url": "https://pytorch.org/docs/stable/index.html",
+      "description": "Deep learning framework"
+    },
+    {
+      "id": "keras",
+      "title": "Keras",
+      "url": "https://keras.io/",
+      "description": "Deep learning API for TensorFlow"
+    },
+    {
+      "id": "nltk",
+      "title": "NLTK",
+      "url": "https://www.nltk.org/",
+      "description": "Natural Language Toolkit for Python"
+    }
+  ],
+  "Data Storage & Databases": [
+    {
+      "id": "postgresql",
+      "title": "PostgreSQL",
+      "url": "https://www.postgresql.org/docs/",
+      "description": "Open source relational database"
+    },
+    {
+      "id": "mysql",
+      "title": "MySQL",
+      "url": "https://dev.mysql.com/doc/",
+      "description": "Relational database management system"
+    },
+    {
+      "id": "apache-spark",
+      "title": "Apache Spark",
+      "url": "https://spark.apache.org/docs/latest/",
+      "description": "Unified analytics engine for big data"
+    },
+    {
+      "id": "snowflake",
+      "title": "Snowflake",
+      "url": "https://docs.snowflake.com/",
+      "description": "Cloud data platform documentation"
+    },
+    {
+      "id": "amazon-s3",
+      "title": "Amazon S3",
+      "url": "https://docs.aws.amazon.com/s3/",
+      "description": "Object storage service documentation"
+    }
+  ],
+  "Data Engineering & ETL": [
+    {
+      "id": "apache-airflow",
+      "title": "Apache Airflow",
+      "url": "https://airflow.apache.org/docs/",
+      "description": "Workflow orchestration platform"
+    },
+    {
+      "id": "dbt",
+      "title": "dbt",
+      "url": "https://docs.getdbt.com/",
+      "description": "Data transformation tool documentation"
+    }
+  ],
+  "Cloud Platforms": [
+    {
+      "id": "aws",
+      "title": "Amazon AWS",
+      "url": "https://docs.aws.amazon.com/",
+      "description": "Amazon Web Services documentation"
+    },
+    {
+      "id": "aws-sagemaker",
+      "title": "Amazon SageMaker",
+      "url": "https://docs.aws.amazon.com/sagemaker/",
+      "description": "Machine learning platform documentation"
+    }
+  ],
+  "Data Visualization & BI": [
+    {
+      "id": "tableau",
+      "title": "Tableau",
+      "url": "https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm",
+      "description": "Business intelligence and data visualization platform"
+    }
+  ],
+  "Development & DevOps": [
+    {
+      "id": "git",
+      "title": "Git",
+      "url": "https://git-scm.com/doc",
+      "description": "Version control system documentation"
+    },
+    {
+      "id": "jenkins",
+      "title": "Jenkins",
+      "url": "https://www.jenkins.io/doc/",
+      "description": "Automation server for CI/CD pipelines"
+    },
+    {
+      "id": "selenium",
+      "title": "Selenium",
+      "url": "https://www.selenium.dev/documentation/",
+      "description": "Web browser automation framework"
+    }
+  ],
+  "Development Environment": [
+    {
+      "id": "jupyter",
+      "title": "Jupyter",
+      "url": "https://docs.jupyter.org/",
+      "description": "Interactive computing environment"
+    },
+    {
+      "id": "r-markdown",
+      "title": "R Markdown",
+      "url": "https://rmarkdown.rstudio.com/",
+      "description": "Dynamic documents for R"
+    },
+    {
+      "id": "conda",
+      "title": "Conda",
+      "url": "https://docs.conda.io/",
+      "description": "Package and environment management"
+    },
+    {
+      "id": "google-sheets",
+      "title": "Google Sheets",
+      "url": "https://developers.google.com/sheets/api",
+      "description": "Spreadsheet application and API"
+    }
+  ],
+  "Work Management": [
+    {
+      "id": "jira",
+      "title": "Jira",
+      "url": "https://support.atlassian.com/jira/",
+      "description": "Project management and issue tracking"
+    },
+    {
+      "id": "confluence",
+      "title": "Confluence",
+      "url": "https://support.atlassian.com/confluence/",
+      "description": "Team collaboration and documentation"
+    },
+    {
+      "id": "slack",
+      "title": "Slack",
+      "url": "https://api.slack.com/docs",
+      "description": "Team communication platform"
+    },
+    {
+      "id": "google-workspace",
+      "title": "Google Workspace",
+      "url": "https://developers.google.com/workspace",
+      "description": "Productivity and collaboration tools"
+    },
+    {
+      "id": "lucidchart",
+      "title": "Lucidchart",
+      "url": "https://www.lucidchart.com/pages/",
+      "description": "Diagramming and visualization tool"
     }
   ]
 }

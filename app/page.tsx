@@ -5,7 +5,7 @@ export default function Home() {
     <div className="container mx-auto px-4 py-12">
       <div className="max-w-6xl mx-auto">
         {/* Role tag */}
-        <p className="text-sm text-accent mb-4 font-mono">{'>'} SOFTWARE ENGINEER</p>
+        <p className="text-sm text-accent mb-4 font-mono">{'>'} PRODUCT MANAGER & SOFTWARE DESIGNER</p>
         
         {/* Main content area - two column layout */}
         <div className="grid md:grid-cols-2 gap-12 mb-16">
@@ -21,14 +21,16 @@ export default function Home() {
               </span>
             </h1>
             <p className="text-lg text-text-secondary leading-relaxed mb-4">
-              Software engineer and technical leader specializing in Salesforce development, 
-              data engineering, and cloud architecture. Building scalable solutions and 
-              leading teams to deliver impactful technology solutions.
+              Product manager and software designer specializing in AI products, data management, 
+              and analytics. I bridge product strategy with hands-on development, using software 
+              engineering tools and LLMs to define product details, explore ideas faster, and build 
+              proof-of-concepts that directly address customer needs.
             </p>
             <p className="text-lg text-text-secondary leading-relaxed">
-              Currently working on enterprise-level Salesforce implementations and data 
-              warehouse solutions. Passionate about clean code, best practices, and 
-              mentoring the next generation of developers.{' '}
+              Currently leading AI product initiatives at Salesforce, focusing on data management 
+              maturity and metadata AI solutions. Passionate about building data products that 
+              power trusted AI, and sharing insights on product strategy, data governance, and 
+              technical leadership.{' '}
               <a 
                 href="/contact" 
                 className="text-link hover:text-link-hover underline"
@@ -217,12 +219,12 @@ export default function Home() {
               <span className="font-semibold text-text-primary">VIP + Beta program</span>.
             </p>
             <p className="text-text-secondary leading-relaxed">
-              Interested in early access?{' '}
+              Interested in early access? Contact{' '}
               <a 
-                href="/contact" 
+                href="mailto:hello@thomaslbohn.com" 
                 className="text-link hover:text-link-hover underline font-semibold"
               >
-                Contact hello@thomaslbohn.com
+                hello@thomaslbohn.com
               </a>
               {' '}to request access.
             </p>
