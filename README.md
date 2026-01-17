@@ -48,30 +48,30 @@ The development server will be available at `http://localhost:3000`.
 ## 📁 Project Structure
 
 ```
-├── app/                    # Next.js App Router pages
-│   ├── about/             # About page
-│   ├── blog/              # Blog listing and posts
+├── app/                  # Next.js App Router pages
+│   ├── about/            # About page
+│   ├── blog/             # Blog listing and posts
 │   │   └── [slug]/       # Dynamic blog post pages
-│   ├── certifications/    # Certifications page
-│   ├── contact/           # Contact page
-│   ├── hub/               # Hub page
-│   ├── links/             # Links page
-│   ├── projects/          # Projects page
-│   ├── layout.tsx         # Root layout
-│   ├── page.tsx           # Home page
-│   ├── not-found.tsx      # 404 page
-│   └── globals.css        # Global styles
-├── components/            # React components
+│   ├── certifications/   # Certifications page
+│   ├── contact/          # Contact page
+│   ├── hub/              # Hub page
+│   ├── links/            # Links page
+│   ├── projects/         # Projects page
+│   ├── layout.tsx        # Root layout
+│   ├── page.tsx          # Home page
+│   ├── not-found.tsx     # 404 page
+│   └── globals.css       # Global styles
+├── components/           # React components
 │   ├── hub/              # Hub-related components
 │   ├── links/            # Links-related components
 │   ├── xanga/            # Xanga theme components
-│   ├── Footer.tsx         # Site footer
+│   ├── Footer.tsx        # Site footer
 │   ├── Header.tsx        # Site header/navigation
 │   ├── ThemeProvider.tsx # Theme context provider
 │   └── XangaShell.tsx    # Xanga theme shell
 ├── content/              # Content files
 │   └── blog/             # Markdown blog posts
-├── data/                  # JSON data files
+├── data/                 # JSON data files
 │   ├── badges/           # Badge data (Credly, Accredible, Trailhead)
 │   ├── hub/              # Hub configuration
 │   ├── learning/         # Learning data
