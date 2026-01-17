@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import Image from 'next/image'
 
 export default function Home() {
@@ -92,7 +91,36 @@ export default function Home() {
                 <ul className="space-y-2 text-text-secondary">
                   <li className="flex items-start gap-2">
                     <span className="text-accent mt-1">→</span>
-                    <span>Check out my latest articles on Medium</span>
+                    <a
+                      href="https://medium.com/@bohn.tl/the-4-cs-of-data-governance-measurement-5759fdbbc373"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-link hover:text-link-hover underline"
+                    >
+                      The 4 Cs of Data Governance Measurement
+                    </a>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-accent mt-1">→</span>
+                    <a
+                      href="https://medium.com/@bohn.tl/the-enabling-team-playbook-78b60b0bb4f0"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-link hover:text-link-hover underline"
+                    >
+                      The Enabling Team Framework
+                    </a>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-accent mt-1">→</span>
+                    <a
+                      href="https://medium.com/@bohn.tl/the-spec-driven-writing-framework-55facae16425"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-link hover:text-link-hover underline"
+                    >
+                      The Spec-Driven Writing Framework
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -125,7 +153,36 @@ export default function Home() {
                 <ul className="space-y-2 text-text-secondary">
                   <li className="flex items-start gap-2">
                     <span className="text-accent mt-1">→</span>
-                    <span>Check out my repositories and contributions</span>
+                    <a
+                      href="https://github.com/TOM-BOHN/MsDS-deep-learing-gan-monet-painting/tree/main"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-link hover:text-link-hover underline"
+                    >
+                      deep-learing-gan-monet-painting
+                    </a>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-accent mt-1">→</span>
+                    <a
+                      href="https://github.com/TOM-BOHN/MsDS-deep-learing-cnn-cancer-detection"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-link hover:text-link-hover underline"
+                    >
+                      deep-learing-cnn-cancer-detection
+                    </a>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-accent mt-1">→</span>
+                    <a
+                      href="https://github.com/TOM-BOHN/MsDS-deep-learning-llm-classification-finetuning"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-link hover:text-link-hover underline"
+                    >
+                      deep-learning-llm-classification-finetuning
+                    </a>
                   </li>
                 </ul>
               </div>
