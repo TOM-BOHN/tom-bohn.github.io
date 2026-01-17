@@ -10,6 +10,7 @@ import {
 import { 
   SiCredly,
   SiSalesforce,
+  SiSubstack,
 } from 'react-icons/si'
 
 interface HubSectionProps {
@@ -44,6 +45,13 @@ function getBrandIcon(linkId: string, linkTitle: string) {
       icon: <FaMedium className="w-8 h-8" />, 
       color: '#000000',
       bgColor: '#f5f5f5'
+    }
+  }
+  if (id.includes('substack') || title.includes('substack')) {
+    return { 
+      icon: <SiSubstack className="w-8 h-8" />, 
+      color: '#ff6719',
+      bgColor: '#fff5e6'
     }
   }
   if (id.includes('credly') || title.includes('credly')) {

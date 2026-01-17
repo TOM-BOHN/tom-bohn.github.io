@@ -27,6 +27,12 @@
           "title": "Medium",
           "url": "https://medium.com/@bohn.tl",
           "description": "Articles and writing on software engineering, data science, and technology"
+        },
+        {
+          "id": "substack",
+          "title": "Substack",
+          "url": "https://substack.com/@thomasbohn?utm_campaign=profile&utm_medium=profile-page",
+          "description": "Writing and publishing platform"
         }
       ]
     },
