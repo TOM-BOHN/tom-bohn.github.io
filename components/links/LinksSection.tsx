@@ -2,9 +2,18 @@
 
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import type { Link } from '@/lib/links'
-import { FaCode, FaDocker, FaGithub, FaPenNib, FaRobot, FaSearch, FaShieldAlt } from 'react-icons/fa'
 import {
-  SiAmazonaws,
+  FaCode,
+  FaDocker,
+  FaGithub,
+  FaLaptopCode,
+  FaPenNib,
+  FaRobot,
+  FaSearch,
+  FaShieldAlt,
+} from 'react-icons/fa'
+import {
+  SiAmazon,
   SiCloudflare,
   SiNextdotjs,
   SiOpenai,
@@ -12,7 +21,6 @@ import {
   SiPython,
   SiSnyk,
   SiTailwindcss,
-  SiVisualstudiocode,
 } from 'react-icons/si'
 
 interface LinksSectionProps {
@@ -36,9 +44,9 @@ const iconMap: Array<{ match: string[]; icon: ReactNode; color: string; bgColor:
   { match: ['grammarly'], icon: <FaPenNib className="w-5 h-5" />, color: '#ffffff', bgColor: '#16a34a' },
   { match: ['perplexity'], icon: <FaSearch className="w-5 h-5" />, color: '#0f172a', bgColor: '#e2e8f0' },
   { match: ['docker'], icon: <FaDocker className="w-5 h-5" />, color: '#0db7ed', bgColor: '#e6f7ff' },
-  { match: ['visual studio code', 'vs code', 'vscode'], icon: <SiVisualstudiocode className="w-5 h-5" />, color: '#007acc', bgColor: '#e6f4ff' },
+  { match: ['visual studio code', 'vs code', 'vscode'], icon: <FaLaptopCode className="w-5 h-5" />, color: '#2563eb', bgColor: '#dbeafe' },
   { match: ['crowdstrike', 'falcon'], icon: <FaShieldAlt className="w-5 h-5" />, color: '#b91c1c', bgColor: '#fee2e2' },
-  { match: ['amazon', 'aws'], icon: <SiAmazonaws className="w-5 h-5" />, color: '#ff9900', bgColor: '#fff5e6' },
+  { match: ['amazon', 'aws'], icon: <SiAmazon className="w-5 h-5" />, color: '#ff9900', bgColor: '#fff5e6' },
   { match: ['cloudflare'], icon: <SiCloudflare className="w-5 h-5" />, color: '#f38020', bgColor: '#fff1e6' },
   { match: ['snyk'], icon: <SiSnyk className="w-5 h-5" />, color: '#4c4a73', bgColor: '#efeff6' },
   { match: ['next.js', 'nextjs'], icon: <SiNextdotjs className="w-5 h-5" />, color: '#000000', bgColor: '#f5f5f5' },
