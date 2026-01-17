@@ -1,6 +1,106 @@
 {
-  "Development Tools": [],
-  "Design Resources": [],
-  "Learning": [],
-  "Productivity": []
+  "AI & Writing": [
+    {
+      "id": "chatgpt",
+      "title": "ChatGPT",
+      "url": "https://chatgpt.com",
+      "description": "AI writing and analysis"
+    },
+    {
+      "id": "claude",
+      "title": "Claude",
+      "url": "https://claude.ai/login",
+      "description": "AI writing login"
+    },
+    {
+      "id": "perplexity",
+      "title": "Perplexity",
+      "url": "https://www.perplexity.ai",
+      "description": "Research search"
+    },
+    {
+      "id": "grammarly",
+      "title": "Grammarly",
+      "url": "https://app.grammarly.com/",
+      "description": "Writing assistant login"
+    }
+  ],
+  "Development Apps": [
+    {
+      "id": "cursor",
+      "title": "Cursor",
+      "url": "https://cursor.com",
+      "description": "AI code editor download"
+    },
+    {
+      "id": "github",
+      "title": "GitHub",
+      "url": "https://github.com/login",
+      "description": "Login"
+    },
+    {
+      "id": "vscode",
+      "title": "VS Code",
+      "url": "https://code.visualstudio.com/download",
+      "description": "Download"
+    },
+    {
+      "id": "docker-desktop",
+      "title": "Docker Desktop",
+      "url": "https://www.docker.com/products/docker-desktop/",
+      "description": "Download"
+    }
+  ],
+  "Cloud & Security": [
+    {
+      "id": "crowdstrike-falcon",
+      "title": "CrowdStrike Falcon",
+      "url": "https://falcon.crowdstrike.com",
+      "description": "Login portal"
+    },
+    {
+      "id": "aws-console",
+      "title": "AWS Console",
+      "url": "https://console.aws.amazon.com/",
+      "description": "Login console"
+    },
+    {
+      "id": "cloudflare-dashboard",
+      "title": "Cloudflare Dashboard",
+      "url": "https://dash.cloudflare.com/login",
+      "description": "Login"
+    },
+    {
+      "id": "snyk",
+      "title": "Snyk",
+      "url": "https://app.snyk.io/login",
+      "description": "Security scan login"
+    }
+  ],
+  "Docs & Packages": [
+    {
+      "id": "nextjs-docs",
+      "title": "Next.js Docs",
+      "url": "https://nextjs.org/docs",
+      "description": "Documentation"
+    },
+    {
+      "id": "tailwind-docs",
+      "title": "Tailwind CSS Docs",
+      "url": "https://tailwindcss.com/docs",
+      "description": "Documentation"
+    },
+    {
+      "id": "pypi",
+      "title": "PyPI",
+      "url": "https://pypi.org/",
+      "description": "Python packages"
+    },
+    {
+      "id": "uv",
+      "title": "uv",
+      "url": "https://docs.astral.sh/uv/",
+      "description": "Python package manager"
+    }
+  ]
 }
