@@ -97,7 +97,7 @@ export default function Home() {
                       rel="noopener noreferrer"
                       className="text-link hover:text-link-hover underline"
                     >
-                      The 4 Cs of Data Governance Measurement: Measuring Transformation Beyond Compliance
+                      The 4 Cs of Data Governance Measurement
                     </a>
                   </li>
                   <li className="flex items-start gap-2">
@@ -108,7 +108,7 @@ export default function Home() {
                       rel="noopener noreferrer"
                       className="text-link hover:text-link-hover underline"
                     >
-                      The Enabling Team Framework: A Structured Approach to Capability Transformation
+                      The Enabling Team Framework
                     </a>
                   </li>
                   <li className="flex items-start gap-2">
@@ -119,7 +119,7 @@ export default function Home() {
                       rel="noopener noreferrer"
                       className="text-link hover:text-link-hover underline"
                     >
-                      The Spec-Driven Writing Framework: Building a Writer&apos;s Room with Agentic Workflows
+                      The Spec-Driven Writing Framework
                     </a>
                   </li>
                 </ul>
