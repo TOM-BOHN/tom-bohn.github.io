@@ -12,13 +12,14 @@ export const metadata: Metadata = {
   title: 'Thomas Bohn',
   description: 'Personal website and blog',
   metadataBase: new URL('https://thomaslbohn.com'),
+  manifest: '/manifest.json',
   alternates: {
     canonical: 'https://thomaslbohn.com',
   },
   icons: {
     icon: '/icon.svg',
     shortcut: '/icon.svg',
-    apple: '/icon.svg',
+    apple: '/apple-touch-icon.png',
   },
   openGraph: {
     title: 'Thomas Bohn',
