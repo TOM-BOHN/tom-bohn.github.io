@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: 'Thomas Bohn',
   description: 'Personal website and blog',
   metadataBase: new URL('https://thomaslbohn.com'),
+  manifest: '/manifest.json',
   alternates: {
     canonical: 'https://thomaslbohn.com',
   },
