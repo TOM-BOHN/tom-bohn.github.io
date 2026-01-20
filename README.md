@@ -21,11 +21,16 @@ Visit the site at [thomaslbohn.com](https://thomaslbohn.com)
 - 📝 **About page** - Professional background, technical expertise, and personal highlights
 - 📰 **Blog** - Markdown-based blog with Medium integration
 - 📧 **Contact page** - Multiple ways to get in touch
-- 💼 **Projects/Portfolio** - Showcase of work and projects
+- 💼 **Projects/Portfolio** - Theme-based project organization with artifacts and deliverables
 - 🔗 **Links** - Curated directory of tools, services, and documentation
-- 🎓 **Certifications & Learning** - Professional credentials and learning journey
+- 🎓 **Certifications & Learning** - Professional credentials and learning journey with expand/collapse controls
 - 🌐 **Hub** - Linktree-style page with all online presence
-- 🎨 **Xanga Mode** - 2000s nostalgia theme toggle
+- 📊 **V2ME** - Interactive personal V2MOM (Vision, Values, Methods, Obstacles, Measures) framework with drag-and-drop reordering, markdown editing, and JSON import/export
+- 🎨 **Xanga Mode** - 2000s nostalgia theme with:
+  - Customizable sidebar position (left, right, or hidden)
+  - Sidebar applets (Profile, Music Player, Weather, etc.)
+  - Compact SoundCloud player integration
+  - Retro color palette and styling
 
 ## 🚀 Development
 
@@ -64,11 +69,15 @@ The development server will be available at `http://localhost:3000`.
 ├── components/           # React components
 │   ├── hub/              # Hub-related components
 │   ├── links/            # Links-related components
+│   ├── projects/         # Projects-related components
+│   ├── v2me/              # V2ME framework components
 │   ├── xanga/            # Xanga theme components
+│   │   └── applets/      # Xanga sidebar applets
 │   ├── Footer.tsx        # Site footer
 │   ├── Header.tsx        # Site header/navigation
 │   ├── ThemeProvider.tsx # Theme context provider
-│   └── XangaShell.tsx    # Xanga theme shell
+│   ├── XangaShell.tsx    # Xanga theme shell
+│   └── XangaLayoutWrapper.tsx # Xanga sidebar state management
 ├── content/              # Content files
 │   └── blog/             # Markdown blog posts
 ├── data/                 # JSON data files
@@ -77,13 +86,15 @@ The development server will be available at `http://localhost:3000`.
 │   ├── learning/         # Learning data
 │   ├── certifications.json
 │   ├── links.json
-│   └── projects.json
+│   ├── projects.json
+│   └── v2me.json         # V2ME framework data
 ├── lib/                  # Utility functions
 │   ├── blog.ts           # Blog post utilities
 │   ├── certifications.ts # Certification utilities
 │   ├── hub.ts            # Hub utilities
 │   ├── links.ts          # Links utilities
-│   └── projects.ts       # Projects utilities
+│   ├── projects.ts       # Projects utilities
+│   └── v2me.ts           # V2ME framework utilities
 ├── scripts/              # Build and data scripts
 │   ├── credly-badge/     # Credly badge fetcher
 │   ├── accredible-badge/ # Accredible badge fetcher
@@ -114,10 +125,31 @@ The `CNAME` file is located in the `public/` directory. This ensures it's includ
 ## 🎨 Design System
 
 The site uses a custom design system built on Tailwind CSS with:
+- **Tableau Color Blind Palette** - Blue-orange diverging color scheme for accessibility
 - Consistent color palette (accent colors, text colors, backgrounds)
 - Responsive design patterns
-- Dark/light theme support
+- Dark/light/Xanga theme support
 - Custom typography with monospace accents
+- Xanga theme with reduced borders, smaller fonts, and retro styling
+
+## 🎮 Interactive Features
+
+- **V2ME Framework**: 
+  - Drag-and-drop reordering of items
+  - Markdown editing with live preview
+  - JSON import/export functionality
+  - Progress tracking for Methods and Measures
+  - Expand/collapse controls at page and section levels
+
+- **Xanga Sidebar Controls**:
+  - Position sidebar on left, right, or hide completely
+  - Icon-based controls with hover tooltips
+  - State persistence across page reloads
+  - Dynamic header icon replacement when sidebar is hidden
+
+- **Page-Level Controls**:
+  - Expand/collapse all items on Learning, Projects, and V2ME pages
+  - Section-level expand/collapse for better content organization
 
 ## 🤝 Contributing
 

@@ -15,7 +15,9 @@ This is a personal website, but if you have suggestions or find issues, feel fre
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
 - **Icons**: react-icons
-- **Content**: Markdown with remark
+- **Content**: Markdown with remark and react-markdown
+- **Drag & Drop**: @dnd-kit (for V2ME reordering)
+- **Fonts**: Next.js Font Optimization (Open Sans)
 
 ## Project Structure
 
@@ -25,11 +27,12 @@ tom-bohn.github.io/
 │   ├── about/            # About page
 │   ├── blog/             # Blog listing and posts
 │   │   └── [slug]/       # Dynamic blog post pages
-│   ├── certifications/   # Certifications page
+│   ├── certifications/   # Certifications/Learning page
 │   ├── contact/          # Contact page
 │   ├── hub/              # Hub page
 │   ├── links/            # Links page
 │   ├── projects/         # Projects page
+│   ├── v2me/             # V2ME framework page
 │   ├── layout.tsx        # Root layout
 │   ├── page.tsx          # Home page
 │   ├── not-found.tsx     # 404 page
@@ -37,24 +40,30 @@ tom-bohn.github.io/
 ├── components/           # React components
 │   ├── hub/              # Hub-related components
 │   ├── links/            # Links-related components
+│   ├── projects/         # Projects-related components
+│   ├── v2me/             # V2ME framework components
 │   ├── xanga/            # Xanga theme components
+│   │   └── applets/      # Xanga sidebar applets
 │   ├── Footer.tsx        # Site footer
 │   ├── Header.tsx        # Site header/navigation
 │   ├── ThemeProvider.tsx # Theme context provider
-│   └── XangaShell.tsx    # Xanga theme shell
+│   ├── XangaShell.tsx    # Xanga theme shell
+│   └── XangaLayoutWrapper.tsx # Xanga sidebar state management
 ├── lib/                  # Utility functions
 │   ├── blog.ts           # Blog post utilities
 │   ├── certifications.ts # Certification utilities
 │   ├── hub.ts            # Hub utilities
 │   ├── links.ts          # Links utilities
-│   └── projects.ts       # Projects utilities
+│   ├── projects.ts       # Projects utilities
+│   └── v2me.ts           # V2ME framework utilities
 ├── data/                 # JSON data files
 │   ├── badges/           # Badge data (Credly, Accredible, Trailhead)
 │   ├── hub/              # Hub configuration
 │   ├── learning/         # Learning data
 │   ├── certifications.json
 │   ├── links.json
-│   └── projects.json
+│   ├── projects.json
+│   └── v2me.json         # V2ME framework data
 ├── content/              # Markdown content
 │   └── blog/             # Blog posts
 ├── scripts/              # Build and data scripts
@@ -98,6 +107,12 @@ tom-bohn.github.io/
 ### Hub Links
 - Edit `data/hub/hub.json`
 - Add link objects for your online presence
+
+### V2ME Framework
+- Edit `data/v2me.json`
+- Structure includes: `vision`, `values`, `methods`, `obstacles`, `measures`
+- Each item has: `id`, `title`, `description` (and `completed` for methods/measures)
+- Can be edited in the UI and exported/imported as JSON
 
 ## Building for Production
 
