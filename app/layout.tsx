@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/components/ThemeProvider'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { XangaShell } from '@/components/XangaShell'
+import { XangaLayoutWrapper } from '@/components/XangaLayoutWrapper'
 
 const openSans = Open_Sans({ 
   subsets: ['latin'],
@@ -49,13 +50,15 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${openSans.className} ${openSans.variable}`} suppressHydrationWarning>
         <ThemeProvider>
-          <div className="min-h-screen flex flex-col">
-            <Header />
-            <main className="flex-grow">
-              <XangaShell>{children}</XangaShell>
-            </main>
-            <Footer />
-          </div>
+          <XangaLayoutWrapper>
+            <div className="min-h-screen flex flex-col">
+              <Header />
+              <main className="flex-grow">
+                <XangaShell>{children}</XangaShell>
+              </main>
+              <Footer />
+            </div>
+          </XangaLayoutWrapper>
         </ThemeProvider>
       </body>
     </html>
