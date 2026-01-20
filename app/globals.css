@@ -93,6 +93,7 @@ html[data-theme="dark"] body {
 /* Xanga Theme Styles */
 html[data-theme="xanga"] body {
   font-family: 'Comic Sans MS', 'Trebuchet MS', 'Arial Rounded MT Bold', Arial, sans-serif;
+  font-size: 0.9em;
   background-color: var(--bg-primary);
   background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='stars' x='0' y='0' width='20' height='20' patternUnits='userSpaceOnUse'%3E%3Ccircle cx='10' cy='10' r='1' fill='%23ffbc79' opacity='0.6'/%3E%3Ccircle cx='5' cy='5' r='0.5' fill='%235fa2ce' opacity='0.4'/%3E%3Ccircle cx='15' cy='15' r='0.5' fill='%23fc7d0b' opacity='0.4'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100' height='100' fill='url(%23stars)'/%3E%3C/svg%3E");
   background-repeat: repeat;
@@ -102,12 +103,12 @@ html[data-theme="xanga"] body {
 /* Keep ONE shadow on the overall Xanga content area */
 html[data-theme="xanga"] body .xanga-shell {
   background-color: var(--bg-tertiary);
-  border: 4px solid var(--border);
+  border: 2px solid var(--border);
   box-shadow: 8px 8px 0px var(--accent-navy);
 }
 
 html[data-theme="xanga"] body a {
-  text-decoration: underline;
+  text-decoration: none;
   color: var(--link);
   font-weight: bold;
 }
@@ -127,28 +128,28 @@ html[data-theme="xanga"] body h3 {
 }
 
 html[data-theme="xanga"] body h1 {
-  font-size: 2.5em;
+  font-size: 1.8em;
   text-transform: uppercase;
 }
 
 html[data-theme="xanga"] body h2 {
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 html[data-theme="xanga"] body h3 {
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 
 /* Only bulk-up borders inside the Xanga content area (not the header/theme controls) */
 html[data-theme="xanga"] body .xanga-shell .border,
 html[data-theme="xanga"] body .xanga-shell [class*="border"] {
-  border-width: 4px !important;
+  border-width: 2px !important;
   border-style: solid !important;
   border-color: var(--border) !important;
 }
 
 html[data-theme="xanga"] body .xanga-shell button {
-  border: 4px solid var(--border) !important;
+  border: 2px solid var(--border) !important;
   font-weight: bold;
   padding: 8px 16px !important;
   background-color: var(--bg-secondary) !important;
@@ -177,7 +178,7 @@ html[data-theme="xanga"] body main > div:not(.xanga-shell),
 html[data-theme="xanga"] body .xanga-shell .container > div,
 html[data-theme="xanga"] body .xanga-main-content > div {
   background-color: var(--bg-secondary);
-  border: 4px solid var(--border-navy);
+  border: 2px solid var(--border-navy);
   padding: 20px;
   margin: 16px 0;
 }
@@ -196,6 +197,16 @@ html[data-theme="xanga"] body header {
   border-bottom: 1px solid var(--border-navy) !important;
 }
 
+/* Remove underlines from navigation links in Xanga mode */
+html[data-theme="xanga"] body header a {
+  text-decoration: none !important;
+}
+
+/* Remove underlines from page headings (h1 with font-mono) in Xanga mode */
+html[data-theme="xanga"] body h1.font-mono {
+  text-decoration: none !important;
+}
+
 html[data-theme="xanga"] body footer {
   background-color: var(--bg-tertiary) !important;
   border-top: 1px solid var(--border-navy) !important;
@@ -207,7 +218,7 @@ html[data-theme="xanga"] body [class*="card"],
 html[data-theme="xanga"] body article,
 html[data-theme="xanga"] body section {
   background-color: var(--bg-secondary) !important;
-  border: 4px solid var(--border-navy) !important;
+  border: 2px solid var(--border-navy) !important;
   border-radius: 0 !important;
   padding: 20px !important;
   margin: 16px 0 !important;
@@ -242,7 +253,7 @@ html[data-theme="xanga"] body [class*="text-accent"] {
 html[data-theme="xanga"] body input,
 html[data-theme="xanga"] body textarea,
 html[data-theme="xanga"] body select {
-  border: 4px solid var(--border) !important;
+  border: 2px solid var(--border) !important;
   background-color: var(--bg-secondary) !important;
   color: var(--text-primary) !important;
   padding: 8px !important;
@@ -253,7 +264,7 @@ html[data-theme="xanga"] body input:focus,
 html[data-theme="xanga"] body textarea:focus,
 html[data-theme="xanga"] body select:focus {
   border-color: var(--accent-navy) !important;
-  outline: 4px solid var(--accent) !important;
+  outline: 2px solid var(--accent) !important;
   outline-offset: 2px;
 }
 
@@ -264,12 +275,12 @@ html[data-theme="xanga"] body ::-webkit-scrollbar {
 
 html[data-theme="xanga"] body ::-webkit-scrollbar-track {
   background: var(--bg-secondary);
-  border: 4px solid var(--border);
+  border: 2px solid var(--border);
 }
 
 html[data-theme="xanga"] body ::-webkit-scrollbar-thumb {
   background: var(--accent);
-  border: 3px solid var(--border-navy);
+  border: 2px solid var(--border-navy);
   border-radius: 0;
 }
 
@@ -402,12 +413,13 @@ html[data-theme="xanga"] body ::-webkit-scrollbar-thumb:hover {
 }
 
 .blog-content blockquote {
-  border-left: 4px solid var(--accent);
+  border-left: 2px solid var(--accent);
   padding-left: 1em;
   margin: 1.5em 0;
   font-style: italic;
   color: var(--text-secondary);
 }
+
 
 .blog-content hr {
   margin: 2em 0;

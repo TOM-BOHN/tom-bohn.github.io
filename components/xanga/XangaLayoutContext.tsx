@@ -2,14 +2,14 @@
 
 import { createContext, useContext } from 'react'
 
-export type SidebarSide = 'left' | 'right'
+export type SidebarSide = 'left' | 'right' | 'hide'
 
 type XangaLayoutContextValue = {
   sidebarSide: SidebarSide
   setSidebarSide: (side: SidebarSide) => void
 }
 
-const XangaLayoutContext = createContext<XangaLayoutContextValue | null>(null)
+export const XangaLayoutContext = createContext<XangaLayoutContextValue | null>(null)
 
 export function XangaLayoutProvider({
   value,
@@ -31,5 +31,11 @@ export function useXangaLayout() {
     throw new Error('useXangaLayout must be used within XangaLayoutProvider')
   }
   return ctx
+}
+
+
+
+export function useXangaLayoutOptional() {
+  return useContext(XangaLayoutContext)
 }
 

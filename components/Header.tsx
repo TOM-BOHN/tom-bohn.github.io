@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTheme } from './ThemeProvider'
+import { useXangaLayoutOptional } from '@/components/xanga/XangaLayoutContext'
 
 function ThemeIcon({ theme }: { theme: 'light' | 'dark' | 'xanga' }) {
   if (theme === 'light') {
@@ -125,6 +126,10 @@ function LockIcon({ className }: { className?: string }) {
 export function Header() {
   const pathname = usePathname()
   const { theme, setTheme } = useTheme()
+  const layout = useXangaLayoutOptional()
+  
+  const isXanga = theme === 'xanga'
+  const showCollapsedIcon = isXanga && layout !== null && layout.sidebarSide === 'hide'
 
   return (
     <header className="border-b border-border bg-bg-primary sticky top-0 z-50 backdrop-blur-sm bg-opacity-90">
@@ -184,7 +189,7 @@ export function Header() {
           </div>
           <div className="flex items-center gap-2">
             <div className="inline-flex overflow-hidden">
-              {(['light', 'dark', 'xanga'] as const).map((t) => (
+              {(['light', 'dark'] as const).map((t) => (
                 <ThemeIconButton
                   key={t}
                   value={t}
@@ -192,6 +197,28 @@ export function Header() {
                   onClick={() => setTheme(t)}
                 />
               ))}
+              {showCollapsedIcon && layout ? (
+                <button
+                  onClick={() => layout.setSidebarSide('right')}
+                  className="relative group w-9 h-9 flex items-center justify-center transition-colors bg-bg-secondary text-accent hover:bg-bg-secondary"
+                  aria-label="Show sidebar"
+                  title="Show sidebar"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                  <span className="sr-only">Show sidebar</span>
+                  <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded border border-border bg-bg-primary px-2 py-1 text-[11px] text-text-primary opacity-0 shadow-sm transition-opacity group-hover:opacity-100 z-10">
+                    Show sidebar
+                  </span>
+                </button>
+              ) : (
+                <ThemeIconButton
+                  value="xanga"
+                  active={theme === 'xanga'}
+                  onClick={() => setTheme('xanga')}
+                />
+              )}
             </div>
           </div>
         </nav>

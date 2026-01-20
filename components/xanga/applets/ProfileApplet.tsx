@@ -42,11 +42,6 @@ export function ProfileApplet() {
         </p>
       </div>
 
-      <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs">
-        <Link href="/about">read my profile</Link>
-        <Link href="/contact">message me</Link>
-        <Link href="/blog">weblog</Link>
-      </div>
 
       <p className="text-[11px] text-text-secondary">Member since: 2003 (emotionally)</p>
     </div>
