@@ -12,11 +12,11 @@ export default function Home() {
           {/* Left column - Name and bio */}
           <div>
             <h1 className="text-6xl md:text-7xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
+              <span className="text-[#c85200]">
                 Thomas
               </span>
               {' '}
-              <span className="bg-gradient-to-r from-blue-900 to-blue-800 bg-clip-text text-transparent">
+              <span className="text-[#1170aa]">
                 Bohn
               </span>
             </h1>
@@ -63,7 +63,7 @@ export default function Home() {
                 </div>
               </div>
               {/* Bottom border accent (below image, not over it) */}
-              <div className="h-1 bg-gradient-to-r from-orange-500 to-blue-900" />
+              <div className="h-1 bg-gradient-to-r from-[#c85200] to-[#1170aa]" />
             </div>
           </div>
         </div>
@@ -78,7 +78,7 @@ export default function Home() {
             {/* Medium Card */}
             <div className="border-2 border-border rounded-lg p-8 bg-bg-secondary hover:border-accent transition-all">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 bg-accent rounded flex items-center justify-center text-white font-bold text-xl">
+                <div className="w-12 h-12 bg-accent-orange rounded flex items-center justify-center text-white font-bold text-xl">
                   M
                 </div>
                 <h3 className="text-3xl font-bold text-text-primary">Medium</h3>
@@ -92,7 +92,7 @@ export default function Home() {
                 <p className="text-sm font-semibold text-text-primary mb-3 font-mono">RECENT ARTICLES:</p>
                 <ul className="space-y-2 text-text-secondary">
                   <li className="flex items-start gap-2">
-                    <span className="text-accent mt-1">→</span>
+                    <span className="text-accent-orange mt-1">→</span>
                     <a
                       href="https://medium.com/@bohn.tl/the-4-cs-of-data-governance-measurement-5759fdbbc373"
                       target="_blank"
@@ -103,7 +103,7 @@ export default function Home() {
                     </a>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-accent mt-1">→</span>
+                    <span className="text-accent-orange mt-1">→</span>
                     <a
                       href="https://medium.com/@bohn.tl/the-enabling-team-playbook-78b60b0bb4f0"
                       target="_blank"
@@ -114,7 +114,7 @@ export default function Home() {
                     </a>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-accent mt-1">→</span>
+                    <span className="text-accent-orange mt-1">→</span>
                     <a
                       href="https://medium.com/@bohn.tl/the-spec-driven-writing-framework-55facae16425"
                       target="_blank"
@@ -154,7 +154,7 @@ export default function Home() {
                 <p className="text-sm font-semibold text-text-primary mb-3 font-mono">FEATURED REPOS:</p>
                 <ul className="space-y-2 text-text-secondary">
                   <li className="flex items-start gap-2">
-                    <span className="text-accent mt-1">→</span>
+                    <span className="text-accent-orange mt-1">→</span>
                     <a
                       href="https://github.com/TOM-BOHN/MsDS-deep-learing-gan-monet-painting/tree/main"
                       target="_blank"
@@ -165,7 +165,7 @@ export default function Home() {
                     </a>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-accent mt-1">→</span>
+                    <span className="text-accent-orange mt-1">→</span>
                     <a
                       href="https://github.com/TOM-BOHN/MsDS-deep-learing-cnn-cancer-detection"
                       target="_blank"
@@ -176,7 +176,7 @@ export default function Home() {
                     </a>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-accent mt-1">→</span>
+                    <span className="text-accent-orange mt-1">→</span>
                     <a
                       href="https://github.com/TOM-BOHN/MsDS-deep-learning-llm-classification-finetuning"
                       target="_blank"
@@ -205,10 +205,10 @@ export default function Home() {
           <h2 className="text-2xl font-bold mb-8 text-text-primary font-mono">
             {'// DIG DEEPER'}
           </h2>
-          <div className="border-2 border-accent/30 rounded-lg p-8 bg-bg-secondary">
+          <div className="border-2 border-accent-orange/30 rounded-lg p-8 bg-bg-secondary">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 bg-accent/20 rounded flex items-center justify-center">
-                <svg className="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-12 h-12 bg-accent-orange/20 rounded flex items-center justify-center">
+                <svg className="w-6 h-6 text-accent-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
               </div>

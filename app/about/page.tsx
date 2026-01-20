@@ -8,11 +8,11 @@ export default function About() {
         <div className="mb-12">
           <p className="text-sm text-accent mb-4 font-mono">{'>'} PRODUCT MANAGER & SOFTWARE DESIGNER</p>
           <h1 className="text-6xl md:text-7xl font-bold mb-8">
-            <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
+            <span className="text-[#c85200]">
               Thomas
             </span>
             {' '}
-            <span className="bg-gradient-to-r from-blue-900 to-blue-800 bg-clip-text text-transparent">
+            <span className="text-[#1170aa]">
               Bohn
             </span>
           </h1>
@@ -43,7 +43,7 @@ export default function About() {
                 </div>
               </div>
               {/* Bottom border accent (below image, not over it) */}
-              <div className="h-1 bg-gradient-to-r from-orange-500 to-blue-900" />
+              <div className="h-1 bg-gradient-to-r from-[#c85200] to-[#1170aa]" />
             </div>
           </div>
 

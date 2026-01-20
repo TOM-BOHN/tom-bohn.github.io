@@ -13,7 +13,7 @@ export function Footer() {
           <div className="flex items-center justify-center gap-6 mb-4">
             <Link
               href="/contact"
-              className="text-text-secondary hover:text-accent transition-colors"
+              className="text-text-secondary hover:text-accent-orange transition-colors"
               aria-label="Contact"
             >
               <FaEnvelope className="w-5 h-5" />
@@ -22,7 +22,7 @@ export function Footer() {
               href="https://www.linkedin.com/in/thomaslbohn/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-text-secondary hover:text-accent transition-colors"
+              className="text-text-secondary hover:text-accent-orange transition-colors"
               aria-label="LinkedIn"
             >
               <FaLinkedin className="w-5 h-5" />
@@ -31,7 +31,7 @@ export function Footer() {
               href="https://medium.com/@bohn.tl"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-text-secondary hover:text-accent transition-colors"
+              className="text-text-secondary hover:text-accent-orange transition-colors"
               aria-label="Medium"
             >
               <SiMedium className="w-5 h-5" />
@@ -40,7 +40,7 @@ export function Footer() {
               href="https://github.com/TOM-BOHN"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-text-secondary hover:text-accent transition-colors"
+              className="text-text-secondary hover:text-accent-orange transition-colors"
               aria-label="GitHub"
             >
               <FaGithub className="w-5 h-5" />

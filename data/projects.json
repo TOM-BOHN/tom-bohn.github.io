@@ -1,1 +1,153 @@
-[]
+{
+  "themes": [
+    {
+      "id": "data-management-best-practices",
+      "title": "Data Management Best Practices",
+      "description": "Comprehensive framework for establishing data governance, quality standards, and management processes across organizations. This project focuses on creating scalable, repeatable patterns for data stewardship.",
+      "artifacts": [
+        {
+          "id": "dmbp-1",
+          "title": "Data Governance Framework",
+          "description": "Complete documentation of governance structures, roles, and responsibilities",
+          "type": "deliverable",
+          "url": "#",
+          "date": "2024-01-15"
+        },
+        {
+          "id": "dmbp-2",
+          "title": "Data Quality Standards",
+          "description": "Defined metrics, thresholds, and validation rules for data quality assessment",
+          "type": "artifact",
+          "url": "#",
+          "date": "2024-02-20"
+        },
+        {
+          "id": "dmbp-3",
+          "title": "Implementation Phase 1",
+          "description": "Initial rollout and pilot program results",
+          "type": "phase",
+          "date": "2024-03-10"
+        },
+        {
+          "id": "dmbp-4",
+          "title": "Best Practices Playbook",
+          "description": "Practical guide with examples and templates for common scenarios",
+          "type": "deliverable",
+          "url": "#",
+          "date": "2024-04-05"
+        }
+      ]
+    },
+    {
+      "id": "data-science",
+      "title": "Data Science",
+      "description": "Advanced analytics and machine learning projects focused on extracting insights from complex datasets. Includes predictive modeling, statistical analysis, and data visualization initiatives.",
+      "artifacts": [
+        {
+          "id": "ds-1",
+          "title": "Predictive Model: Customer Churn",
+          "description": "Machine learning model for predicting customer churn with 85% accuracy",
+          "type": "artifact",
+          "url": "#",
+          "date": "2024-05-12"
+        },
+        {
+          "id": "ds-2",
+          "title": "Data Pipeline Architecture",
+          "description": "ETL pipeline design for real-time data processing",
+          "type": "deliverable",
+          "url": "#",
+          "date": "2024-06-01"
+        },
+        {
+          "id": "ds-3",
+          "title": "Exploratory Data Analysis",
+          "description": "Comprehensive EDA report with visualizations and key findings",
+          "type": "example",
+          "date": "2024-05-20"
+        },
+        {
+          "id": "ds-4",
+          "title": "Model Deployment Phase",
+          "description": "Production deployment and monitoring setup",
+          "type": "phase",
+          "date": "2024-06-15"
+        }
+      ]
+    },
+    {
+      "id": "agentic-workflow",
+      "title": "Agentic Workflow",
+      "description": "Design and implementation of autonomous agent systems for automating complex workflows. Focus on multi-agent coordination, task orchestration, and intelligent decision-making.",
+      "artifacts": [
+        {
+          "id": "aw-1",
+          "title": "Agent Architecture Design",
+          "description": "System architecture for multi-agent workflow orchestration",
+          "type": "deliverable",
+          "url": "#",
+          "date": "2024-07-10"
+        },
+        {
+          "id": "aw-2",
+          "title": "Workflow Engine Prototype",
+          "description": "Proof of concept implementation with core orchestration capabilities",
+          "type": "artifact",
+          "url": "#",
+          "date": "2024-08-05"
+        },
+        {
+          "id": "aw-3",
+          "title": "Agent Communication Protocol",
+          "description": "Specification for inter-agent messaging and coordination",
+          "type": "deliverable",
+          "date": "2024-07-25"
+        },
+        {
+          "id": "aw-4",
+          "title": "Pilot Implementation",
+          "description": "First production deployment and initial results",
+          "type": "phase",
+          "date": "2024-08-20"
+        }
+      ]
+    },
+    {
+      "id": "customer-success-score",
+      "title": "Customer Success Score",
+      "description": "Development of a comprehensive scoring system to measure and predict customer success. Combines behavioral analytics, engagement metrics, and predictive modeling to provide actionable insights.",
+      "artifacts": [
+        {
+          "id": "css-1",
+          "title": "Scoring Algorithm",
+          "description": "Core algorithm for calculating customer success scores",
+          "type": "artifact",
+          "url": "#",
+          "date": "2024-09-01"
+        },
+        {
+          "id": "css-2",
+          "title": "Dashboard Design",
+          "description": "User interface and visualization design for score monitoring",
+          "type": "deliverable",
+          "url": "#",
+          "date": "2024-09-15"
+        },
+        {
+          "id": "css-3",
+          "title": "Validation Study",
+          "description": "Analysis of score accuracy and predictive power",
+          "type": "example",
+          "date": "2024-09-25"
+        },
+        {
+          "id": "css-4",
+          "title": "Integration Phase",
+          "description": "Integration with existing CRM and analytics platforms",
+          "type": "phase",
+          "date": "2024-10-10"
+        }
+      ]
+    }
+  ]
+}

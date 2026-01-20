@@ -3,8 +3,8 @@
   <text x="16" y="22" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="middle">TLB</text>
   <defs>
     <linearGradient id="gradient" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#f97316"/>
-      <stop offset="100%" stop-color="#1e3a8a"/>
+      <stop offset="0%" stop-color="#fc7d0b"/>
+      <stop offset="100%" stop-color="#1170aa"/>
     </linearGradient>
   </defs>
 </svg>

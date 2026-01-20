@@ -1,0 +1,37 @@
+{
+  "vision": {
+    "id": "vision-1",
+    "title": "Vision",
+    "description": "Define what you want to do or achieve."
+  },
+  "values": [
+    {
+      "id": "value-1",
+      "title": "Principle or belief",
+      "description": "Details about this value"
+    }
+  ],
+  "methods": [
+    {
+      "id": "method-1",
+      "title": "Action or step to take",
+      "description": "Details about this method",
+      "completed": false
+    }
+  ],
+  "obstacles": [
+    {
+      "id": "obstacle-1",
+      "title": "Challenge or problem",
+      "description": "Details about this obstacle"
+    }
+  ],
+  "measures": [
+    {
+      "id": "measure-1",
+      "title": "Measurable result you aim to achieve",
+      "description": "Details about this measure",
+      "completed": false
+    }
+  ]
+}
