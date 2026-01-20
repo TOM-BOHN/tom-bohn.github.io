@@ -101,6 +101,7 @@ const vipNavItems = [
   { href: '/links', label: 'Links' },
   { href: '/certifications', label: 'Learning' },
   { href: '/projects', label: 'Projects' },
+  { href: '/v2me', label: 'V2 Me' },
 ]
 
 // Lock icon component for VIP items
