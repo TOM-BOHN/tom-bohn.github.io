@@ -10,6 +10,7 @@ import { ObstaclesSection } from './ObstaclesSection'
 import { MeasuresSection } from './MeasuresSection'
 import { ProgressBar } from './ProgressBar'
 import { DownloadUploadControls } from './DownloadUploadControls'
+import { V2MeHeader } from './V2MeHeader'
 
 interface V2MePageWrapperProps {
   initialData: V2MeData
@@ -127,10 +128,21 @@ export function V2MePageWrapper({ initialData }: V2MePageWrapperProps) {
           <p className="text-sm text-accent mb-4 font-mono">{'>'} PERSONAL STRATEGY</p>
           <div className="flex items-center justify-between mb-3">
             <h1 className="text-2xl font-semibold text-text-primary font-mono">{'// V2 ME'}</h1>
-            <DownloadUploadControls
-              onDownload={handleDownload}
-              onUpload={handleUpload}
-            />
+            <div className="flex items-center gap-2">
+              <DownloadUploadControls
+                onDownload={handleDownload}
+                onUpload={handleUpload}
+              />
+              <V2MeHeader
+                onExpandAll={() => {
+                  // This will be handled by each section component
+                  window.dispatchEvent(new CustomEvent('v2me-expand-all-items'))
+                }}
+                onCollapseAll={() => {
+                  window.dispatchEvent(new CustomEvent('v2me-collapse-all-items'))
+                }}
+              />
+            </div>
           </div>
           <p className="text-text-secondary leading-relaxed mb-6">
             A personal version of the V2MOM framework for planning and strategy on a yearly basis.

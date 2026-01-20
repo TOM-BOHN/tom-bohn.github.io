@@ -228,6 +228,21 @@ export function ValuesSection({ values, isExpanded, onToggle, onUpdate }: Values
     }
   }, [isExpanded, localValues])
 
+  useEffect(() => {
+    const handleExpandAll = () => {
+      setExpandedItems(new Set(localValues.map((v) => v.id)))
+    }
+    const handleCollapseAll = () => {
+      setExpandedItems(new Set())
+    }
+    window.addEventListener('v2me-expand-all-items', handleExpandAll)
+    window.addEventListener('v2me-collapse-all-items', handleCollapseAll)
+    return () => {
+      window.removeEventListener('v2me-expand-all-items', handleExpandAll)
+      window.removeEventListener('v2me-collapse-all-items', handleCollapseAll)
+    }
+  }, [localValues])
+
   const toggleItem = (id: string) => {
     setExpandedItems((prev) => {
       const next = new Set(prev)
@@ -284,25 +299,57 @@ export function ValuesSection({ values, isExpanded, onToggle, onUpdate }: Values
 
   return (
     <div className="border border-border rounded-lg bg-bg-secondary overflow-hidden">
-      <button
-        onClick={onToggle}
-        className="w-full px-5 py-3 flex items-center gap-3 hover:bg-bg-primary transition-colors text-left"
-        aria-label={isExpanded ? 'Collapse Values section' : 'Expand Values section'}
-      >
-        {isExpanded ? (
-          <svg className="w-5 h-5 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
-          </svg>
-        ) : (
-          <svg className="w-5 h-5 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-          </svg>
+      <div className="flex items-center gap-2 px-5 py-3">
+        <button
+          onClick={onToggle}
+          className="flex items-center gap-3 hover:bg-bg-primary transition-colors text-left flex-1"
+          aria-label={isExpanded ? 'Collapse Values section' : 'Expand Values section'}
+        >
+          {isExpanded ? (
+            <svg className="w-5 h-5 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+            </svg>
+          ) : (
+            <svg className="w-5 h-5 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+            </svg>
+          )}
+          <h2 className="text-xl font-semibold text-text-primary">Values</h2>
+          <span className="text-xs text-text-secondary ml-auto">
+            Principles and beliefs that help you pursue the vision
+          </span>
+        </button>
+        {isExpanded && localValues.length > 0 && (
+          <div className="flex items-center gap-1 border border-border rounded-lg bg-bg-primary p-1">
+            <button
+              onClick={() => setExpandedItems(new Set(localValues.map((v) => v.id)))}
+              className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded transition-colors"
+              aria-label="Expand all items"
+              title="Expand all items"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+              <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded border border-border bg-bg-primary px-2 py-1 text-xs text-text-primary opacity-0 shadow-sm transition-opacity group-hover:opacity-100 z-10">
+                Expand all
+              </span>
+            </button>
+            <button
+              onClick={() => setExpandedItems(new Set())}
+              className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded transition-colors"
+              aria-label="Collapse all items"
+              title="Collapse all items"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+              </svg>
+              <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded border border-border bg-bg-primary px-2 py-1 text-xs text-text-primary opacity-0 shadow-sm transition-opacity group-hover:opacity-100 z-10">
+                Collapse all
+              </span>
+            </button>
+          </div>
         )}
-        <h2 className="text-xl font-semibold text-text-primary">Values</h2>
-        <span className="text-xs text-text-secondary ml-auto">
-          Principles and beliefs that help you pursue the vision
-        </span>
-      </button>
+      </div>
       <div className={`transition-all duration-300 ease-in-out ${isExpanded ? 'overflow-visible' : 'overflow-hidden'}`} style={{ maxHeight: isExpanded ? '9999px' : `${height}px` }}>
         <div ref={contentRef} className="px-5 pb-5 pt-2">
           <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
