@@ -1,6 +1,8 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import ReactMarkdown from 'react-markdown'
+import { FaEdit } from 'react-icons/fa'
 
 interface VisionSectionProps {
   vision: string
@@ -10,23 +12,29 @@ interface VisionSectionProps {
 }
 
 export function VisionSection({ vision, isExpanded, onToggle, onUpdate }: VisionSectionProps) {
-  const [localVision, setLocalVision] = useState(vision)
-  const textareaRef = useRef<HTMLTextAreaElement>(null)
+  const [isEditing, setIsEditing] = useState(false)
+  const [editVision, setEditVision] = useState(vision)
   const contentRef = useRef<HTMLDivElement>(null)
   const [height, setHeight] = useState(0)
 
   useEffect(() => {
-    setLocalVision(vision)
+    setEditVision(vision)
   }, [vision])
 
   useEffect(() => {
     if (contentRef.current) {
       setHeight(isExpanded ? contentRef.current.scrollHeight : 0)
     }
-  }, [isExpanded, localVision])
+  }, [isExpanded, isEditing, editVision, vision])
 
-  const handleBlur = () => {
-    onUpdate(localVision)
+  const handleSave = () => {
+    onUpdate(editVision)
+    setIsEditing(false)
+  }
+
+  const handleCancel = () => {
+    setEditVision(vision)
+    setIsEditing(false)
   }
 
   return (
@@ -50,14 +58,47 @@ export function VisionSection({ vision, isExpanded, onToggle, onUpdate }: Vision
       </button>
       <div className={`transition-all duration-300 ease-in-out ${isExpanded ? 'overflow-visible' : 'overflow-hidden'}`} style={{ maxHeight: isExpanded ? '9999px' : `${height}px` }}>
         <div ref={contentRef} className="px-5 pb-5 pt-2">
-          <textarea
-            ref={textareaRef}
-            value={localVision}
-            onChange={(e) => setLocalVision(e.target.value)}
-            onBlur={handleBlur}
-            placeholder="Enter your vision..."
-            className="w-full min-h-[100px] px-3 py-2 border border-border rounded bg-bg-primary text-text-primary placeholder-text-secondary/50 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent resize-y"
-          />
+          <div className="border border-border rounded bg-bg-primary p-3 overflow-visible">
+            {isEditing ? (
+              <div className="space-y-2">
+                <textarea
+                  value={editVision}
+                  onChange={(e) => setEditVision(e.target.value)}
+                  placeholder="Enter your vision (Markdown supported)..."
+                  className="w-full min-h-[150px] px-3 py-2 border border-border rounded bg-bg-secondary text-text-primary placeholder-text-secondary/50 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent resize-y font-mono text-sm"
+                />
+                <div className="flex justify-end gap-2">
+                  <button
+                    onClick={handleCancel}
+                    className="text-xs text-text-secondary hover:text-text-primary px-3 py-1.5 border border-border rounded"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleSave}
+                    className="text-xs text-accent hover:text-accent-hover px-3 py-1.5 border border-accent rounded bg-accent/10"
+                  >
+                    Apply
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="space-y-2">
+                <div className="flex justify-end">
+                  <button
+                    onClick={() => setIsEditing(true)}
+                    className="group relative text-accent hover:text-accent-hover p-1.5 rounded transition-colors"
+                    title="Edit"
+                  >
+                    <FaEdit className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+                <div className="prose prose-sm max-w-none text-text-primary">
+                  <ReactMarkdown>{vision || '*No vision defined*'}</ReactMarkdown>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
