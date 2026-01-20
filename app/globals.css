@@ -3,47 +3,66 @@
 @tailwind utilities;
 
 :root {
-  /* Modern Theme Colors */
+  /* Tableau Color Blind Palette - Blue Orange Diverging (10 colors) */
+  /* Colors from: https://jrnold.github.io/ggthemes/reference/tableau_color_pal.html */
   --bg-primary: #ffffff;
   --bg-secondary: #f8f9fa;
   --text-primary: #1a1a1a;
-  --text-secondary: #6b7280;
-  --accent: #f97316;
-  --accent-hover: #ea580c;
-  --border: #e5e7eb;
-  --link: #f97316;
-  --link-hover: #ea580c;
+  --text-secondary: #57606c; /* Dark Gray from palette */
+  --accent: #1170aa; /* Dark Blue - primary accent */
+  --accent-hover: #0d5a88; /* Darker blue for hover */
+  --accent-orange: #fc7d0b; /* Bright Orange */
+  --accent-orange-hover: #c85200; /* Dark Orange/Brown for hover */
+  --border: #c8d0d9; /* Very Light Gray from palette */
+  --link: #1170aa; /* Dark Blue for links */
+  --link-hover: #fc7d0b; /* Bright Orange for link hover */
+  
+  /* Additional palette colors available */
+  --tableau-blue-light: #5fa2ce; /* Medium Blue */
+  --tableau-blue-pale: #a3cce9; /* Very Light Blue */
+  --tableau-gray-light: #a3acb9; /* Light Gray */
+  --tableau-gray-medium: #7b848f; /* Medium Dark Gray */
+  --tableau-peach: #ffbc79; /* Light Peach */
 }
 
 [data-theme="dark"] {
-  /* Modern Dark Theme Colors */
+  /* Tableau Color Blind Palette - Dark Theme */
   --bg-primary: #0b1220;
   --bg-secondary: #111a2e;
   --text-primary: #e5e7eb;
-  --text-secondary: #93a4b8;
-  --accent: #f97316;
-  --accent-hover: #fb923c;
-  --border: #22314a;
-  --link: #93c5fd;
-  --link-hover: #fbbf24;
+  --text-secondary: #a3acb9; /* Light Gray from palette */
+  --accent: #5fa2ce; /* Medium Blue - lighter for dark theme */
+  --accent-hover: #1170aa; /* Dark Blue */
+  --accent-orange: #fc7d0b; /* Bright Orange */
+  --accent-orange-hover: #ffbc79; /* Light Peach for hover */
+  --border: #57606c; /* Dark Gray from palette */
+  --link: #5fa2ce; /* Medium Blue for links */
+  --link-hover: #fc7d0b; /* Bright Orange for link hover */
+  
+  /* Additional palette colors available */
+  --tableau-blue-light: #a3cce9; /* Very Light Blue - lighter for dark theme */
+  --tableau-blue-pale: #5fa2ce; /* Medium Blue */
+  --tableau-gray-light: #7b848f; /* Medium Dark Gray */
+  --tableau-gray-medium: #a3acb9; /* Light Gray */
+  --tableau-peach: #ffbc79; /* Light Peach */
 }
 
 [data-theme="xanga"] {
-  /* Xanga Theme Colors - 2000s nostalgia with orange and navy */
+  /* Xanga Theme Colors - 2000s nostalgia with Tableau Color Blind palette */
   --bg-primary: #0a0a0a;
   --bg-secondary: #1a1a2e;
   --bg-tertiary: #16213e;
-  --text-primary: #fbbf24;
-  --text-secondary: #60a5fa;
-  --accent: #f97316;
-  --accent-hover: #fb923c;
-  --accent-light: #fbbf24;
-  --accent-navy: #1e3a8a;
-  --accent-navy-light: #3b82f6;
-  --border: #f97316;
-  --border-navy: #1e3a8a;
-  --link: #60a5fa;
-  --link-hover: #fbbf24;
+  --text-primary: #ffbc79; /* Tableau Light Peach */
+  --text-secondary: #5fa2ce; /* Tableau Medium Blue */
+  --accent: #fc7d0b; /* Tableau Bright Orange */
+  --accent-hover: #ffbc79; /* Tableau Light Peach */
+  --accent-light: #ffbc79; /* Tableau Light Peach */
+  --accent-navy: #1170aa; /* Tableau Dark Blue */
+  --accent-navy-light: #5fa2ce; /* Tableau Medium Blue */
+  --border: #fc7d0b; /* Tableau Bright Orange */
+  --border-navy: #1170aa; /* Tableau Dark Blue */
+  --link: #5fa2ce; /* Tableau Medium Blue */
+  --link-hover: #ffbc79; /* Tableau Light Peach */
 }
 
 * {
@@ -59,9 +78,13 @@ body {
 }
 
 /* Modern Theme Styles */
+/* Inter font is applied via inter.className in layout.tsx */
+/* System fonts are used as fallback if Inter fails to load */
 html[data-theme="light"] body,
 html[data-theme="dark"] body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* Open Sans font is set by Next.js font optimization via className */
+  /* This ensures system fonts are used as fallback */
+  font-family: var(--font-open-sans, -apple-system), BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   line-height: 1.6;
@@ -71,7 +94,7 @@ html[data-theme="dark"] body {
 html[data-theme="xanga"] body {
   font-family: 'Comic Sans MS', 'Trebuchet MS', 'Arial Rounded MT Bold', Arial, sans-serif;
   background-color: var(--bg-primary);
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='stars' x='0' y='0' width='20' height='20' patternUnits='userSpaceOnUse'%3E%3Ccircle cx='10' cy='10' r='1' fill='%23fbbf24' opacity='0.6'/%3E%3Ccircle cx='5' cy='5' r='0.5' fill='%2360a5fa' opacity='0.4'/%3E%3Ccircle cx='15' cy='15' r='0.5' fill='%23f97316' opacity='0.4'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100' height='100' fill='url(%23stars)'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='stars' x='0' y='0' width='20' height='20' patternUnits='userSpaceOnUse'%3E%3Ccircle cx='10' cy='10' r='1' fill='%23ffbc79' opacity='0.6'/%3E%3Ccircle cx='5' cy='5' r='0.5' fill='%235fa2ce' opacity='0.4'/%3E%3Ccircle cx='15' cy='15' r='0.5' fill='%23fc7d0b' opacity='0.4'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100' height='100' fill='url(%23stars)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   min-height: 100vh;
 }

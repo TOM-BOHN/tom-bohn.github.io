@@ -14,10 +14,10 @@ const typeLabels: Record<ProjectArtifactType['type'], string> = {
 }
 
 const typeColors: Record<ProjectArtifactType['type'], string> = {
-  artifact: 'bg-blue-500/10 text-blue-500 border-blue-500/20',
-  deliverable: 'bg-green-500/10 text-green-500 border-green-500/20',
-  phase: 'bg-purple-500/10 text-purple-500 border-purple-500/20',
-  example: 'bg-orange-500/10 text-orange-500 border-orange-500/20',
+  artifact: 'bg-[#1170aa]/10 text-[#1170aa] border-[#1170aa]/20', // Tableau Dark Blue
+  deliverable: 'bg-[#5fa2ce]/10 text-[#5fa2ce] border-[#5fa2ce]/20', // Tableau Medium Blue
+  phase: 'bg-[#57606c]/10 text-[#57606c] border-[#57606c]/20', // Tableau Dark Gray
+  example: 'bg-[#fc7d0b]/10 text-[#fc7d0b] border-[#fc7d0b]/20', // Tableau Bright Orange
 }
 
 export function ProjectArtifact({ artifact }: ProjectArtifactProps) {

@@ -15,6 +15,8 @@ const config: Config = {
         'text-secondary': 'var(--text-secondary)',
         'accent': 'var(--accent)',
         'accent-hover': 'var(--accent-hover)',
+        'accent-orange': 'var(--accent-orange)',
+        'accent-orange-hover': 'var(--accent-orange-hover)',
         'border': 'var(--border)',
         'link': 'var(--link)',
         'link-hover': 'var(--link-hover)',

@@ -131,7 +131,7 @@ export function Header() {
       <div className="container mx-auto px-4 py-4">
         <nav className="flex items-center justify-between">
           <div className="flex items-center space-x-6">
-            <Link href="/" className="text-xl font-bold text-accent hover:text-accent-hover transition-colors font-mono tracking-wider">
+            <Link href="/" className="text-xl font-bold text-accent hover:text-accent-orange transition-colors font-mono tracking-wider">
               THOMASLBOHN.COM
             </Link>
             <div className="hidden md:flex items-center space-x-6">
@@ -146,7 +146,7 @@ export function Header() {
                     className={`transition-colors ${
                       isActive
                         ? 'text-accent font-semibold'
-                        : 'text-text-secondary hover:text-text-primary'
+                        : 'text-text-secondary hover:text-accent-orange'
                     }`}
                   >
                     {item.label}
@@ -168,13 +168,13 @@ export function Header() {
                     className={`group relative flex items-center gap-1.5 transition-colors ${
                       isActive
                         ? 'text-accent font-semibold'
-                        : 'text-text-secondary hover:text-text-primary'
+                        : 'text-text-secondary hover:text-accent-orange'
                     }`}
                     title="VIP Content - Login Required"
                   >
                     <LockIcon className="opacity-60 group-hover:opacity-100 transition-opacity" />
                     <span>{item.label}</span>
-                    <span className="absolute -top-1 -right-1 text-[9px] font-bold text-accent opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span className="absolute -top-1 -right-1 text-[9px] font-bold text-accent-orange opacity-0 group-hover:opacity-100 transition-opacity">
                       VIP
                     </span>
                   </Link>
@@ -210,7 +210,7 @@ export function Header() {
                     className={`px-3 py-1 rounded text-sm transition-colors ${
                       isActive
                         ? 'bg-accent text-white'
-                        : 'bg-bg-secondary text-text-secondary hover:bg-accent hover:text-white'
+                        : 'bg-bg-secondary text-text-secondary hover:bg-accent-orange hover:text-white'
                     }`}
                   >
                     {item.label}
@@ -238,7 +238,7 @@ export function Header() {
                     className={`group relative px-3 py-1 rounded text-sm transition-colors flex items-center gap-1.5 ${
                       isActive
                         ? 'bg-accent text-white'
-                        : 'bg-bg-secondary/70 text-text-secondary hover:bg-accent hover:text-white border border-border/50'
+                        : 'bg-bg-secondary/70 text-text-secondary hover:bg-accent-orange hover:text-white border border-border/50'
                     }`}
                     title="VIP Content - Login Required"
                   >

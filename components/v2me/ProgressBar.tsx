@@ -9,11 +9,11 @@ export function ProgressBar({ progress }: ProgressBarProps) {
     <div className="mb-6">
       <div className="flex items-center justify-between mb-2">
         <span className="text-sm font-medium text-text-primary">Overall Progress</span>
-        <span className="text-sm font-semibold text-accent">{progress}%</span>
+        <span className="text-sm font-semibold text-accent-orange">{progress}%</span>
       </div>
       <div className="w-full bg-bg-secondary rounded-full h-3 overflow-hidden border border-border">
         <div
-          className="h-full bg-accent transition-all duration-300 ease-out"
+          className="h-full bg-gradient-to-r from-accent to-accent-orange transition-all duration-300 ease-out"
           style={{ width: `${progress}%` }}
         />
       </div>
