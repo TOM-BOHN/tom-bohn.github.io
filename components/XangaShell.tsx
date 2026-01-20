@@ -24,7 +24,7 @@ export function XangaShell({ children }: { children: React.ReactNode }) {
         <div className="min-w-0 xanga-main-content">{children}</div>
       ) : sidebarSide === 'left' ? (
         <div className="grid gap-8 lg:grid-cols-[320px_minmax(0,1fr)] items-start">
-          <aside className="xanga-sidebar lg:sticky lg:top-24 space-y-6">
+          <aside className="xanga-sidebar space-y-6">
             <XangaSidebar />
           </aside>
           <div className="min-w-0 xanga-main-content">{children}</div>
@@ -32,7 +32,7 @@ export function XangaShell({ children }: { children: React.ReactNode }) {
       ) : (
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px] items-start">
           <div className="min-w-0 xanga-main-content">{children}</div>
-          <aside className="xanga-sidebar lg:sticky lg:top-24 space-y-6">
+          <aside className="xanga-sidebar space-y-6">
             <XangaSidebar />
           </aside>
         </div>

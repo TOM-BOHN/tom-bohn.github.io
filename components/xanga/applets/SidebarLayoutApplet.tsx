@@ -9,15 +9,6 @@ function ArrowLeftIcon() {
     </svg>
   )
 }
-
-function ArrowRightIcon() {
-  return (
-    <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0">
-      <path d="M5 12h14M12 5l7 7-7 7" />
-    </svg>
-  )
-}
-
 function HideIcon() {
   return (
     <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0">
@@ -27,13 +18,22 @@ function HideIcon() {
   )
 }
 
+function ArrowRightIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0">
+      <path d="M5 12h14M12 5l7 7-7 7" />
+    </svg>
+  )
+}
+
 export function SidebarLayoutApplet() {
   const { sidebarSide, setSidebarSide } = useXangaLayout()
 
   const options = [
     { side: 'left' as const, icon: ArrowLeftIcon, label: 'Sidebar left', tooltip: 'Sidebar left' },
-    { side: 'right' as const, icon: ArrowRightIcon, label: 'Sidebar right', tooltip: 'Sidebar right' },
     { side: 'hide' as const, icon: HideIcon, label: 'Hide sidebar', tooltip: 'Hide sidebar' },
+    { side: 'right' as const, icon: ArrowRightIcon, label: 'Sidebar right', tooltip: 'Sidebar right' },
+
   ]
 
   return (
