@@ -127,7 +127,7 @@ export function V2MePageWrapper({ initialData }: V2MePageWrapperProps) {
         <div className="mb-8">
           <p className="text-sm text-accent mb-4 font-mono">{'>'} PRODUCT MANAGER & SOFTWARE DESIGNER</p>
           <div className="flex items-center justify-between mb-3">
-            <h1 className="text-2xl font-semibold text-text-primary font-mono">{'// V2 ME'}</h1>
+            <h1 className="text-2xl font-semibold text-text-primary font-mono">{'// V2ME'}</h1>
             <div className="flex items-center gap-2">
               <DownloadUploadControls
                 onDownload={handleDownload}
