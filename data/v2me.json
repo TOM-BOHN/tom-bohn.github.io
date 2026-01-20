@@ -1,5 +1,9 @@
 {
-  "vision": "Define what you want to do or achieve.",
+  "vision": {
+    "id": "vision-1",
+    "title": "Vision",
+    "description": "Define what you want to do or achieve."
+  },
   "values": [
     {
       "id": "value-1",

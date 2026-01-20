@@ -27,8 +27,14 @@ export interface V2MeMeasure {
   completed: boolean
 }
 
+export interface V2MeVision {
+  id: string
+  title: string
+  description: string
+}
+
 export interface V2MeData {
-  vision: string
+  vision: V2MeVision
   values: V2MeValue[]
   methods: V2MeMethod[]
   obstacles: V2MeObstacle[]
@@ -40,7 +46,11 @@ const v2meFile = path.join(process.cwd(), 'data/v2me.json')
 export async function getV2Me(): Promise<V2MeData> {
   if (!fs.existsSync(v2meFile)) {
     return {
-      vision: '',
+      vision: {
+        id: 'vision-1',
+        title: 'Vision',
+        description: '',
+      },
       values: [],
       methods: [],
       obstacles: [],
@@ -50,5 +60,13 @@ export async function getV2Me(): Promise<V2MeData> {
 
   const fileContents = fs.readFileSync(v2meFile, 'utf8')
   const v2me = JSON.parse(fileContents)
+  // Handle migration from old string vision to new object vision
+  if (typeof v2me.vision === 'string') {
+    v2me.vision = {
+      id: 'vision-1',
+      title: 'Vision',
+      description: v2me.vision,
+    }
+  }
   return v2me
 }

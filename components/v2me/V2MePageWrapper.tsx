@@ -36,7 +36,7 @@ export function V2MePageWrapper({ initialData }: V2MePageWrapperProps) {
     })
   }
 
-  const updateVision = (vision: string) => {
+  const updateVision = (vision: typeof data.vision) => {
     setData((prev) => ({ ...prev, vision }))
   }
 
