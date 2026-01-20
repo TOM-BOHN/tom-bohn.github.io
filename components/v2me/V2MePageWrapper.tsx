@@ -123,9 +123,9 @@ export function V2MePageWrapper({ initialData }: V2MePageWrapperProps) {
 
   return (
     <div className="container mx-auto px-4 py-12">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <div className="mb-8">
-          <p className="text-sm text-accent mb-4 font-mono">{'>'} PERSONAL STRATEGY</p>
+          <p className="text-sm text-accent mb-4 font-mono">{'>'} PRODUCT MANAGER & SOFTWARE DESIGNER</p>
           <div className="flex items-center justify-between mb-3">
             <h1 className="text-2xl font-semibold text-text-primary font-mono">{'// V2 ME'}</h1>
             <div className="flex items-center gap-2">

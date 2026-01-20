@@ -8,7 +8,7 @@ export default async function Certifications() {
     <div className="container mx-auto px-4 py-12">
       <div className="max-w-6xl mx-auto">
         <div className="mb-12">
-          <p className="text-sm text-accent mb-4 font-mono">{'>'} SOFTWARE ENGINEER</p>
+          <p className="text-sm text-accent mb-4 font-mono">{'>'} PRODUCT MANAGER & SOFTWARE DESIGNER</p>
           <h1 className="text-2xl font-semibold mb-4 text-text-primary font-mono">
             {'// CERTIFICATIONS & LEARNING'}
           </h1>
