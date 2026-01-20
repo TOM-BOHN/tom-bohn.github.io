@@ -44,6 +44,25 @@ export function LearningSection({
     }
   }, [isPlanningExpanded, planning])
 
+  useEffect(() => {
+    const handleExpandAll = () => {
+      setExpandedGroups(new Set(accomplished.map(g => g.id)))
+      setExpandedGoals(new Set(planning.map(g => g.id)))
+    }
+    const handleCollapseAll = () => {
+      setExpandedGroups(new Set())
+      setExpandedGoals(new Set())
+    }
+
+    window.addEventListener('learning-expand-all-items', handleExpandAll)
+    window.addEventListener('learning-collapse-all-items', handleCollapseAll)
+
+    return () => {
+      window.removeEventListener('learning-expand-all-items', handleExpandAll)
+      window.removeEventListener('learning-collapse-all-items', handleCollapseAll)
+    }
+  }, [accomplished, planning])
+
   const expandAllGroups = () => {
     setExpandedGroups(new Set(accomplished.map(g => g.id)))
   }
@@ -93,12 +112,12 @@ export function LearningSection({
 
       {/* What I've Accomplished */}
       <div className="border-2 border-border rounded-lg bg-bg-secondary overflow-hidden">
-        <div className="px-6 py-4 flex items-center justify-between gap-4">
-          <button
-            onClick={() => setIsAccomplishedExpanded(!isAccomplishedExpanded)}
-            className="flex items-center gap-3 hover:bg-bg-primary transition-colors text-left -ml-2 pl-2 pr-2 py-1 rounded"
-            aria-label={isAccomplishedExpanded ? 'Collapse section' : 'Expand section'}
-          >
+        <button
+          onClick={() => setIsAccomplishedExpanded(!isAccomplishedExpanded)}
+          className="w-full px-6 py-4 flex items-center justify-between gap-4 hover:bg-bg-primary transition-colors text-left"
+          aria-label={isAccomplishedExpanded ? 'Collapse section' : 'Expand section'}
+        >
+          <div className="flex items-center gap-3">
             {isAccomplishedExpanded ? (
               <svg
                 className="w-5 h-5 text-accent"
@@ -128,12 +147,18 @@ export function LearningSection({
                 />
               </svg>
             )}
-            <h3 className="text-2xl font-bold text-accent">What I've Accomplished</h3>
-          </button>
+            <h3 className="text-2xl font-bold text-accent">What I&apos;ve Accomplished</h3>
+          </div>
           {isAccomplishedExpanded && accomplished.length > 0 && (
-            <div className="flex items-center gap-1 border border-border rounded-lg bg-bg-primary p-1">
+            <div 
+              className="flex items-center gap-1 border border-border rounded-lg bg-bg-primary p-1"
+              onClick={(e) => e.stopPropagation()}
+            >
               <button
-                onClick={expandAllGroups}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  expandAllGroups()
+                }}
                 className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded transition-colors"
                 aria-label="Expand all certification groups"
                 title="Expand all certification groups"
@@ -157,7 +182,10 @@ export function LearningSection({
                 </span>
               </button>
               <button
-                onClick={collapseAllGroups}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  collapseAllGroups()
+                }}
                 className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded transition-colors"
                 aria-label="Collapse all certification groups"
                 title="Collapse all certification groups"
@@ -182,7 +210,7 @@ export function LearningSection({
               </button>
             </div>
           )}
-        </div>
+        </button>
         <div
           className="overflow-hidden transition-all duration-300 ease-in-out"
           style={{ maxHeight: typeof accomplishedHeight === 'number' ? `${accomplishedHeight}px` : 'none' }}
@@ -208,12 +236,12 @@ export function LearningSection({
 
       {/* What I'm Planning This Year */}
       <div className="border-2 border-border rounded-lg bg-bg-secondary overflow-hidden">
-        <div className="px-6 py-4 flex items-center justify-between gap-4">
-          <button
-            onClick={() => setIsPlanningExpanded(!isPlanningExpanded)}
-            className="flex items-center gap-3 hover:bg-bg-primary transition-colors text-left -ml-2 pl-2 pr-2 py-1 rounded"
-            aria-label={isPlanningExpanded ? 'Collapse section' : 'Expand section'}
-          >
+        <button
+          onClick={() => setIsPlanningExpanded(!isPlanningExpanded)}
+          className="w-full px-6 py-4 flex items-center justify-between gap-4 hover:bg-bg-primary transition-colors text-left"
+          aria-label={isPlanningExpanded ? 'Collapse section' : 'Expand section'}
+        >
+          <div className="flex items-center gap-3">
             {isPlanningExpanded ? (
               <svg
                 className="w-5 h-5 text-accent"
@@ -243,12 +271,18 @@ export function LearningSection({
                 />
               </svg>
             )}
-            <h3 className="text-2xl font-bold text-accent">What I'm Planning This Year</h3>
-          </button>
+            <h3 className="text-2xl font-bold text-accent">What I&apos;m Planning This Year</h3>
+          </div>
           {isPlanningExpanded && planning.length > 0 && (
-            <div className="flex items-center gap-1 border border-border rounded-lg bg-bg-primary p-1">
+            <div 
+              className="flex items-center gap-1 border border-border rounded-lg bg-bg-primary p-1"
+              onClick={(e) => e.stopPropagation()}
+            >
               <button
-                onClick={expandAllGoals}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  expandAllGoals()
+                }}
                 className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded transition-colors"
                 aria-label="Expand all learning goals"
                 title="Expand all learning goals"
@@ -272,7 +306,10 @@ export function LearningSection({
                 </span>
               </button>
               <button
-                onClick={collapseAllGoals}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  collapseAllGoals()
+                }}
                 className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded transition-colors"
                 aria-label="Collapse all learning goals"
                 title="Collapse all learning goals"
@@ -297,7 +334,7 @@ export function LearningSection({
               </button>
             </div>
           )}
-        </div>
+        </button>
         <div
           className="overflow-hidden transition-all duration-300 ease-in-out"
           style={{ maxHeight: typeof planningHeight === 'number' ? `${planningHeight}px` : 'none' }}

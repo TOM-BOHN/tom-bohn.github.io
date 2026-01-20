@@ -130,6 +130,23 @@ export function Education({ education, isExpanded: controlledExpanded, onToggle 
     }
   }, [isExpanded, education])
 
+  useEffect(() => {
+    const handleExpandAll = () => {
+      setExpandedEntries(new Set(education?.map(e => e.id) || []))
+    }
+    const handleCollapseAll = () => {
+      setExpandedEntries(new Set())
+    }
+
+    window.addEventListener('learning-expand-all-items', handleExpandAll)
+    window.addEventListener('learning-collapse-all-items', handleCollapseAll)
+
+    return () => {
+      window.removeEventListener('learning-expand-all-items', handleExpandAll)
+      window.removeEventListener('learning-collapse-all-items', handleCollapseAll)
+    }
+  }, [education])
+
   const expandAllEntries = () => {
     setExpandedEntries(new Set(education?.map(e => e.id) || []))
   }
@@ -144,12 +161,12 @@ export function Education({ education, isExpanded: controlledExpanded, onToggle 
 
   return (
     <div className="border-2 border-border rounded-lg bg-bg-secondary overflow-hidden">
-      <div className="px-6 py-4 flex items-center justify-between gap-4">
-        <button
-          onClick={handleToggle}
-          className="flex items-center gap-3 hover:bg-bg-primary transition-colors text-left -ml-2 pl-2 pr-2 py-1 rounded"
-          aria-label={isExpanded ? 'Collapse section' : 'Expand section'}
-        >
+      <button
+        onClick={handleToggle}
+        className="w-full px-6 py-4 flex items-center justify-between gap-4 hover:bg-bg-primary transition-colors text-left"
+        aria-label={isExpanded ? 'Collapse section' : 'Expand section'}
+      >
+        <div className="flex items-center gap-3">
           {isExpanded ? (
             <svg
               className="w-5 h-5 text-accent"
@@ -180,11 +197,17 @@ export function Education({ education, isExpanded: controlledExpanded, onToggle 
             </svg>
           )}
           <h3 className="text-2xl font-bold text-accent">Education</h3>
-        </button>
+        </div>
         {isExpanded && education.length > 0 && (
-          <div className="flex items-center gap-1 border border-border rounded-lg bg-bg-primary p-1">
+          <div 
+            className="flex items-center gap-1 border border-border rounded-lg bg-bg-primary p-1"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
-              onClick={expandAllEntries}
+              onClick={(e) => {
+                e.stopPropagation()
+                expandAllEntries()
+              }}
               className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded transition-colors"
               aria-label="Expand all education entries"
               title="Expand all education entries"
@@ -208,7 +231,10 @@ export function Education({ education, isExpanded: controlledExpanded, onToggle 
               </span>
             </button>
             <button
-              onClick={collapseAllEntries}
+              onClick={(e) => {
+                e.stopPropagation()
+                collapseAllEntries()
+              }}
               className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded transition-colors"
               aria-label="Collapse all education entries"
               title="Collapse all education entries"
@@ -233,7 +259,7 @@ export function Education({ education, isExpanded: controlledExpanded, onToggle 
             </button>
           </div>
         )}
-      </div>
+      </button>
       <div
         className="overflow-hidden transition-all duration-300 ease-in-out"
         style={{ maxHeight: typeof height === 'number' ? `${height}px` : 'none' }}
