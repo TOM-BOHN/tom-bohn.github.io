@@ -122,86 +122,97 @@ export function V2MePageWrapper({ initialData }: V2MePageWrapperProps) {
   const progress = calculateProgress()
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-8">
-          <p className="text-sm text-accent mb-4 font-mono">{'>'} PRODUCT MANAGER & SOFTWARE DESIGNER</p>
-          <div className="flex items-center justify-between mb-3">
-            <h1 className="text-2xl font-semibold text-text-primary font-mono">{'// V2ME'}</h1>
-            <div className="flex items-center gap-2">
-              <DownloadUploadControls
-                onDownload={handleDownload}
-                onUpload={handleUpload}
+    <>
+      {/* Animated background elements for dark mode */}
+      <div className="stars-bg" aria-hidden="true" />
+      <div className="nebula-bg" aria-hidden="true" />
+      
+      <div className="container mx-auto px-4 py-12 relative z-10">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-8 fade-in-up">
+            <p className="text-sm text-accent mb-4 font-mono typewriter-cursor">{'>'} PRODUCT MANAGER & SOFTWARE DESIGNER</p>
+            <div className="flex items-center justify-between mb-3">
+              <h1 className="text-2xl font-semibold text-text-primary font-mono flex items-center gap-3">
+                <span className="text-accent-orange">{'⟩'}</span>
+                {'V2ME'}
+              </h1>
+              <div className="flex items-center gap-2">
+                <DownloadUploadControls
+                  onDownload={handleDownload}
+                  onUpload={handleUpload}
+                />
+                <V2MeHeader
+                  onExpandAll={() => {
+                    // This will be handled by each section component
+                    window.dispatchEvent(new CustomEvent('v2me-expand-all-items'))
+                  }}
+                  onCollapseAll={() => {
+                    window.dispatchEvent(new CustomEvent('v2me-collapse-all-items'))
+                  }}
+                />
+              </div>
+            </div>
+            <p className="text-text-secondary leading-relaxed mb-6">
+              A personal version of the V2MOM framework for planning and strategy on a yearly basis.
+              Vision, Values, Methods, Obstacles, and Measures.
+            </p>
+          </div>
+
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept=".json"
+            onChange={handleFileChange}
+            className="hidden"
+          />
+
+          <div className="fade-in-up fade-in-up-delay-1">
+            <LearnMoreSection
+              isExpanded={showLearnMore}
+              onToggle={() => setShowLearnMore(!showLearnMore)}
+            />
+
+            <ProgressBar progress={progress} />
+
+            <div className="space-y-4">
+              <VisionSection
+                vision={data.vision}
+                isExpanded={expandedSections.has('vision')}
+                onToggle={() => toggleSection('vision')}
+                onUpdate={updateVision}
               />
-              <V2MeHeader
-                onExpandAll={() => {
-                  // This will be handled by each section component
-                  window.dispatchEvent(new CustomEvent('v2me-expand-all-items'))
-                }}
-                onCollapseAll={() => {
-                  window.dispatchEvent(new CustomEvent('v2me-collapse-all-items'))
-                }}
+
+              <ValuesSection
+                values={data.values}
+                isExpanded={expandedSections.has('values')}
+                onToggle={() => toggleSection('values')}
+                onUpdate={updateValues}
+              />
+
+              <MethodsSection
+                methods={data.methods}
+                isExpanded={expandedSections.has('methods')}
+                onToggle={() => toggleSection('methods')}
+                onUpdate={updateMethods}
+              />
+
+              <ObstaclesSection
+                obstacles={data.obstacles}
+                isExpanded={expandedSections.has('obstacles')}
+                onToggle={() => toggleSection('obstacles')}
+                onUpdate={updateObstacles}
+              />
+
+              <MeasuresSection
+                measures={data.measures}
+                isExpanded={expandedSections.has('measures')}
+                onToggle={() => toggleSection('measures')}
+                onUpdate={updateMeasures}
               />
             </div>
           </div>
-          <p className="text-text-secondary leading-relaxed mb-6">
-            A personal version of the V2MOM framework for planning and strategy on a yearly basis.
-            Vision, Values, Methods, Obstacles, and Measures.
-          </p>
-        </div>
-
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept=".json"
-          onChange={handleFileChange}
-          className="hidden"
-        />
-
-        <LearnMoreSection
-          isExpanded={showLearnMore}
-          onToggle={() => setShowLearnMore(!showLearnMore)}
-        />
-
-        <ProgressBar progress={progress} />
-
-        <div className="space-y-4">
-          <VisionSection
-            vision={data.vision}
-            isExpanded={expandedSections.has('vision')}
-            onToggle={() => toggleSection('vision')}
-            onUpdate={updateVision}
-          />
-
-          <ValuesSection
-            values={data.values}
-            isExpanded={expandedSections.has('values')}
-            onToggle={() => toggleSection('values')}
-            onUpdate={updateValues}
-          />
-
-          <MethodsSection
-            methods={data.methods}
-            isExpanded={expandedSections.has('methods')}
-            onToggle={() => toggleSection('methods')}
-            onUpdate={updateMethods}
-          />
-
-          <ObstaclesSection
-            obstacles={data.obstacles}
-            isExpanded={expandedSections.has('obstacles')}
-            onToggle={() => toggleSection('obstacles')}
-            onUpdate={updateObstacles}
-          />
-
-          <MeasuresSection
-            measures={data.measures}
-            isExpanded={expandedSections.has('measures')}
-            onToggle={() => toggleSection('measures')}
-            onUpdate={updateMeasures}
-          />
         </div>
       </div>
-    </div>
+    </>
   )
 }

@@ -80,6 +80,7 @@ async function takeScreenshots() {
   const page = await browser.newPage();
   
   // Pages to screenshot - add/remove based on what changed
+  // Public pages
   const pages = [
     { name: 'home', url: '/' },
     { name: 'about', url: '/about' },
@@ -87,6 +88,10 @@ async function takeScreenshots() {
     { name: 'projects', url: '/projects' },
     { name: 'certifications', url: '/certifications' },
     { name: 'contact', url: '/contact' },
+    // VIP pages
+    { name: 'hub', url: '/hub' },
+    { name: 'links', url: '/links' },
+    { name: 'v2me', url: '/v2me' },
   ];
   
   // Desktop viewport
@@ -220,6 +225,8 @@ For UI changes, the script automatically captures:
 
 The standard script captures these pages:
 
+### Public Pages
+
 | Page | URL | When to capture |
 |------|-----|-----------------|
 | Homepage | `/` | Always for any UI changes |
@@ -229,14 +236,19 @@ The standard script captures these pages:
 | Certifications | `/certifications` | Accordion, badge display changes |
 | Contact | `/contact` | Form styles, layout changes |
 
+### VIP Pages (included in standard script)
+
+| Page | URL | When to capture |
+|------|-----|-----------------|
+| Hub | `/hub` | Linktree-style layout, section styling |
+| Links | `/links` | Links directory, section styling |
+| V2ME | `/v2me` | V2ME framework components, progress bar |
+
 ### Additional pages (add to script if needed):
 
 | Page | URL | When to capture |
 |------|-----|-----------------|
 | Blog Post | `/blog/[slug]` | Blog content styling |
-| Hub | `/hub` | Linktree-style layout |
-| Links | `/links` | Links page styling |
-| V2ME | `/v2me` | V2ME component changes |
 
 ---
 
