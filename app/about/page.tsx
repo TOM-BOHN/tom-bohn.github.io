@@ -2,57 +2,59 @@ import Image from 'next/image'
 
 export default function About() {
   return (
-    <div className="container mx-auto px-4 py-12">
-      <div className="max-w-6xl mx-auto">
-        {/* Header section with role tag */}
-        <div className="mb-12">
-          <p className="text-sm text-accent mb-4 font-mono">{'>'} PRODUCT MANAGER & SOFTWARE DESIGNER</p>
-          <h1 className="text-6xl md:text-7xl font-bold mb-8">
-            <span className="text-[#c85200]">
-              Thomas
-            </span>
-            {' '}
-            <span className="text-[#1170aa]">
-              Bohn
-            </span>
-          </h1>
-        </div>
-
-        {/* Two column layout - Picture and Bio */}
-        <div className="grid md:grid-cols-[auto_1fr] gap-6 md:gap-8 mb-16">
-          {/* Left column - Profile picture */}
-          <div className="flex justify-center md:justify-start">
-            <div className="w-64 md:w-80">
-              <div className="relative h-80 md:h-96">
-                <div
-                  className="absolute inset-0 border-2 border-accent/30 rounded-lg"
-                  style={{
-                    clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
-                    borderTopLeftRadius: '0.5rem',
-                    borderTopRightRadius: '0.5rem',
-                  }}
-                />
-                <div className="relative w-full h-full rounded-lg overflow-hidden bg-bg-secondary">
-                  <Image
-                    src="/profile.jpg"
-                    alt="Thomas Bohn"
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                </div>
-              </div>
-              {/* Bottom border accent (below image, not over it) */}
-              <div className="h-1 bg-gradient-to-r from-[#c85200] to-[#1170aa]" />
-            </div>
+    <>
+      {/* Animated background elements for dark mode */}
+      <div className="stars-bg" aria-hidden="true" />
+      <div className="nebula-bg" aria-hidden="true" />
+      
+      <div className="container mx-auto px-4 py-12 relative z-10">
+        <div className="max-w-6xl mx-auto">
+          {/* Header section with role tag */}
+          <div className="mb-12 fade-in-up">
+            <p className="text-sm text-accent mb-4 font-mono typewriter-cursor">{'>'} PRODUCT MANAGER & SOFTWARE DESIGNER</p>
+            <h1 className="text-6xl md:text-7xl font-bold mb-8">
+              <span className="gradient-text">
+                Thomas Bohn
+              </span>
+            </h1>
           </div>
 
-          {/* Right column - About content */}
-          <div className="prose prose-lg max-w-none">
-            <section className="mb-8">
-              <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono">
-                {'// ABOUT ME'}
-              </h2>
+          {/* Two column layout - Picture and Bio */}
+          <div className="grid md:grid-cols-[auto_1fr] gap-6 md:gap-8 mb-16">
+            {/* Left column - Profile picture */}
+            <div className="flex justify-center md:justify-start fade-in-up fade-in-up-delay-1">
+              <div className="w-64 md:w-80 float-animation">
+                <div className="relative h-80 md:h-96 glow-orange">
+                  <div
+                    className="absolute inset-0 border-2 border-accent-orange/40 rounded-lg"
+                    style={{
+                      clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+                      borderTopLeftRadius: '0.5rem',
+                      borderTopRightRadius: '0.5rem',
+                    }}
+                  />
+                  <div className="relative w-full h-full rounded-lg overflow-hidden bg-bg-secondary shadow-2xl">
+                    <Image
+                      src="/profile.jpg"
+                      alt="Thomas Bohn"
+                      fill
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+                </div>
+                {/* Bottom border accent with gradient */}
+                <div className="h-1.5 bg-gradient-to-r from-[#c85200] via-[#fc7d0b] to-[#1170aa] rounded-b-lg" />
+              </div>
+            </div>
+
+            {/* Right column - About content */}
+            <div className="prose prose-lg max-w-none fade-in-up fade-in-up-delay-2">
+              <section className="mb-8">
+                <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono flex items-center gap-3">
+                  <span className="text-accent-orange">{'⟩'}</span>
+                  {'ABOUT ME'}
+                </h2>
               <div className="text-text-secondary leading-relaxed space-y-4">
                 <p>
                   I&apos;m a product manager and software designer with 15+ years of experience 
@@ -103,8 +105,9 @@ export default function About() {
             </section>
 
             <section className="mb-8">
-              <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono">
-                {'// PERSONAL HIGHLIGHTS'}
+              <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono flex items-center gap-3">
+                <span className="text-accent">{'⟩'}</span>
+                {'PERSONAL HIGHLIGHTS'}
               </h2>
               <div className="text-text-secondary leading-relaxed space-y-3">
                 <p className="flex items-start gap-2">
@@ -139,8 +142,9 @@ export default function About() {
             </section>
 
             <section className="mb-8">
-              <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono">
-                {'// WHAT DRIVES ME'}
+              <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono flex items-center gap-3">
+                <span className="text-accent-orange">{'⟩'}</span>
+                {'WHAT DRIVES ME'}
               </h2>
               <div className="text-text-secondary leading-relaxed space-y-3">
                 <p className="flex items-start gap-2">
@@ -175,8 +179,9 @@ export default function About() {
             </section>
 
             <section className="mb-8">
-              <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono">
-                {'// TECHNICAL EXPERTISE'}
+              <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono flex items-center gap-3">
+                <span className="text-accent">{'⟩'}</span>
+                {'TECHNICAL EXPERTISE'}
               </h2>
               <div className="text-text-secondary space-y-3">
                 <p className="flex items-start gap-2">
@@ -227,8 +232,9 @@ export default function About() {
             </section>
 
             <section className="mb-8">
-              <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono">
-                {'// ABOUT THIS PAGE'}
+              <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono flex items-center gap-3">
+                <span className="text-accent-orange">{'⟩'}</span>
+                {'ABOUT THIS PAGE'}
               </h2>
               <div className="text-text-secondary leading-relaxed space-y-4">
                 <p>
@@ -261,24 +267,29 @@ export default function About() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono">
-                {'// GET IN TOUCH'}
+              <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono flex items-center gap-3">
+                <span className="text-accent">{'⟩'}</span>
+                {'GET IN TOUCH'}
               </h2>
-              <p className="text-text-secondary leading-relaxed mb-4">
+              <p className="text-text-secondary leading-relaxed mb-6">
                 I&apos;m always open to discussing new opportunities, technical challenges, 
                 or potential collaborations. Feel free to reach out through any of the 
                 channels below.
               </p>
               <a
                 href="/contact"
-                className="inline-block px-6 py-3 bg-accent text-white rounded-lg hover:bg-accent-hover transition-colors font-semibold"
+                className="gradient-btn"
               >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
                 Contact Me
               </a>
             </section>
           </div>
         </div>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
