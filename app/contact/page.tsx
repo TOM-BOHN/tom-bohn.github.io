@@ -27,7 +27,7 @@ export default function Contact() {
       <div className="container mx-auto px-4 py-12 relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="mb-12 fade-in-up">
-            <p className="text-sm text-accent mb-4 font-mono typewriter-cursor">{'>'} PRODUCT MANAGER & SOFTWARE DESIGNER</p>
+            <p className="text-sm text-accent mb-4 font-mono typewriter-cursor">PRODUCT MANAGER & SOFTWARE DESIGNER</p>
             <h1 className="text-2xl font-semibold mb-4 text-text-primary font-mono flex items-center gap-3">
               <span className="text-accent-orange">{'⟩'}</span>
               {'CONTACT'}

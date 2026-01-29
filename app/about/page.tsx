@@ -11,7 +11,7 @@ export default function About() {
         <div className="max-w-6xl mx-auto">
           {/* Header section with role tag */}
           <div className="mb-12 fade-in-up">
-            <p className="text-sm text-accent mb-4 font-mono typewriter-cursor">{'>'} PRODUCT MANAGER & SOFTWARE DESIGNER</p>
+            <p className="text-sm text-accent mb-4 font-mono typewriter-cursor">PRODUCT MANAGER & SOFTWARE DESIGNER</p>
             <h1 className="text-6xl md:text-7xl font-bold mb-8">
               <span className="gradient-text">
                 Thomas Bohn

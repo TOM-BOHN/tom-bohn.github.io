@@ -10,7 +10,7 @@ export default function Home() {
       <div className="container mx-auto px-4 py-12 relative z-10">
         <div className="max-w-6xl mx-auto">
           {/* Role tag with fade-in animation */}
-          <p className="text-sm text-accent mb-4 font-mono fade-in-up typewriter-cursor">{'>'} PRODUCT MANAGER & SOFTWARE DESIGNER</p>
+          <p className="text-sm text-accent mb-4 font-mono fade-in-up typewriter-cursor">PRODUCT MANAGER & SOFTWARE DESIGNER</p>
           
           {/* Main content area - two column layout */}
           <div className="grid md:grid-cols-2 gap-12 mb-16">
