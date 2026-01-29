@@ -106,7 +106,7 @@ export default function About() {
 
             <section className="mb-8">
               <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono flex items-center gap-3">
-                <span className="text-accent">{'⟩'}</span>
+                <span className="text-accent-orange">{'⟩'}</span>
                 {'PERSONAL HIGHLIGHTS'}
               </h2>
               <div className="text-text-secondary leading-relaxed space-y-3">
@@ -180,7 +180,7 @@ export default function About() {
 
             <section className="mb-8">
               <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono flex items-center gap-3">
-                <span className="text-accent">{'⟩'}</span>
+                <span className="text-accent-orange">{'⟩'}</span>
                 {'TECHNICAL EXPERTISE'}
               </h2>
               <div className="text-text-secondary space-y-3">
@@ -268,7 +268,7 @@ export default function About() {
 
             <section>
               <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono flex items-center gap-3">
-                <span className="text-accent">{'⟩'}</span>
+                <span className="text-accent-orange">{'⟩'}</span>
                 {'GET IN TOUCH'}
               </h2>
               <p className="text-text-secondary leading-relaxed mb-6">

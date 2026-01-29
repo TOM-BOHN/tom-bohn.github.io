@@ -217,7 +217,7 @@ export default function Home() {
         {/* Dig Deeper Section */}
         <div className="mb-8 fade-in-up fade-in-up-delay-4">
           <h2 className="text-2xl font-bold mb-8 text-text-primary font-mono flex items-center gap-3">
-            <span className="text-accent">{'⟩'}</span>
+            <span className="text-accent-orange">{'⟩'}</span>
             {'DIG DEEPER'}
           </h2>
           <div className="glass-card rounded-xl p-8 border-l-4 border-l-accent-orange">

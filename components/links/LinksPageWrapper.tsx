@@ -51,7 +51,7 @@ export function LinksPageWrapper({ sections }: LinksPageWrapperProps) {
             <p className="text-sm text-accent mb-4 font-mono typewriter-cursor">{'>'} PRODUCT MANAGER & SOFTWARE DESIGNER</p>
             <div className="flex items-center justify-between mb-3">
               <h1 className="text-2xl font-semibold text-text-primary font-mono flex items-center gap-3">
-                <span className="text-accent">{'⟩'}</span>
+                <span className="text-accent-orange">{'⟩'}</span>
                 {'LINKS'}
               </h1>
               <LinksHeader onExpandAll={expandAll} onCollapseAll={collapseAll} />
