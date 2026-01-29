@@ -21,7 +21,7 @@ export default function Home() {
                   Thomas Bohn
                 </span>
               </h1>
-            <p className="text-lg text-text-secondary leading-relaxed mb-4">
+              <p className="text-lg text-text-secondary leading-relaxed mb-4">
               Product manager and software designer specializing in AI products, data management, 
               and analytics. I bridge product strategy with hands-on development, using software 
               engineering tools and LLMs to define product details, explore ideas faster, and build 
@@ -42,9 +42,9 @@ export default function Home() {
               </svg>
               Get in touch
             </a>
-          </div>
+            </div>
           
-          {/* Right column - Profile picture with floating animation */}
+            {/* Right column - Profile picture with floating animation */}
           <div className="flex justify-center md:justify-end fade-in-up fade-in-up-delay-2">
             <div className="w-64 md:w-80 float-animation">
               <div className="relative h-80 md:h-96 glow-orange">
@@ -70,7 +70,7 @@ export default function Home() {
               <div className="h-1.5 bg-gradient-to-r from-[#c85200] via-[#fc7d0b] to-[#1170aa] rounded-b-lg" />
             </div>
           </div>
-        </div>
+          </div>
 
         {/* Project Cards Section */}
         <div className="mb-8 fade-in-up fade-in-up-delay-3">
@@ -246,6 +246,7 @@ export default function Home() {
               Request VIP Access
             </a>
           </div>
+        </div>
         </div>
       </div>
     </>
