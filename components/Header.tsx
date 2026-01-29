@@ -253,9 +253,32 @@ export function Header() {
               <div className="flex-1 h-px bg-border" aria-hidden="true" />
             </div>
             
-            {/* VIP navigation items */}
-            <div className="flex flex-wrap justify-center gap-2">
-              {vipNavItems.map((item) => {
+            {/* VIP navigation items - Row 1: Hub, Links, V2ME */}
+            <div className="flex justify-center gap-2">
+              {vipNavItems.slice(0, 3).map((item) => {
+                const isActive = pathname === item.href || 
+                  (item.href !== '/' && pathname?.startsWith(item.href))
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`group relative px-3 py-1.5 rounded text-sm transition-colors flex items-center justify-center gap-1.5 flex-1 min-w-[70px] ${
+                      isActive
+                        ? 'bg-accent text-white'
+                        : 'bg-bg-secondary text-text-secondary hover:bg-accent-orange hover:text-white'
+                    }`}
+                    title="VIP Content - Login Required"
+                  >
+                    <LockIcon className={isActive ? 'opacity-100' : 'opacity-60'} />
+                    <span>{item.label}</span>
+                  </Link>
+                )
+              })}
+            </div>
+            
+            {/* VIP navigation items - Row 2: Learning, Projects */}
+            <div className="flex justify-center gap-2">
+              {vipNavItems.slice(3).map((item) => {
                 const isActive = pathname === item.href || 
                   (item.href !== '/' && pathname?.startsWith(item.href))
                 return (
