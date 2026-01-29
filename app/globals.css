@@ -426,3 +426,269 @@ html[data-theme="xanga"] body ::-webkit-scrollbar-thumb:hover {
   border: none;
   border-top: 1px solid var(--border);
 }
+
+/* ============================================
+   CLAWD.BOT INSPIRED ANIMATIONS & EFFECTS
+   ============================================ */
+
+/* Animated Gradient Text Effect */
+.gradient-text {
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-orange) 50%, var(--accent) 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 6s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Floating Animation */
+.float-animation {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* Fade In Up Animation */
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.fade-in-up-delay-1 {
+  animation-delay: 0.15s;
+}
+
+.fade-in-up-delay-2 {
+  animation-delay: 0.3s;
+}
+
+.fade-in-up-delay-3 {
+  animation-delay: 0.45s;
+}
+
+.fade-in-up-delay-4 {
+  animation-delay: 0.6s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Star Background for Dark Mode */
+[data-theme="dark"] .stars-bg {
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(2px 2px at 130px 80px, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(1px 1px at 160px 120px, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(2px 2px at 200px 60px, rgba(95, 162, 206, 0.6), transparent),
+    radial-gradient(1px 1px at 250px 150px, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(2px 2px at 300px 40px, rgba(252, 125, 11, 0.4), transparent);
+  background-size: 350px 200px;
+  animation: twinkle 8s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+/* Nebula Effect for Dark Mode */
+[data-theme="dark"] .nebula-bg {
+  position: fixed;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 80% 50% at 20% 20%, rgba(252, 125, 11, 0.08), transparent 50%),
+    radial-gradient(ellipse 60% 60% at 80% 30%, rgba(95, 162, 206, 0.06), transparent 50%),
+    radial-gradient(ellipse 90% 70% at 50% 90%, rgba(252, 125, 11, 0.04), transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Glassmorphism Card Styles */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="light"] .glass-card {
+  background: rgba(248, 249, 250, 0.9);
+  border: 1px solid var(--border);
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(252, 125, 11, 0.15);
+}
+
+[data-theme="light"] .glass-card:hover {
+  border-color: var(--accent-orange);
+  box-shadow: 0 12px 40px rgba(17, 112, 170, 0.15);
+}
+
+[data-theme="dark"] .glass-card:hover {
+  border-color: var(--accent-orange);
+  box-shadow: 0 12px 40px rgba(252, 125, 11, 0.2);
+}
+
+/* Gradient Button Style */
+.gradient-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, var(--accent-orange) 0%, var(--accent-orange-hover) 100%);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(252, 125, 11, 0.4);
+  text-decoration: none;
+}
+
+.gradient-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(252, 125, 11, 0.5);
+}
+
+.gradient-btn-blue {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+  box-shadow: 0 4px 20px rgba(17, 112, 170, 0.4);
+}
+
+.gradient-btn-blue:hover {
+  box-shadow: 0 8px 30px rgba(17, 112, 170, 0.5);
+}
+
+/* Glow Effect */
+.glow-orange {
+  filter: drop-shadow(0 0 20px rgba(252, 125, 11, 0.4));
+  transition: filter 0.3s ease;
+}
+
+.glow-orange:hover {
+  filter: drop-shadow(0 0 30px rgba(252, 125, 11, 0.6));
+}
+
+.glow-blue {
+  filter: drop-shadow(0 0 20px rgba(17, 112, 170, 0.4));
+  transition: filter 0.3s ease;
+}
+
+.glow-blue:hover {
+  filter: drop-shadow(0 0 30px rgba(95, 162, 206, 0.6));
+}
+
+/* Pulse Animation */
+.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Shine Effect on Cards */
+.shine-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.shine-effect:hover::before {
+  left: 100%;
+}
+
+/* Feature Icon Bounce */
+.icon-bounce:hover {
+  animation: iconBounce 0.4s ease;
+}
+
+@keyframes iconBounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+/* Section Divider with Gradient */
+.gradient-divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-orange), var(--accent), transparent);
+  border: none;
+  margin: 2rem 0;
+}
+
+/* Typewriter cursor effect */
+.typewriter-cursor::after {
+  content: '|';
+  animation: blink 1s step-end infinite;
+  color: var(--accent-orange);
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
