@@ -265,7 +265,7 @@ export function Header() {
                     className={`group relative px-3 py-1 rounded text-sm transition-colors flex items-center gap-1.5 ${
                       isActive
                         ? 'bg-accent text-white'
-                        : 'bg-bg-secondary/70 text-text-secondary hover:bg-accent-orange hover:text-white border border-border/50'
+                        : 'bg-bg-secondary text-text-secondary hover:bg-accent-orange hover:text-white'
                     }`}
                     title="VIP Content - Login Required"
                   >
