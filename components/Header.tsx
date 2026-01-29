@@ -226,7 +226,7 @@ export function Header() {
         <div className="md:hidden mt-4 pb-2">
           <div className="flex flex-col gap-3">
             {/* Public navigation items */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap justify-center gap-2">
               {publicNavItems.map((item) => {
                 const isActive = pathname === item.href || 
                   (item.href !== '/' && pathname?.startsWith(item.href))
@@ -234,7 +234,7 @@ export function Header() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`px-3 py-1 rounded text-sm transition-colors ${
+                    className={`px-4 py-1.5 rounded text-sm transition-colors flex-1 min-w-[70px] text-center ${
                       isActive
                         ? 'bg-accent text-white'
                         : 'bg-bg-secondary text-text-secondary hover:bg-accent-orange hover:text-white'
@@ -254,7 +254,7 @@ export function Header() {
             </div>
             
             {/* VIP navigation items */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap justify-center gap-2">
               {vipNavItems.map((item) => {
                 const isActive = pathname === item.href || 
                   (item.href !== '/' && pathname?.startsWith(item.href))
@@ -262,7 +262,7 @@ export function Header() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`group relative px-3 py-1 rounded text-sm transition-colors flex items-center gap-1.5 ${
+                    className={`group relative px-3 py-1.5 rounded text-sm transition-colors flex items-center justify-center gap-1.5 flex-1 min-w-[70px] ${
                       isActive
                         ? 'bg-accent text-white'
                         : 'bg-bg-secondary text-text-secondary hover:bg-accent-orange hover:text-white'
