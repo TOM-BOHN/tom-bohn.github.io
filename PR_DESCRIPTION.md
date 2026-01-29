@@ -25,6 +25,11 @@ This PR introduces a comprehensive UI overhaul inspired by clawd.bot, featuring 
 - **Consistent typewriter cursor** - Blinking orange cursor on role tags across all pages
 - **Fixed mobile VIP buttons** - Removed inconsistent border outlines in dark mode
 
+### 📱 Mobile Improvements
+- **Full-width links** - Link cards on mobile now span the full screen width
+- **Centered layout** - Content properly centered on small screens
+- **Reduced padding** - More efficient use of mobile screen real estate
+
 ## Pages Updated
 
 All 9 pages received consistent styling:
@@ -96,6 +101,8 @@ Screenshots are captured automatically and stored in `public/screenshots/` with 
 | 9 | `dd4c566` | Standardize UI elements across all pages |
 | 10 | `88a6cea` | Improve UI readability and visual flow |
 | 11 | `ef3e538` | Remove arrow prefix from role tag |
+| 12 | `b875b6c` | Add comprehensive PR description |
+| 13 | `e3c98c4` | Improve mobile layout for Links page |
 
 ## Testing
 
