@@ -32,9 +32,9 @@ export default function Contact() {
               <span className="text-accent-orange">{'⟩'}</span>
               {'CONTACT'}
             </h1>
-            <p className="text-text-secondary leading-relaxed">
-              I'm always open to discussing new opportunities, technical challenges, or potential collaborations. Reach out through any of the channels below.
-            </p>
+<p className="text-text-secondary leading-loose text-lg">
+            I'm always open to discussing new opportunities, technical challenges, or potential collaborations. Reach out through any of the channels below.
+          </p>
           </div>
 
           <div className="space-y-6 fade-in-up fade-in-up-delay-1">

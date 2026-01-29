@@ -19,9 +19,9 @@ export default async function Blog() {
               <span className="text-accent-orange">{'⟩'}</span>
               {'BLOG'}
             </h1>
-            <p className="text-text-secondary leading-relaxed">
-              Frameworks, insights, and practical approaches to software engineering, data governance, and technical leadership.
-            </p>
+<p className="text-text-secondary leading-loose text-lg">
+            Frameworks, insights, and practical approaches to software engineering, data governance, and technical leadership.
+          </p>
           </div>
 
           {posts.length === 0 ? (
@@ -75,7 +75,7 @@ export default async function Blog() {
                     day: 'numeric',
                   })}
                 </p>
-                <p className="text-text-secondary leading-relaxed">
+                <p className="text-text-secondary leading-loose">
                   {post.excerpt}
                 </p>
                 <Link

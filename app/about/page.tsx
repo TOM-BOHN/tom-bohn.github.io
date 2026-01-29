@@ -50,12 +50,12 @@ export default function About() {
 
             {/* Right column - About content */}
             <div className="prose prose-lg max-w-none fade-in-up fade-in-up-delay-2">
-              <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono flex items-center gap-3">
+              <section className="mb-10">
+                <h2 className="text-2xl font-semibold mb-6 text-text-primary font-mono flex items-center gap-3">
                   <span className="text-accent-orange">{'⟩'}</span>
                   {'ABOUT ME'}
                 </h2>
-              <div className="text-text-secondary leading-relaxed space-y-4">
+              <div className="text-text-secondary leading-loose space-y-5">
                 <p>
                   I&apos;m a product manager and software designer with 15+ years of experience 
                   leading data-driven solutions and AI products. At Salesforce, I serve as Senior 
@@ -104,12 +104,12 @@ export default function About() {
               </div>
             </section>
 
-            <section className="mb-8">
-              <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono flex items-center gap-3">
+            <section className="mb-10">
+              <h2 className="text-2xl font-semibold mb-6 text-text-primary font-mono flex items-center gap-3">
                 <span className="text-accent-orange">{'⟩'}</span>
                 {'PERSONAL HIGHLIGHTS'}
               </h2>
-              <div className="text-text-secondary leading-relaxed space-y-3">
+              <div className="text-text-secondary leading-loose space-y-4">
                 <p className="flex items-start gap-2">
                   <span className="text-accent mt-1">🎓</span>
                   <span>
@@ -141,12 +141,12 @@ export default function About() {
               </div>
             </section>
 
-            <section className="mb-8">
-              <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono flex items-center gap-3">
+            <section className="mb-10">
+              <h2 className="text-2xl font-semibold mb-6 text-text-primary font-mono flex items-center gap-3">
                 <span className="text-accent-orange">{'⟩'}</span>
                 {'WHAT DRIVES ME'}
               </h2>
-              <div className="text-text-secondary leading-relaxed space-y-3">
+              <div className="text-text-secondary leading-loose space-y-4">
                 <p className="flex items-start gap-2">
                   <span className="text-accent mt-1">🧩</span>
                   <span>
@@ -178,12 +178,12 @@ export default function About() {
               </div>
             </section>
 
-            <section className="mb-8">
-              <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono flex items-center gap-3">
+            <section className="mb-10">
+              <h2 className="text-2xl font-semibold mb-6 text-text-primary font-mono flex items-center gap-3">
                 <span className="text-accent-orange">{'⟩'}</span>
                 {'TECHNICAL EXPERTISE'}
               </h2>
-              <div className="text-text-secondary space-y-3">
+              <div className="text-text-secondary space-y-4">
                 <p className="flex items-start gap-2">
                   <span className="text-accent mt-1">🤖</span>
                   <span>
@@ -231,12 +231,12 @@ export default function About() {
               </div>
             </section>
 
-            <section className="mb-8">
-              <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono flex items-center gap-3">
+            <section className="mb-10">
+              <h2 className="text-2xl font-semibold mb-6 text-text-primary font-mono flex items-center gap-3">
                 <span className="text-accent-orange">{'⟩'}</span>
                 {'ABOUT THIS PAGE'}
               </h2>
-              <div className="text-text-secondary leading-relaxed space-y-4">
+              <div className="text-text-secondary leading-loose space-y-5">
                 <p>
                   Everything you see here I designed myself and implemented with the help of{' '}
                   <strong className="text-text-primary">Cursor AI agents</strong>. The website is built with{' '}

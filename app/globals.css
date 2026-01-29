@@ -539,30 +539,36 @@ html[data-theme="xanga"] body ::-webkit-scrollbar-thumb:hover {
 
 /* Glassmorphism Card Styles */
 .glass-card {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 [data-theme="light"] .glass-card {
-  background: rgba(248, 249, 250, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   border: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="dark"] .glass-card {
+  background: rgba(17, 26, 46, 0.8);
+  border: 1px solid rgba(95, 162, 206, 0.15);
 }
 
 .glass-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(252, 125, 11, 0.15);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(252, 125, 11, 0.18);
 }
 
 [data-theme="light"] .glass-card:hover {
-  border-color: var(--accent-orange);
-  box-shadow: 0 12px 40px rgba(17, 112, 170, 0.15);
+  border-color: var(--accent);
+  box-shadow: 0 16px 48px rgba(17, 112, 170, 0.12);
 }
 
 [data-theme="dark"] .glass-card:hover {
   border-color: var(--accent-orange);
-  box-shadow: 0 12px 40px rgba(252, 125, 11, 0.2);
+  box-shadow: 0 16px 48px rgba(252, 125, 11, 0.25);
 }
 
 /* Gradient Button Style */
@@ -674,7 +680,46 @@ html[data-theme="xanga"] body ::-webkit-scrollbar-thumb:hover {
   height: 2px;
   background: linear-gradient(90deg, transparent, var(--accent-orange), var(--accent), transparent);
   border: none;
-  margin: 2rem 0;
+  margin: 3rem 0;
+}
+
+/* Improved Typography for Readability */
+.prose-readable {
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+}
+
+.prose-readable p {
+  margin-bottom: 1.5em;
+}
+
+/* Section Spacing */
+.section-spacing {
+  margin-bottom: 4rem;
+}
+
+.section-spacing-sm {
+  margin-bottom: 2.5rem;
+}
+
+/* Enhanced Text Contrast for Dark Mode */
+[data-theme="dark"] .text-text-secondary {
+  color: #a8b4c4 !important;
+}
+
+/* Subtle Section Background */
+.section-highlight {
+  position: relative;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+[data-theme="dark"] .section-highlight {
+  background: linear-gradient(135deg, rgba(17, 112, 170, 0.05), rgba(252, 125, 11, 0.03));
+}
+
+[data-theme="light"] .section-highlight {
+  background: linear-gradient(135deg, rgba(17, 112, 170, 0.03), rgba(252, 125, 11, 0.02));
 }
 
 /* Typewriter cursor effect */

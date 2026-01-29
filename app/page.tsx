@@ -21,13 +21,13 @@ export default function Home() {
                   Thomas Bohn
                 </span>
               </h1>
-              <p className="text-lg text-text-secondary leading-relaxed mb-4">
+              <p className="text-lg text-text-secondary leading-loose mb-5">
               Product manager and software designer specializing in AI products, data management, 
               and analytics. I bridge product strategy with hands-on development, using software 
               engineering tools and LLMs to define product details, explore ideas faster, and build 
               proof-of-concepts that directly address customer needs.
             </p>
-            <p className="text-lg text-text-secondary leading-relaxed mb-6">
+            <p className="text-lg text-text-secondary leading-loose mb-8">
               Currently leading AI product initiatives at Salesforce, focusing on data management 
               maturity and metadata AI solutions. Passionate about building data products that 
               power trusted AI, and sharing insights on product strategy, data governance, and 
@@ -72,9 +72,12 @@ export default function Home() {
           </div>
           </div>
 
+        {/* Gradient Divider */}
+        <hr className="gradient-divider fade-in-up fade-in-up-delay-2" />
+
         {/* Project Cards Section */}
-        <div className="mb-8 fade-in-up fade-in-up-delay-3">
-          <h2 className="text-2xl font-bold mb-8 text-text-primary font-mono flex items-center gap-3">
+        <div className="mb-12 fade-in-up fade-in-up-delay-3">
+          <h2 className="text-2xl font-bold mb-10 text-text-primary font-mono flex items-center gap-3">
             <span className="text-accent-orange">{'⟩'}</span>
             {'MY WORK'}
           </h2>
@@ -88,7 +91,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-3xl font-bold text-text-primary">Medium</h3>
               </div>
-              <p className="text-text-secondary mb-6 leading-relaxed">
+              <p className="text-text-secondary mb-6 leading-loose">
                 Writing about software engineering, Salesforce development, data engineering, 
                 and technical leadership. Sharing insights, tutorials, and experiences from 
                 building enterprise solutions.
@@ -154,7 +157,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-3xl font-bold text-text-primary">GitHub</h3>
               </div>
-              <p className="text-text-secondary mb-6 leading-relaxed">
+              <p className="text-text-secondary mb-6 leading-loose">
                 Open source projects, code samples, and contributions. Exploring new 
                 technologies, building tools, and sharing code with the developer community.
               </p>
