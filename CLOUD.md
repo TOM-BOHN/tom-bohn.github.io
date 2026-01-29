@@ -49,9 +49,17 @@ curl -s http://localhost:3000 -o /dev/null -w "%{http_code}"
 # Should return 200
 ```
 
-### Step 3: Take screenshots with Puppeteer
+### Step 3: Ensure screenshots directory exists
 
-Puppeteer is already installed as a dev dependency. Run this inline script to capture screenshots:
+All screenshots should be saved to `public/screenshots/` directory:
+
+```bash
+mkdir -p public/screenshots
+```
+
+### Step 4: Take screenshots with Puppeteer
+
+Puppeteer is already installed as a dev dependency. Run this inline script to capture screenshots of all major pages:
 
 ```bash
 node -e "
@@ -60,7 +68,10 @@ const path = require('path');
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
+const SCREENSHOT_DIR = '/workspace/public/screenshots';
+
 async function takeScreenshots() {
+  console.log('Starting puppeteer...');
   const browser = await puppeteer.launch({
     headless: true,
     args: ['--no-sandbox', '--disable-setuid-sandbox']
@@ -68,73 +79,81 @@ async function takeScreenshots() {
   
   const page = await browser.newPage();
   
+  // Pages to screenshot - add/remove based on what changed
+  const pages = [
+    { name: 'home', url: '/' },
+    { name: 'about', url: '/about' },
+    { name: 'blog', url: '/blog' },
+    { name: 'projects', url: '/projects' },
+    { name: 'certifications', url: '/certifications' },
+    { name: 'contact', url: '/contact' },
+  ];
+  
   // Desktop viewport
   await page.setViewport({ width: 1440, height: 900 });
   
-  // Light mode screenshot
-  console.log('Taking light mode screenshot...');
+  // Take screenshots in dark mode first
+  console.log('\\n=== DARK MODE SCREENSHOTS ===');
   await page.goto('http://localhost:3000', { waitUntil: 'networkidle0', timeout: 30000 });
-  await delay(1500); // Wait for animations
-  await page.screenshot({ 
-    path: path.join('/workspace', 'public', 'screenshot-light-mode.png'),
-    fullPage: false
-  });
-  
-  // Full page light mode
-  console.log('Taking full page light mode...');
-  await page.screenshot({ 
-    path: path.join('/workspace', 'public', 'screenshot-light-full.png'),
-    fullPage: true
-  });
-  
-  // Dark mode screenshot
-  console.log('Taking dark mode screenshot...');
   await page.evaluate(() => {
     const darkBtn = document.querySelector('button[aria-label=\"Dark theme\"]');
     if (darkBtn) darkBtn.click();
   });
-  await delay(800);
-  await page.screenshot({ 
-    path: path.join('/workspace', 'public', 'screenshot-dark-mode.png'),
-    fullPage: false
-  });
+  await delay(500);
   
-  // Full page dark mode
-  console.log('Taking full page dark mode...');
-  await page.screenshot({ 
-    path: path.join('/workspace', 'public', 'screenshot-dark-full.png'),
-    fullPage: true
-  });
+  for (const p of pages) {
+    console.log('Taking dark mode screenshot: ' + p.name + '...');
+    await page.goto('http://localhost:3000' + p.url, { waitUntil: 'networkidle0', timeout: 30000 });
+    await delay(1000);
+    await page.screenshot({ 
+      path: path.join(SCREENSHOT_DIR, 'screenshot-' + p.name + '-dark.png'),
+      fullPage: false
+    });
+  }
   
-  // Mobile view
-  console.log('Taking mobile screenshot...');
+  // Take screenshots in light mode
+  console.log('\\n=== LIGHT MODE SCREENSHOTS ===');
+  await page.evaluate(() => {
+    const lightBtn = document.querySelector('button[aria-label=\"Light theme\"]');
+    if (lightBtn) lightBtn.click();
+  });
+  await delay(500);
+  
+  for (const p of pages) {
+    console.log('Taking light mode screenshot: ' + p.name + '...');
+    await page.goto('http://localhost:3000' + p.url, { waitUntil: 'networkidle0', timeout: 30000 });
+    await delay(1000);
+    await page.screenshot({ 
+      path: path.join(SCREENSHOT_DIR, 'screenshot-' + p.name + '-light.png'),
+      fullPage: false
+    });
+  }
+  
+  // Mobile screenshots (dark mode)
+  console.log('\\n=== MOBILE SCREENSHOTS ===');
   await page.setViewport({ width: 375, height: 812 });
-  await delay(800);
-  await page.screenshot({ 
-    path: path.join('/workspace', 'public', 'screenshot-mobile.png'),
-    fullPage: false
+  await page.evaluate(() => {
+    const darkBtn = document.querySelector('button[aria-label=\"Dark theme\"]');
+    if (darkBtn) darkBtn.click();
   });
+  await delay(500);
+  
+  for (const p of pages) {
+    console.log('Taking mobile dark screenshot: ' + p.name + '...');
+    await page.goto('http://localhost:3000' + p.url, { waitUntil: 'networkidle0', timeout: 30000 });
+    await delay(800);
+    await page.screenshot({ 
+      path: path.join(SCREENSHOT_DIR, 'screenshot-' + p.name + '-mobile-dark.png'),
+      fullPage: false
+    });
+  }
   
   await browser.close();
-  console.log('All screenshots saved!');
+  console.log('\\nAll screenshots saved to public/screenshots/');
 }
 
 takeScreenshots().catch(console.error);
 "
-```
-
-### Step 4: Screenshot specific pages (if changes affect other pages)
-
-For changes to specific pages (e.g., `/about`, `/blog`, `/projects`), modify the script above to navigate to those pages:
-
-```javascript
-// Example: Screenshot the about page
-await page.goto('http://localhost:3000/about', { waitUntil: 'networkidle0' });
-await delay(1000);
-await page.screenshot({ 
-  path: '/workspace/public/screenshot-about.png',
-  fullPage: true
-});
 ```
 
 ### Step 5: Share screenshots in the chat
@@ -142,8 +161,9 @@ await page.screenshot({
 After taking screenshots, use the Read tool to display them in the chat:
 
 ```
-Read the image file: /workspace/public/screenshot-light-mode.png
-Read the image file: /workspace/public/screenshot-dark-mode.png
+Read the image file: /workspace/public/screenshots/screenshot-home-dark.png
+Read the image file: /workspace/public/screenshots/screenshot-home-light.png
+Read the image file: /workspace/public/screenshots/screenshot-about-dark.png
 // etc.
 ```
 
@@ -154,43 +174,69 @@ This allows the user to review the UI changes visually before merging.
 If the user wants screenshots included in the PR for documentation:
 
 ```bash
-git add public/screenshot*.png
+git add public/screenshots/
 git commit -m "docs: Add UI screenshots for PR review"
 git push origin <branch-name>
 ```
 
 ---
 
+## Screenshot Directory Structure
+
+All screenshots are saved to `public/screenshots/` with the following naming convention:
+
+```
+public/screenshots/
+├── screenshot-{page}-dark.png       # Desktop dark mode
+├── screenshot-{page}-light.png      # Desktop light mode
+├── screenshot-{page}-mobile-dark.png # Mobile dark mode
+```
+
+Where `{page}` is one of: `home`, `about`, `blog`, `projects`, `certifications`, `contact`, `hub`, `links`, `v2me`
+
+---
+
 ## Screenshot Checklist
 
-For UI changes, capture at minimum:
+For UI changes, the script automatically captures:
 
-| Screenshot | Description | Required |
-|------------|-------------|----------|
-| `screenshot-light-mode.png` | Homepage in light mode | Yes |
-| `screenshot-dark-mode.png` | Homepage in dark mode | Yes |
-| `screenshot-mobile.png` | Mobile viewport | Yes (for responsive changes) |
-| `screenshot-<page>.png` | Specific pages with changes | If applicable |
-| `screenshot-*-full.png` | Full page captures | Recommended |
+| Screenshot Type | Description | Files Generated |
+|-----------------|-------------|-----------------|
+| Desktop Dark Mode | All pages in dark theme | `screenshot-*-dark.png` |
+| Desktop Light Mode | All pages in light theme | `screenshot-*-light.png` |
+| Mobile Dark Mode | All pages in mobile viewport | `screenshot-*-mobile-dark.png` |
+
+### Minimum Required Screenshots
+
+| Screenshot | Required |
+|------------|----------|
+| Homepage (both themes) | Always |
+| Pages with changes | Yes |
+| Mobile view | Yes (for responsive/nav changes) |
 
 ---
 
 ## Page-Specific Screenshots
 
-When changes affect specific pages, take targeted screenshots:
+The standard script captures these pages:
 
 | Page | URL | When to capture |
 |------|-----|-----------------|
-| Homepage | `/` | Always for UI changes |
-| About | `/about` | Changes to about page or global layout |
-| Blog | `/blog` | Changes to blog listing or cards |
-| Blog Post | `/blog/[slug]` | Changes to blog post layout |
-| Projects | `/projects` | Changes to project cards or sections |
-| Certifications | `/certifications` | Changes to cert display |
-| Hub | `/hub` | Changes to hub/linktree layout |
-| Links | `/links` | Changes to links page |
-| V2ME | `/v2me` | Changes to V2ME components |
-| Contact | `/contact` | Changes to contact page |
+| Homepage | `/` | Always for any UI changes |
+| About | `/about` | Global layout, typography changes |
+| Blog | `/blog` | Card styles, listing changes |
+| Projects | `/projects` | Card styles, section changes |
+| Certifications | `/certifications` | Accordion, badge display changes |
+| Contact | `/contact` | Form styles, layout changes |
+
+### Additional pages (add to script if needed):
+
+| Page | URL | When to capture |
+|------|-----|-----------------|
+| Blog Post | `/blog/[slug]` | Blog content styling |
+| Hub | `/hub` | Linktree-style layout |
+| Links | `/links` | Links page styling |
+| V2ME | `/v2me` | V2ME component changes |
 
 ---
 
