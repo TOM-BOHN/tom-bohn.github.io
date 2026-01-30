@@ -100,9 +100,10 @@ The development server will be available at `http://localhost:3000`.
 │   ├── accredible-badge/ # Accredible badge fetcher
 │   └── trailhead-badge/  # Trailhead badge fetcher
 └── public/               # Static assets
+    ├── icons/            # Site favicon and PWA icons (SVG + generated PNGs)
+    ├── images/           # General images (e.g. profile photo)
     ├── badges/           # Badge images
-    ├── education/        # Education images
-    └── profile.jpg       # Profile picture
+    └── education/        # Education images
 ```
 
 ## 🚢 Deployment
@@ -114,6 +115,15 @@ The site uses Next.js static export (`output: 'export'`) which generates a fully
 ## 🌍 Custom Domain
 
 The `CNAME` file is located in the `public/` directory. This ensures it's included in the static export and deployed to GitHub Pages, enabling the custom domain `thomaslbohn.com`.
+
+## 🖼️ Icons
+
+Site icons live in `public/icons/`:
+
+- **icon.svg** – Source favicon (TLB on orange–blue gradient), sized so TLB stays visible when shown in a circle (e.g. in search results).
+- **apple-touch-icon.png**, **android-chrome-192x192.png**, **android-chrome-512x512.png** – PNGs generated from the SVG.
+
+To regenerate PNGs after editing the SVG: `npm run generate:icons` (requires `sharp` as a devDependency).
 
 ## 📝 Content Management
 

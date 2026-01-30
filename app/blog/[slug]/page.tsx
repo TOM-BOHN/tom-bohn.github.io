@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { getBlogPost, getBlogPosts } from '@/lib/blog'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
@@ -10,6 +11,13 @@ export async function generateStaticParams() {
   return posts.map((post) => ({
     slug: post.slug,
   }))
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> | { slug: string } }): Promise<Metadata> {
+  const resolvedParams = await Promise.resolve(params)
+  const post = await getBlogPost(resolvedParams.slug)
+  if (!post) return {}
+  return { title: post.title }
 }
 
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> | { slug: string } }) {

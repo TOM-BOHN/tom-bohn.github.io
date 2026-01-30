@@ -58,7 +58,7 @@ export default function Home() {
                 />
                 <div className="relative w-full h-full rounded-lg overflow-hidden bg-bg-secondary shadow-2xl">
                   <Image
-                    src="/profile.jpg"
+                    src="/images/profile.jpg"
                     alt="Thomas Bohn"
                     fill
                     className="object-cover"

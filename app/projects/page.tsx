@@ -1,6 +1,11 @@
+import type { Metadata } from 'next'
 import { getProjects } from '@/lib/projects'
 import { ProjectsSection } from '@/components/projects/ProjectsSection'
 import { ProjectsPageHeader } from '@/components/projects/ProjectsPageHeader'
+
+export const metadata: Metadata = {
+  title: 'Projects',
+}
 
 export default async function Projects() {
   const projectsData = await getProjects()

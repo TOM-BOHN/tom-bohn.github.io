@@ -1,5 +1,10 @@
+import type { Metadata } from 'next'
 import { getLinks } from '@/lib/links'
 import { LinksPageWrapper } from '@/components/links/LinksPageWrapper'
+
+export const metadata: Metadata = {
+  title: 'Links',
+}
 
 export default async function Links() {
   const links = await getLinks()

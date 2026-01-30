@@ -159,11 +159,21 @@ export function Education({ education, isExpanded: controlledExpanded, onToggle 
     return null
   }
 
+  const handleHeaderKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      handleToggle()
+    }
+  }
+
   return (
     <div className="border-2 border-border rounded-lg bg-bg-secondary overflow-hidden">
-      <button
+      <div
+        role="button"
+        tabIndex={0}
         onClick={handleToggle}
-        className="w-full px-6 py-4 flex items-center justify-between gap-4 hover:bg-bg-primary transition-colors text-left"
+        onKeyDown={handleHeaderKeyDown}
+        className="w-full px-6 py-4 flex items-center justify-between gap-4 hover:bg-bg-primary transition-colors text-left cursor-pointer"
         aria-label={isExpanded ? 'Collapse section' : 'Expand section'}
       >
         <div className="flex items-center gap-3">
@@ -259,7 +269,7 @@ export function Education({ education, isExpanded: controlledExpanded, onToggle 
             </button>
           </div>
         )}
-      </button>
+      </div>
       <div
         className="overflow-hidden transition-all duration-300 ease-in-out"
         style={{ maxHeight: typeof height === 'number' ? `${height}px` : 'none' }}

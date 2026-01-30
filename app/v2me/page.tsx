@@ -3,7 +3,7 @@ import { getV2Me } from '@/lib/v2me'
 import { V2MePageWrapper } from '@/components/v2me/V2MePageWrapper'
 
 export const metadata: Metadata = {
-  title: 'V2ME | Thomas Bohn',
+  title: 'V2ME',
 }
 
 export default async function V2Me() {

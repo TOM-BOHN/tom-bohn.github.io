@@ -112,9 +112,17 @@ export function LearningSection({
 
       {/* What I've Accomplished */}
       <div className="border-2 border-border rounded-lg bg-bg-secondary overflow-hidden">
-        <button
+        <div
+          role="button"
+          tabIndex={0}
           onClick={() => setIsAccomplishedExpanded(!isAccomplishedExpanded)}
-          className="w-full px-6 py-4 flex items-center justify-between gap-4 hover:bg-bg-primary transition-colors text-left"
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault()
+              setIsAccomplishedExpanded((prev) => !prev)
+            }
+          }}
+          className="w-full px-6 py-4 flex items-center justify-between gap-4 hover:bg-bg-primary transition-colors text-left cursor-pointer"
           aria-label={isAccomplishedExpanded ? 'Collapse section' : 'Expand section'}
         >
           <div className="flex items-center gap-3">
@@ -210,7 +218,7 @@ export function LearningSection({
               </button>
             </div>
           )}
-        </button>
+        </div>
         <div
           className="overflow-hidden transition-all duration-300 ease-in-out"
           style={{ maxHeight: typeof accomplishedHeight === 'number' ? `${accomplishedHeight}px` : 'none' }}
@@ -236,9 +244,17 @@ export function LearningSection({
 
       {/* What I'm Planning This Year */}
       <div className="border-2 border-border rounded-lg bg-bg-secondary overflow-hidden">
-        <button
+        <div
+          role="button"
+          tabIndex={0}
           onClick={() => setIsPlanningExpanded(!isPlanningExpanded)}
-          className="w-full px-6 py-4 flex items-center justify-between gap-4 hover:bg-bg-primary transition-colors text-left"
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault()
+              setIsPlanningExpanded((prev) => !prev)
+            }
+          }}
+          className="w-full px-6 py-4 flex items-center justify-between gap-4 hover:bg-bg-primary transition-colors text-left cursor-pointer"
           aria-label={isPlanningExpanded ? 'Collapse section' : 'Expand section'}
         >
           <div className="flex items-center gap-3">
@@ -334,7 +350,7 @@ export function LearningSection({
               </button>
             </div>
           )}
-        </button>
+        </div>
         <div
           className="overflow-hidden transition-all duration-300 ease-in-out"
           style={{ maxHeight: typeof planningHeight === 'number' ? `${planningHeight}px` : 'none' }}

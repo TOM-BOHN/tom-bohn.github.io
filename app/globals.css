@@ -173,10 +173,10 @@ html[data-theme="xanga"] body .xanga-shell [class*="bg-bg-primary"] {
   background-color: var(--bg-tertiary) !important;
 }
 
-/* Containerized boxes for Xanga mode */
+/* Containerized boxes for Xanga mode (exclude decorative background layers) */
 html[data-theme="xanga"] body main > div:not(.xanga-shell),
 html[data-theme="xanga"] body .xanga-shell .container > div,
-html[data-theme="xanga"] body .xanga-main-content > div {
+html[data-theme="xanga"] body .xanga-main-content > div:not(.stars-bg):not(.nebula-bg) {
   background-color: var(--bg-secondary);
   border: 2px solid var(--border-navy);
   padding: 20px;
@@ -192,6 +192,18 @@ html[data-theme="xanga"] body .xanga-applet {
   border-radius: 0 !important;
 }
 
+/* Sidebar applets: blue outline to match main section boxes (not orange) */
+html[data-theme="xanga"] body .xanga-sidebar .xanga-applet,
+html[data-theme="xanga"] body .xanga-sidebar [class*="border"] {
+  border-color: var(--border-navy) !important;
+}
+html[data-theme="xanga"] body .xanga-sidebar button {
+  border-color: var(--border-navy) !important;
+}
+html[data-theme="xanga"] body .xanga-sidebar button:hover {
+  border-color: var(--border-navy) !important;
+}
+
 html[data-theme="xanga"] body header {
   background-color: var(--bg-tertiary) !important;
   border-bottom: 1px solid var(--border-navy) !important;
@@ -200,6 +212,39 @@ html[data-theme="xanga"] body header {
 /* Remove underlines from navigation links in Xanga mode */
 html[data-theme="xanga"] body header a {
   text-decoration: none !important;
+}
+
+/* Header nav in Xanga: all links same blue by default (core + VIP, override text-accent) */
+html[data-theme="xanga"] body header nav a,
+html[data-theme="xanga"] body header nav a[class*="text-accent"] {
+  color: var(--link) !important;
+}
+
+/* Header nav hover in Xanga: same as light/dark (transparent, orange text) */
+html[data-theme="xanga"] body header nav a:hover,
+html[data-theme="xanga"] body header nav a:focus-visible {
+  background-color: transparent !important;
+  color: var(--accent-orange) !important;
+  box-shadow: none;
+}
+html[data-theme="xanga"] body header nav a:hover *,
+html[data-theme="xanga"] body header nav a:focus-visible * {
+  color: var(--accent-orange) !important;
+}
+
+/* Light and dark: same nav hover (text color change, no box) */
+html[data-theme="light"] body header nav a:hover,
+html[data-theme="light"] body header nav a:focus-visible,
+html[data-theme="dark"] body header nav a:hover,
+html[data-theme="dark"] body header nav a:focus-visible {
+  background-color: transparent;
+  color: var(--accent-orange) !important;
+}
+html[data-theme="light"] body header nav a:hover *,
+html[data-theme="light"] body header nav a:focus-visible *,
+html[data-theme="dark"] body header nav a:hover *,
+html[data-theme="dark"] body header nav a:focus-visible * {
+  color: var(--accent-orange) !important;
 }
 
 /* Remove underlines from page headings (h1 with font-mono) in Xanga mode */
@@ -497,7 +542,7 @@ html[data-theme="xanga"] body ::-webkit-scrollbar-thumb:hover {
   }
 }
 
-/* Star Background for Dark Mode */
+/* Star Background for Dark Mode (above nebula so stars stay visible) */
 [data-theme="dark"] .stars-bg {
   position: fixed;
   inset: 0;
@@ -513,19 +558,19 @@ html[data-theme="xanga"] body ::-webkit-scrollbar-thumb:hover {
   background-size: 350px 200px;
   animation: twinkle 8s ease-in-out infinite alternate;
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
 }
 
 @keyframes twinkle {
   0% {
-    opacity: 0.3;
+    opacity: 0.5;
   }
   100% {
-    opacity: 0.6;
+    opacity: 0.9;
   }
 }
 
-/* Nebula Effect for Dark Mode */
+/* Nebula Effect for Dark Mode (behind stars) */
 [data-theme="dark"] .nebula-bg {
   position: fixed;
   inset: 0;

@@ -1,6 +1,11 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import { getBlogPosts } from '@/lib/blog'
 import { FaMedium } from 'react-icons/fa'
+
+export const metadata: Metadata = {
+  title: 'Blog',
+}
 
 export default async function Blog() {
   const posts = await getBlogPosts()

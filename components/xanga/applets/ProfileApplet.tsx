@@ -9,7 +9,7 @@ export function ProfileApplet() {
       <div className="flex gap-3">
         <div className="relative h-20 w-20 border-4 border-border bg-black">
           <Image
-            src="/profile.jpg"
+            src="/images/profile.jpg"
             alt="Profile photo"
             fill
             sizes="80px"
