@@ -15,7 +15,10 @@ const openSans = Open_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'Thomas Bohn',
+  title: {
+    default: 'Thomas Bohn',
+    template: 'Thomas Bohn - %s',
+  },
   description: 'Personal website and blog',
   metadataBase: new URL('https://thomaslbohn.com'),
   manifest: '/manifest.json',
@@ -23,9 +26,9 @@ export const metadata: Metadata = {
     canonical: 'https://thomaslbohn.com',
   },
   icons: {
-    icon: '/icon.svg',
-    shortcut: '/icon.svg',
-    apple: '/apple-touch-icon.png',
+    icon: '/icons/icon.svg',
+    shortcut: '/icons/icon.svg',
+    apple: '/icons/apple-touch-icon.png',
   },
   openGraph: {
     title: 'Thomas Bohn',

@@ -71,9 +71,10 @@ tom-bohn.github.io/
 │   ├── accredible-badge/ # Accredible badge fetcher
 │   └── trailhead-badge/  # Trailhead badge fetcher
 ├── public/               # Static assets
+│   ├── icons/            # Site favicon and PWA icons
+│   ├── images/           # General images (e.g. profile photo)
 │   ├── badges/           # Badge images
-│   ├── education/        # Education images
-│   └── profile.jpg       # Profile picture
+│   └── education/        # Education images
 └── .github/              # GitHub Actions workflows
 ```
 
