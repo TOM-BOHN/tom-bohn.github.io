@@ -227,7 +227,7 @@ export function LinksSection({ title, links, isExpanded, onToggle }: LinksSectio
     <div className="border border-border rounded-lg bg-bg-secondary mb-4 overflow-hidden">
       <button
         onClick={onToggle}
-        className="w-full px-5 py-3 flex items-center gap-3 hover:bg-bg-primary transition-colors text-left"
+        className="w-full px-3 sm:px-5 py-3 flex items-center gap-3 hover:bg-bg-primary transition-colors text-left"
         aria-label={isExpanded ? 'Collapse section' : 'Expand section'}
       >
         {isExpanded ? (
@@ -242,8 +242,8 @@ export function LinksSection({ title, links, isExpanded, onToggle }: LinksSectio
         <h2 className="text-xl font-semibold text-text-primary">{title}</h2>
       </button>
       <div className="overflow-hidden transition-all duration-300 ease-in-out" style={{ maxHeight: `${height}px` }}>
-        <div ref={contentRef} className="px-5 pb-5">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pt-2">
+        <div ref={contentRef} className="px-3 sm:px-5 pb-4 sm:pb-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 pt-2">
             {links.map((link) => {
               const brand = getBrandIcon(link.id, link.title)
               return (
@@ -252,7 +252,7 @@ export function LinksSection({ title, links, isExpanded, onToggle }: LinksSectio
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-start gap-3 border border-border rounded-lg p-4 hover:border-accent hover:shadow-md transition-all bg-bg-primary"
+                  className="group flex items-center sm:items-start gap-3 border border-border rounded-lg p-4 hover:border-accent hover:shadow-md transition-all bg-bg-primary w-full"
                 >
                   <div
                     className={`w-9 h-9 rounded-md flex items-center justify-center flex-shrink-0 ${
