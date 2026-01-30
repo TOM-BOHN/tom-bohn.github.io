@@ -214,29 +214,34 @@ html[data-theme="xanga"] body header a {
   text-decoration: none !important;
 }
 
-/* Header nav in Xanga: all links same blue by default (core + VIP) */
-html[data-theme="xanga"] body header nav a {
+/* Header nav in Xanga: all links same blue by default (core + VIP, override text-accent) */
+html[data-theme="xanga"] body header nav a,
+html[data-theme="xanga"] body header nav a[class*="text-accent"] {
   color: var(--link) !important;
 }
 
-/* Header nav hover: orange block, all text black (link + lock + label + VIP badge) */
+/* Header nav hover in Xanga: same as light/dark (transparent, orange text) */
 html[data-theme="xanga"] body header nav a:hover,
 html[data-theme="xanga"] body header nav a:focus-visible {
-  color: var(--bg-primary) !important;
-  background-color: var(--accent) !important;
-  box-shadow: inset 0 -2px 0 var(--accent-navy);
+  background-color: transparent !important;
+  color: var(--accent-orange) !important;
+  box-shadow: none;
 }
 html[data-theme="xanga"] body header nav a:hover *,
 html[data-theme="xanga"] body header nav a:focus-visible * {
-  color: var(--bg-primary) !important;
+  color: var(--accent-orange) !important;
 }
 
-/* Dark mode: text color change on hover, no visible box */
+/* Light and dark: same nav hover (text color change, no box) */
+html[data-theme="light"] body header nav a:hover,
+html[data-theme="light"] body header nav a:focus-visible,
 html[data-theme="dark"] body header nav a:hover,
 html[data-theme="dark"] body header nav a:focus-visible {
   background-color: transparent;
   color: var(--accent-orange) !important;
 }
+html[data-theme="light"] body header nav a:hover *,
+html[data-theme="light"] body header nav a:focus-visible *,
 html[data-theme="dark"] body header nav a:hover *,
 html[data-theme="dark"] body header nav a:focus-visible * {
   color: var(--accent-orange) !important;
