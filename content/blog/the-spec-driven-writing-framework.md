@@ -2,7 +2,7 @@
 title: "The Spec-Driven Writing Framework: Building a Writer's Room with Agentic Workflows"
 date: "2025-12-26"
 excerpt: "What if you treated writing exactly like software engineering? This framework transforms content creation from a time-intensive craft into a scalable engineering process using specifications, version control, and AI agents. Reduce article creation time from weeks to hours while maintaining quality through explicit, repeatable processes."
-mediumUrl: "https://medium.com/@bohn.tl/the-spec-driven-writing-framework-55facae16425"
+mediumUrl: "https://medium.com/@ThomasLBohn/the-spec-driven-writing-framework-55facae16425"
 ---
 
 How to scale technical writing by applying specification-driven design, version control, and agentic development to content creation.

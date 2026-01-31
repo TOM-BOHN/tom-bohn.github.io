@@ -28,7 +28,7 @@ export function Footer() {
               <FaLinkedin className="w-5 h-5" />
             </a>
             <a
-              href="https://medium.com/@bohn.tl"
+              href="https://medium.com/@ThomasLBohn"
               target="_blank"
               rel="noopener noreferrer"
               className="text-text-secondary hover:text-accent-orange transition-colors"
