@@ -102,7 +102,7 @@ export default function Home() {
                   <li className="flex items-start gap-2">
                     <span className="text-accent-orange mt-1">→</span>
                     <a
-                      href="https://medium.com/@bohn.tl/the-4-cs-of-data-governance-measurement-5759fdbbc373"
+                      href="https://medium.com/@ThomasLBohn/the-4-cs-of-data-governance-measurement-5759fdbbc373"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-link hover:text-link-hover underline"
@@ -113,7 +113,7 @@ export default function Home() {
                   <li className="flex items-start gap-2">
                     <span className="text-accent-orange mt-1">→</span>
                     <a
-                      href="https://medium.com/@bohn.tl/the-enabling-team-playbook-78b60b0bb4f0"
+                      href="https://medium.com/@ThomasLBohn/the-enabling-team-playbook-78b60b0bb4f0"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-link hover:text-link-hover underline"
@@ -124,7 +124,7 @@ export default function Home() {
                   <li className="flex items-start gap-2">
                     <span className="text-accent-orange mt-1">→</span>
                     <a
-                      href="https://medium.com/@bohn.tl/the-spec-driven-writing-framework-55facae16425"
+                      href="https://medium.com/@ThomasLBohn/the-spec-driven-writing-framework-55facae16425"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-link hover:text-link-hover underline"
@@ -135,7 +135,7 @@ export default function Home() {
                 </ul>
               </div>
               <a
-                href="https://medium.com/@bohn.tl"
+                href="https://medium.com/@ThomasLBohn"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-link hover:text-link-hover font-semibold group"

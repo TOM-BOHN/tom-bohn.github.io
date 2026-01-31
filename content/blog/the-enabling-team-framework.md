@@ -2,7 +2,7 @@
 title: "The Enabling Team Framework: A Structured Approach to Capability Transformation"
 date: "2026-01-06"
 excerpt: "Move enabling teams from reactive support to strategic capability uplift. This framework breaks down complex transformation into three roles (Advising, Developing, Facilitating), sequential elements (Policy through Governance), and delivery modes. Learn why you need all pieces at some level—skip policy and teams won't understand why it matters, skip enablement and teams struggle to build competency."
-mediumUrl: "https://medium.com/@bohn.tl/the-enabling-team-playbook-78b60b0bb4f0"
+mediumUrl: "https://medium.com/@ThomasLBohn/the-enabling-team-playbook-78b60b0bb4f0"
 ---
 
 How enabling teams can move from reactive support to strategic capability uplift through clear roles, sequential elements, and delivery modes.
