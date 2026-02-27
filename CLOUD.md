@@ -174,7 +174,20 @@ Read the image file: /workspace/public/screenshots/screenshot-about-dark.png
 
 This allows the user to review the UI changes visually before merging.
 
-### Step 6: Commit screenshots (optional)
+### Step 6: Medium sync validation (required when blog sync/home Medium module changes)
+
+If a change touches Medium sync automation, homepage Medium links, or blog pages generated from Medium:
+
+1. Capture and share screenshots for:
+   - `/` (homepage Medium module visible)
+   - Each newly synced blog page under `/blog/[slug]`
+2. Verify each new blog page includes:
+   - Title
+   - Date
+   - "Read on Medium" or "Continue reading on Medium" link
+3. Include screenshot file paths in the final status update.
+
+### Step 7: Commit screenshots (optional)
 
 If the user wants screenshots included in the PR for documentation:
 
@@ -218,6 +231,7 @@ For UI changes, the script automatically captures:
 | Homepage (both themes) | Always |
 | Pages with changes | Yes |
 | Mobile view | Yes (for responsive/nav changes) |
+| Medium sync updates: homepage + each new `/blog/[slug]` page | Yes |
 
 ---
 
