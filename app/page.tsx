@@ -1,6 +1,15 @@
 import Image from 'next/image'
+import mediumHomepage from '@/data/medium-homepage.json'
 
 export default function Home() {
+  const featuredMediumArticles = Array.isArray(mediumHomepage.featuredArticles)
+    ? mediumHomepage.featuredArticles.slice(0, 3)
+    : []
+  const mediumProfileUrl =
+    typeof mediumHomepage.profileUrl === 'string' && mediumHomepage.profileUrl.length > 0
+      ? mediumHomepage.profileUrl
+      : 'https://medium.com/@ThomasLBohn'
+
   return (
     <>
       {/* Animated background elements for dark mode */}
@@ -99,43 +108,27 @@ export default function Home() {
               <div className="mb-6">
                 <p className="text-sm font-semibold text-text-primary mb-3 font-mono">RECENT ARTICLES:</p>
                 <ul className="space-y-2 text-text-secondary">
-                  <li className="flex items-start gap-2">
-                    <span className="text-accent-orange mt-1">→</span>
-                    <a
-                      href="https://medium.com/@ThomasLBohn/the-4-cs-of-data-governance-measurement-5759fdbbc373"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-link hover:text-link-hover underline"
-                    >
-                      The 4 Cs of Data Governance Measurement
-                    </a>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-accent-orange mt-1">→</span>
-                    <a
-                      href="https://medium.com/@ThomasLBohn/the-enabling-team-playbook-78b60b0bb4f0"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-link hover:text-link-hover underline"
-                    >
-                      The Enabling Team Framework
-                    </a>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-accent-orange mt-1">→</span>
-                    <a
-                      href="https://medium.com/@ThomasLBohn/the-spec-driven-writing-framework-55facae16425"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-link hover:text-link-hover underline"
-                    >
-                      The Spec-Driven Writing Framework
-                    </a>
-                  </li>
+                  {featuredMediumArticles.length > 0 ? (
+                    featuredMediumArticles.map((article) => (
+                      <li key={article.url} className="flex items-start gap-2">
+                        <span className="text-accent-orange mt-1">→</span>
+                        <a
+                          href={article.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-link hover:text-link-hover underline"
+                        >
+                          {article.title}
+                        </a>
+                      </li>
+                    ))
+                  ) : (
+                    <li className="text-sm text-text-secondary">Run the Medium sync to populate articles.</li>
+                  )}
                 </ul>
               </div>
               <a
-                href="https://medium.com/@ThomasLBohn"
+                href={mediumProfileUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-link hover:text-link-hover font-semibold group"

@@ -1,0 +1,29 @@
+---
+description: Sync Medium posts into local blog pages and homepage featured articles.
+alwaysApply: false
+---
+
+# Medium Blog Sync
+
+Use this workflow when the user asks to sync Medium articles, add new Medium posts to the website blog, or update homepage Medium article highlights.
+
+## Required flow
+
+1. Run:
+   - `npm run sync:medium`
+2. Confirm:
+   - Missing Medium posts were created in `content/blog/`
+   - `data/medium-homepage.json` was regenerated with featured article selections
+3. Validate:
+   - `npm run build`
+4. Commit and push the updated files.
+
+## Guardrails
+
+- Do not manually hardcode Medium article URLs on the homepage.
+- Homepage Medium links should come from `data/medium-homepage.json`.
+- Blog pages created from sync must include frontmatter with:
+  - `title`
+  - `date`
+  - `excerpt`
+  - `mediumUrl`

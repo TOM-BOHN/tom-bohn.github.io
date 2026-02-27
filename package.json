@@ -8,7 +8,8 @@
     "start": "next start",
     "export": "next build",
     "lint": "eslint .",
-    "generate:icons": "node scripts/icons/generate-icons.js"
+    "generate:icons": "node scripts/icons/generate-icons.js",
+    "sync:medium": "node scripts/blog/sync-medium-content.js"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-02-27T03:45:34.204Z",
+  "profileUrl": "https://medium.com/@ThomasLBohn",
+  "sourceFeedUrl": "https://medium.com/feed/@ThomasLBohn",
+  "selectionStrategy": "recency-plus-topic-relevance",
+  "featuredArticles": [
+    {
+      "title": "My Leadership Style: How I Approach Engineering Management",
+      "url": "https://medium.com/@ThomasLBohn/my-leadership-style-how-i-approach-engineering-management-ed1a4a352de0",
+      "slug": "my-leadership-style-how-i-approach-engineering-management",
+      "date": "2026-02-24",
+      "excerpt": "Executive Summary As an engineering leader, my focus has shifted from the what - the products and strategies - to the how - the operating models, architecture, and culture that make delivery possible. My role is to build the engine that...",
+      "score": 134.84,
+      "reason": "Recent and aligned to leadership, engineering, management, product, architecture themes"
+    },
+    {
+      "title": "My Background: Ten Years at the Intersection of Product, Architecture, and Engineering",
+      "url": "https://medium.com/@ThomasLBohn/my-background-ten-years-at-the-intersection-of-product-architecture-and-engineering-48865a397335",
+      "slug": "my-background-ten-years-at-the-intersection-of-product-architecture-and-engineering",
+      "date": "2026-02-24",
+      "excerpt": "Executive Summary Over the last 15 years, spanning roles at IBM, Orbitz, and Salesforce, my career has been defined by operating at the exact intersection of product management, solution architecture, and engineering delivery. I specialize...",
+      "score": 113.84,
+      "reason": "Recent and aligned to engineering, management, product, architecture themes"
+    },
+    {
+      "title": "The Spec-Driven Writing Framework: Building a Writer's Room with Agentic Workflows",
+      "url": "https://medium.com/@ThomasLBohn/the-spec-driven-writing-framework-55facae16425",
+      "slug": "the-spec-driven-writing-framework",
+      "date": "2025-12-26",
+      "excerpt": "What if you treated writing exactly like software engineering? This framework transforms content creation from a time-intensive craft into a scalable engineering process using specifications, version control, and AI agents. Reduce article creation time from weeks to hours while maintaining quality through explicit, repeatable processes.",
+      "score": 46,
+      "reason": "Recent and aligned to engineering, ai, framework themes"
+    }
+  ]
+}
