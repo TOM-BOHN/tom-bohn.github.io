@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-02-27T03:45:34.204Z",
+  "generatedAt": "2026-02-27T04:00:24.745Z",
   "profileUrl": "https://medium.com/@ThomasLBohn",
   "sourceFeedUrl": "https://medium.com/feed/@ThomasLBohn",
   "selectionStrategy": "recency-plus-topic-relevance",
@@ -9,18 +9,18 @@
       "url": "https://medium.com/@ThomasLBohn/my-leadership-style-how-i-approach-engineering-management-ed1a4a352de0",
       "slug": "my-leadership-style-how-i-approach-engineering-management",
       "date": "2026-02-24",
-      "excerpt": "Executive Summary As an engineering leader, my focus has shifted from the what - the products and strategies - to the how - the operating models, architecture, and culture that make delivery possible. My role is to build the engine that...",
-      "score": 134.84,
-      "reason": "Recent and aligned to leadership, engineering, management, product, architecture themes"
+      "excerpt": "Executive Summary As an engineering leader, my focus has shifted from the what — the products and strategies — to the how — the operating models, architecture, and culture that make delivery possible. My role is to build the engine that allows engineers and data scientists to do their best work. My leadership...",
+      "score": 142.83,
+      "reason": "Recent and aligned to leadership, engineering, management, product, architecture, data themes"
     },
     {
       "title": "My Background: Ten Years at the Intersection of Product, Architecture, and Engineering",
       "url": "https://medium.com/@ThomasLBohn/my-background-ten-years-at-the-intersection-of-product-architecture-and-engineering-48865a397335",
       "slug": "my-background-ten-years-at-the-intersection-of-product-architecture-and-engineering",
       "date": "2026-02-24",
-      "excerpt": "Executive Summary Over the last 15 years, spanning roles at IBM, Orbitz, and Salesforce, my career has been defined by operating at the exact intersection of product management, solution architecture, and engineering delivery. I specialize...",
-      "score": 113.84,
-      "reason": "Recent and aligned to engineering, management, product, architecture themes"
+      "excerpt": "Executive Summary Over the last 15 years, spanning roles at IBM, Orbitz, and Salesforce, my career has been defined by operating at the exact intersection of product management, solution architecture, and engineering delivery. I specialize in taking massive, complex enterprise data problems — like predicting customer...",
+      "score": 121.83,
+      "reason": "Recent and aligned to engineering, management, product, architecture, data themes"
     },
     {
       "title": "The Spec-Driven Writing Framework: Building a Writer's Room with Agentic Workflows",
