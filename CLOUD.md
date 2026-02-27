@@ -59,7 +59,7 @@ mkdir -p public/screenshots
 
 ### Step 4: Take screenshots with Puppeteer
 
-Puppeteer is already installed as a dev dependency. Run this inline script to capture screenshots of all major pages:
+Puppeteer is already installed as a dev dependency. Run this inline script to capture full-page screenshots of all major pages:
 
 ```bash
 node -e "
@@ -110,9 +110,9 @@ async function takeScreenshots() {
     console.log('Taking dark mode screenshot: ' + p.name + '...');
     await page.goto('http://localhost:3000' + p.url, { waitUntil: 'networkidle0', timeout: 30000 });
     await delay(1000);
-    await page.screenshot({ 
+    await page.screenshot({
       path: path.join(SCREENSHOT_DIR, 'screenshot-' + p.name + '-dark.png'),
-      fullPage: false
+      fullPage: true
     });
   }
   
@@ -128,9 +128,9 @@ async function takeScreenshots() {
     console.log('Taking light mode screenshot: ' + p.name + '...');
     await page.goto('http://localhost:3000' + p.url, { waitUntil: 'networkidle0', timeout: 30000 });
     await delay(1000);
-    await page.screenshot({ 
+    await page.screenshot({
       path: path.join(SCREENSHOT_DIR, 'screenshot-' + p.name + '-light.png'),
-      fullPage: false
+      fullPage: true
     });
   }
   
@@ -147,9 +147,9 @@ async function takeScreenshots() {
     console.log('Taking mobile dark screenshot: ' + p.name + '...');
     await page.goto('http://localhost:3000' + p.url, { waitUntil: 'networkidle0', timeout: 30000 });
     await delay(800);
-    await page.screenshot({ 
+    await page.screenshot({
       path: path.join(SCREENSHOT_DIR, 'screenshot-' + p.name + '-mobile-dark.png'),
-      fullPage: false
+      fullPage: true
     });
   }
   
@@ -220,9 +220,9 @@ For UI changes, the script automatically captures:
 
 | Screenshot Type | Description | Files Generated |
 |-----------------|-------------|-----------------|
-| Desktop Dark Mode | All pages in dark theme | `screenshot-*-dark.png` |
-| Desktop Light Mode | All pages in light theme | `screenshot-*-light.png` |
-| Mobile Dark Mode | All pages in mobile viewport | `screenshot-*-mobile-dark.png` |
+| Desktop Dark Mode | All pages in dark theme (full-page capture) | `screenshot-*-dark.png` |
+| Desktop Light Mode | All pages in light theme (full-page capture) | `screenshot-*-light.png` |
+| Mobile Dark Mode | All pages in mobile viewport (full-page capture) | `screenshot-*-mobile-dark.png` |
 
 ### Minimum Required Screenshots
 

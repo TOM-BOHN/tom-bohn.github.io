@@ -8,11 +8,17 @@ const matter = require('gray-matter')
 const WORKSPACE_ROOT = path.resolve(__dirname, '..', '..')
 const BLOG_CONTENT_DIR = path.join(WORKSPACE_ROOT, 'content', 'blog')
 const HOMEPAGE_DATA_FILE = path.join(WORKSPACE_ROOT, 'data', 'medium-homepage.json')
+const AUTO_SYNC_MARKER =
+  'This post is synced automatically from Medium to keep this website blog index up to date.'
 
 const MEDIUM_PROFILE = process.env.MEDIUM_PROFILE || 'ThomasLBohn'
 const MEDIUM_FEED_URL = process.env.MEDIUM_FEED_URL || `https://medium.com/feed/@${MEDIUM_PROFILE}`
 const MEDIUM_PROFILE_URL = process.env.MEDIUM_PROFILE_URL || `https://medium.com/@${MEDIUM_PROFILE}`
 const HOMEPAGE_ARTICLE_LIMIT = Number(process.env.MEDIUM_HOMEPAGE_LIMIT || 3)
+const EXCERPT_CHAR_LIMIT = Number(process.env.MEDIUM_EXCERPT_MAX || 320)
+const BLOG_BODY_CHAR_LIMIT = Number(process.env.MEDIUM_BLOG_BODY_MAX || 2400)
+const BLOG_BODY_PARAGRAPH_LIMIT = Number(process.env.MEDIUM_BLOG_PARAGRAPH_MAX || 10)
+const REFRESH_AUTO_SYNCED = process.env.MEDIUM_REFRESH_AUTOSYNCED !== 'false'
 
 const RELEVANCE_KEYWORDS = [
   { keyword: 'leadership', weight: 24 },
@@ -49,22 +55,75 @@ function decodeHtmlEntities(text) {
     .replace(/&(amp|lt|gt|quot|#39|apos|nbsp);/g, (match) => named[match] || match)
 }
 
-function toAscii(text) {
-  return text
-    .replace(/[‘’]/g, "'")
-    .replace(/[“”]/g, '"')
-    .replace(/[–—]/g, '-')
-    .replace(/…/g, '...')
-    .normalize('NFKD')
-    .replace(/[^\x00-\x7F]/g, '')
-}
-
 function normalizeWhitespace(text) {
   return text.replace(/\s+/g, ' ').trim()
 }
 
 function stripHtml(html) {
-  return normalizeWhitespace(toAscii(decodeHtmlEntities((html || '').replace(/<[^>]+>/g, ' '))))
+  return normalizeWhitespace(decodeHtmlEntities((html || '').replace(/<[^>]+>/g, ' ')))
+}
+
+function isLowValueParagraph(text) {
+  const lower = text.toLowerCase()
+
+  // Filter common Medium end-of-article boilerplate snippets.
+  const lowValuePhrases = [
+    'already have an account',
+    'sign up for',
+    'discover more from medium',
+    'read more from',
+    'member-only story',
+    'follow me on',
+    'thanks for reading',
+  ]
+
+  return lowValuePhrases.some((phrase) => lower.includes(phrase))
+}
+
+function htmlToParagraphs(html) {
+  if (!html) return []
+
+  const withBreaks = decodeHtmlEntities(html)
+    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<figure[\s\S]*?<\/figure>/gi, ' ')
+    .replace(/<figcaption[\s\S]*?<\/figcaption>/gi, ' ')
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/(p|div|section|article|blockquote|h1|h2|h3|h4|h5|h6|ul|ol)>/gi, '\n\n')
+    .replace(/<li[^>]*>/gi, '- ')
+    .replace(/<\/li>/gi, '\n')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\u00a0/g, ' ')
+
+  return withBreaks
+    .split(/\n{2,}/)
+    .map((part) => normalizeWhitespace(part))
+    .filter(Boolean)
+    .filter((part) => !isLowValueParagraph(part))
+}
+
+function buildParagraphExcerpt(paragraphs, maxChars, maxParagraphs) {
+  const selected = []
+  let usedChars = 0
+
+  for (const paragraph of paragraphs) {
+    if (selected.length >= maxParagraphs || usedChars >= maxChars) {
+      break
+    }
+
+    const remaining = maxChars - usedChars
+    if (paragraph.length <= remaining) {
+      selected.push(paragraph)
+      usedChars += paragraph.length + 2
+      continue
+    }
+
+    selected.push(truncateAtWord(paragraph, remaining))
+    usedChars = maxChars
+    break
+  }
+
+  return selected.join('\n\n')
 }
 
 function stripCdata(value) {
@@ -146,21 +205,29 @@ function parseMediumFeed(xmlText) {
 
   while (match) {
     const itemXml = match[1]
-    const title = toAscii(decodeHtmlEntities(extractTagValue(itemXml, 'title')))
+    const title = decodeHtmlEntities(extractTagValue(itemXml, 'title')).trim()
     const link = canonicalizeMediumUrl(decodeHtmlEntities(extractTagValue(itemXml, 'link')))
     const pubDate = extractTagValue(itemXml, 'pubDate')
     const descriptionHtml = extractTagValue(itemXml, 'description')
     const contentHtml = extractTagValue(itemXml, 'content:encoded')
 
     const summarySource = contentHtml || descriptionHtml
-    const summary = truncateAtWord(stripHtml(summarySource), 420)
+    const paragraphs = htmlToParagraphs(summarySource)
+    const summary = truncateAtWord(paragraphs.join(' ') || stripHtml(summarySource), 620)
+    const articleBody = buildParagraphExcerpt(
+      paragraphs,
+      BLOG_BODY_CHAR_LIMIT,
+      BLOG_BODY_PARAGRAPH_LIMIT
+    )
 
     if (title && link) {
       items.push({
-        title: normalizeWhitespace(title),
+        // Keep title exactly as Medium provides it (entity-decoded + trimmed).
+        title,
         url: link,
         publishedAt: pubDate || new Date().toUTCString(),
         summary,
+        articleBody,
       })
     }
 
@@ -175,6 +242,7 @@ function readExistingBlogPosts() {
     return {
       knownSlugs: new Set(),
       knownMediumUrls: new Set(),
+      postByMediumUrl: new Map(),
       posts: [],
     }
   }
@@ -193,24 +261,36 @@ function readExistingBlogPosts() {
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const parsed = matter(fileContents)
     const mediumUrl = canonicalizeMediumUrl(parsed.data.mediumUrl)
+    const isAutoSynced = fileContents.includes(AUTO_SYNC_MARKER)
 
     knownSlugs.add(slug)
     if (mediumUrl) {
       knownMediumUrls.add(mediumUrl)
     }
 
-    posts.push({
+    const post = {
       slug,
       title: String(parsed.data.title || slug),
       excerpt: String(parsed.data.excerpt || ''),
       date: String(parsed.data.date || new Date().toISOString().slice(0, 10)),
       mediumUrl,
-    })
+      filePath: fullPath,
+      isAutoSynced,
+    }
+    posts.push(post)
+  }
+
+  const postByMediumUrl = new Map()
+  for (const post of posts) {
+    if (post.mediumUrl) {
+      postByMediumUrl.set(post.mediumUrl, post)
+    }
   }
 
   return {
     knownSlugs,
     knownMediumUrls,
+    postByMediumUrl,
     posts,
   }
 }
@@ -228,8 +308,11 @@ function ensureUniqueSlug(baseSlug, knownSlugs) {
 
 function buildBlogMarkdown(article) {
   const date = formatDate(article.publishedAt)
-  const excerpt = truncateAtWord(article.summary || `Published on Medium: ${article.title}`, 240)
-  const summary = truncateAtWord(article.summary || excerpt, 600)
+  const excerpt = truncateAtWord(
+    article.summary || article.articleBody || `Published on Medium: ${article.title}`,
+    EXCERPT_CHAR_LIMIT
+  )
+  const body = article.articleBody || truncateAtWord(article.summary || excerpt, BLOG_BODY_CHAR_LIMIT)
 
   return [
     '---',
@@ -239,11 +322,11 @@ function buildBlogMarkdown(article) {
     `mediumUrl: ${yamlQuote(article.url)}`,
     '---',
     '',
-    'This post is synced automatically from Medium to keep this website blog index up to date.',
+    AUTO_SYNC_MARKER,
     '',
     '## Summary',
     '',
-    summary,
+    body,
     '',
     '## Continue Reading',
     '',
@@ -339,10 +422,23 @@ async function main() {
 
   const existing = readExistingBlogPosts()
   const createdFiles = []
+  const updatedFiles = []
 
   for (const article of mediumArticles) {
     const canonicalUrl = canonicalizeMediumUrl(article.url)
-    if (!canonicalUrl || existing.knownMediumUrls.has(canonicalUrl)) {
+    if (!canonicalUrl) {
+      continue
+    }
+
+    const existingPost = existing.postByMediumUrl.get(canonicalUrl)
+    if (existingPost) {
+      if (REFRESH_AUTO_SYNCED && existingPost.isAutoSynced) {
+        fs.writeFileSync(existingPost.filePath, buildBlogMarkdown(article), 'utf8')
+        existingPost.title = article.title
+        existingPost.excerpt = truncateAtWord(article.summary, EXCERPT_CHAR_LIMIT)
+        existingPost.date = formatDate(article.publishedAt)
+        updatedFiles.push(path.relative(WORKSPACE_ROOT, existingPost.filePath))
+      }
       continue
     }
 
@@ -354,26 +450,39 @@ async function main() {
 
     fs.writeFileSync(filePath, markdown, 'utf8')
     existing.knownMediumUrls.add(canonicalUrl)
-    existing.posts.push({
+    const createdPost = {
       slug,
       title: article.title,
-      excerpt: truncateAtWord(article.summary, 240),
+      excerpt: truncateAtWord(article.summary, EXCERPT_CHAR_LIMIT),
       date: formatDate(article.publishedAt),
       mediumUrl: canonicalUrl,
-    })
+      filePath,
+      isAutoSynced: true,
+    }
+    existing.posts.push(createdPost)
+    existing.postByMediumUrl.set(canonicalUrl, createdPost)
     createdFiles.push(path.relative(WORKSPACE_ROOT, filePath))
   }
 
   const featuredArticles = selectHomepageArticles(existing.posts, HOMEPAGE_ARTICLE_LIMIT)
   writeHomepageData(featuredArticles)
 
-  if (createdFiles.length === 0) {
-    console.log('No missing Medium posts detected. Blog content is already in sync.')
-  } else {
+  if (createdFiles.length > 0) {
     console.log(`Created ${createdFiles.length} missing blog post(s):`)
     for (const fileName of createdFiles) {
       console.log(`- ${fileName}`)
     }
+  }
+
+  if (updatedFiles.length > 0) {
+    console.log(`Updated ${updatedFiles.length} existing auto-synced blog post(s):`)
+    for (const fileName of updatedFiles) {
+      console.log(`- ${fileName}`)
+    }
+  }
+
+  if (createdFiles.length === 0 && updatedFiles.length === 0) {
+    console.log('No missing or refreshable Medium posts detected. Blog content is already in sync.')
   }
 
   console.log('Updated homepage Medium article data:')
