@@ -92,6 +92,8 @@ tom-bohn.github.io/
   mediumUrl: "https://medium.com/@yourusername/your-post-slug"  # Optional
   ---
   ```
+- To sync missing posts from Medium automatically and refresh homepage featured Medium links, run:
+  - `npm run sync:medium`
 
 ### Projects
 - Edit `data/projects.json`

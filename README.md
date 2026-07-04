@@ -128,6 +128,7 @@ To regenerate PNGs after editing the SVG: `npm run generate:icons` (requires `sh
 ## 📝 Content Management
 
 - **Blog Posts**: Written in Markdown and stored in `content/blog/`
+- **Medium Sync**: Run `npm run sync:medium` to import missing Medium posts into `content/blog/` and refresh homepage featured Medium links
 - **Links**: Managed via JSON files in `data/links.json`
 - **Hub Content**: Configured in `data/hub/hub.json`
 - **Learning Data**: Stored in `data/learning/learning.json`
