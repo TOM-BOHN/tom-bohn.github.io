@@ -39,6 +39,12 @@ Create markdown files in `content/blog/`:
   Your content here...
   ```
 
+Or sync from Medium automatically:
+
+```bash
+npm run sync:medium
+```
+
 ### 3. Add Projects
 Edit `data/projects.json`:
 ```json

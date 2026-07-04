@@ -59,7 +59,7 @@ mkdir -p public/screenshots
 
 ### Step 4: Take screenshots with Puppeteer
 
-Puppeteer is already installed as a dev dependency. Run this inline script to capture screenshots of all major pages:
+Puppeteer is already installed as a dev dependency. Run this inline script to capture full-page screenshots of all major pages:
 
 ```bash
 node -e "
@@ -110,9 +110,9 @@ async function takeScreenshots() {
     console.log('Taking dark mode screenshot: ' + p.name + '...');
     await page.goto('http://localhost:3000' + p.url, { waitUntil: 'networkidle0', timeout: 30000 });
     await delay(1000);
-    await page.screenshot({ 
+    await page.screenshot({
       path: path.join(SCREENSHOT_DIR, 'screenshot-' + p.name + '-dark.png'),
-      fullPage: false
+      fullPage: true
     });
   }
   
@@ -128,9 +128,9 @@ async function takeScreenshots() {
     console.log('Taking light mode screenshot: ' + p.name + '...');
     await page.goto('http://localhost:3000' + p.url, { waitUntil: 'networkidle0', timeout: 30000 });
     await delay(1000);
-    await page.screenshot({ 
+    await page.screenshot({
       path: path.join(SCREENSHOT_DIR, 'screenshot-' + p.name + '-light.png'),
-      fullPage: false
+      fullPage: true
     });
   }
   
@@ -147,9 +147,9 @@ async function takeScreenshots() {
     console.log('Taking mobile dark screenshot: ' + p.name + '...');
     await page.goto('http://localhost:3000' + p.url, { waitUntil: 'networkidle0', timeout: 30000 });
     await delay(800);
-    await page.screenshot({ 
+    await page.screenshot({
       path: path.join(SCREENSHOT_DIR, 'screenshot-' + p.name + '-mobile-dark.png'),
-      fullPage: false
+      fullPage: true
     });
   }
   
@@ -174,7 +174,20 @@ Read the image file: /workspace/public/screenshots/screenshot-about-dark.png
 
 This allows the user to review the UI changes visually before merging.
 
-### Step 6: Commit screenshots (optional)
+### Step 6: Medium sync validation (required when blog sync/home Medium module changes)
+
+If a change touches Medium sync automation, homepage Medium links, or blog pages generated from Medium:
+
+1. Capture and share screenshots for:
+   - `/` (homepage Medium module visible)
+   - Each newly synced blog page under `/blog/[slug]`
+2. Verify each new blog page includes:
+   - Title
+   - Date
+   - "Read on Medium" or "Continue reading on Medium" link
+3. Include screenshot file paths in the final status update.
+
+### Step 7: Commit screenshots (optional)
 
 If the user wants screenshots included in the PR for documentation:
 
@@ -207,9 +220,9 @@ For UI changes, the script automatically captures:
 
 | Screenshot Type | Description | Files Generated |
 |-----------------|-------------|-----------------|
-| Desktop Dark Mode | All pages in dark theme | `screenshot-*-dark.png` |
-| Desktop Light Mode | All pages in light theme | `screenshot-*-light.png` |
-| Mobile Dark Mode | All pages in mobile viewport | `screenshot-*-mobile-dark.png` |
+| Desktop Dark Mode | All pages in dark theme (full-page capture) | `screenshot-*-dark.png` |
+| Desktop Light Mode | All pages in light theme (full-page capture) | `screenshot-*-light.png` |
+| Mobile Dark Mode | All pages in mobile viewport (full-page capture) | `screenshot-*-mobile-dark.png` |
 
 ### Minimum Required Screenshots
 
@@ -218,6 +231,7 @@ For UI changes, the script automatically captures:
 | Homepage (both themes) | Always |
 | Pages with changes | Yes |
 | Mobile view | Yes (for responsive/nav changes) |
+| Medium sync updates: homepage + each new `/blog/[slug]` page | Yes |
 
 ---
 
