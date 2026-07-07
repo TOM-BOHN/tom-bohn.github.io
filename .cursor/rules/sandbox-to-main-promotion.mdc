@@ -33,6 +33,31 @@ Promotion to production is primarily handled by CI/CD, not by an agent:
 `sandbox`** — the workflow above handles validation, PR creation, and
 notification automatically.
 
+## Failure path
+
+The workflow is expected to fail loudly and notify a human rather than fail
+silently:
+
+- **Build fails** → the workflow opens/updates a GitHub Issue titled
+  "Sandbox promotion automation needs attention: build failed" with a link to
+  the run. No promotion PR is touched. The issue auto-closes the next time the
+  build passes.
+- **PR create/update fails** → the workflow opens/updates a GitHub Issue titled
+  "Sandbox promotion automation needs attention: could not open/update PR"
+  with the captured error and remediation steps. The issue auto-closes the
+  next time the PR create/update succeeds.
+- The most common cause of a PR-creation failure is the repo setting
+  **Settings → Actions → General → Workflow permissions → "Allow GitHub
+  Actions to create and approve pull requests"** being disabled (this is off
+  by default on new repos). The workflow detects this specific GraphQL error
+  and includes the exact fix in the issue body. As a fallback that doesn't
+  require flipping that repo-wide setting, add a repo secret named
+  `PROMOTION_PR_TOKEN` (a PAT with "Pull requests: Read and write" permission)
+  — the workflow automatically prefers it over the default token.
+- If asked to investigate a failed run, check the Actions tab for the run logs
+  first, then check for an open tracking Issue with one of the titles above —
+  don't just re-run blindly without understanding why it failed.
+
 ## When an agent should act directly
 
 Use this manual flow only if asked to promote directly, to check status, or if
