@@ -9,14 +9,33 @@ Use this workflow when the user asks to sync Medium articles, add new Medium pos
 
 ## Required flow
 
-1. Run:
+1. Ensure dependencies are installed:
+   - If `node_modules/` is missing, run `npm install` first. Skipping this causes
+     `sync:medium` to fail with `Cannot find module 'gray-matter'`.
+2. Run:
    - `npm run sync:medium`
-2. Confirm:
-   - Missing Medium posts were created in `content/blog/`
-   - `data/medium-homepage.json` was regenerated with featured article selections
-3. Validate:
-   - `npm run build`
-4. Commit and push the updated files.
+3. Read the script's own output and confirm expected results:
+   - It prints the count and paths of newly created posts under `content/blog/`.
+   - It prints which existing auto-synced posts were refreshed.
+   - It prints the final homepage featured-article selection with scores.
+   - Cross-check this against `git status` / `git diff` — the only expected changes
+     are new/updated files under `content/blog/*.md` and `data/medium-homepage.json`.
+4. Validate:
+   - `npm run build` (must succeed; this also statically generates the new
+     `/blog/[slug]` pages, which is a strong signal the new frontmatter is valid).
+5. Visual validation (required whenever new blog posts or homepage selection changed):
+   - `npx serve out -l 3000` (build output is a static export)
+   - Using Puppeteer (see `CLOUD.md` for the reusable screenshot script), capture
+     full-page screenshots (dark + light) of:
+     - `/` (homepage Medium module)
+     - each newly created `/blog/[slug]/` page
+   - Save them to `public/screenshots/` following the existing naming convention
+     (`screenshot-home-medium-{dark,light}.png`, `screenshot-blog-<slug>-{dark,light}.png`).
+   - Confirm each new blog screenshot shows a title, a date, and a working
+     "Continue reading on Medium" / "Read on Medium" link.
+6. Commit and push the updated files, using a descriptive message such as
+   `content: sync N new Medium post(s)` (adjust wording if only the homepage
+   selection or refreshed posts changed, e.g. `content: refresh synced Medium posts`).
 
 ## Guardrails
 
@@ -27,3 +46,16 @@ Use this workflow when the user asks to sync Medium articles, add new Medium pos
   - `date`
   - `excerpt`
   - `mediumUrl`
+- Never re-sync or overwrite a blog post that no longer contains the auto-sync
+  marker ("This post is synced automatically from Medium...") — its absence means
+  a human has manually rewritten that post, and `sync-medium-content.js` already
+  skips refreshing it. Don't "fix" this by forcing a resync or restoring the marker.
+- Homepage featured-article selection is driven by a recency + topic-relevance
+  score (see `scripts/blog/sync-medium-content.js`), not sync order. A newly
+  synced post may not appear in the homepage's top 3 if it scores lower than
+  existing posts — this is expected, not a bug. Only change the scoring logic
+  itself if the user explicitly asks for different featured-article behavior.
+- If `npm run sync:medium` fails to fetch the feed (network/DNS error), report
+  the failure clearly rather than retrying silently or fabricating content —
+  confirm the feed URL (`MEDIUM_FEED_URL`, default derived from `MEDIUM_PROFILE`)
+  is correct before assuming an outage.

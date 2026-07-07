@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-02-27T04:00:24.745Z",
+  "generatedAt": "2026-07-07T14:44:27.109Z",
   "profileUrl": "https://medium.com/@ThomasLBohn",
   "sourceFeedUrl": "https://medium.com/feed/@ThomasLBohn",
   "selectionStrategy": "recency-plus-topic-relevance",
@@ -10,7 +10,7 @@
       "slug": "my-leadership-style-how-i-approach-engineering-management",
       "date": "2026-02-24",
       "excerpt": "Executive Summary As an engineering leader, my focus has shifted from the what — the products and strategies — to the how — the operating models, architecture, and culture that make delivery possible. My role is to build the engine that allows engineers and data scientists to do their best work. My leadership...",
-      "score": 142.83,
+      "score": 101,
       "reason": "Recent and aligned to leadership, engineering, management, product, architecture, data themes"
     },
     {
@@ -19,7 +19,7 @@
       "slug": "my-background-ten-years-at-the-intersection-of-product-architecture-and-engineering",
       "date": "2026-02-24",
       "excerpt": "Executive Summary Over the last 15 years, spanning roles at IBM, Orbitz, and Salesforce, my career has been defined by operating at the exact intersection of product management, solution architecture, and engineering delivery. I specialize in taking massive, complex enterprise data problems — like predicting customer...",
-      "score": 121.83,
+      "score": 80,
       "reason": "Recent and aligned to engineering, management, product, architecture, data themes"
     },
     {
