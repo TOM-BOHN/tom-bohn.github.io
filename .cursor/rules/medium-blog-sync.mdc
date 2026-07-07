@@ -36,6 +36,10 @@ Use this workflow when the user asks to sync Medium articles, add new Medium pos
 6. Commit and push the updated files, using a descriptive message such as
    `content: sync N new Medium post(s)` (adjust wording if only the homepage
    selection or refreshed posts changed, e.g. `content: refresh synced Medium posts`).
+7. Open a PR into `sandbox` (not `main`) with these changes. Once that PR is
+   merged, production promotion is handled automatically — see the
+   `sandbox-to-main-promotion` rule. Do not push to `main` yourself as part of
+   this flow.
 
 ## Guardrails
 

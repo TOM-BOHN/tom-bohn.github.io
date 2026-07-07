@@ -1,0 +1,97 @@
+---
+description: Promote validated sandbox changes to main/production after a build passes, via a human-reviewed PR.
+alwaysApply: false
+---
+
+# Sandbox → Main Promotion
+
+Use this workflow when the user asks to ship/release/deploy to production, promote `sandbox` to `main`,
+or check whether recent `sandbox` changes (e.g. from the Medium blog sync flow) are ready for production.
+
+## How this actually works (mostly automated)
+
+Promotion to production is primarily handled by CI/CD, not by an agent:
+
+1. A PR is merged into `sandbox` (e.g. the Medium sync PR from the
+   `medium-blog-sync` rule, or any other feature PR).
+2. That merge is a push to `sandbox`, which triggers
+   `.github/workflows/promote-sandbox-to-main.yml`:
+   - Installs deps and runs `npm run build` as a hard gate (lint runs too, but
+     is informational only and never blocks promotion).
+   - If the build passes and `sandbox` has commits `main` doesn't have yet, it
+     opens (or updates, if one is already open) a `sandbox → main` pull request,
+     summarizing the commits being promoted, and requests review from the repo
+     owner (this is the notification — GitHub emails/notifies the requested
+     reviewer).
+   - If the build fails, no PR is created/updated, and the failed workflow run
+     itself is the signal that something needs to be fixed on `sandbox` first.
+3. A human reviews the promotion PR and merges it manually. Merging it is a
+   push to `main`, which triggers `.github/workflows/deploy.yml` and deploys to
+   GitHub Pages.
+
+**In the common case, no agent action is required after a PR merges into
+`sandbox`** — the workflow above handles validation, PR creation, and
+notification automatically.
+
+## Failure path
+
+The workflow is expected to fail loudly and notify a human rather than fail
+silently:
+
+- **Build fails** → the workflow opens/updates a GitHub Issue titled
+  "Sandbox promotion automation needs attention: build failed" with a link to
+  the run. No promotion PR is touched. The issue auto-closes the next time the
+  build passes.
+- **PR create/update fails** → the workflow opens/updates a GitHub Issue titled
+  "Sandbox promotion automation needs attention: could not open/update PR"
+  with the captured error and remediation steps. The issue auto-closes the
+  next time the PR create/update succeeds.
+- The most common cause of a PR-creation failure is the repo setting
+  **Settings → Actions → General → Workflow permissions → "Allow GitHub
+  Actions to create and approve pull requests"** being disabled (this is off
+  by default on new repos). The workflow detects this specific GraphQL error
+  and includes the exact fix in the issue body. As a fallback that doesn't
+  require flipping that repo-wide setting, add a repo secret named
+  `PROMOTION_PR_TOKEN` (a PAT with "Pull requests: Read and write" permission)
+  — the workflow automatically prefers it over the default token.
+- If asked to investigate a failed run, check the Actions tab for the run logs
+  first, then check for an open tracking Issue with one of the titles above —
+  don't just re-run blindly without understanding why it failed.
+
+## When an agent should act directly
+
+Use this manual flow only if asked to promote directly, to check status, or if
+CI/CD isn't available/didn't run:
+
+1. Confirm the relevant PR(s) actually merged into `sandbox`
+   (`git log origin/sandbox` / `gh pr view <n>`).
+2. Validate locally exactly like CI does:
+   - `npm install` (if `node_modules/` is missing)
+   - `npm run build` (must pass — this is the hard gate)
+3. Check for an existing open promotion PR before creating a new one:
+   - `gh pr list --base main --head sandbox --state open`
+   - If one exists, update it (new commits/description) rather than opening a
+     duplicate.
+4. If none exists and the build passed, open a `sandbox → main` PR (not draft,
+   since it needs human review) summarizing the commits being promoted
+   (`git log origin/main..origin/sandbox --oneline`).
+5. Request review from the repo owner as the notification mechanism.
+
+## Guardrails
+
+- Never merge the promotion PR yourself, and never enable auto-merge on it —
+  promotion to production always requires a manual human merge, per explicit
+  user instruction.
+- Never push directly to `main`. All production changes go through a
+  `sandbox → main` pull request.
+- Never force-push `sandbox` or `main`.
+- Do not open a promotion PR if the build fails, or if `sandbox` has no commits
+  ahead of `main` (nothing to promote).
+- Treat `npm run build` as the required gate and `npm run lint` as informational
+  only — this repo has pre-existing lint findings that are unrelated to
+  promotion readiness (see `CLOUD.md`'s "main priority is to keep the site
+  building successfully").
+- If you change the promotion automation itself
+  (`.github/workflows/promote-sandbox-to-main.yml`), keep the "build gate +
+  human-merged PR" contract intact; do not introduce auto-merge behavior
+  without an explicit user request.
