@@ -1,0 +1,135 @@
+name: Validate sandbox and promote to main
+
+# Runs after any merge into `sandbox` (a merged PR triggers a push to sandbox).
+# 1. Validates that sandbox still builds successfully.
+# 2. If valid, opens (or updates) a sandbox -> main pull request for a human to review and merge.
+# This workflow NEVER merges the PR itself - promotion to production always requires a manual merge.
+on:
+  push:
+    branches:
+      - sandbox
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: promote-sandbox-to-main
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Validate sandbox build
+    runs-on: ubuntu-latest
+    outputs:
+      ahead-count: ${{ steps.diff.outputs.ahead-count }}
+    steps:
+      - name: Checkout sandbox
+        uses: actions/checkout@v4
+        with:
+          ref: sandbox
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (required gate)
+        run: npm run build
+
+      - name: Lint (informational only, does not block promotion)
+        id: lint
+        continue-on-error: true
+        run: npm run lint
+
+      - name: Check how far ahead sandbox is of main
+        id: diff
+        run: |
+          git fetch origin main --depth=1 2>/dev/null || git fetch origin main
+          AHEAD=$(git rev-list --count origin/main..HEAD)
+          echo "sandbox is $AHEAD commit(s) ahead of main"
+          echo "ahead-count=$AHEAD" >> "$GITHUB_OUTPUT"
+
+      - name: Record lint outcome
+        run: |
+          echo "Lint step outcome: ${{ steps.lint.outcome }}"
+
+  promote:
+    name: Open/update promotion PR
+    needs: validate
+    # Only runs if `validate` succeeded (default GitHub Actions behavior for
+    # jobs with `needs`) AND sandbox actually has commits main doesn't have yet.
+    if: success() && needs.validate.outputs.ahead-count != '0'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build PR description file
+        env:
+          VALIDATED_SHA: ${{ github.sha }}
+          WORKFLOW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          {
+            echo "## Sandbox validated and ready for production"
+            echo
+            echo "This PR was opened automatically after \`sandbox\` was validated by"
+            echo "[this workflow run]($WORKFLOW_RUN_URL)."
+            echo
+            echo "- Build (\`npm run build\`): passed"
+            echo "- Commit validated: \`$VALIDATED_SHA\`"
+            echo
+            echo "### Commits included in this promotion"
+            echo
+            git log origin/main..origin/sandbox --pretty=format:'- %s (%h)'
+            echo
+            echo
+            echo "### Review checklist"
+            echo
+            echo "- [ ] Build passed in CI (see above)"
+            echo "- [ ] Changes reviewed and look correct for production"
+            echo "- [ ] Ready to deploy (merging this PR triggers the GitHub Pages deploy workflow)"
+            echo
+            echo "**This PR requires manual human review and must be merged by a person.**"
+            echo "This automation will never merge it."
+          } > promotion-pr-body.md
+
+      - name: Create or update promotion PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATED_SHA: ${{ github.sha }}
+        run: |
+          EXISTING_PR=$(gh pr list --base main --head sandbox --state open --json number --jq '.[0].number')
+
+          if [ -n "$EXISTING_PR" ]; then
+            echo "Updating existing promotion PR #$EXISTING_PR"
+            gh pr edit "$EXISTING_PR" --body-file promotion-pr-body.md
+            gh pr comment "$EXISTING_PR" --body "Sandbox re-validated at \`$VALIDATED_SHA\` - build passed. Ready for review."
+            echo "pr-number=$EXISTING_PR" >> "$GITHUB_OUTPUT"
+          else
+            echo "Creating new promotion PR"
+            gh pr create \
+              --base main \
+              --head sandbox \
+              --title "Promote sandbox to main ($(date -u +%Y-%m-%d))" \
+              --body-file promotion-pr-body.md
+          fi
+
+      - name: Request review from repo owner (notification)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO_OWNER: ${{ github.repository_owner }}
+        continue-on-error: true
+        run: |
+          PR_NUMBER=$(gh pr list --base main --head sandbox --state open --json number --jq '.[0].number')
+          if [ -n "$PR_NUMBER" ]; then
+            gh pr edit "$PR_NUMBER" --add-reviewer "$REPO_OWNER" || true
+          fi
