@@ -4,6 +4,12 @@ name: Validate sandbox and promote to main
 # 1. Validates that sandbox still builds successfully.
 # 2. If valid, opens (or updates) a sandbox -> main pull request for a human to review and merge.
 # This workflow NEVER merges the PR itself - promotion to production always requires a manual merge.
+#
+# Failure path: if the build fails, or the PR can't be created/updated (most
+# commonly because "Allow GitHub Actions to create and approve pull requests"
+# is disabled under Settings > Actions > General > Workflow permissions), this
+# workflow opens/updates a tracking GitHub Issue so a human is notified even
+# though the job itself still fails (visible as a red X in the Actions tab).
 on:
   push:
     branches:
@@ -13,10 +19,20 @@ on:
 permissions:
   contents: read
   pull-requests: write
+  issues: write
 
 concurrency:
   group: promote-sandbox-to-main
   cancel-in-progress: false
+
+env:
+  # Falls back to the default token, but automatically uses a PAT instead if
+  # one is added later as a repo secret named PROMOTION_PR_TOKEN - useful if
+  # you'd rather not enable "Allow GitHub Actions to create and approve pull
+  # requests" repo-wide.
+  GH_TOKEN: ${{ secrets.PROMOTION_PR_TOKEN || secrets.GITHUB_TOKEN }}
+  BUILD_FAILURE_ISSUE_TITLE: "Sandbox promotion automation needs attention: build failed"
+  PR_FAILURE_ISSUE_TITLE: "Sandbox promotion automation needs attention: could not open/update PR"
 
 jobs:
   validate:
@@ -59,6 +75,42 @@ jobs:
       - name: Record lint outcome
         run: |
           echo "Lint step outcome: ${{ steps.lint.outcome }}"
+
+      # Runs only when a previous required step (checkout/install/build) failed.
+      - name: Report build failure
+        if: failure()
+        env:
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          {
+            echo "The sandbox build failed in [this workflow run]($RUN_URL), so no"
+            echo "sandbox -> main promotion PR was created or updated."
+            echo
+            echo "Check the run logs for the actual error, fix it on \`sandbox\`, and this"
+            echo "workflow will automatically re-run on the next push (or trigger it manually"
+            echo "via Actions > Validate sandbox and promote to main > Run workflow)."
+          } > build-failure-body.md
+
+          EXISTING=$(gh issue list --state open --json number,title \
+            --jq ".[] | select(.title == \"$BUILD_FAILURE_ISSUE_TITLE\") | .number" | head -n1)
+
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body-file build-failure-body.md
+          else
+            gh issue create --title "$BUILD_FAILURE_ISSUE_TITLE" --body-file build-failure-body.md --label bug
+          fi
+
+      # Runs when the build succeeds, to auto-resolve a previously filed failure issue.
+      - name: Close stale build-failure issue if now fixed
+        if: success()
+        run: |
+          EXISTING=$(gh issue list --state open --json number,title \
+            --jq ".[] | select(.title == \"$BUILD_FAILURE_ISSUE_TITLE\") | .number" | head -n1)
+
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body "Build passed again at \`${{ github.sha }}\`. Closing."
+            gh issue close "$EXISTING"
+          fi
 
   promote:
     name: Open/update promotion PR
@@ -103,33 +155,107 @@ jobs:
           } > promotion-pr-body.md
 
       - name: Create or update promotion PR
+        id: promote_pr
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATED_SHA: ${{ github.sha }}
         run: |
           EXISTING_PR=$(gh pr list --base main --head sandbox --state open --json number --jq '.[0].number')
+          DELIM="PROMOTION_ERR_$$"
 
           if [ -n "$EXISTING_PR" ]; then
             echo "Updating existing promotion PR #$EXISTING_PR"
-            gh pr edit "$EXISTING_PR" --body-file promotion-pr-body.md
-            gh pr comment "$EXISTING_PR" --body "Sandbox re-validated at \`$VALIDATED_SHA\` - build passed. Ready for review."
+            if ! ERROR_OUTPUT=$(gh pr edit "$EXISTING_PR" --body-file promotion-pr-body.md 2>&1); then
+              echo "$ERROR_OUTPUT"
+              {
+                echo "promotion-error<<$DELIM"
+                echo "$ERROR_OUTPUT"
+                echo "$DELIM"
+              } >> "$GITHUB_OUTPUT"
+              exit 1
+            fi
+            gh pr comment "$EXISTING_PR" --body "Sandbox re-validated at \`$VALIDATED_SHA\` - build passed. Ready for review." || true
             echo "pr-number=$EXISTING_PR" >> "$GITHUB_OUTPUT"
           else
             echo "Creating new promotion PR"
-            gh pr create \
-              --base main \
-              --head sandbox \
-              --title "Promote sandbox to main ($(date -u +%Y-%m-%d))" \
-              --body-file promotion-pr-body.md
+            if ! ERROR_OUTPUT=$(gh pr create --base main --head sandbox --title "Promote sandbox to main ($(date -u +%Y-%m-%d))" --body-file promotion-pr-body.md 2>&1); then
+              echo "$ERROR_OUTPUT"
+              {
+                echo "promotion-error<<$DELIM"
+                echo "$ERROR_OUTPUT"
+                echo "$DELIM"
+              } >> "$GITHUB_OUTPUT"
+              exit 1
+            fi
+            echo "$ERROR_OUTPUT"
+          fi
+
+      # Runs only when the PR create/update step above failed.
+      - name: Report promotion failure
+        if: failure() && steps.promote_pr.outcome == 'failure'
+        env:
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          PROMOTION_ERROR: ${{ steps.promote_pr.outputs.promotion-error }}
+        run: |
+          {
+            echo "The sandbox -> main promotion PR could not be created or updated"
+            echo "automatically in [this workflow run]($RUN_URL)."
+            echo
+            if echo "$PROMOTION_ERROR" | grep -qi "not permitted to create or approve pull requests"; then
+              echo "**Likely cause:** GitHub Actions is not allowed to create pull requests"
+              echo "in this repository."
+              echo
+              echo "**Fix:** go to **Settings > Actions > General > Workflow permissions**,"
+              echo "enable **\"Allow GitHub Actions to create and approve pull requests\"**,"
+              echo "save, then re-run this workflow (Actions tab > this workflow > Re-run"
+              echo "jobs), or just push again to \`sandbox\`."
+              echo
+              echo "Alternatively, add a repo secret named \`PROMOTION_PR_TOKEN\` containing a"
+              echo "personal access token with \"Pull requests: Read and write\" permission -"
+              echo "this workflow will automatically use it instead of the default token."
+              echo
+            fi
+            echo "<details><summary>Error output</summary>"
+            echo
+            echo '```'
+            echo "$PROMOTION_ERROR"
+            echo '```'
+            echo
+            echo "</details>"
+            echo
+            echo "You can also create the PR manually in the meantime:"
+            echo
+            echo '```'
+            echo "gh pr create --base main --head sandbox --title \"Promote sandbox to main\""
+            echo '```'
+          } > promotion-failure-body.md
+
+          EXISTING=$(gh issue list --state open --json number,title \
+            --jq ".[] | select(.title == \"$PR_FAILURE_ISSUE_TITLE\") | .number" | head -n1)
+
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body-file promotion-failure-body.md
+          else
+            gh issue create --title "$PR_FAILURE_ISSUE_TITLE" --body-file promotion-failure-body.md --label bug
           fi
 
       - name: Request review from repo owner (notification)
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO_OWNER: ${{ github.repository_owner }}
         continue-on-error: true
         run: |
           PR_NUMBER=$(gh pr list --base main --head sandbox --state open --json number --jq '.[0].number')
           if [ -n "$PR_NUMBER" ]; then
             gh pr edit "$PR_NUMBER" --add-reviewer "$REPO_OWNER" || true
+          fi
+
+      # Runs when PR create/update succeeds, to auto-resolve a previously filed failure issue.
+      - name: Close stale promotion-failure issue if now fixed
+        if: steps.promote_pr.outcome == 'success'
+        run: |
+          EXISTING=$(gh issue list --state open --json number,title \
+            --jq ".[] | select(.title == \"$PR_FAILURE_ISSUE_TITLE\") | .number" | head -n1)
+
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body "Promotion PR created/updated successfully at \`${{ github.sha }}\`. Closing."
+            gh issue close "$EXISTING"
           fi
