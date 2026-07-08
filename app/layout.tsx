@@ -44,6 +44,34 @@ export const metadata: Metadata = {
   },
 }
 
+// This site is statically exported to GitHub Pages, which does not support
+// setting custom HTTP response headers (no server, no _headers file). A CSP
+// delivered via <meta http-equiv> is the only mechanism available in this
+// environment - it can't enforce frame-ancestors, X-Frame-Options,
+// Strict-Transport-Security, or Permissions-Policy (those require a real
+// HTTP header and a hosting layer that can send one), but it does restrict
+// which origins scripts, styles, images, fonts, and connections can load
+// from, which is the main defense-in-depth value here.
+//
+// script-src includes 'unsafe-inline' because Next.js's static export embeds
+// its RSC hydration payload as inline <script> tags with content that
+// differs on every build; per-script hashing/nonces are not available
+// without a server-rendering runtime (not used here). All other directives
+// are scoped to the exact external origins this app actually calls (see the
+// Xanga sidebar applets under components/xanga/applets/).
+const CONTENT_SECURITY_POLICY = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline' https://itunes.apple.com",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: https://images.credly.com",
+  "font-src 'self' data:",
+  "connect-src 'self' https://api.allorigins.win https://api.open-meteo.com",
+  "frame-src https://w.soundcloud.com",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+].join('; ')
+
 export default function RootLayout({
   children,
 }: {
@@ -51,6 +79,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta httpEquiv="Content-Security-Policy" content={CONTENT_SECURITY_POLICY} />
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
+      </head>
       <body className={`${openSans.className} ${openSans.variable}`} suppressHydrationWarning>
         <ThemeProvider>
           <XangaLayoutWrapper>

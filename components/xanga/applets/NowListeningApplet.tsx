@@ -21,7 +21,10 @@ type ItunesLookupEpisode = {
 
 function jsonp<T>(url: string): Promise<T> {
   return new Promise((resolve, reject) => {
-    const callbackName = `__jsonp_cb_${Math.random().toString(36).slice(2)}`
+    // crypto.randomUUID() is used instead of Math.random() purely to avoid a
+    // predictable/collidable global callback name on window - this value has
+    // no security purpose beyond namespacing.
+    const callbackName = `__jsonp_cb_${crypto.randomUUID().replace(/-/g, '_')}`
     const sep = url.includes('?') ? '&' : '?'
     const script = document.createElement('script')
     const timeout = window.setTimeout(() => {
@@ -49,6 +52,23 @@ function jsonp<T>(url: string): Promise<T> {
     }
     document.body.appendChild(script)
   })
+}
+
+// Episode links come from third-party RSS/iTunes responses (fetched via an
+// external proxy for the RSS fallback), so they're untrusted input. Only
+// allow http(s) URLs through to the DOM to prevent a compromised/malicious
+// feed from injecting a javascript:/data: URL into an href.
+function toSafeHttpUrl(url: string | undefined): string | undefined {
+  if (!url) return undefined
+  try {
+    const parsed = new URL(url)
+    if (parsed.protocol === 'http:' || parsed.protocol === 'https:') {
+      return parsed.toString()
+    }
+  } catch {
+    // Not a valid absolute URL.
+  }
+  return undefined
 }
 
 function formatDateMaybe(s: string | undefined): string | undefined {
@@ -190,7 +210,7 @@ export function NowListeningApplet() {
     <div className="space-y-3">
       {shows.map((show) => {
         const title = show.latest?.title ?? 'Latest episode'
-        const link = show.latest?.link ?? show.siteUrl ?? '#'
+        const link = toSafeHttpUrl(show.latest?.link) ?? toSafeHttpUrl(show.siteUrl) ?? '#'
         const date = formatDateMaybe(show.latest?.pubDate)
 
         return (
