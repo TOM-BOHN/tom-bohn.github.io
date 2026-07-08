@@ -21,7 +21,10 @@ type ItunesLookupEpisode = {
 
 function jsonp<T>(url: string): Promise<T> {
   return new Promise((resolve, reject) => {
-    const callbackName = `__jsonp_cb_${Math.random().toString(36).slice(2)}`
+    // crypto.randomUUID() is used instead of Math.random() purely to avoid a
+    // predictable/collidable global callback name on window - this value has
+    // no security purpose beyond namespacing.
+    const callbackName = `__jsonp_cb_${crypto.randomUUID().replace(/-/g, '_')}`
     const sep = url.includes('?') ? '&' : '?'
     const script = document.createElement('script')
     const timeout = window.setTimeout(() => {
