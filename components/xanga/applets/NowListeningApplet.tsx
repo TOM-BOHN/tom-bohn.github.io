@@ -51,6 +51,23 @@ function jsonp<T>(url: string): Promise<T> {
   })
 }
 
+// Episode links come from third-party RSS/iTunes responses (fetched via an
+// external proxy for the RSS fallback), so they're untrusted input. Only
+// allow http(s) URLs through to the DOM to prevent a compromised/malicious
+// feed from injecting a javascript:/data: URL into an href.
+function toSafeHttpUrl(url: string | undefined): string | undefined {
+  if (!url) return undefined
+  try {
+    const parsed = new URL(url)
+    if (parsed.protocol === 'http:' || parsed.protocol === 'https:') {
+      return parsed.toString()
+    }
+  } catch {
+    // Not a valid absolute URL.
+  }
+  return undefined
+}
+
 function formatDateMaybe(s: string | undefined): string | undefined {
   if (!s) return undefined
   const d = new Date(s)
@@ -190,7 +207,7 @@ export function NowListeningApplet() {
     <div className="space-y-3">
       {shows.map((show) => {
         const title = show.latest?.title ?? 'Latest episode'
-        const link = show.latest?.link ?? show.siteUrl ?? '#'
+        const link = toSafeHttpUrl(show.latest?.link) ?? toSafeHttpUrl(show.siteUrl) ?? '#'
         const date = formatDateMaybe(show.latest?.pubDate)
 
         return (
