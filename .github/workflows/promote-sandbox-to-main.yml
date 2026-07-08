@@ -73,8 +73,10 @@ jobs:
           echo "ahead-count=$AHEAD" >> "$GITHUB_OUTPUT"
 
       - name: Record lint outcome
+        env:
+          LINT_OUTCOME: ${{ steps.lint.outcome }}
         run: |
-          echo "Lint step outcome: ${{ steps.lint.outcome }}"
+          echo "Lint step outcome: $LINT_OUTCOME"
 
       # Runs only when a previous required step (checkout/install/build) failed.
       - name: Report build failure
@@ -103,12 +105,14 @@ jobs:
       # Runs when the build succeeds, to auto-resolve a previously filed failure issue.
       - name: Close stale build-failure issue if now fixed
         if: success()
+        env:
+          VALIDATED_SHA: ${{ github.sha }}
         run: |
           EXISTING=$(gh issue list --state open --json number,title \
             --jq ".[] | select(.title == \"$BUILD_FAILURE_ISSUE_TITLE\") | .number" | head -n1)
 
           if [ -n "$EXISTING" ]; then
-            gh issue comment "$EXISTING" --body "Build passed again at \`${{ github.sha }}\`. Closing."
+            gh issue comment "$EXISTING" --body "Build passed again at \`$VALIDATED_SHA\`. Closing."
             gh issue close "$EXISTING"
           fi
 
@@ -251,11 +255,13 @@ jobs:
       # Runs when PR create/update succeeds, to auto-resolve a previously filed failure issue.
       - name: Close stale promotion-failure issue if now fixed
         if: steps.promote_pr.outcome == 'success'
+        env:
+          VALIDATED_SHA: ${{ github.sha }}
         run: |
           EXISTING=$(gh issue list --state open --json number,title \
             --jq ".[] | select(.title == \"$PR_FAILURE_ISSUE_TITLE\") | .number" | head -n1)
 
           if [ -n "$EXISTING" ]; then
-            gh issue comment "$EXISTING" --body "Promotion PR created/updated successfully at \`${{ github.sha }}\`. Closing."
+            gh issue comment "$EXISTING" --body "Promotion PR created/updated successfully at \`$VALIDATED_SHA\`. Closing."
             gh issue close "$EXISTING"
           fi
