@@ -1,12 +1,12 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useTheme } from './ThemeProvider'
+import { useTheme, type Theme } from './ThemeProvider'
 import { useXangaLayoutOptional } from '@/components/xanga/XangaLayoutContext'
 
-function ThemeIcon({ theme }: { theme: 'light' | 'dark' | 'xanga' }) {
+function ThemeIcon({ theme }: { theme: Theme }) {
   if (theme === 'light') {
     return (
       <svg
@@ -57,35 +57,96 @@ function ThemeIcon({ theme }: { theme: 'light' | 'dark' | 'xanga' }) {
   )
 }
 
-function ThemeIconButton({
-  value,
-  active,
-  onClick,
-}: {
-  value: 'light' | 'dark' | 'xanga'
-  active: boolean
-  onClick: () => void
-}) {
-  const label = value === 'xanga' ? 'Xanga' : value === 'dark' ? 'Dark' : 'Light'
+const THEME_OPTIONS: { value: Theme; label: string }[] = [
+  { value: 'light', label: 'Light' },
+  { value: 'dark', label: 'Dark' },
+  { value: 'xanga', label: 'Xanga' },
+]
+
+function themeLabel(theme: Theme) {
+  return theme === 'xanga' ? 'Xanga' : theme === 'dark' ? 'Dark' : 'Light'
+}
+
+// Shows only the active theme's icon. Clicking it opens a small tray/menu
+// with all 3 theme options; picking one applies the theme, closes the tray,
+// and swaps the trigger icon to match.
+function ThemeMenu({ theme, setTheme }: { theme: Theme; setTheme: (t: Theme) => void }) {
+  const [open, setOpen] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const triggerRef = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    if (!open) return
+
+    function handlePointerDown(event: MouseEvent) {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setOpen(false)
+      }
+    }
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        setOpen(false)
+        triggerRef.current?.focus()
+      }
+    }
+
+    document.addEventListener('mousedown', handlePointerDown)
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.removeEventListener('mousedown', handlePointerDown)
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [open])
+
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-pressed={active}
-      aria-label={`${label} theme`}
-      title={`${label} theme`}
-      className={`relative group w-9 h-9 flex items-center justify-center transition-colors ${
-        active
-          ? 'bg-bg-secondary text-accent'
-          : 'bg-transparent text-text-primary hover:bg-bg-secondary'
-      }`}
-    >
-      <ThemeIcon theme={value} />
-      <span className="sr-only">{label}</span>
-      <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded border border-border bg-bg-primary px-2 py-1 text-[11px] text-text-primary opacity-0 shadow-sm transition-opacity group-hover:opacity-100">
-        {label}
-      </span>
-    </button>
+    <div className="relative" ref={containerRef}>
+      <button
+        ref={triggerRef}
+        type="button"
+        onClick={() => setOpen((isOpen) => !isOpen)}
+        aria-haspopup="menu"
+        aria-expanded={open}
+        aria-label={`Theme: ${themeLabel(theme)}. Open theme menu`}
+        title={`Theme: ${themeLabel(theme)}`}
+        className="relative w-9 h-9 flex items-center justify-center text-accent hover:bg-bg-secondary transition-colors"
+      >
+        <ThemeIcon theme={theme} />
+        <span className="sr-only">Theme: {themeLabel(theme)}. Open theme menu</span>
+      </button>
+
+      {open && (
+        <div
+          role="menu"
+          aria-label="Choose theme"
+          className="absolute right-0 top-full z-20 mt-2 min-w-[140px] overflow-hidden rounded border border-border bg-bg-primary shadow-lg"
+        >
+          {THEME_OPTIONS.map((option) => {
+            const isActive = theme === option.value
+            return (
+              <button
+                key={option.value}
+                type="button"
+                role="menuitemradio"
+                aria-checked={isActive}
+                onClick={() => {
+                  setTheme(option.value)
+                  setOpen(false)
+                  triggerRef.current?.focus()
+                }}
+                className={`flex w-full items-center gap-2.5 px-3 py-2 text-sm transition-colors ${
+                  isActive
+                    ? 'bg-bg-secondary text-accent font-semibold'
+                    : 'text-text-primary hover:bg-bg-secondary'
+                }`}
+              >
+                <ThemeIcon theme={option.value} />
+                {option.label}
+              </button>
+            )
+          })}
+        </div>
+      )}
+    </div>
   )
 }
 
@@ -159,6 +220,29 @@ function DesktopNavLink({
         }`}
       />
     </Link>
+  )
+}
+
+// Distinct from the hamburger icon on purpose: this represents "bring the
+// sidebar panel back", not "open a menu". The highlighted panel + chevron
+// point toward whichever side (left/right) the sidebar will reappear on.
+function RestoreSidebarIcon({ side }: { side: 'left' | 'right' }) {
+  const panelX = side === 'left' ? 3 : 15
+  const chevronPath = side === 'left' ? 'M8.5 9l-2.5 3 2.5 3' : 'M15.5 9l2.5 3-2.5 3'
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="18"
+      height="18"
+      aria-hidden="true"
+      className="block"
+      fill="none"
+      stroke="currentColor"
+    >
+      <rect x="3" y="4" width="18" height="16" rx="2" strokeWidth="1.6" />
+      <rect x={panelX} y="5" width="6" height="14" rx="1" fill="currentColor" stroke="none" opacity="0.35" />
+      <path d={chevronPath} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   )
 }
 
@@ -236,39 +320,22 @@ export function Header() {
               })}
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            <div className="inline-flex overflow-hidden">
-              {(['light', 'dark'] as const).map((t) => (
-                <ThemeIconButton
-                  key={t}
-                  value={t}
-                  active={theme === t}
-                  onClick={() => setTheme(t)}
-                />
-              ))}
-              {showCollapsedIcon && layout ? (
-                <button
-                  onClick={() => layout.setSidebarSide('right')}
-                  className="relative group w-9 h-9 flex items-center justify-center transition-colors bg-bg-secondary text-accent hover:bg-bg-secondary"
-                  aria-label="Show sidebar"
-                  title="Show sidebar"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                  </svg>
-                  <span className="sr-only">Show sidebar</span>
-                  <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded border border-border bg-bg-primary px-2 py-1 text-[11px] text-text-primary opacity-0 shadow-sm transition-opacity group-hover:opacity-100 z-10">
-                    Show sidebar
-                  </span>
-                </button>
-              ) : (
-                <ThemeIconButton
-                  value="xanga"
-                  active={theme === 'xanga'}
-                  onClick={() => setTheme('xanga')}
-                />
-              )}
-            </div>
+          <div className="flex items-center gap-1">
+            {showCollapsedIcon && layout && (
+              <button
+                onClick={() => layout.restoreSidebar()}
+                className="relative group w-9 h-9 flex items-center justify-center rounded border border-accent/40 bg-accent/10 text-accent transition-colors hover:bg-accent hover:text-white"
+                aria-label={`Restore ${layout.lastVisibleSide} sidebar`}
+                title="Restore sidebar"
+              >
+                <RestoreSidebarIcon side={layout.lastVisibleSide} />
+                <span className="sr-only">Restore {layout.lastVisibleSide} sidebar</span>
+                <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded border border-border bg-bg-primary px-2 py-1 text-[11px] text-text-primary opacity-0 shadow-sm transition-opacity group-hover:opacity-100 z-10">
+                  Restore sidebar
+                </span>
+              </button>
+            )}
+            <ThemeMenu theme={theme} setTheme={setTheme} />
             {/* Hamburger toggle for mobile navigation */}
             <button
               type="button"
