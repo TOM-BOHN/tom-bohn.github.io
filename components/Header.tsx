@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTheme } from './ThemeProvider'
@@ -123,13 +124,75 @@ function LockIcon({ className }: { className?: string }) {
   )
 }
 
+// Desktop nav link with an animated underline indicator that grows in from
+// the center on hover, and stays put (in the accent color) on the active page.
+function DesktopNavLink({
+  href,
+  label,
+  isActive,
+  vip,
+}: {
+  href: string
+  label: string
+  isActive: boolean
+  vip?: boolean
+}) {
+  return (
+    <Link
+      href={href}
+      className={`group relative flex items-center gap-1.5 pb-1 transition-colors ${
+        isActive ? 'text-accent font-semibold' : 'text-text-secondary hover:text-accent-orange'
+      }`}
+      title={vip ? 'VIP Content - Login Required' : undefined}
+    >
+      {vip && <LockIcon className="opacity-60 group-hover:opacity-100 transition-opacity" />}
+      <span>{label}</span>
+      {vip && (
+        <span className="absolute -top-1 -right-1 text-[9px] font-bold text-accent-orange opacity-0 group-hover:opacity-100 transition-opacity">
+          VIP
+        </span>
+      )}
+      <span
+        aria-hidden="true"
+        className={`absolute -bottom-0.5 left-0 h-0.5 w-full origin-center scale-x-0 bg-accent-orange transition-transform duration-300 ease-out group-hover:scale-x-100 ${
+          isActive ? 'scale-x-100 bg-accent' : ''
+        }`}
+      />
+    </Link>
+  )
+}
+
+function HamburgerIcon({ open }: { open: boolean }) {
+  return (
+    <svg
+      className="h-5 w-5"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      {open ? (
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+      ) : (
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+      )}
+    </svg>
+  )
+}
+
 export function Header() {
   const pathname = usePathname()
   const { theme, setTheme } = useTheme()
   const layout = useXangaLayoutOptional()
-  
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
   const isXanga = theme === 'xanga'
   const showCollapsedIcon = isXanga && layout !== null && layout.sidebarSide === 'hide'
+
+  // Close the mobile menu whenever the route changes (e.g. after tapping a link).
+  useEffect(() => {
+    setMobileMenuOpen(false)
+  }, [pathname])
 
   return (
     <header className="border-b border-border bg-bg-primary sticky top-0 z-50 backdrop-blur-sm bg-opacity-90">
@@ -145,17 +208,12 @@ export function Header() {
                 const isActive = pathname === item.href || 
                   (item.href !== '/' && pathname?.startsWith(item.href))
                 return (
-                  <Link
+                  <DesktopNavLink
                     key={item.href}
                     href={item.href}
-                    className={`transition-colors ${
-                      isActive
-                        ? 'text-accent font-semibold'
-                        : 'text-text-secondary hover:text-accent-orange'
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
+                    label={item.label}
+                    isActive={isActive}
+                  />
                 )
               })}
               
@@ -167,22 +225,13 @@ export function Header() {
                 const isActive = pathname === item.href || 
                   (item.href !== '/' && pathname?.startsWith(item.href))
                 return (
-                  <Link
+                  <DesktopNavLink
                     key={item.href}
                     href={item.href}
-                    className={`group relative flex items-center gap-1.5 transition-colors ${
-                      isActive
-                        ? 'text-accent font-semibold'
-                        : 'text-text-secondary hover:text-accent-orange'
-                    }`}
-                    title="VIP Content - Login Required"
-                  >
-                    <LockIcon className="opacity-60 group-hover:opacity-100 transition-opacity" />
-                    <span>{item.label}</span>
-                    <span className="absolute -top-1 -right-1 text-[9px] font-bold text-accent-orange opacity-0 group-hover:opacity-100 transition-opacity">
-                      VIP
-                    </span>
-                  </Link>
+                    label={item.label}
+                    isActive={isActive}
+                    vip
+                  />
                 )
               })}
             </div>
@@ -220,83 +269,102 @@ export function Header() {
                 />
               )}
             </div>
+            {/* Hamburger toggle for mobile navigation */}
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen((open) => !open)}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-nav"
+              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+              className="md:hidden relative w-9 h-9 flex items-center justify-center text-text-primary hover:bg-bg-secondary transition-colors"
+            >
+              <HamburgerIcon open={mobileMenuOpen} />
+            </button>
           </div>
         </nav>
-        {/* Mobile menu */}
-        <div className="md:hidden mt-4 pb-2">
-          <div className="flex flex-col gap-3">
-            {/* Public navigation items */}
-            <div className="flex flex-wrap justify-center gap-2">
-              {publicNavItems.map((item) => {
-                const isActive = pathname === item.href || 
-                  (item.href !== '/' && pathname?.startsWith(item.href))
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`px-4 py-1.5 rounded text-sm transition-colors flex-1 min-w-[70px] text-center ${
-                      isActive
-                        ? 'bg-accent text-white'
-                        : 'bg-bg-secondary text-text-secondary hover:bg-accent-orange hover:text-white'
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                )
-              })}
-            </div>
-            
-            {/* Visual separator */}
-            <div className="flex items-center gap-2">
-              <div className="flex-1 h-px bg-border" aria-hidden="true" />
-              <span className="text-xs text-text-secondary/60 px-2">VIP</span>
-              <div className="flex-1 h-px bg-border" aria-hidden="true" />
-            </div>
-            
-            {/* VIP navigation items - Row 1: Hub, Links, V2ME */}
-            <div className="flex justify-center gap-2">
-              {vipNavItems.slice(0, 3).map((item) => {
-                const isActive = pathname === item.href || 
-                  (item.href !== '/' && pathname?.startsWith(item.href))
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`group relative px-3 py-1.5 rounded text-sm transition-colors flex items-center justify-center gap-1.5 flex-1 min-w-[70px] ${
-                      isActive
-                        ? 'bg-accent text-white'
-                        : 'bg-bg-secondary text-text-secondary hover:bg-accent-orange hover:text-white'
-                    }`}
-                    title="VIP Content - Login Required"
-                  >
-                    <LockIcon className={isActive ? 'opacity-100' : 'opacity-60'} />
-                    <span>{item.label}</span>
-                  </Link>
-                )
-              })}
-            </div>
-            
-            {/* VIP navigation items - Row 2: Learning, Projects */}
-            <div className="flex justify-center gap-2">
-              {vipNavItems.slice(3).map((item) => {
-                const isActive = pathname === item.href || 
-                  (item.href !== '/' && pathname?.startsWith(item.href))
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`group relative px-3 py-1.5 rounded text-sm transition-colors flex items-center justify-center gap-1.5 flex-1 min-w-[70px] ${
-                      isActive
-                        ? 'bg-accent text-white'
-                        : 'bg-bg-secondary text-text-secondary hover:bg-accent-orange hover:text-white'
-                    }`}
-                    title="VIP Content - Login Required"
-                  >
-                    <LockIcon className={isActive ? 'opacity-100' : 'opacity-60'} />
-                    <span>{item.label}</span>
-                  </Link>
-                )
-              })}
+
+        {/* Mobile menu - smoothly expands/collapses via the grid-rows trick (no JS height measuring needed) */}
+        <div
+          id="mobile-nav"
+          className={`md:hidden grid overflow-hidden transition-[grid-template-rows] duration-300 ease-in-out ${
+            mobileMenuOpen ? 'grid-rows-[1fr] mt-4' : 'grid-rows-[0fr]'
+          }`}
+        >
+          <div className="min-h-0 overflow-hidden">
+            <div className="flex flex-col gap-3 pb-2">
+              {/* Public navigation items */}
+              <div className="flex flex-wrap justify-center gap-2">
+                {publicNavItems.map((item) => {
+                  const isActive = pathname === item.href || 
+                    (item.href !== '/' && pathname?.startsWith(item.href))
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`px-4 py-1.5 rounded text-sm transition-colors flex-1 min-w-[70px] text-center ${
+                        isActive
+                          ? 'bg-accent text-white'
+                          : 'bg-bg-secondary text-text-secondary hover:bg-accent-orange hover:text-white'
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  )
+                })}
+              </div>
+              
+              {/* Visual separator */}
+              <div className="flex items-center gap-2">
+                <div className="flex-1 h-px bg-border" aria-hidden="true" />
+                <span className="text-xs text-text-secondary/60 px-2">VIP</span>
+                <div className="flex-1 h-px bg-border" aria-hidden="true" />
+              </div>
+              
+              {/* VIP navigation items - Row 1: Hub, Links, V2ME */}
+              <div className="flex justify-center gap-2">
+                {vipNavItems.slice(0, 3).map((item) => {
+                  const isActive = pathname === item.href || 
+                    (item.href !== '/' && pathname?.startsWith(item.href))
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`group relative px-3 py-1.5 rounded text-sm transition-colors flex items-center justify-center gap-1.5 flex-1 min-w-[70px] ${
+                        isActive
+                          ? 'bg-accent text-white'
+                          : 'bg-bg-secondary text-text-secondary hover:bg-accent-orange hover:text-white'
+                      }`}
+                      title="VIP Content - Login Required"
+                    >
+                      <LockIcon className={isActive ? 'opacity-100' : 'opacity-60'} />
+                      <span>{item.label}</span>
+                    </Link>
+                  )
+                })}
+              </div>
+              
+              {/* VIP navigation items - Row 2: Learning, Projects */}
+              <div className="flex justify-center gap-2">
+                {vipNavItems.slice(3).map((item) => {
+                  const isActive = pathname === item.href || 
+                    (item.href !== '/' && pathname?.startsWith(item.href))
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`group relative px-3 py-1.5 rounded text-sm transition-colors flex items-center justify-center gap-1.5 flex-1 min-w-[70px] ${
+                        isActive
+                          ? 'bg-accent text-white'
+                          : 'bg-bg-secondary text-text-secondary hover:bg-accent-orange hover:text-white'
+                      }`}
+                      title="VIP Content - Login Required"
+                    >
+                      <LockIcon className={isActive ? 'opacity-100' : 'opacity-60'} />
+                      <span>{item.label}</span>
+                    </Link>
+                  )
+                })}
+              </div>
             </div>
           </div>
         </div>
