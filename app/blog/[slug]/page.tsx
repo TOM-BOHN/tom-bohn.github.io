@@ -3,6 +3,8 @@ import { getBlogPost, getBlogPosts } from '@/lib/blog'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { FaMedium } from 'react-icons/fa'
+import { ReadingProgressBar } from '@/components/blog/ReadingProgressBar'
+import { ShareButton } from '@/components/blog/ShareButton'
 
 export const dynamicParams = false
 
@@ -30,10 +32,11 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
   return (
     <div className="container mx-auto px-4 py-12">
+      <ReadingProgressBar />
       <div className="max-w-6xl mx-auto">
         <div className="mb-8">
           <p className="text-sm text-accent mb-4 font-mono">{'>'} SOFTWARE ENGINEER</p>
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
             <h1 className="text-2xl font-semibold text-text-primary font-mono">
               {'// BLOG'}
             </h1>
@@ -44,6 +47,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
               >
                 ← Back to Blog
               </Link>
+              <ShareButton title={post.title} />
               {post.mediumUrl && (
                 <a
                   href={post.mediumUrl}
@@ -61,12 +65,16 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
         <article className="prose prose-lg max-w-6xl">
           <div className="mb-4">
-            <p className="text-text-secondary text-sm">
-              {new Date(post.date).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
+            <p className="text-text-secondary text-sm flex items-center gap-2">
+              <span>
+                {new Date(post.date).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
+              </span>
+              <span aria-hidden="true">&middot;</span>
+              <span>{post.readingTimeMinutes} min read</span>
             </p>
           </div>
           {post.title.includes(':') ? (

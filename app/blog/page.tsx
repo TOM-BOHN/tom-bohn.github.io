@@ -2,6 +2,8 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { getBlogPosts } from '@/lib/blog'
 import { FaMedium } from 'react-icons/fa'
+import { RoleTypewriter } from '@/components/RoleTypewriter'
+import { ScrollReveal } from '@/components/ScrollReveal'
 
 export const metadata: Metadata = {
   title: 'Blog',
@@ -19,7 +21,9 @@ export default async function Blog() {
       <div className="container mx-auto px-4 py-12 relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="mb-12 fade-in-up">
-            <p className="text-sm text-accent mb-4 font-mono typewriter-cursor">PRODUCT MANAGER & SOFTWARE DESIGNER</p>
+            <p className="text-sm text-accent mb-4 font-mono typewriter-cursor">
+              <RoleTypewriter />
+            </p>
             <h1 className="text-2xl font-semibold mb-4 text-text-primary font-mono flex items-center gap-3">
               <span className="text-accent-orange">{'⟩'}</span>
               {'BLOG'}
@@ -37,10 +41,10 @@ export default async function Blog() {
               </p>
             </div>
           ) : (
-            <div className="space-y-8 fade-in-up fade-in-up-delay-1">
-              {posts.map((post) => (
+            <div className="space-y-8">
+              {posts.map((post, index) => (
+                <ScrollReveal key={post.slug} delayMs={Math.min(index, 4) * 80}>
                 <article
-                  key={post.slug}
                   className="glass-card shine-effect rounded-xl p-6 hover:border-accent transition-all"
                 >
                 <div className="flex items-start justify-between gap-4 mb-2">
@@ -73,12 +77,16 @@ export default async function Blog() {
                     </a>
                   )}
                 </div>
-                <p className="text-text-secondary text-sm mb-4">
-                  {new Date(post.date).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  })}
+                <p className="text-text-secondary text-sm mb-4 flex items-center gap-2">
+                  <span>
+                    {new Date(post.date).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}
+                  </span>
+                  <span aria-hidden="true">&middot;</span>
+                  <span>{post.readingTimeMinutes} min read</span>
                 </p>
                 <p className="text-text-secondary leading-loose">
                   {post.excerpt}
@@ -93,6 +101,7 @@ export default async function Blog() {
                   </svg>
                 </Link>
               </article>
+              </ScrollReveal>
             ))}
           </div>
         )}

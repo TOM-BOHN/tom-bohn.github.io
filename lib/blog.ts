@@ -48,6 +48,17 @@ export interface BlogPost {
   excerpt: string
   content: string
   mediumUrl?: string
+  readingTimeMinutes: number
+}
+
+// Average adult silent-reading speed. Used to estimate a "X min read" label
+// from the rendered HTML content (tags stripped before counting words).
+const WORDS_PER_MINUTE = 225
+
+function estimateReadingTimeMinutes(html: string): number {
+  const text = html.replace(/<[^>]*>/g, ' ')
+  const wordCount = text.split(/\s+/).filter(Boolean).length
+  return Math.max(1, Math.round(wordCount / WORDS_PER_MINUTE))
 }
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
@@ -78,6 +89,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
           excerpt,
           content: contentHtml,
           mediumUrl: data.mediumUrl,
+          readingTimeMinutes: estimateReadingTimeMinutes(contentHtml),
         }
       })
   )
@@ -113,5 +125,6 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
     excerpt,
     content: contentHtml,
     mediumUrl: data.mediumUrl,
+    readingTimeMinutes: estimateReadingTimeMinutes(contentHtml),
   }
 }
