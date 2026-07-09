@@ -4,6 +4,8 @@ import { useState } from 'react'
 import type { Link } from '@/lib/links'
 import { LinksHeader } from './LinksHeader'
 import { LinksSection } from './LinksSection'
+import { RoleTypewriter } from '@/components/RoleTypewriter'
+import { ScrollReveal } from '@/components/ScrollReveal'
 
 interface LinkSectionData {
   id: string
@@ -48,7 +50,9 @@ export function LinksPageWrapper({ sections }: LinksPageWrapperProps) {
       <div className="container mx-auto px-4 py-12 relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="mb-12 fade-in-up">
-            <p className="text-sm text-accent mb-4 font-mono typewriter-cursor">PRODUCT MANAGER & SOFTWARE DESIGNER</p>
+            <p className="text-sm text-accent mb-4 font-mono typewriter-cursor">
+              <RoleTypewriter />
+            </p>
             <div className="flex items-center justify-between mb-3">
               <h1 className="text-2xl font-semibold text-text-primary font-mono flex items-center gap-3">
                 <span className="text-accent-orange">{'⟩'}</span>
@@ -68,15 +72,16 @@ export function LinksPageWrapper({ sections }: LinksPageWrapperProps) {
               <p className="text-text-secondary text-sm">Links will be organized by category here.</p>
             </div>
           ) : (
-            <div className="fade-in-up fade-in-up-delay-1">
-              {sections.map((section) => (
-                <LinksSection
-                  key={section.id}
-                  title={section.title}
-                  links={section.links}
-                  isExpanded={expandedSections.has(section.id)}
-                  onToggle={() => toggleSection(section.id)}
-                />
+            <div>
+              {sections.map((section, index) => (
+                <ScrollReveal key={section.id} delayMs={Math.min(index, 4) * 80}>
+                  <LinksSection
+                    title={section.title}
+                    links={section.links}
+                    isExpanded={expandedSections.has(section.id)}
+                    onToggle={() => toggleSection(section.id)}
+                  />
+                </ScrollReveal>
               ))}
             </div>
           )}
