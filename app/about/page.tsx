@@ -1,5 +1,7 @@
 import Image from 'next/image'
 import type { Metadata } from 'next'
+import { RoleTypewriter } from '@/components/RoleTypewriter'
+import { ScrollReveal } from '@/components/ScrollReveal'
 
 export const metadata: Metadata = {
   title: 'About',
@@ -16,7 +18,9 @@ export default function About() {
         <div className="max-w-6xl mx-auto">
           {/* Header section with role tag */}
           <div className="mb-12 fade-in-up">
-            <p className="text-sm text-accent mb-4 font-mono typewriter-cursor">PRODUCT MANAGER & SOFTWARE DESIGNER</p>
+            <p className="text-sm text-accent mb-4 font-mono typewriter-cursor">
+              <RoleTypewriter />
+            </p>
             <h1 className="text-6xl md:text-7xl font-bold mb-8">
               <span className="gradient-text">
                 Thomas Bohn
@@ -54,7 +58,8 @@ export default function About() {
             </div>
 
             {/* Right column - About content */}
-            <div className="prose prose-lg max-w-none fade-in-up fade-in-up-delay-2">
+            <div className="prose prose-lg max-w-none">
+              <ScrollReveal>
               <section className="mb-10">
                 <h2 className="text-2xl font-semibold mb-6 text-text-primary font-mono flex items-center gap-3">
                   <span className="text-accent-orange">{'⟩'}</span>
@@ -108,7 +113,9 @@ export default function About() {
                 </p>
               </div>
             </section>
+            </ScrollReveal>
 
+            <ScrollReveal>
             <section className="mb-10">
               <h2 className="text-2xl font-semibold mb-6 text-text-primary font-mono flex items-center gap-3">
                 <span className="text-accent-orange">{'⟩'}</span>
@@ -145,7 +152,9 @@ export default function About() {
                 </p>
               </div>
             </section>
+            </ScrollReveal>
 
+            <ScrollReveal>
             <section className="mb-10">
               <h2 className="text-2xl font-semibold mb-6 text-text-primary font-mono flex items-center gap-3">
                 <span className="text-accent-orange">{'⟩'}</span>
@@ -182,7 +191,9 @@ export default function About() {
                 </p>
               </div>
             </section>
+            </ScrollReveal>
 
+            <ScrollReveal>
             <section className="mb-10">
               <h2 className="text-2xl font-semibold mb-6 text-text-primary font-mono flex items-center gap-3">
                 <span className="text-accent-orange">{'⟩'}</span>
@@ -235,7 +246,9 @@ export default function About() {
                 </p>
               </div>
             </section>
+            </ScrollReveal>
 
+            <ScrollReveal>
             <section className="mb-10">
               <h2 className="text-2xl font-semibold mb-6 text-text-primary font-mono flex items-center gap-3">
                 <span className="text-accent-orange">{'⟩'}</span>
@@ -270,7 +283,9 @@ export default function About() {
                 </p>
               </div>
             </section>
+            </ScrollReveal>
 
+            <ScrollReveal>
             <section>
               <h2 className="text-2xl font-semibold mb-4 text-text-primary font-mono flex items-center gap-3">
                 <span className="text-accent-orange">{'⟩'}</span>
@@ -291,6 +306,7 @@ export default function About() {
                 Contact Me
               </a>
             </section>
+            </ScrollReveal>
           </div>
         </div>
         </div>

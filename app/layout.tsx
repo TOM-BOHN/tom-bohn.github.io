@@ -6,6 +6,7 @@ import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { XangaShell } from '@/components/XangaShell'
 import { XangaLayoutWrapper } from '@/components/XangaLayoutWrapper'
+import { BackToTop } from '@/components/BackToTop'
 
 const openSans = Open_Sans({ 
   subsets: ['latin'],
@@ -36,11 +37,20 @@ export const metadata: Metadata = {
     url: 'https://thomaslbohn.com',
     siteName: 'Thomas Bohn',
     type: 'website',
+    images: [
+      {
+        url: '/images/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Thomas Bohn - Product Manager & Software Designer',
+      },
+    ],
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: 'Thomas Bohn',
     description: 'Personal website and blog',
+    images: ['/images/og-image.png'],
   },
 }
 
@@ -84,14 +94,21 @@ export default function RootLayout({
         <meta name="referrer" content="strict-origin-when-cross-origin" />
       </head>
       <body className={`${openSans.className} ${openSans.variable}`} suppressHydrationWarning>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:rounded focus:bg-accent focus:px-4 focus:py-2 focus:text-white focus:shadow-lg"
+        >
+          Skip to content
+        </a>
         <ThemeProvider>
           <XangaLayoutWrapper>
             <div className="min-h-screen flex flex-col">
               <Header />
-              <main className="flex-grow">
+              <main id="main-content" className="flex-grow">
                 <XangaShell>{children}</XangaShell>
               </main>
               <Footer />
+              <BackToTop />
             </div>
           </XangaLayoutWrapper>
         </ThemeProvider>

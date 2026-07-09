@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { getProjects } from '@/lib/projects'
 import { ProjectsSection } from '@/components/projects/ProjectsSection'
 import { ProjectsPageHeader } from '@/components/projects/ProjectsPageHeader'
+import { RoleTypewriter } from '@/components/RoleTypewriter'
+import { ScrollReveal } from '@/components/ScrollReveal'
 
 export const metadata: Metadata = {
   title: 'Projects',
@@ -19,7 +21,9 @@ export default async function Projects() {
       <div className="container mx-auto px-4 py-12 relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="mb-12 fade-in-up">
-            <p className="text-sm text-accent mb-4 font-mono typewriter-cursor">PRODUCT MANAGER & SOFTWARE DESIGNER</p>
+            <p className="text-sm text-accent mb-4 font-mono typewriter-cursor">
+              <RoleTypewriter />
+            </p>
             <div className="flex items-center justify-between mb-4">
               <h1 className="text-2xl font-semibold text-text-primary font-mono flex items-center gap-3">
                 <span className="text-accent-orange">{'⟩'}</span>
@@ -32,9 +36,9 @@ export default async function Projects() {
             </p>
           </div>
 
-          <div className="fade-in-up fade-in-up-delay-1">
+          <ScrollReveal>
             <ProjectsSection themes={projectsData.themes} />
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </>

@@ -1,5 +1,7 @@
 import Image from 'next/image'
 import mediumHomepage from '@/data/medium-homepage.json'
+import { RoleTypewriter } from '@/components/RoleTypewriter'
+import { ScrollReveal } from '@/components/ScrollReveal'
 
 export default function Home() {
   const featuredMediumArticles = Array.isArray(mediumHomepage.featuredArticles)
@@ -19,7 +21,9 @@ export default function Home() {
       <div className="container mx-auto px-4 py-12 relative z-10">
         <div className="max-w-6xl mx-auto">
           {/* Role tag with fade-in animation */}
-          <p className="text-sm text-accent mb-4 font-mono fade-in-up typewriter-cursor">PRODUCT MANAGER & SOFTWARE DESIGNER</p>
+          <p className="text-sm text-accent mb-4 font-mono fade-in-up typewriter-cursor">
+            <RoleTypewriter />
+          </p>
           
           {/* Main content area - two column layout */}
           <div className="grid md:grid-cols-2 gap-12 mb-16">
@@ -85,7 +89,7 @@ export default function Home() {
         <hr className="gradient-divider fade-in-up fade-in-up-delay-2" />
 
         {/* Project Cards Section */}
-        <div className="mb-12 fade-in-up fade-in-up-delay-3">
+        <ScrollReveal className="mb-12">
           <h2 className="text-2xl font-bold mb-10 text-text-primary font-mono flex items-center gap-3">
             <span className="text-accent-orange">{'⟩'}</span>
             {'MY WORK'}
@@ -205,13 +209,13 @@ export default function Home() {
               </a>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Gradient Divider */}
-        <hr className="gradient-divider fade-in-up fade-in-up-delay-4" />
+        <hr className="gradient-divider" />
 
         {/* Dig Deeper Section */}
-        <div className="mb-8 fade-in-up fade-in-up-delay-4">
+        <ScrollReveal className="mb-8">
           <h2 className="text-2xl font-bold mb-8 text-text-primary font-mono flex items-center gap-3">
             <span className="text-accent-orange">{'⟩'}</span>
             {'DIG DEEPER'}
@@ -242,7 +246,7 @@ export default function Home() {
               Request VIP Access
             </a>
           </div>
-        </div>
+        </ScrollReveal>
         </div>
       </div>
     </>

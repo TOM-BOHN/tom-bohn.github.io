@@ -11,6 +11,8 @@ import { MeasuresSection } from './MeasuresSection'
 import { ProgressBar } from './ProgressBar'
 import { DownloadUploadControls } from './DownloadUploadControls'
 import { V2MeHeader } from './V2MeHeader'
+import { RoleTypewriter } from '@/components/RoleTypewriter'
+import { ScrollReveal } from '@/components/ScrollReveal'
 
 interface V2MePageWrapperProps {
   initialData: V2MeData
@@ -130,7 +132,9 @@ export function V2MePageWrapper({ initialData }: V2MePageWrapperProps) {
       <div className="container mx-auto px-4 py-12 relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="mb-8 fade-in-up">
-            <p className="text-sm text-accent mb-4 font-mono typewriter-cursor">PRODUCT MANAGER & SOFTWARE DESIGNER</p>
+            <p className="text-sm text-accent mb-4 font-mono typewriter-cursor">
+              <RoleTypewriter />
+            </p>
             <div className="flex items-center justify-between mb-3">
               <h1 className="text-2xl font-semibold text-text-primary font-mono flex items-center gap-3">
                 <span className="text-accent-orange">{'⟩'}</span>
@@ -166,7 +170,7 @@ export function V2MePageWrapper({ initialData }: V2MePageWrapperProps) {
             className="hidden"
           />
 
-          <div className="fade-in-up fade-in-up-delay-1">
+          <ScrollReveal>
             <LearnMoreSection
               isExpanded={showLearnMore}
               onToggle={() => setShowLearnMore(!showLearnMore)}
@@ -210,7 +214,7 @@ export function V2MePageWrapper({ initialData }: V2MePageWrapperProps) {
                 onUpdate={updateMeasures}
               />
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </>
