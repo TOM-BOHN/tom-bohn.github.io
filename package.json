@@ -9,6 +9,7 @@
     "export": "next build",
     "lint": "eslint .",
     "generate:icons": "node scripts/icons/generate-icons.js",
+    "generate:og-image": "node scripts/og-image/generate-og-image.js",
     "sync:medium": "node scripts/blog/sync-medium-content.js"
   },
   "dependencies": {

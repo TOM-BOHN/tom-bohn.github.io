@@ -125,6 +125,12 @@ Site icons live in `public/icons/`:
 
 To regenerate PNGs after editing the SVG: `npm run generate:icons` (requires `sharp` as a devDependency).
 
+## 🖼️ Social Share Image
+
+`public/images/og-image.png` is the Open Graph / Twitter Card image shown when a link to the site is shared. It's generated from `public/images/profile.jpg` plus the site's brand colors.
+
+To regenerate it after updating the profile photo or brand colors: `npm run generate:og-image` (requires `sharp` as a devDependency).
+
 ## 📝 Content Management
 
 - **Blog Posts**: Written in Markdown and stored in `content/blog/`

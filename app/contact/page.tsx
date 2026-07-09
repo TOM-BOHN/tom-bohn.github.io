@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 import { FaLinkedin, FaEnvelope, FaCopy, FaCheck, FaLock } from 'react-icons/fa'
+import { RoleTypewriter } from '@/components/RoleTypewriter'
+import { ScrollReveal } from '@/components/ScrollReveal'
 
 export default function Contact() {
   const [copied, setCopied] = useState(false)
@@ -27,18 +29,21 @@ export default function Contact() {
       <div className="container mx-auto px-4 py-12 relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="mb-12 fade-in-up">
-            <p className="text-sm text-accent mb-4 font-mono typewriter-cursor">PRODUCT MANAGER & SOFTWARE DESIGNER</p>
+            <p className="text-sm text-accent mb-4 font-mono typewriter-cursor">
+              <RoleTypewriter />
+            </p>
             <h1 className="text-2xl font-semibold mb-4 text-text-primary font-mono flex items-center gap-3">
               <span className="text-accent-orange">{'⟩'}</span>
               {'CONTACT'}
             </h1>
 <p className="text-text-secondary leading-loose text-lg">
-            I'm always open to discussing new opportunities, technical challenges, or potential collaborations. Reach out through any of the channels below.
+            I&apos;m always open to discussing new opportunities, technical challenges, or potential collaborations. Reach out through any of the channels below.
           </p>
           </div>
 
-          <div className="space-y-6 fade-in-up fade-in-up-delay-1">
+          <div className="space-y-6">
             {/* Email Section */}
+            <ScrollReveal>
             <div className="glass-card shine-effect rounded-xl p-6">
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-12 h-12 bg-gradient-to-br from-accent to-accent-hover rounded-xl flex items-center justify-center icon-bounce shadow-lg">
@@ -72,8 +77,10 @@ export default function Contact() {
               </svg>
             </a>
           </div>
+          </ScrollReveal>
 
           {/* LinkedIn Section */}
+          <ScrollReveal delayMs={100}>
           <div className="glass-card shine-effect rounded-xl p-6">
             <div className="flex items-center gap-4 mb-4">
               <div className="w-12 h-12 bg-gradient-to-br from-[#0077b5] to-[#005582] rounded-xl flex items-center justify-center icon-bounce shadow-lg">
@@ -97,8 +104,10 @@ export default function Contact() {
               </svg>
             </a>
           </div>
+          </ScrollReveal>
 
           {/* Other Section */}
+          <ScrollReveal delayMs={200}>
           <div className="glass-card rounded-xl p-6 border-l-4 border-l-accent-orange">
             <h2 className="text-2xl font-semibold mb-4 text-text-primary">More Ways to Connect</h2>
             <p className="text-text-secondary mb-4">
@@ -118,6 +127,7 @@ export default function Contact() {
               </p>
             </div>
           </div>
+          </ScrollReveal>
           </div>
         </div>
       </div>

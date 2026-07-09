@@ -20,6 +20,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const savedTheme = localStorage.getItem('theme') as Theme | null
     if (savedTheme && (savedTheme === 'light' || savedTheme === 'dark' || savedTheme === 'xanga')) {
       setTheme(savedTheme)
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      // No explicit choice saved yet - honor the OS/browser preference
+      // instead of always defaulting to light.
+      setTheme('dark')
     }
   }, [])
 
