@@ -223,6 +223,29 @@ function DesktopNavLink({
   )
 }
 
+// Distinct from the hamburger icon on purpose: this represents "bring the
+// sidebar panel back", not "open a menu". The highlighted panel + chevron
+// point toward whichever side (left/right) the sidebar will reappear on.
+function RestoreSidebarIcon({ side }: { side: 'left' | 'right' }) {
+  const panelX = side === 'left' ? 3 : 15
+  const chevronPath = side === 'left' ? 'M8.5 9l-2.5 3 2.5 3' : 'M15.5 9l2.5 3-2.5 3'
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="18"
+      height="18"
+      aria-hidden="true"
+      className="block"
+      fill="none"
+      stroke="currentColor"
+    >
+      <rect x="3" y="4" width="18" height="16" rx="2" strokeWidth="1.6" />
+      <rect x={panelX} y="5" width="6" height="14" rx="1" fill="currentColor" stroke="none" opacity="0.35" />
+      <path d={chevronPath} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
 function HamburgerIcon({ open }: { open: boolean }) {
   return (
     <svg
@@ -300,17 +323,15 @@ export function Header() {
           <div className="flex items-center gap-1">
             {showCollapsedIcon && layout && (
               <button
-                onClick={() => layout.setSidebarSide('right')}
-                className="relative group w-9 h-9 flex items-center justify-center transition-colors text-accent hover:bg-bg-secondary"
-                aria-label="Show sidebar"
-                title="Show sidebar"
+                onClick={() => layout.restoreSidebar()}
+                className="relative group w-9 h-9 flex items-center justify-center rounded border border-accent/40 bg-accent/10 text-accent transition-colors hover:bg-accent hover:text-white"
+                aria-label={`Restore ${layout.lastVisibleSide} sidebar`}
+                title="Restore sidebar"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-                <span className="sr-only">Show sidebar</span>
+                <RestoreSidebarIcon side={layout.lastVisibleSide} />
+                <span className="sr-only">Restore {layout.lastVisibleSide} sidebar</span>
                 <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded border border-border bg-bg-primary px-2 py-1 text-[11px] text-text-primary opacity-0 shadow-sm transition-opacity group-hover:opacity-100 z-10">
-                  Show sidebar
+                  Restore sidebar
                 </span>
               </button>
             )}
