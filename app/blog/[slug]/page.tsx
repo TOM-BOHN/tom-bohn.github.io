@@ -43,7 +43,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
             <div className="flex items-center gap-3">
               <Link
                 href="/blog/"
-                className="px-4 py-2 bg-bg-secondary border border-border rounded-lg hover:bg-accent hover:text-white hover:border-accent transition-colors text-sm font-semibold"
+                className="px-4 py-2 bg-bg-secondary border border-border rounded-lg hover:bg-accent hover:text-on-accent hover:border-accent transition-colors text-sm font-semibold"
               >
                 ← Back to Blog
               </Link>

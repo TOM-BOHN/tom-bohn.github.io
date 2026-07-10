@@ -13,6 +13,25 @@
   --accent-hover: #0d5a88; /* Darker blue for hover */
   --accent-orange: #fc7d0b; /* Bright Orange */
   --accent-orange-hover: #c85200; /* Dark Orange/Brown for hover */
+  /* Text/icon color to use ON TOP OF an --accent or --accent-orange
+     background. --accent is dark enough here for white to read clearly;
+     dark and Xanga themes use a lighter --accent, so they need dark text
+     instead (see overrides below). --accent-orange is bright in every
+     theme, so dark text is always the right call for it. */
+  --on-accent: #ffffff;
+  --on-accent-orange: #1a1a1a;
+  /* Fixed (non-theme-dependent) blue used for the small number of buttons
+     that are deliberately "the blue button" as opposed to "the theme's
+     highlight color" (e.g. distinguishing two CTAs from each other on the
+     same page). Unlike --accent, this never changes with the theme -
+     Xanga's --accent is bright orange, so reusing --accent here would make
+     a "blue" button render orange and become indistinguishable from an
+     orange one. Deliberately not overridden in the dark/Xanga blocks below
+     so every theme gets the same value. Dark enough that white text always
+     has sufficient contrast on it. */
+  --accent-blue: #1170aa;
+  --accent-blue-hover: #0d5a88;
+  --on-accent-blue: #ffffff;
   --border: #c8d0d9; /* Very Light Gray from palette */
   --link: #1170aa; /* Dark Blue for links */
   --link-hover: #fc7d0b; /* Bright Orange for link hover */
@@ -35,6 +54,10 @@
   --accent-hover: #1170aa; /* Dark Blue */
   --accent-orange: #fc7d0b; /* Bright Orange */
   --accent-orange-hover: #ffbc79; /* Light Peach for hover */
+  /* --accent is a light medium-blue here, so white text on it fails
+     contrast - use dark text instead. */
+  --on-accent: #0b1220;
+  --on-accent-orange: #1a1a1a;
   --border: #57606c; /* Dark Gray from palette */
   --link: #5fa2ce; /* Medium Blue for links */
   --link-hover: #fc7d0b; /* Bright Orange for link hover */
@@ -59,6 +82,10 @@
   --accent-light: #ffbc79; /* Tableau Light Peach */
   --accent-navy: #1170aa; /* Tableau Dark Blue */
   --accent-navy-light: #5fa2ce; /* Tableau Medium Blue */
+  /* --accent is bright orange here (same as --accent-orange), so it
+     needs dark text too. */
+  --on-accent: #0a0a0a;
+  --on-accent-orange: #1a1a1a;
   --border: #fc7d0b; /* Tableau Bright Orange */
   --border-navy: #1170aa; /* Tableau Dark Blue */
   --link: #5fa2ce; /* Tableau Medium Blue */
@@ -162,9 +189,13 @@ html[data-theme="xanga"] body .xanga-shell button:hover {
   border-color: var(--accent-navy) !important;
 }
 
-/* Keep modern header stable: only restyle these inside Xanga shell */
-html[data-theme="xanga"] body .xanga-shell .bg-bg-secondary,
-html[data-theme="xanga"] body .xanga-shell [class*="bg-bg-secondary"] {
+/* Keep modern header stable: only restyle these inside Xanga shell.
+   Excludes elements that switch their own background to --accent(-orange)
+   on hover/focus (e.g. the Share button, "Back to Blog" link) - otherwise
+   this pins their resting background !important, and hover:bg-accent can
+   never actually take effect. */
+html[data-theme="xanga"] body .xanga-shell .bg-bg-secondary:not([class*="hover:bg-accent"]),
+html[data-theme="xanga"] body .xanga-shell [class*="bg-bg-secondary"]:not([class*="hover:bg-accent"]) {
   background-color: var(--bg-secondary) !important;
 }
 
@@ -232,6 +263,42 @@ html[data-theme="xanga"] body header nav a:focus-visible * {
   color: var(--accent-orange) !important;
 }
 
+/* Any link with its own bg-accent background (active mobile-nav items, the
+   404 page's "Go Home" button, etc.) needs matching --on-accent text - the
+   blanket link-color override above (and, in Xanga, --accent being the same
+   bright orange as --accent-orange) would otherwise put low-contrast text
+   on top of that background. This is deliberately not scoped to "header"
+   only: the mobile nav menu is a sibling of <nav> rather than nested inside
+   it, and the same bg-accent-on-a-link pattern shows up outside the header
+   too. */
+html[data-theme="xanga"] body a[class*="bg-accent"],
+html[data-theme="xanga"] body a[class*="bg-accent"]:hover,
+html[data-theme="xanga"] body a[class*="bg-accent"]:focus-visible {
+  color: var(--on-accent) !important;
+}
+html[data-theme="xanga"] body a[class*="bg-accent"] *,
+html[data-theme="xanga"] body a[class*="bg-accent"]:hover *,
+html[data-theme="xanga"] body a[class*="bg-accent"]:focus-visible * {
+  color: var(--on-accent) !important;
+}
+
+/* Same problem outside the header: several buttons keep a permanent
+   text-accent/text-text-primary/text-text-secondary class for their resting
+   state, then switch their own background to --accent or --accent-orange on
+   hover/focus (e.g. Back to Top, the sidebar restore icon, the mobile nav's
+   inactive links, the Xanga sidebar nav applet). The blanket text-color
+   overrides above apply unconditionally, so without this they'd pin the
+   icon/text color even once the background behind it has also become
+   --accent, making it unreadable. */
+html[data-theme="xanga"] body [class*="hover:bg-accent-orange"]:hover,
+html[data-theme="xanga"] body [class*="hover:bg-accent-orange"]:focus-visible {
+  color: var(--on-accent-orange) !important;
+}
+html[data-theme="xanga"] body [class*="hover:bg-accent"]:not([class*="hover:bg-accent-orange"]):hover,
+html[data-theme="xanga"] body [class*="hover:bg-accent"]:not([class*="hover:bg-accent-orange"]):focus-visible {
+  color: var(--on-accent) !important;
+}
+
 /* Light and dark: same nav hover (text color change, no box) */
 html[data-theme="light"] body header nav a:hover,
 html[data-theme="light"] body header nav a:focus-visible,
@@ -257,9 +324,14 @@ html[data-theme="xanga"] body footer {
   border-top: 1px solid var(--border-navy) !important;
 }
 
-/* Card styling for Xanga mode */
-html[data-theme="xanga"] body [class*="rounded-lg"],
-html[data-theme="xanga"] body [class*="card"],
+/* Card styling for Xanga mode. Excludes anything with a bg-accent(-orange)
+   class (buttons/links/CTAs that already carry their own background
+   intent, e.g. the Share button or "Back to Blog" link) - otherwise this
+   forces a card-style background/border/padding onto them and, worse,
+   !important-pins their background so hover:bg-accent can never actually
+   show. */
+html[data-theme="xanga"] body [class*="rounded-lg"]:not([class*="bg-accent"]),
+html[data-theme="xanga"] body [class*="card"]:not([class*="bg-accent"]),
 html[data-theme="xanga"] body article,
 html[data-theme="xanga"] body section {
   background-color: var(--bg-secondary) !important;
@@ -625,7 +697,10 @@ html[data-theme="xanga"] body ::-webkit-scrollbar-thumb:hover {
   border-radius: 12px;
   border: none;
   background: linear-gradient(135deg, var(--accent-orange) 0%, var(--accent-orange-hover) 100%);
-  color: white;
+  /* !important: in Xanga mode, the generic "body a" link-color rule has
+     higher selector specificity than this class alone and would otherwise
+     win even without !important on its side. */
+  color: var(--on-accent-orange) !important;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -639,7 +714,11 @@ html[data-theme="xanga"] body ::-webkit-scrollbar-thumb:hover {
 }
 
 .gradient-btn-blue {
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+  /* Uses the fixed --accent-blue tokens (not --accent) so this button stays
+     visually blue - and distinct from the orange .gradient-btn - even in
+     Xanga mode, where --accent itself is the bright orange highlight color. */
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-blue-hover) 100%);
+  color: var(--on-accent-blue) !important;
   box-shadow: 0 4px 20px rgba(17, 112, 170, 0.4);
 }
 
@@ -750,6 +829,20 @@ html[data-theme="xanga"] body ::-webkit-scrollbar-thumb:hover {
 /* Enhanced Text Contrast for Dark Mode */
 [data-theme="dark"] .text-text-secondary {
   color: #a8b4c4 !important;
+}
+
+/* Same escape hatch as Xanga above: elements that keep a permanent
+   text-text-secondary class but switch their own background to --accent or
+   --accent-orange on hover/focus (e.g. inactive mobile-nav links) need this
+   dark-mode contrast override to step aside once that happens, or the text
+   stays a light blue-gray on top of a bright orange hover background. */
+[data-theme="dark"] [class*="hover:bg-accent-orange"]:hover,
+[data-theme="dark"] [class*="hover:bg-accent-orange"]:focus-visible {
+  color: var(--on-accent-orange) !important;
+}
+[data-theme="dark"] [class*="hover:bg-accent"]:not([class*="hover:bg-accent-orange"]):hover,
+[data-theme="dark"] [class*="hover:bg-accent"]:not([class*="hover:bg-accent-orange"]):focus-visible {
+  color: var(--on-accent) !important;
 }
 
 /* Subtle Section Background */
