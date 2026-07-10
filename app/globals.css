@@ -20,6 +20,18 @@
      theme, so dark text is always the right call for it. */
   --on-accent: #ffffff;
   --on-accent-orange: #1a1a1a;
+  /* Fixed (non-theme-dependent) blue used for the small number of buttons
+     that are deliberately "the blue button" as opposed to "the theme's
+     highlight color" (e.g. distinguishing two CTAs from each other on the
+     same page). Unlike --accent, this never changes with the theme -
+     Xanga's --accent is bright orange, so reusing --accent here would make
+     a "blue" button render orange and become indistinguishable from an
+     orange one. Deliberately not overridden in the dark/Xanga blocks below
+     so every theme gets the same value. Dark enough that white text always
+     has sufficient contrast on it. */
+  --accent-blue: #1170aa;
+  --accent-blue-hover: #0d5a88;
+  --on-accent-blue: #ffffff;
   --border: #c8d0d9; /* Very Light Gray from palette */
   --link: #1170aa; /* Dark Blue for links */
   --link-hover: #fc7d0b; /* Bright Orange for link hover */
@@ -702,8 +714,11 @@ html[data-theme="xanga"] body ::-webkit-scrollbar-thumb:hover {
 }
 
 .gradient-btn-blue {
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
-  color: var(--on-accent) !important;
+  /* Uses the fixed --accent-blue tokens (not --accent) so this button stays
+     visually blue - and distinct from the orange .gradient-btn - even in
+     Xanga mode, where --accent itself is the bright orange highlight color. */
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-blue-hover) 100%);
+  color: var(--on-accent-blue) !important;
   box-shadow: 0 4px 20px rgba(17, 112, 170, 0.4);
 }
 
