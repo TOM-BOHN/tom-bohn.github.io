@@ -299,6 +299,27 @@ html[data-theme="xanga"] body a[class*="bg-accent"]:not([class*="hover:bg-accent
   color: var(--on-accent) !important;
 }
 
+/* Same fix for the shared "primary" badge/button tokens (bg-btn-primary,
+   text-btn-primary-text - see tailwind.config.ts) used by things like the
+   "Read on Medium" buttons so they resolve to the theme's primary hue
+   instead of being pinned to orange - those are also plain <a> tags, so
+   they'd otherwise inherit Xanga's blanket link color/hover-box styling. */
+html[data-theme="xanga"] body a[class*="bg-btn-primary"],
+html[data-theme="xanga"] body a[class*="bg-btn-primary"]:hover,
+html[data-theme="xanga"] body a[class*="bg-btn-primary"]:focus-visible {
+  color: var(--btn-primary-text) !important;
+  box-shadow: none !important;
+}
+html[data-theme="xanga"] body a[class*="bg-btn-primary"] *,
+html[data-theme="xanga"] body a[class*="bg-btn-primary"]:hover *,
+html[data-theme="xanga"] body a[class*="bg-btn-primary"]:focus-visible * {
+  color: var(--btn-primary-text) !important;
+}
+html[data-theme="xanga"] body a[class*="hover:bg-btn-primary-hover"]:hover,
+html[data-theme="xanga"] body a[class*="hover:bg-btn-primary-hover"]:focus-visible {
+  background-color: var(--btn-primary-to) !important;
+}
+
 /* Same problem outside the header: several buttons keep a permanent
    text-accent/text-text-primary/text-text-secondary class for their resting
    state, then switch their own background to --accent or --accent-orange on
@@ -347,8 +368,8 @@ html[data-theme="xanga"] body footer {
    forces a card-style background/border/padding onto them and, worse,
    !important-pins their background so hover:bg-accent can never actually
    show. */
-html[data-theme="xanga"] body [class*="rounded-lg"]:not([class*="bg-accent"]),
-html[data-theme="xanga"] body [class*="card"]:not([class*="bg-accent"]),
+html[data-theme="xanga"] body [class*="rounded-lg"]:not([class*="bg-accent"]):not([class*="bg-btn-primary"]),
+html[data-theme="xanga"] body [class*="card"]:not([class*="bg-accent"]):not([class*="bg-btn-primary"]),
 html[data-theme="xanga"] body article,
 html[data-theme="xanga"] body section {
   background-color: var(--bg-secondary) !important;
