@@ -270,15 +270,20 @@ html[data-theme="xanga"] body header nav a:focus-visible * {
    on top of that background. This is deliberately not scoped to "header"
    only: the mobile nav menu is a sibling of <nav> rather than nested inside
    it, and the same bg-accent-on-a-link pattern shows up outside the header
-   too. */
-html[data-theme="xanga"] body a[class*="bg-accent"],
-html[data-theme="xanga"] body a[class*="bg-accent"]:hover,
-html[data-theme="xanga"] body a[class*="bg-accent"]:focus-visible {
+   too.
+   The :not([class*="hover:bg-accent"]) guard matters: [class*="bg-accent"]
+   is a substring match, so without it this would also match links whose
+   ONLY accent-flavored class is a hover-prefixed one (e.g. the inactive
+   mobile-nav links' "hover:bg-accent-orange") and force --on-accent text
+   onto them even while at rest, over their actual resting text color. */
+html[data-theme="xanga"] body a[class*="bg-accent"]:not([class*="hover:bg-accent"]),
+html[data-theme="xanga"] body a[class*="bg-accent"]:not([class*="hover:bg-accent"]):hover,
+html[data-theme="xanga"] body a[class*="bg-accent"]:not([class*="hover:bg-accent"]):focus-visible {
   color: var(--on-accent) !important;
 }
-html[data-theme="xanga"] body a[class*="bg-accent"] *,
-html[data-theme="xanga"] body a[class*="bg-accent"]:hover *,
-html[data-theme="xanga"] body a[class*="bg-accent"]:focus-visible * {
+html[data-theme="xanga"] body a[class*="bg-accent"]:not([class*="hover:bg-accent"]) *,
+html[data-theme="xanga"] body a[class*="bg-accent"]:not([class*="hover:bg-accent"]):hover *,
+html[data-theme="xanga"] body a[class*="bg-accent"]:not([class*="hover:bg-accent"]):focus-visible * {
   color: var(--on-accent) !important;
 }
 
