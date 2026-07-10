@@ -47,8 +47,8 @@ export function SidebarLayoutApplet() {
             key={option.side}
             type="button"
             onClick={() => setSidebarSide(option.side)}
-            className={`relative group flex items-center justify-center w-10 h-10 border-2 border-border bg-bg-secondary text-text-primary hover:bg-accent hover:text-white transition-colors rounded overflow-hidden ${
-              isActive ? 'bg-accent text-white' : ''
+            className={`relative group flex items-center justify-center w-10 h-10 border-2 border-border bg-bg-secondary text-text-primary hover:bg-accent hover:text-on-accent transition-colors rounded overflow-hidden ${
+              isActive ? 'bg-accent text-on-accent' : ''
             } ${isHide ? 'p-5' : 'p-0'}`}
             aria-label={option.label}
             title={option.tooltip}

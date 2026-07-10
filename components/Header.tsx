@@ -324,7 +324,7 @@ export function Header() {
             {showCollapsedIcon && layout && (
               <button
                 onClick={() => layout.restoreSidebar()}
-                className="relative group w-9 h-9 flex items-center justify-center rounded border border-accent/40 bg-accent/10 text-accent transition-colors hover:bg-accent hover:text-white"
+                className="relative group w-9 h-9 flex items-center justify-center rounded border border-accent/40 bg-accent/10 text-accent transition-colors hover:bg-accent hover:text-on-accent"
                 aria-label={`Restore ${layout.lastVisibleSide} sidebar`}
                 title="Restore sidebar"
               >
@@ -370,8 +370,8 @@ export function Header() {
                       href={item.href}
                       className={`px-4 py-1.5 rounded text-sm transition-colors flex-1 min-w-[70px] text-center ${
                         isActive
-                          ? 'bg-accent text-white'
-                          : 'bg-bg-secondary text-text-secondary hover:bg-accent-orange hover:text-white'
+                          ? 'bg-accent text-on-accent'
+                          : 'bg-bg-secondary text-text-secondary hover:bg-accent-orange hover:text-on-accent-orange'
                       }`}
                     >
                       {item.label}
@@ -398,8 +398,8 @@ export function Header() {
                       href={item.href}
                       className={`group relative px-3 py-1.5 rounded text-sm transition-colors flex items-center justify-center gap-1.5 flex-1 min-w-[70px] ${
                         isActive
-                          ? 'bg-accent text-white'
-                          : 'bg-bg-secondary text-text-secondary hover:bg-accent-orange hover:text-white'
+                          ? 'bg-accent text-on-accent'
+                          : 'bg-bg-secondary text-text-secondary hover:bg-accent-orange hover:text-on-accent-orange'
                       }`}
                       title="VIP Content - Login Required"
                     >
@@ -421,8 +421,8 @@ export function Header() {
                       href={item.href}
                       className={`group relative px-3 py-1.5 rounded text-sm transition-colors flex items-center justify-center gap-1.5 flex-1 min-w-[70px] ${
                         isActive
-                          ? 'bg-accent text-white'
-                          : 'bg-bg-secondary text-text-secondary hover:bg-accent-orange hover:text-white'
+                          ? 'bg-accent text-on-accent'
+                          : 'bg-bg-secondary text-text-secondary hover:bg-accent-orange hover:text-on-accent-orange'
                       }`}
                       title="VIP Content - Login Required"
                     >
