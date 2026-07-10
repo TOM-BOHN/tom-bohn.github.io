@@ -73,7 +73,7 @@ export default async function Blog() {
                       title="Read on Medium"
                       aria-label="Read on Medium"
                     >
-                      <FaMedium className="w-5 h-5 text-text-secondary hover:text-black transition-colors" />
+                      <FaMedium className="w-5 h-5 text-text-secondary hover:text-accent-orange transition-colors" />
                     </a>
                   )}
                 </div>

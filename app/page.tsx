@@ -80,7 +80,7 @@ export default function Home() {
                 </div>
               </div>
               {/* Bottom border accent with gradient */}
-              <div className="h-1.5 bg-gradient-to-r from-[#c85200] via-[#fc7d0b] to-[#1170aa] rounded-b-lg" />
+              <div className="h-1.5 bg-gradient-to-r from-accent-orange-hover via-accent-orange to-accent rounded-b-lg" />
             </div>
           </div>
           </div>

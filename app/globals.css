@@ -362,8 +362,21 @@ html[data-theme="xanga"] body [class*="text-text-secondary"] {
   color: var(--text-secondary) !important;
 }
 
-html[data-theme="xanga"] body [class*="text-accent"] {
+/* [class*="text-accent"] is a substring match, so without the :not() guards
+   it would also catch "text-accent-hover" and "text-accent-orange" (both
+   contain "text-accent") and force them to var(--accent) too, instead of
+   their own distinct shade - the same class of bug fixed above for
+   a[class*="bg-accent"]. */
+html[data-theme="xanga"] body [class*="text-accent"]:not([class*="text-accent-hover"]):not([class*="text-accent-orange"]) {
   color: var(--accent) !important;
+}
+
+html[data-theme="xanga"] body [class*="text-accent-hover"] {
+  color: var(--accent-hover) !important;
+}
+
+html[data-theme="xanga"] body [class*="text-accent-orange"] {
+  color: var(--accent-orange) !important;
 }
 
 /* Input and form elements */
