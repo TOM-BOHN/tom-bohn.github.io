@@ -20,18 +20,18 @@
      theme, so dark text is always the right call for it. */
   --on-accent: #ffffff;
   --on-accent-orange: #1a1a1a;
-  /* Fixed (non-theme-dependent) blue used for the small number of buttons
-     that are deliberately "the blue button" as opposed to "the theme's
-     highlight color" (e.g. distinguishing two CTAs from each other on the
-     same page). Unlike --accent, this never changes with the theme -
-     Xanga's --accent is bright orange, so reusing --accent here would make
-     a "blue" button render orange and become indistinguishable from an
-     orange one. Deliberately not overridden in the dark/Xanga blocks below
-     so every theme gets the same value. Dark enough that white text always
-     has sufficient contrast on it. */
-  --accent-blue: #1170aa;
-  --accent-blue-hover: #0d5a88;
-  --on-accent-blue: #ffffff;
+  /* Shared "primary CTA" color, used by every solid gradient button
+     (.gradient-btn) so all of them agree on one hue per theme instead of
+     mixing blue and orange buttons on the same page. Light mode's --accent
+     is a dark, saturated blue that reads well with white text, so primary
+     buttons stay blue here; dark and Xanga both lean on the bright orange
+     instead (see overrides below), since dark mode's --accent is a lighter
+     blue that needs a dark-text workaround, and Xanga's --accent already
+     *is* the orange. */
+  --btn-primary-from: var(--accent);
+  --btn-primary-to: var(--accent-hover);
+  --btn-primary-text: var(--on-accent);
+  --btn-primary-shadow-rgb: 17, 112, 170;
   --border: #c8d0d9; /* Very Light Gray from palette */
   --link: #1170aa; /* Dark Blue for links */
   --link-hover: #fc7d0b; /* Bright Orange for link hover */
@@ -58,6 +58,12 @@
      contrast - use dark text instead. */
   --on-accent: #0b1220;
   --on-accent-orange: #1a1a1a;
+  /* Primary buttons switch to orange in dark mode - see the --btn-primary-*
+     comment in :root above. */
+  --btn-primary-from: var(--accent-orange);
+  --btn-primary-to: var(--accent-orange-hover);
+  --btn-primary-text: var(--on-accent-orange);
+  --btn-primary-shadow-rgb: 252, 125, 11;
   --border: #57606c; /* Dark Gray from palette */
   --link: #5fa2ce; /* Medium Blue for links */
   --link-hover: #fc7d0b; /* Bright Orange for link hover */
@@ -86,6 +92,12 @@
      needs dark text too. */
   --on-accent: #0a0a0a;
   --on-accent-orange: #1a1a1a;
+  /* Primary buttons stay orange in Xanga too - it's already the theme's
+     dominant highlight color, same rationale as dark mode above. */
+  --btn-primary-from: var(--accent);
+  --btn-primary-to: var(--accent-hover);
+  --btn-primary-text: var(--on-accent-orange);
+  --btn-primary-shadow-rgb: 252, 125, 11;
   --border: #fc7d0b; /* Tableau Bright Orange */
   --border-navy: #1170aa; /* Tableau Dark Blue */
   --link: #5fa2ce; /* Tableau Medium Blue */
@@ -688,7 +700,10 @@ html[data-theme="xanga"] body ::-webkit-scrollbar-thumb:hover {
   box-shadow: 0 16px 48px rgba(252, 125, 11, 0.25);
 }
 
-/* Gradient Button Style */
+/* Gradient Button Style. All solid CTA buttons share this one style so they
+   agree on a single hue per theme (blue in light mode, orange in dark and
+   Xanga - see the --btn-primary-* tokens above) instead of some buttons
+   being permanently blue and others permanently orange on the same page. */
 .gradient-btn {
   display: inline-flex;
   align-items: center;
@@ -696,34 +711,21 @@ html[data-theme="xanga"] body ::-webkit-scrollbar-thumb:hover {
   padding: 14px 28px;
   border-radius: 12px;
   border: none;
-  background: linear-gradient(135deg, var(--accent-orange) 0%, var(--accent-orange-hover) 100%);
+  background: linear-gradient(135deg, var(--btn-primary-from) 0%, var(--btn-primary-to) 100%);
   /* !important: in Xanga mode, the generic "body a" link-color rule has
      higher selector specificity than this class alone and would otherwise
      win even without !important on its side. */
-  color: var(--on-accent-orange) !important;
+  color: var(--btn-primary-text) !important;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 20px rgba(252, 125, 11, 0.4);
+  box-shadow: 0 4px 20px rgba(var(--btn-primary-shadow-rgb), 0.4);
   text-decoration: none;
 }
 
 .gradient-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(252, 125, 11, 0.5);
-}
-
-.gradient-btn-blue {
-  /* Uses the fixed --accent-blue tokens (not --accent) so this button stays
-     visually blue - and distinct from the orange .gradient-btn - even in
-     Xanga mode, where --accent itself is the bright orange highlight color. */
-  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-blue-hover) 100%);
-  color: var(--on-accent-blue) !important;
-  box-shadow: 0 4px 20px rgba(17, 112, 170, 0.4);
-}
-
-.gradient-btn-blue:hover {
-  box-shadow: 0 8px 30px rgba(17, 112, 170, 0.5);
+  box-shadow: 0 8px 30px rgba(var(--btn-primary-shadow-rgb), 0.5);
 }
 
 /* Glow Effect */
