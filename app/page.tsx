@@ -99,7 +99,7 @@ export default function Home() {
             {/* Medium Card */}
             <div className="glass-card shine-effect rounded-xl p-8">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-14 h-14 bg-gradient-to-br from-accent-orange to-accent-orange-hover rounded-xl flex items-center justify-center text-on-accent-orange font-bold text-xl icon-bounce shadow-lg">
+                <div className="w-14 h-14 bg-gradient-to-br from-btn-primary to-btn-primary-hover rounded-xl flex items-center justify-center text-btn-primary-text font-bold text-xl icon-bounce shadow-lg">
                   M
                 </div>
                 <h3 className="text-3xl font-bold text-text-primary">Medium</h3>

@@ -34,6 +34,15 @@ const config: Config = {
         'accent-orange-hover': withOpacity('--accent-orange-hover'),
         'on-accent': withOpacity('--on-accent'),
         'on-accent-orange': withOpacity('--on-accent-orange'),
+        // Same "one hue per theme" tokens .gradient-btn uses (blue in light,
+        // orange in dark/xanga - see the --btn-primary-* comment in
+        // globals.css). Exposed as utilities so brand badges/buttons that
+        // aren't full .gradient-btn elements (e.g. contact page icon tiles,
+        // "Read on Medium" buttons) can share the exact same primary color
+        // instead of being locked to accent-orange and clashing with it.
+        'btn-primary': withOpacity('--btn-primary-from'),
+        'btn-primary-hover': withOpacity('--btn-primary-to'),
+        'btn-primary-text': withOpacity('--btn-primary-text'),
         'border': withOpacity('--border'),
         'link': withOpacity('--link'),
         'link-hover': withOpacity('--link-hover'),

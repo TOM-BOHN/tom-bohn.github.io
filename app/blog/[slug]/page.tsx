@@ -53,7 +53,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                   href={post.mediumUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-accent-orange text-on-accent-orange rounded-lg hover:bg-accent-orange-hover transition-colors text-sm font-semibold"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-btn-primary text-btn-primary-text rounded-lg hover:bg-btn-primary-hover transition-colors text-sm font-semibold"
                 >
                   <FaMedium className="w-4 h-4" />
                   Read on Medium
@@ -103,7 +103,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                   href={post.mediumUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-accent-orange text-on-accent-orange rounded-lg hover:bg-accent-orange-hover transition-colors font-semibold"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-btn-primary text-btn-primary-text rounded-lg hover:bg-btn-primary-hover transition-colors font-semibold"
                 >
                   <FaMedium className="w-5 h-5" />
                   Continue reading on Medium
