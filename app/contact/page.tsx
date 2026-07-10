@@ -47,7 +47,7 @@ export default function Contact() {
             <div className="glass-card shine-effect rounded-xl p-6">
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-12 h-12 bg-gradient-to-br from-accent to-accent-hover rounded-xl flex items-center justify-center icon-bounce shadow-lg">
-                  <FaEnvelope className="w-6 h-6 text-white" />
+                  <FaEnvelope className="w-6 h-6 text-on-accent" />
                 </div>
                 <h2 className="text-2xl font-semibold text-text-primary">Email</h2>
               </div>
