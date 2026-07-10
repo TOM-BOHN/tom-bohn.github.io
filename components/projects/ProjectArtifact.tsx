@@ -13,11 +13,14 @@ const typeLabels: Record<ProjectArtifactType['type'], string> = {
   example: 'Example',
 }
 
+// Uses theme-aware tokens (instead of hardcoded Tableau hex values) so these
+// badges shift with the active theme like everything else, rather than
+// staying frozen at their light-mode colors in dark/Xanga.
 const typeColors: Record<ProjectArtifactType['type'], string> = {
-  artifact: 'bg-[#1170aa]/10 text-[#1170aa] border-[#1170aa]/20', // Tableau Dark Blue
-  deliverable: 'bg-[#5fa2ce]/10 text-[#5fa2ce] border-[#5fa2ce]/20', // Tableau Medium Blue
-  phase: 'bg-[#57606c]/10 text-[#57606c] border-[#57606c]/20', // Tableau Dark Gray
-  example: 'bg-[#fc7d0b]/10 text-[#fc7d0b] border-[#fc7d0b]/20', // Tableau Bright Orange
+  artifact: 'bg-accent/10 text-accent border-accent/20',
+  deliverable: 'bg-accent-hover/10 text-accent-hover border-accent-hover/20',
+  phase: 'bg-text-secondary/10 text-text-secondary border-text-secondary/20',
+  example: 'bg-accent-orange/10 text-accent-orange border-accent-orange/20',
 }
 
 export function ProjectArtifact({ artifact }: ProjectArtifactProps) {
