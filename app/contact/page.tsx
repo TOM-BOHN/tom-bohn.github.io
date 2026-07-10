@@ -83,8 +83,8 @@ export default function Contact() {
           <ScrollReveal delayMs={100}>
           <div className="glass-card shine-effect rounded-xl p-6">
             <div className="flex items-center gap-4 mb-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-[#0077b5] to-[#005582] rounded-xl flex items-center justify-center icon-bounce shadow-lg">
-                <FaLinkedin className="w-6 h-6 text-white" />
+              <div className="w-12 h-12 bg-gradient-to-br from-accent-orange to-accent-orange-hover rounded-xl flex items-center justify-center icon-bounce shadow-lg">
+                <FaLinkedin className="w-6 h-6 text-on-accent-orange" />
               </div>
               <h2 className="text-2xl font-semibold text-text-primary">LinkedIn</h2>
             </div>
