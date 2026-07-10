@@ -34,7 +34,7 @@ export function ShareButton({ title }: { title: string }) {
     <button
       type="button"
       onClick={handleShare}
-      className="inline-flex items-center gap-2 px-4 py-2 bg-bg-secondary border border-border rounded-lg hover:bg-accent hover:text-white hover:border-accent transition-colors text-sm font-semibold"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-bg-secondary border border-border rounded-lg hover:bg-accent hover:text-on-accent hover:border-accent transition-colors text-sm font-semibold"
       title="Share this post"
       aria-label="Share this post"
     >

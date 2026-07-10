@@ -17,6 +17,8 @@ const config: Config = {
         'accent-hover': 'var(--accent-hover)',
         'accent-orange': 'var(--accent-orange)',
         'accent-orange-hover': 'var(--accent-orange-hover)',
+        'on-accent': 'var(--on-accent)',
+        'on-accent-orange': 'var(--on-accent-orange)',
         'border': 'var(--border)',
         'link': 'var(--link)',
         'link-hover': 'var(--link-hover)',

@@ -46,7 +46,7 @@ export function NavigationApplet() {
           <Link
             key={item.href}
             href={item.href}
-            className="relative group flex items-center justify-center w-12 h-12 border-2 border-border bg-bg-secondary text-text-primary hover:bg-accent hover:text-white transition-colors rounded"
+            className="relative group flex items-center justify-center w-12 h-12 border-2 border-border bg-bg-secondary text-text-primary hover:bg-accent hover:text-on-accent transition-colors rounded"
             aria-label={item.label}
             title={item.tooltip}
           >
