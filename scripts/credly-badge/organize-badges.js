@@ -109,6 +109,22 @@ function parseIssueDate(dateString) {
 function categorizeBadge(badge) {
   const name = badge.name.toLowerCase();
   const issuer = (badge.issuer || '').toLowerCase();
+
+  function extractHostname(value) {
+    if (!value) return '';
+    try {
+      return new URL(value).hostname.toLowerCase();
+    } catch (e) {
+      try {
+        return new URL(`https://${value}`).hostname.toLowerCase();
+      } catch (e2) {
+        return '';
+      }
+    }
+  }
+
+  const issuerHost = extractHostname(issuer);
+  const isScrumOrgHost = issuerHost === 'scrum.org' || issuerHost.endsWith('.scrum.org');
   
   if (name.includes('tableau') || issuer.includes('tableau')) {
     return 'tableau';
@@ -122,7 +138,7 @@ function categorizeBadge(badge) {
   if (name.includes('safe') || issuer.includes('scaled agile')) {
     return 'safe';
   }
-  if (name.includes('scrum') || issuer.includes('scrum.org')) {
+  if (name.includes('scrum') || isScrumOrgHost) {
     return 'scrum';
   }
   if (name.includes('dcam') || name.includes('okg') || name.includes('open knowledge graph') || 
