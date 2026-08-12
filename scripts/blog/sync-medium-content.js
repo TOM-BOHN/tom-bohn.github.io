@@ -4,6 +4,7 @@
 const fs = require('fs')
 const path = require('path')
 const matter = require('gray-matter')
+const sanitizeHtml = require('sanitize-html')
 
 const WORKSPACE_ROOT = path.resolve(__dirname, '..', '..')
 const BLOG_CONTENT_DIR = path.join(WORKSPACE_ROOT, 'content', 'blog')
@@ -83,19 +84,12 @@ function isLowValueParagraph(text) {
 function htmlToParagraphs(html) {
   if (!html) return []
 
-  const withBreaks = decodeHtmlEntities(html)
-    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
-    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
-    .replace(/<figure[\s\S]*?<\/figure>/gi, ' ')
-    .replace(/<figcaption[\s\S]*?<\/figcaption>/gi, ' ')
-    .replace(/<br\s*\/?>/gi, '\n')
-    .replace(/<\/(p|div|section|article|blockquote|h1|h2|h3|h4|h5|h6|ul|ol)>/gi, '\n\n')
-    .replace(/<li[^>]*>/gi, '- ')
-    .replace(/<\/li>/gi, '\n')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/\u00a0/g, ' ')
+  const text = sanitizeHtml(decodeHtmlEntities(html), {
+    allowedTags: [],
+    allowedAttributes: {},
+  }).replace(/\u00a0/g, ' ')
 
-  return withBreaks
+  return text
     .split(/\n{2,}/)
     .map((part) => normalizeWhitespace(part))
     .filter(Boolean)
