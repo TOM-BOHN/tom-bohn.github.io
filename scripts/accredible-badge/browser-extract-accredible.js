@@ -19,6 +19,15 @@
     extractedAt: new Date().toISOString(),
     credentials: []
   };
+
+  const isCredentialNetHost = (urlString) => {
+    try {
+      const hostname = new URL(urlString).hostname.toLowerCase();
+      return hostname === 'credential.net' || hostname.endsWith('.credential.net');
+    } catch (e) {
+      return false;
+    }
+  };
   
   // Extract credentials - be very permissive, filter later
   const extractCredentials = () => {
@@ -438,8 +447,8 @@
         const isLogo = imageUrlLower.includes('accredible_logo') ||
                       imageUrlLower.includes('accredible_credential_net_logo');
         
-        // Keep everything with a credential.net image (except logos) for post-processing
-        if (!isLogo && credential.imageUrl && credential.imageUrl.includes('credential.net')) {
+        // Keep everything with a credential.net image host (except logos) for post-processing
+        if (!isLogo && credential.imageUrl && isCredentialNetHost(credential.imageUrl)) {
           data.credentials.push(credential);
         } else {
           console.log(`Filtered out container ${idx + 1}: isLogo=${isLogo}, hasImageUrl=${!!credential.imageUrl}`);
