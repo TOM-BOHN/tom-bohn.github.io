@@ -62,9 +62,9 @@ mkdir -p public/screenshots
 Puppeteer is already installed as a dev dependency. Run this inline script to capture full-page screenshots of all major pages:
 
 ```bash
-node -e "
-const puppeteer = require('puppeteer');
-const path = require('path');
+node --input-type=module -e "
+import puppeteer from 'puppeteer';
+import path from 'path';
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
