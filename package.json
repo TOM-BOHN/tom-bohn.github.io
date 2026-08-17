@@ -36,7 +36,7 @@
     "eslint": "^9.39.2",
     "eslint-config-next": "^16.1.1",
     "postcss": "^8.5.23",
-    "puppeteer": "^24.35.0",
+    "puppeteer": "^25.8.0",
     "sharp": "^0.35.3",
     "tailwindcss": "^3.4.14",
     "typescript": "^5.6.3"
