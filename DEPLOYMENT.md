@@ -2,11 +2,19 @@
 
 This site is configured to deploy automatically to GitHub Pages using GitHub Actions.
 
+## Branch flow
+
+1. Merge feature / Dependabot PRs into **`sandbox`**
+2. `.github/workflows/promote-sandbox-to-main.yml` runs `npm run build`; on success it opens or updates a **sandbox → main** promotion PR for human review
+3. After that PR is merged into **`main`**, `.github/workflows/deploy.yml` builds and deploys to GitHub Pages
+
+Do not push application changes directly to `main`.
+
 ## Automatic Deployment
 
-1. Push changes to the `main` branch
-2. GitHub Actions will automatically build and deploy the site
-3. The site will be available at `https://[your-username].github.io`
+1. Promote validated `sandbox` changes to `main` (see above)
+2. GitHub Actions builds and deploys the site
+3. The site is available at [thomaslbohn.com](https://thomaslbohn.com) (and the `tom-bohn.github.io` GitHub Pages URL)
 
 ## Manual Deployment
 

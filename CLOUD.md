@@ -10,6 +10,8 @@ priority is to keep the site building successfully after every change.
 2. Run the production build:
    - `npm run build`
 
+Target PRs at **`sandbox`** (not `main`). Promotion to production is handled by `.github/workflows/promote-sandbox-to-main.yml` after a green build. Keep Tailwind CSS on **v3** unless an intentional v4 migration is requested (Dependabot ignores Tailwind majors).
+
 ## Build failure workflow (mandatory)
 
 If the build fails, you must:

@@ -10,7 +10,10 @@
     "lint": "eslint .",
     "generate:icons": "node scripts/icons/generate-icons.js",
     "generate:og-image": "node scripts/og-image/generate-og-image.js",
-    "sync:medium": "node scripts/blog/sync-medium-content.js"
+    "sync:medium": "node scripts/blog/sync-medium-content.js",
+    "badges:credly": "node scripts/credly-badge/process-manual-badges.js",
+    "badges:accredible": "node scripts/accredible-badge/process-accredible-badges.js",
+    "badges:trailhead": "node scripts/trailhead-badge/process-trailhead-badges.js"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

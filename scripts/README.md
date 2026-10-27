@@ -1,24 +1,38 @@
 # Scripts Directory
 
-This directory contains scripts organized by service/platform for syncing content and processing badge/credential data.
+Build and data scripts for content sync and badge/credential processing.
 
 ## Structure
 
-Each subdirectory contains scripts and documentation for a specific badge/credential platform:
+| Folder | Purpose |
+|--------|---------|
+| `blog/` | Medium → `content/blog/` + homepage featured articles (`npm run sync:medium`) |
+| `icons/` | Favicon / PWA PNG generation (`npm run generate:icons`) |
+| `og-image/` | Open Graph image generation (`npm run generate:og-image`) |
+| `credly-badge/` | Credly badge extract / process / organize |
+| `accredible-badge/` | Accredible (credential.net) pipeline |
+| `trailhead-badge/` | Trailhead metadata pipeline |
+| `_shared/` | Shared helpers (`download-image.js`, `fs-json.js`) used by badge processors |
 
-- **`credly-badge/`** - Scripts for extracting and organizing badges from Credly profiles
-- **`trailhead-badge/`** - Scripts for extracting and organizing badges from Salesforce Trailhead profiles
-- **`accredible-badge/`** - Scripts for extracting and organizing credentials from Accredible (credential.net) wallets
-- **`blog/`** - Scripts for syncing Medium posts into `content/blog/` and homepage featured article data
+Each badge platform folder should include `README.md`, `INSTRUCTIONS.md`, and the platform scripts.
 
-## Adding New Platforms
+## Shared helpers
 
-When adding scripts for a new platform, create a new subdirectory following this structure:
+```js
+const { fromRoot, readJson, writeJson } = require('../_shared/fs-json')
+const { downloadImage, sanitizeFilename } = require('../_shared/download-image')
+```
+
+Prefer `fromRoot(...)` over mixing `process.cwd()` and `__dirname` so scripts behave the same no matter which directory you launch them from (always prefer running from the repo root).
+
+## Adding a Platform
 
 ```
 scripts/
 └── platform-name/
-    ├── README.md          # Overview of scripts
-    ├── INSTRUCTIONS.md    # Step-by-step usage guide
-    └── [script files]     # Platform-specific scripts
+    ├── README.md
+    ├── INSTRUCTIONS.md
+    └── [script files]
 ```
+
+Pair with `data/badges/<platform>/` for raw/cached JSON.
