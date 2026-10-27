@@ -1,6 +1,7 @@
-# Dependabot configuration for npm dependencies.
-# Grouped weekly updates keep noise low. Tailwind CSS major bumps are ignored
-# because v4 is a breaking migration (see #79 / accidental re-bump via #81).
+# Dependabot configuration.
+# npm: weekly grouped updates on sandbox. Tailwind majors and react-icons are
+# ignored (see comments). github-actions: monthly, also grouped so one Actions
+# bump does not open a PR per workflow action.
 version: 2
 updates:
   - package-ecosystem: npm
@@ -35,10 +36,21 @@ updates:
     directory: /
     schedule:
       interval: monthly
+    open-pull-requests-limit: 3
     target-branch: sandbox
     labels:
       - dependencies
       - github-actions
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+    # Major Actions bumps (e.g. checkout v4→v7) often need a deliberate review;
+    # keep them out of the monthly grouped PR until we're ready.
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - version-update:semver-major
     commit-message:
       prefix: "chore(ci)"
       include: scope
