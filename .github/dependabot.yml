@@ -1,0 +1,40 @@
+# Dependabot configuration for npm dependencies.
+# Grouped weekly updates keep noise low. Tailwind CSS major bumps are ignored
+# because v4 is a breaking migration (see #79 / accidental re-bump via #81).
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    target-branch: sandbox
+    labels:
+      - dependencies
+      - javascript
+    groups:
+      npm_and_yarn:
+        patterns:
+          - "*"
+        exclude-patterns:
+          - "tailwindcss"
+    ignore:
+      - dependency-name: tailwindcss
+        update-types:
+          - version-update:semver-major
+    commit-message:
+      prefix: "chore(deps)"
+      include: scope
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    target-branch: sandbox
+    labels:
+      - dependencies
+      - github-actions
+    commit-message:
+      prefix: "chore(ci)"
+      include: scope
