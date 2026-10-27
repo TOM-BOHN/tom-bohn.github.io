@@ -13,15 +13,17 @@ Do not push application changes directly to `main`.
 ## Automatic Deployment
 
 1. Promote validated `sandbox` changes to `main` (see above)
-2. GitHub Actions builds and deploys the site
+2. GitHub Actions builds and deploys the site (Node **20**, `npm ci`, `npm run build`)
 3. The site is available at [thomaslbohn.com](https://thomaslbohn.com) (and the `tom-bohn.github.io` GitHub Pages URL)
+
+Local builds should use the same Node major (see `.nvmrc` / `package.json` `engines`).
 
 ## Manual Deployment
 
 If you need to deploy manually:
 
 ```bash
-# Build the site
+# Build the site (Node 20+)
 npm run build
 
 # The static files will be in the out/ directory

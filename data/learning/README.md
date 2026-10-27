@@ -21,7 +21,7 @@ Source of truth for the Certifications & Learning page (`/certifications`).
 
 ## Updating badges
 
-1. Run the appropriate pipeline under `scripts/credly-badge`, `scripts/accredible-badge`, or `scripts/trailhead-badge` (see each folder’s `INSTRUCTIONS.md`).
+1. From the repo root, run `npm run badges:credly`, `badges:accredible`, and/or `badges:trailhead` (see each `scripts/*-badge/INSTRUCTIONS.md`).
 2. Place or refresh images under `public/badges/`.
 3. Point `badgeImages[].src` (and optional `url`) in `learning.json` at those assets.
 

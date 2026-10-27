@@ -34,7 +34,7 @@ Personal site: Next.js 16 App Router, React 19, TypeScript, Tailwind CSS **3**, 
 ### V2ME
 
 - List sections (Values / Methods / Obstacles / Measures) share `components/v2me/SortableMarkdownListSection.tsx`; keep wrappers thin.
-- Page-level expand/collapse must update **section** open state and nested items (CustomEvents still used for nested item expand in places).
+- Page-level expand/collapse uses **React state + incrementing tokens** (`expandItemsToken` / `collapseItemsToken`) — do not reintroduce `window` CustomEvents.
 - JSON upload must accept object-shaped `vision`, not only legacy strings.
 
 ## Dependency footguns
@@ -49,7 +49,8 @@ Configured in `.github/dependabot.yml` (targets `sandbox`):
 
 - Medium blog sync workflow: `.cursor/rules/medium-blog-sync.mdc` + `npm run sync:medium`
 - Badge pipelines: `npm run badges:credly` / `badges:accredible` / `badges:trailhead` (see `scripts/README.md`)
-- Human docs: `README.md`, `CONTRIBUTING.md`, `QUICKSTART.md`, `DEPLOYMENT.md`
+- Human docs: `SITE.md` (site reader), `README.md`, `CONTRIBUTING.md`, `QUICKSTART.md`, `DEPLOYMENT.md`, `SECURITY.md`
+- Runtime: Node **20+** (`.nvmrc`, `engines`); TypeScript **5.9** (do not bump to 6+/7 while `eslint-config-next` peers require `<6.1`)
 
 ## Prefer when editing UI
 

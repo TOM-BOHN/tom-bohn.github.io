@@ -48,7 +48,7 @@ export function Footer() {
           </div>
           {/* Second row: Copyright centered */}
           <div className="text-center">
-            <p>&copy; {currentYear} Thomas Bohn. All rights reserved.</p>
+            <p>&copy; {currentYear} Thomas Bohn. MIT License.</p>
           </div>
         </div>
       </div>
