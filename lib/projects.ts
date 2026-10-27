@@ -1,5 +1,5 @@
-import fs from 'fs'
 import path from 'path'
+import { readJsonFile } from '@/lib/json'
 
 export interface ProjectArtifact {
   id: string
@@ -24,17 +24,12 @@ export interface ProjectsData {
 const projectsFile = path.join(process.cwd(), 'data/projects.json')
 
 export async function getProjects(): Promise<ProjectsData> {
-  if (!fs.existsSync(projectsFile)) {
-    return { themes: [] }
-  }
+  const projects = readJsonFile<ProjectsData | ProjectTheme[]>(projectsFile, { themes: [] })
 
-  const fileContents = fs.readFileSync(projectsFile, 'utf8')
-  const projects = JSON.parse(fileContents)
-  
-  // Support legacy format
+  // Support legacy array format
   if (Array.isArray(projects)) {
     return { themes: [] }
   }
-  
+
   return projects
 }

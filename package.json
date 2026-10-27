@@ -10,44 +10,49 @@
     "lint": "eslint .",
     "generate:icons": "node scripts/icons/generate-icons.js",
     "generate:og-image": "node scripts/og-image/generate-og-image.js",
-    "sync:medium": "node scripts/blog/sync-medium-content.js"
+    "sync:medium": "node scripts/blog/sync-medium-content.js",
+    "badges:credly": "node scripts/credly-badge/process-manual-badges.js",
+    "badges:accredible": "node scripts/accredible-badge/process-accredible-badges.js",
+    "badges:trailhead": "node scripts/trailhead-badge/process-trailhead-badges.js"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
     "gray-matter": "^4.0.3",
-    "next": "^16.3.8",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
-    "react-icons": "^5.5.0",
+    "next": "^16.4.3",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-icons": "5.5.0",
     "react-markdown": "^10.1.0",
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
-    "sanitize-html": "^2.17.7"
+    "sanitize-html": "^2.18.1"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.3",
-    "@types/node": "^22.7.5",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "@types/sanitize-html": "^2.16.1",
-    "autoprefixer": "^10.4.20",
-    "eslint": "^9.39.2",
-    "eslint-config-next": "^16.1.1",
-    "postcss": "^8.5.23",
-    "puppeteer": "^25.8.0",
+    "@eslint/eslintrc": "^3.3.7",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/sanitize-html": "^2.16.2",
+    "autoprefixer": "^10.6.2",
+    "eslint": "^10.13.0",
+    "eslint-config-next": "^16.4.3",
+    "postcss": "^8.5.32",
+    "puppeteer": "^25.16.0",
     "sharp": "^0.35.5",
     "tailwindcss": "^3.4.19",
-    "typescript": "^5.6.3"
+    "typescript": "^7.0.2"
   },
   "optionalDependencies": {
-    "@next/swc-win32-x64-msvc": "16.1.1"
+    "@next/swc-win32-x64-msvc": "16.4.3"
   },
   "overrides": {
-    "postcss": "^8.5.23",
+    "postcss": "^8.5.32",
     "sharp": "$sharp",
     "js-yaml@3": "3.15.2",
-    "js-yaml@4": "4.3.2"
+    "js-yaml@4": "4.3.2",
+    "postcss-selector-parser": "^6.1.5",
+    "zod": "^4.6.6"
   }
 }

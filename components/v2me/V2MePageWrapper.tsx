@@ -11,7 +11,8 @@ import { MeasuresSection } from './MeasuresSection'
 import { ProgressBar } from './ProgressBar'
 import { DownloadUploadControls } from './DownloadUploadControls'
 import { V2MeHeader } from './V2MeHeader'
-import { RoleTypewriter } from '@/components/RoleTypewriter'
+import { PageShell } from '@/components/PageShell'
+import { PageHeader } from '@/components/PageHeader'
 import { ScrollReveal } from '@/components/ScrollReveal'
 
 interface V2MePageWrapperProps {
@@ -93,20 +94,39 @@ export function V2MePageWrapper({ initialData }: V2MePageWrapperProps) {
     const reader = new FileReader()
     reader.onload = (e) => {
       try {
-        const jsonData = JSON.parse(e.target?.result as string) as V2MeData
-        // Validate structure
+        const jsonData = JSON.parse(e.target?.result as string) as V2MeData & {
+          vision?: V2MeData['vision'] | string
+        }
+        // Validate structure (vision may be the current object shape or a legacy string)
+        const visionOk =
+          typeof jsonData.vision === 'string' ||
+          (jsonData.vision &&
+            typeof jsonData.vision === 'object' &&
+            typeof jsonData.vision.description === 'string')
         if (
-          typeof jsonData.vision === 'string' &&
+          visionOk &&
           Array.isArray(jsonData.values) &&
           Array.isArray(jsonData.methods) &&
           Array.isArray(jsonData.obstacles) &&
           Array.isArray(jsonData.measures)
         ) {
-          setData(jsonData)
+          const normalized: V2MeData = {
+            ...jsonData,
+            vision:
+              typeof jsonData.vision === 'string'
+                ? {
+                    id: 'vision-1',
+                    title: 'Vision',
+                    description: jsonData.vision,
+                  }
+                : jsonData.vision,
+          }
+          setData(normalized)
           // Expand all sections after upload
           setExpandedSections(
             new Set(['vision', 'values', 'methods', 'obstacles', 'measures'])
           )
+          window.dispatchEvent(new CustomEvent('v2me-expand-all-items'))
         } else {
           alert('Invalid V2Me JSON structure. Please check the file format.')
         }
@@ -124,99 +144,86 @@ export function V2MePageWrapper({ initialData }: V2MePageWrapperProps) {
   const progress = calculateProgress()
 
   return (
-    <>
-      {/* Animated background elements for dark mode */}
-      <div className="stars-bg" aria-hidden="true" />
-      <div className="nebula-bg" aria-hidden="true" />
-      
-      <div className="container mx-auto px-4 py-12 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-8 fade-in-up">
-            <p className="text-sm text-accent mb-4 font-mono typewriter-cursor">
-              <RoleTypewriter />
-            </p>
-            <div className="flex items-center justify-between mb-3">
-              <h1 className="text-2xl font-semibold text-text-primary font-mono flex items-center gap-3">
-                <span className="text-accent-orange">{'⟩'}</span>
-                {'V2ME'}
-              </h1>
-              <div className="flex items-center gap-2">
-                <DownloadUploadControls
-                  onDownload={handleDownload}
-                  onUpload={handleUpload}
-                />
-                <V2MeHeader
-                  onExpandAll={() => {
-                    // This will be handled by each section component
-                    window.dispatchEvent(new CustomEvent('v2me-expand-all-items'))
-                  }}
-                  onCollapseAll={() => {
-                    window.dispatchEvent(new CustomEvent('v2me-collapse-all-items'))
-                  }}
-                />
-              </div>
-            </div>
-            <p className="text-text-secondary leading-relaxed mb-6">
-              A personal version of the V2MOM framework for planning and strategy on a yearly basis.
-              Vision, Values, Methods, Obstacles, and Measures.
-            </p>
+    <PageShell>
+      <PageHeader
+        title="V2ME"
+        spacing="compact"
+        actions={
+          <div className="flex items-center gap-2">
+            <DownloadUploadControls
+              onDownload={handleDownload}
+              onUpload={handleUpload}
+            />
+            <V2MeHeader
+              onExpandAll={() => {
+                setExpandedSections(
+                  new Set(['vision', 'values', 'methods', 'obstacles', 'measures'])
+                )
+                window.dispatchEvent(new CustomEvent('v2me-expand-all-items'))
+              }}
+              onCollapseAll={() => {
+                setExpandedSections(new Set())
+                window.dispatchEvent(new CustomEvent('v2me-collapse-all-items'))
+              }}
+            />
           </div>
+        }
+        description="A personal version of the V2MOM framework for planning and strategy on a yearly basis. Vision, Values, Methods, Obstacles, and Measures."
+      />
 
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept=".json"
-            onChange={handleFileChange}
-            className="hidden"
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept=".json"
+        onChange={handleFileChange}
+        className="hidden"
+      />
+
+      <ScrollReveal>
+        <LearnMoreSection
+          isExpanded={showLearnMore}
+          onToggle={() => setShowLearnMore(!showLearnMore)}
+        />
+
+        <ProgressBar progress={progress} />
+
+        <div className="space-y-4">
+          <VisionSection
+            vision={data.vision}
+            isExpanded={expandedSections.has('vision')}
+            onToggle={() => toggleSection('vision')}
+            onUpdate={updateVision}
           />
 
-          <ScrollReveal>
-            <LearnMoreSection
-              isExpanded={showLearnMore}
-              onToggle={() => setShowLearnMore(!showLearnMore)}
-            />
+          <ValuesSection
+            values={data.values}
+            isExpanded={expandedSections.has('values')}
+            onToggle={() => toggleSection('values')}
+            onUpdate={updateValues}
+          />
 
-            <ProgressBar progress={progress} />
+          <MethodsSection
+            methods={data.methods}
+            isExpanded={expandedSections.has('methods')}
+            onToggle={() => toggleSection('methods')}
+            onUpdate={updateMethods}
+          />
 
-            <div className="space-y-4">
-              <VisionSection
-                vision={data.vision}
-                isExpanded={expandedSections.has('vision')}
-                onToggle={() => toggleSection('vision')}
-                onUpdate={updateVision}
-              />
+          <ObstaclesSection
+            obstacles={data.obstacles}
+            isExpanded={expandedSections.has('obstacles')}
+            onToggle={() => toggleSection('obstacles')}
+            onUpdate={updateObstacles}
+          />
 
-              <ValuesSection
-                values={data.values}
-                isExpanded={expandedSections.has('values')}
-                onToggle={() => toggleSection('values')}
-                onUpdate={updateValues}
-              />
-
-              <MethodsSection
-                methods={data.methods}
-                isExpanded={expandedSections.has('methods')}
-                onToggle={() => toggleSection('methods')}
-                onUpdate={updateMethods}
-              />
-
-              <ObstaclesSection
-                obstacles={data.obstacles}
-                isExpanded={expandedSections.has('obstacles')}
-                onToggle={() => toggleSection('obstacles')}
-                onUpdate={updateObstacles}
-              />
-
-              <MeasuresSection
-                measures={data.measures}
-                isExpanded={expandedSections.has('measures')}
-                onToggle={() => toggleSection('measures')}
-                onUpdate={updateMeasures}
-              />
-            </div>
-          </ScrollReveal>
+          <MeasuresSection
+            measures={data.measures}
+            isExpanded={expandedSections.has('measures')}
+            onToggle={() => toggleSection('measures')}
+            onUpdate={updateMeasures}
+          />
         </div>
-      </div>
-    </>
+      </ScrollReveal>
+    </PageShell>
   )
 }

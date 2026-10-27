@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import mediumHomepage from '@/data/medium-homepage.json'
 import { RoleTypewriter } from '@/components/RoleTypewriter'
+import { PageShell } from '@/components/PageShell'
 import { ScrollReveal } from '@/components/ScrollReveal'
 
 export default function Home() {
@@ -13,13 +14,7 @@ export default function Home() {
       : 'https://medium.com/@ThomasLBohn'
 
   return (
-    <>
-      {/* Animated background elements for dark mode */}
-      <div className="stars-bg" aria-hidden="true" />
-      <div className="nebula-bg" aria-hidden="true" />
-      
-      <div className="container mx-auto px-4 py-12 relative z-10">
-        <div className="max-w-6xl mx-auto">
+    <PageShell>
           {/* Role tag with fade-in animation */}
           <p className="text-sm text-accent mb-4 font-mono fade-in-up typewriter-cursor">
             <RoleTypewriter />
@@ -247,8 +242,6 @@ export default function Home() {
             </a>
           </div>
         </ScrollReveal>
-        </div>
-      </div>
-    </>
+    </PageShell>
   )
 }

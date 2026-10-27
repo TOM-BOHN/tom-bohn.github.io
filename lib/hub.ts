@@ -1,5 +1,5 @@
-import fs from 'fs'
 import path from 'path'
+import { readJsonFile } from '@/lib/json'
 
 export interface HubLink {
   id: string
@@ -68,32 +68,11 @@ export interface LearningData {
 const hubFile = path.join(process.cwd(), 'data/hub/hub.json')
 const learningFile = path.join(process.cwd(), 'data/learning/learning.json')
 
-export async function getHubLinks(): Promise<HubLink[]> {
-  if (!fs.existsSync(hubFile)) {
-    return []
-  }
-
-  const fileContents = fs.readFileSync(hubFile, 'utf8')
-  const links = JSON.parse(fileContents)
-  return links
-}
-
 export async function getHubSections(): Promise<HubSectionData[]> {
-  if (!fs.existsSync(hubFile)) {
-    return []
-  }
-
-  const fileContents = fs.readFileSync(hubFile, 'utf8')
-  const data: HubData = JSON.parse(fileContents)
+  const data = readJsonFile<HubData>(hubFile, { sections: [] })
   return data.sections || []
 }
 
 export async function getLearningData(): Promise<LearningData> {
-  if (!fs.existsSync(learningFile)) {
-    return { accomplished: [], planning: [] }
-  }
-
-  const fileContents = fs.readFileSync(learningFile, 'utf8')
-  const data: LearningData = JSON.parse(fileContents)
-  return data
+  return readJsonFile<LearningData>(learningFile, { accomplished: [], planning: [] })
 }

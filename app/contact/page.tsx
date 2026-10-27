@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 import { FaLinkedin, FaEnvelope, FaCopy, FaCheck, FaLock } from 'react-icons/fa'
-import { RoleTypewriter } from '@/components/RoleTypewriter'
+import { PageShell } from '@/components/PageShell'
+import { PageHeader } from '@/components/PageHeader'
 import { ScrollReveal } from '@/components/ScrollReveal'
 
 export default function Contact() {
@@ -21,25 +22,15 @@ export default function Contact() {
   }
 
   return (
-    <>
-      {/* Animated background elements for dark mode */}
-      <div className="stars-bg" aria-hidden="true" />
-      <div className="nebula-bg" aria-hidden="true" />
-      
-      <div className="container mx-auto px-4 py-12 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-12 fade-in-up">
-            <p className="text-sm text-accent mb-4 font-mono typewriter-cursor">
-              <RoleTypewriter />
-            </p>
-            <h1 className="text-2xl font-semibold mb-4 text-text-primary font-mono flex items-center gap-3">
-              <span className="text-accent-orange">{'⟩'}</span>
-              {'CONTACT'}
-            </h1>
-<p className="text-text-secondary leading-loose text-lg">
+    <PageShell>
+      <PageHeader
+        title="CONTACT"
+        description={
+          <p className="leading-loose text-lg">
             I&apos;m always open to discussing new opportunities, technical challenges, or potential collaborations. Reach out through any of the channels below.
           </p>
-          </div>
+        }
+      />
 
           <div className="space-y-6">
             {/* Email Section */}
@@ -132,8 +123,6 @@ export default function Contact() {
           </div>
           </ScrollReveal>
           </div>
-        </div>
-      </div>
-    </>
+    </PageShell>
   )
 }

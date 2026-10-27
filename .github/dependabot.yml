@@ -1,0 +1,56 @@
+# Dependabot configuration.
+# npm: weekly grouped updates on sandbox. Tailwind majors and react-icons are
+# ignored (see comments). github-actions: monthly, also grouped so one Actions
+# bump does not open a PR per workflow action.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    target-branch: sandbox
+    labels:
+      - dependencies
+      - javascript
+    groups:
+      npm_and_yarn:
+        patterns:
+          - "*"
+        exclude-patterns:
+          - "tailwindcss"
+    ignore:
+      - dependency-name: tailwindcss
+        update-types:
+          - version-update:semver-major
+      # 5.6+ dropped several Simple Icons brand exports (SiTableau, SiSalesforce,
+      # SiSlack, SiOpenai, SiAmazon, SiDbt, …) used by Links/Hub. Stay on 5.5.0
+      # until those call sites migrate to Fa/Fa6 fallbacks.
+      - dependency-name: react-icons
+    commit-message:
+      prefix: "chore(deps)"
+      include: scope
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 3
+    target-branch: sandbox
+    labels:
+      - dependencies
+      - github-actions
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+    # Major Actions bumps (e.g. checkout v4→v7) often need a deliberate review;
+    # keep them out of the monthly grouped PR until we're ready.
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - version-update:semver-major
+    commit-message:
+      prefix: "chore(ci)"
+      include: scope

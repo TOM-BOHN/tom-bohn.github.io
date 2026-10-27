@@ -1,10 +1,10 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { CertificationGroup, CertificationGroupData } from './CertificationGroup'
-import { LearningGoals, LearningGoal } from './LearningGoals'
+import { CertificationGroup } from './CertificationGroup'
+import { LearningGoals } from './LearningGoals'
 import { Education } from './Education'
-import { EducationEntry } from '@/lib/hub'
+import type { CertificationGroupData, EducationEntry, LearningGoal } from '@/lib/hub'
 
 interface LearningSectionProps {
   education?: EducationEntry[]
@@ -46,10 +46,14 @@ export function LearningSection({
 
   useEffect(() => {
     const handleExpandAll = () => {
+      setIsAccomplishedExpanded(true)
+      setIsPlanningExpanded(true)
       setExpandedGroups(new Set(accomplished.map(g => g.id)))
       setExpandedGoals(new Set(planning.map(g => g.id)))
     }
     const handleCollapseAll = () => {
+      setIsAccomplishedExpanded(false)
+      setIsPlanningExpanded(false)
       setExpandedGroups(new Set())
       setExpandedGoals(new Set())
     }
