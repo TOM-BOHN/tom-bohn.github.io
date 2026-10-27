@@ -31,6 +31,8 @@ Visit the site at [thomaslbohn.com](https://thomaslbohn.com)
 
 ## Development
 
+Requires **Node.js 20+** (see `.nvmrc` / `package.json` `engines`). CI uses Node 20.
+
 ```bash
 npm install
 npm run dev      # http://localhost:3000
@@ -44,6 +46,9 @@ Useful content scripts:
 npm run sync:medium       # Import missing Medium posts + refresh homepage featured links
 npm run generate:icons    # Regenerate PWA/favicon PNGs from public/icons/icon.svg
 npm run generate:og-image # Regenerate Open Graph image
+npm run badges:credly     # Credly badge pipeline
+npm run badges:accredible # Accredible credential pipeline
+npm run badges:trailhead  # Trailhead metadata pipeline
 ```
 
 ## Project Structure
@@ -99,17 +104,18 @@ Custom Tailwind theme with a Tableau color-blind–friendly blue–orange palett
 
 ## Dependency & Security Maintenance
 
-- Dependabot: `.github/dependabot.yml` — weekly grouped npm updates on `sandbox`; **Tailwind CSS major bumps are ignored** (v4 is a breaking migration; keep on v3 until an intentional upgrade).
+- Dependabot: `.github/dependabot.yml` — weekly grouped npm updates on `sandbox`; **Tailwind CSS major bumps are ignored** (v4 is a breaking migration; keep on v3 until an intentional upgrade). **`react-icons` is pinned at 5.5.0** (5.6+ dropped Simple Icons brands used by Links/Hub).
 - After dependency changes, run `npm audit` and `npm run build`.
 - Prefer merging Dependabot PRs into `sandbox`, never directly to `main`.
+- Vulnerability reporting: [SECURITY.md](./SECURITY.md).
 
 ## Contributing
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup, content workflows, and PR expectations. Quick orientation: [QUICKSTART.md](./QUICKSTART.md). Cloud agent notes: [CLOUD.md](./CLOUD.md).
+Start with the [site reader](./SITE.md) (page map + doc index). Then: [CONTRIBUTING.md](./CONTRIBUTING.md), [QUICKSTART.md](./QUICKSTART.md), [CLOUD.md](./CLOUD.md), [AGENTS.md](./AGENTS.md).
 
 ## License
 
-All rights reserved. This is a personal website and portfolio.
+[MIT](./LICENSE) © Thomas Bohn.
 
 ---
 

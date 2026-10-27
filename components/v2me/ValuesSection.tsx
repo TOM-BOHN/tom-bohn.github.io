@@ -8,9 +8,18 @@ interface ValuesSectionProps {
   isExpanded: boolean
   onToggle: () => void
   onUpdate: (values: V2MeValue[]) => void
+  expandItemsToken?: number
+  collapseItemsToken?: number
 }
 
-export function ValuesSection({ values, isExpanded, onToggle, onUpdate }: ValuesSectionProps) {
+export function ValuesSection({
+  values,
+  isExpanded,
+  onToggle,
+  onUpdate,
+  expandItemsToken,
+  collapseItemsToken,
+}: ValuesSectionProps) {
   return (
     <SortableMarkdownListSection
       title="Values"
@@ -22,6 +31,8 @@ export function ValuesSection({ values, isExpanded, onToggle, onUpdate }: Values
       itemNoun="Value"
       idPrefix="value"
       showCompletedCheckbox={false}
+      expandItemsToken={expandItemsToken}
+      collapseItemsToken={collapseItemsToken}
     />
   )
 }

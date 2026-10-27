@@ -3,6 +3,9 @@
 These instructions are for automated changes in this repository. The main
 priority is to keep the site building successfully after every change.
 
+For durable architecture context (folder map, dependency pins, data ownership),
+see root [`AGENTS.md`](./AGENTS.md).
+
 ## Required checks (always run)
 
 1. Install dependencies (if not already installed):

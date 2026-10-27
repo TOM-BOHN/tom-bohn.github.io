@@ -2,12 +2,15 @@
 
 This is a personal website, but suggestions and bug reports are welcome via issues or pull requests.
 
+For a page map and doc index, see [SITE.md](./SITE.md) (site reader).
+
 ## Development Setup
 
-1. Clone the repository
-2. Install dependencies: `npm install`
-3. Run the development server: `npm run dev`
-4. Open [http://localhost:3000](http://localhost:3000)
+1. Use **Node.js 20+** (`.nvmrc` / `engines`)
+2. Clone the repository
+3. Install dependencies: `npm install`
+4. Run the development server: `npm run dev`
+5. Open [http://localhost:3000](http://localhost:3000)
 
 Before opening a PR, run:
 
@@ -20,9 +23,9 @@ npm run build
 ## Tech Stack
 
 - **Framework**: Next.js 16 (App Router, `output: 'export'`)
-- **Language**: TypeScript
+- **Language**: TypeScript 5.9
 - **UI**: React 19 + Tailwind CSS 3
-- **Icons**: react-icons
+- **Icons**: react-icons **5.5.0** (pinned — see `AGENTS.md`)
 - **Content**: Markdown (remark / react-markdown) with sanitize-html
 - **Drag & Drop**: @dnd-kit (V2ME)
 - **Fonts**: Next.js font optimization (Open Sans)
@@ -33,7 +36,7 @@ npm run build
 2. Open PRs targeting **`sandbox`**.
 3. After merge, automation validates the build and may open a **sandbox → main** promotion PR for human review. Do not push to `main` or merge the promotion PR unless you own production releases.
 
-Dependabot also targets `sandbox`. Tailwind CSS major updates are intentionally ignored in Dependabot config.
+Dependabot also targets `sandbox`. Tailwind CSS majors and `react-icons` bumps are intentionally ignored in Dependabot config.
 
 ## Project Structure
 
@@ -68,7 +71,15 @@ Edit `data/links.json` (category → link arrays).
 ### Certifications & Learning
 
 Edit `data/learning/learning.json` (education, accomplished certification groups, planning goals).  
-Badge images live under `public/badges/`; Credly / Accredible / Trailhead pipelines are under `scripts/*-badge/` (see `scripts/README.md` and each folder’s `INSTRUCTIONS.md`).
+Badge images live under `public/badges/`; pipelines:
+
+```bash
+npm run badges:credly
+npm run badges:accredible
+npm run badges:trailhead
+```
+
+See `scripts/README.md` and each folder’s `INSTRUCTIONS.md`.
 
 ### Hub
 
@@ -86,14 +97,9 @@ Edit `data/v2me.json`, or use the on-page editor and JSON download/upload.
 | `npm run sync:medium` | Import missing Medium posts + refresh homepage featured links |
 | `npm run generate:icons` | Rebuild favicon / PWA PNGs |
 | `npm run generate:og-image` | Rebuild Open Graph image |
-
-Badge processors (run from repo root):
-
-```bash
-node scripts/credly-badge/process-manual-badges.js
-node scripts/accredible-badge/process-accredible-badges.js
-node scripts/trailhead-badge/process-trailhead-badges.js
-```
+| `npm run badges:credly` | Credly badge pipeline |
+| `npm run badges:accredible` | Accredible pipeline |
+| `npm run badges:trailhead` | Trailhead pipeline |
 
 Shared helpers: `scripts/_shared/download-image.js`, `scripts/_shared/fs-json.js`.
 
@@ -103,4 +109,4 @@ Shared helpers: `scripts/_shared/download-image.js`, `scripts/_shared/fs-json.js
 npm run build
 ```
 
-Static files land in `out/` for GitHub Pages. See `DEPLOYMENT.md` for domain and HTTPS setup.
+Static files land in `out/` for GitHub Pages. See `DEPLOYMENT.md` for domain and HTTPS setup. Security reporting: `SECURITY.md`.

@@ -9,9 +9,9 @@ Build and data scripts for content sync and badge/credential processing.
 | `blog/` | Medium → `content/blog/` + homepage featured articles (`npm run sync:medium`) |
 | `icons/` | Favicon / PWA PNG generation (`npm run generate:icons`) |
 | `og-image/` | Open Graph image generation (`npm run generate:og-image`) |
-| `credly-badge/` | Credly badge extract / process / organize |
-| `accredible-badge/` | Accredible (credential.net) pipeline |
-| `trailhead-badge/` | Trailhead metadata pipeline |
+| `credly-badge/` | Credly badge extract / process / organize (`npm run badges:credly`) |
+| `accredible-badge/` | Accredible (credential.net) pipeline (`npm run badges:accredible`) |
+| `trailhead-badge/` | Trailhead metadata pipeline (`npm run badges:trailhead`) |
 | `_shared/` | Shared helpers (`download-image.js`, `fs-json.js`) used by badge processors |
 
 Each badge platform folder should include `README.md`, `INSTRUCTIONS.md`, and the platform scripts.

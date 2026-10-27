@@ -38,9 +38,9 @@ export interface SortableMarkdownListSectionProps<T extends SortableMarkdownList
   itemNoun: string
   idPrefix: string
   showCompletedCheckbox?: boolean
-  /** When this number changes, expand all items (preferred over CustomEvents). */
+  /** When this number changes, expand all items. */
   expandItemsToken?: number
-  /** When this number changes, collapse all items (preferred over CustomEvents). */
+  /** When this number changes, collapse all items. */
   collapseItemsToken?: number
 }
 
@@ -287,7 +287,6 @@ export function SortableMarkdownListSection<T extends SortableMarkdownListItem>(
     }
   }, [isExpanded, localItems])
 
-  // Preferred: token-based expand/collapse from parent
   useEffect(() => {
     if (expandItemsToken !== undefined && expandItemsToken !== prevExpandToken.current) {
       prevExpandToken.current = expandItemsToken
@@ -301,22 +300,6 @@ export function SortableMarkdownListSection<T extends SortableMarkdownListItem>(
       setExpandedItems(new Set())
     }
   }, [collapseItemsToken])
-
-  // Compatibility: CustomEvents from V2MePageWrapper
-  useEffect(() => {
-    const handleExpandAll = () => {
-      setExpandedItems(new Set(localItems.map((item) => item.id)))
-    }
-    const handleCollapseAll = () => {
-      setExpandedItems(new Set())
-    }
-    window.addEventListener('v2me-expand-all-items', handleExpandAll)
-    window.addEventListener('v2me-collapse-all-items', handleCollapseAll)
-    return () => {
-      window.removeEventListener('v2me-expand-all-items', handleExpandAll)
-      window.removeEventListener('v2me-collapse-all-items', handleCollapseAll)
-    }
-  }, [localItems])
 
   const toggleItem = (id: string) => {
     setExpandedItems((prev) => {

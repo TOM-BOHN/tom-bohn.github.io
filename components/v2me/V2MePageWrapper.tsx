@@ -19,11 +19,13 @@ interface V2MePageWrapperProps {
   initialData: V2MeData
 }
 
+const ALL_SECTIONS = new Set(['vision', 'values', 'methods', 'obstacles', 'measures'])
+
 export function V2MePageWrapper({ initialData }: V2MePageWrapperProps) {
   const [data, setData] = useState<V2MeData>(initialData)
-  const [expandedSections, setExpandedSections] = useState<Set<string>>(
-    new Set(['vision', 'values', 'methods', 'obstacles', 'measures'])
-  )
+  const [expandedSections, setExpandedSections] = useState<Set<string>>(ALL_SECTIONS)
+  const [expandItemsToken, setExpandItemsToken] = useState(0)
+  const [collapseItemsToken, setCollapseItemsToken] = useState(0)
   const [showLearnMore, setShowLearnMore] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
@@ -37,6 +39,16 @@ export function V2MePageWrapper({ initialData }: V2MePageWrapperProps) {
       }
       return next
     })
+  }
+
+  const expandAll = () => {
+    setExpandedSections(new Set(ALL_SECTIONS))
+    setExpandItemsToken((t) => t + 1)
+  }
+
+  const collapseAll = () => {
+    setExpandedSections(new Set())
+    setCollapseItemsToken((t) => t + 1)
   }
 
   const updateVision = (vision: typeof data.vision) => {
@@ -97,7 +109,6 @@ export function V2MePageWrapper({ initialData }: V2MePageWrapperProps) {
         const jsonData = JSON.parse(e.target?.result as string) as V2MeData & {
           vision?: V2MeData['vision'] | string
         }
-        // Validate structure (vision may be the current object shape or a legacy string)
         const visionOk =
           typeof jsonData.vision === 'string' ||
           (jsonData.vision &&
@@ -122,20 +133,16 @@ export function V2MePageWrapper({ initialData }: V2MePageWrapperProps) {
                 : jsonData.vision,
           }
           setData(normalized)
-          // Expand all sections after upload
-          setExpandedSections(
-            new Set(['vision', 'values', 'methods', 'obstacles', 'measures'])
-          )
-          window.dispatchEvent(new CustomEvent('v2me-expand-all-items'))
+          setExpandedSections(new Set(ALL_SECTIONS))
+          setExpandItemsToken((t) => t + 1)
         } else {
           alert('Invalid V2Me JSON structure. Please check the file format.')
         }
-      } catch (error) {
+      } catch {
         alert('Error parsing JSON file. Please ensure it is valid JSON.')
       }
     }
     reader.readAsText(file)
-    // Reset input so same file can be selected again
     if (fileInputRef.current) {
       fileInputRef.current.value = ''
     }
@@ -150,22 +157,8 @@ export function V2MePageWrapper({ initialData }: V2MePageWrapperProps) {
         spacing="compact"
         actions={
           <div className="flex items-center gap-2">
-            <DownloadUploadControls
-              onDownload={handleDownload}
-              onUpload={handleUpload}
-            />
-            <V2MeHeader
-              onExpandAll={() => {
-                setExpandedSections(
-                  new Set(['vision', 'values', 'methods', 'obstacles', 'measures'])
-                )
-                window.dispatchEvent(new CustomEvent('v2me-expand-all-items'))
-              }}
-              onCollapseAll={() => {
-                setExpandedSections(new Set())
-                window.dispatchEvent(new CustomEvent('v2me-collapse-all-items'))
-              }}
-            />
+            <DownloadUploadControls onDownload={handleDownload} onUpload={handleUpload} />
+            <V2MeHeader onExpandAll={expandAll} onCollapseAll={collapseAll} />
           </div>
         }
         description="A personal version of the V2MOM framework for planning and strategy on a yearly basis. Vision, Values, Methods, Obstacles, and Measures."
@@ -193,6 +186,8 @@ export function V2MePageWrapper({ initialData }: V2MePageWrapperProps) {
             isExpanded={expandedSections.has('vision')}
             onToggle={() => toggleSection('vision')}
             onUpdate={updateVision}
+            expandItemsToken={expandItemsToken}
+            collapseItemsToken={collapseItemsToken}
           />
 
           <ValuesSection
@@ -200,6 +195,8 @@ export function V2MePageWrapper({ initialData }: V2MePageWrapperProps) {
             isExpanded={expandedSections.has('values')}
             onToggle={() => toggleSection('values')}
             onUpdate={updateValues}
+            expandItemsToken={expandItemsToken}
+            collapseItemsToken={collapseItemsToken}
           />
 
           <MethodsSection
@@ -207,6 +204,8 @@ export function V2MePageWrapper({ initialData }: V2MePageWrapperProps) {
             isExpanded={expandedSections.has('methods')}
             onToggle={() => toggleSection('methods')}
             onUpdate={updateMethods}
+            expandItemsToken={expandItemsToken}
+            collapseItemsToken={collapseItemsToken}
           />
 
           <ObstaclesSection
@@ -214,6 +213,8 @@ export function V2MePageWrapper({ initialData }: V2MePageWrapperProps) {
             isExpanded={expandedSections.has('obstacles')}
             onToggle={() => toggleSection('obstacles')}
             onUpdate={updateObstacles}
+            expandItemsToken={expandItemsToken}
+            collapseItemsToken={collapseItemsToken}
           />
 
           <MeasuresSection
@@ -221,6 +222,8 @@ export function V2MePageWrapper({ initialData }: V2MePageWrapperProps) {
             isExpanded={expandedSections.has('measures')}
             onToggle={() => toggleSection('measures')}
             onUpdate={updateMeasures}
+            expandItemsToken={expandItemsToken}
+            collapseItemsToken={collapseItemsToken}
           />
         </div>
       </ScrollReveal>

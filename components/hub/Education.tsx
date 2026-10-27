@@ -2,19 +2,21 @@
 
 import Image from 'next/image'
 import { useState, useRef, useEffect } from 'react'
-import { EducationEntry } from '@/lib/hub'
+import type { EducationEntry } from '@/lib/hub'
 
 interface EducationProps {
   education: EducationEntry[]
   isExpanded?: boolean
   onToggle?: () => void
+  expandToken?: number
+  collapseToken?: number
 }
 
-function EducationCard({ 
-  entry, 
-  isExpanded, 
-  onToggle 
-}: { 
+function EducationCard({
+  entry,
+  isExpanded,
+  onToggle,
+}: {
   entry: EducationEntry
   isExpanded: boolean
   onToggle: () => void
@@ -31,8 +33,10 @@ function EducationCard({
   return (
     <div className="border-2 border-border rounded-lg bg-bg-primary mb-6 overflow-hidden">
       <button
+        type="button"
         onClick={onToggle}
         className="w-full px-6 py-4 flex items-start gap-3 hover:bg-bg-secondary transition-colors text-left"
+        aria-expanded={isExpanded}
       >
         <div className="flex items-center h-7 pt-1">
           {isExpanded ? (
@@ -42,12 +46,7 @@ function EducationCard({
               stroke="currentColor"
               viewBox="0 0 24 24"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M20 12H4"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
             </svg>
           ) : (
             <svg
@@ -77,9 +76,7 @@ function EducationCard({
             </div>
           )}
           <div className="flex-1">
-            <h4 className="text-xl font-semibold text-text-primary mb-1">
-              {entry.institution}
-            </h4>
+            <h4 className="text-xl font-semibold text-text-primary mb-1">{entry.institution}</h4>
             <p className="text-text-secondary mb-2">{entry.degree}</p>
             <p className="text-text-secondary text-sm">
               {entry.startDate} - {entry.endDate}
@@ -94,9 +91,7 @@ function EducationCard({
         <div ref={contentRef} className="pr-6 pb-6 pl-[56px]">
           {entry.courses && entry.courses.length > 0 && (
             <div>
-              <p className="text-text-secondary text-sm font-medium mb-1">
-                University Courses:
-              </p>
+              <p className="text-text-secondary text-sm font-medium mb-1">University Courses:</p>
               <p className="text-text-secondary text-sm">
                 {entry.courses.join(', ')}
                 {entry.courses.length > 8 && '...see more'}
@@ -109,12 +104,20 @@ function EducationCard({
   )
 }
 
-export function Education({ education, isExpanded: controlledExpanded, onToggle }: EducationProps) {
+export function Education({
+  education,
+  isExpanded: controlledExpanded,
+  onToggle,
+  expandToken = 0,
+  collapseToken = 0,
+}: EducationProps) {
   const [internalExpanded, setInternalExpanded] = useState(true)
   const isExpanded = controlledExpanded !== undefined ? controlledExpanded : internalExpanded
   const [expandedEntries, setExpandedEntries] = useState<Set<string>>(new Set())
   const contentRef = useRef<HTMLDivElement>(null)
   const [height, setHeight] = useState<number | 'auto'>('auto')
+  const prevExpandToken = useRef(expandToken)
+  const prevCollapseToken = useRef(collapseToken)
 
   const handleToggle = () => {
     if (onToggle) {
@@ -131,24 +134,21 @@ export function Education({ education, isExpanded: controlledExpanded, onToggle 
   }, [isExpanded, education])
 
   useEffect(() => {
-    const handleExpandAll = () => {
-      setExpandedEntries(new Set(education?.map(e => e.id) || []))
+    if (expandToken !== prevExpandToken.current) {
+      prevExpandToken.current = expandToken
+      setExpandedEntries(new Set(education.map((e) => e.id)))
     }
-    const handleCollapseAll = () => {
+  }, [expandToken, education])
+
+  useEffect(() => {
+    if (collapseToken !== prevCollapseToken.current) {
+      prevCollapseToken.current = collapseToken
       setExpandedEntries(new Set())
     }
-
-    window.addEventListener('learning-expand-all-items', handleExpandAll)
-    window.addEventListener('learning-collapse-all-items', handleCollapseAll)
-
-    return () => {
-      window.removeEventListener('learning-expand-all-items', handleExpandAll)
-      window.removeEventListener('learning-collapse-all-items', handleCollapseAll)
-    }
-  }, [education])
+  }, [collapseToken])
 
   const expandAllEntries = () => {
-    setExpandedEntries(new Set(education?.map(e => e.id) || []))
+    setExpandedEntries(new Set(education.map((e) => e.id)))
   }
 
   const collapseAllEntries = () => {
@@ -159,118 +159,58 @@ export function Education({ education, isExpanded: controlledExpanded, onToggle 
     return null
   }
 
-  const handleHeaderKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault()
-      handleToggle()
-    }
-  }
-
   return (
     <div className="border-2 border-border rounded-lg bg-bg-secondary overflow-hidden">
-      <div
-        role="button"
-        tabIndex={0}
-        onClick={handleToggle}
-        onKeyDown={handleHeaderKeyDown}
-        className="w-full px-6 py-4 flex items-center justify-between gap-4 hover:bg-bg-primary transition-colors text-left cursor-pointer"
-        aria-label={isExpanded ? 'Collapse section' : 'Expand section'}
-      >
-        <div className="flex items-center gap-3">
+      <div className="px-6 py-4 flex items-center justify-between gap-4">
+        <button
+          type="button"
+          onClick={handleToggle}
+          className="flex items-center gap-3 hover:opacity-90 transition-opacity text-left"
+          aria-expanded={isExpanded}
+          aria-controls="learning-education-panel"
+        >
           {isExpanded ? (
-            <svg
-              className="w-5 h-5 text-accent"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M20 12H4"
-              />
+            <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
             </svg>
           ) : (
-            <svg
-              className="w-5 h-5 text-accent"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 4v16m8-8H4"
-              />
+            <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
             </svg>
           )}
           <h3 className="text-2xl font-bold text-accent">Education</h3>
-        </div>
+        </button>
         {isExpanded && education.length > 0 && (
-          <div 
-            className="flex items-center gap-1 border border-border rounded-lg bg-bg-primary p-1"
-            onClick={(e) => e.stopPropagation()}
-          >
+          <div className="flex items-center gap-1 border border-border rounded-lg bg-bg-primary p-1">
             <button
-              onClick={(e) => {
-                e.stopPropagation()
-                expandAllEntries()
-              }}
+              type="button"
+              onClick={expandAllEntries}
               className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded transition-colors"
               aria-label="Expand all education entries"
               title="Expand all education entries"
             >
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 9l-7 7-7-7"
-                />
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
               <span className="sr-only">Expand all</span>
-              <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded border border-border bg-bg-primary px-2 py-1 text-xs text-text-primary opacity-0 shadow-sm transition-opacity group-hover:opacity-100 z-10">
-                Expand all
-              </span>
             </button>
             <button
-              onClick={(e) => {
-                e.stopPropagation()
-                collapseAllEntries()
-              }}
+              type="button"
+              onClick={collapseAllEntries}
               className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded transition-colors"
               aria-label="Collapse all education entries"
               title="Collapse all education entries"
             >
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 15l7-7 7 7"
-                />
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
               </svg>
               <span className="sr-only">Collapse all</span>
-              <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded border border-border bg-bg-primary px-2 py-1 text-xs text-text-primary opacity-0 shadow-sm transition-opacity group-hover:opacity-100 z-10">
-                Collapse all
-              </span>
             </button>
           </div>
         )}
       </div>
       <div
+        id="learning-education-panel"
         className="overflow-hidden transition-all duration-300 ease-in-out"
         style={{ maxHeight: typeof height === 'number' ? `${height}px` : 'none' }}
       >
@@ -278,19 +218,19 @@ export function Education({ education, isExpanded: controlledExpanded, onToggle 
           {education.length > 0 ? (
             <div>
               {education.map((entry) => (
-                <EducationCard 
-                  key={entry.id} 
+                <EducationCard
+                  key={entry.id}
                   entry={entry}
                   isExpanded={expandedEntries.has(entry.id)}
                   onToggle={() => {
                     setExpandedEntries((prev) => {
-                      const newSet = new Set(prev)
-                      if (newSet.has(entry.id)) {
-                        newSet.delete(entry.id)
+                      const next = new Set(prev)
+                      if (next.has(entry.id)) {
+                        next.delete(entry.id)
                       } else {
-                        newSet.add(entry.id)
+                        next.add(entry.id)
                       }
-                      return newSet
+                      return next
                     })
                   }}
                 />
