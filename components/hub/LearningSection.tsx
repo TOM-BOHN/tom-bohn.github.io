@@ -11,6 +11,10 @@ interface LearningSectionProps {
   accomplished: CertificationGroupData[]
   planning: LearningGoal[]
   onGoalToggle?: (id: string) => void
+  /** Increment to expand all nested sections/items. */
+  expandToken?: number
+  /** Increment to collapse all nested sections/items. */
+  collapseToken?: number
 }
 
 export function LearningSection({
@@ -18,6 +22,8 @@ export function LearningSection({
   accomplished,
   planning,
   onGoalToggle,
+  expandToken = 0,
+  collapseToken = 0,
 }: LearningSectionProps) {
   const [isAccomplishedExpanded, setIsAccomplishedExpanded] = useState(true)
   const [isPlanningExpanded, setIsPlanningExpanded] = useState(true)
@@ -27,6 +33,8 @@ export function LearningSection({
   const planningContentRef = useRef<HTMLDivElement>(null)
   const [accomplishedHeight, setAccomplishedHeight] = useState<number | 'auto'>('auto')
   const [planningHeight, setPlanningHeight] = useState<number | 'auto'>('auto')
+  const prevExpandToken = useRef(expandToken)
+  const prevCollapseToken = useRef(collapseToken)
 
   useEffect(() => {
     if (accomplishedContentRef.current) {
@@ -45,30 +53,27 @@ export function LearningSection({
   }, [isPlanningExpanded, planning])
 
   useEffect(() => {
-    const handleExpandAll = () => {
+    if (expandToken !== prevExpandToken.current) {
+      prevExpandToken.current = expandToken
       setIsAccomplishedExpanded(true)
       setIsPlanningExpanded(true)
-      setExpandedGroups(new Set(accomplished.map(g => g.id)))
-      setExpandedGoals(new Set(planning.map(g => g.id)))
+      setExpandedGroups(new Set(accomplished.map((g) => g.id)))
+      setExpandedGoals(new Set(planning.map((g) => g.id)))
     }
-    const handleCollapseAll = () => {
+  }, [expandToken, accomplished, planning])
+
+  useEffect(() => {
+    if (collapseToken !== prevCollapseToken.current) {
+      prevCollapseToken.current = collapseToken
       setIsAccomplishedExpanded(false)
       setIsPlanningExpanded(false)
       setExpandedGroups(new Set())
       setExpandedGoals(new Set())
     }
-
-    window.addEventListener('learning-expand-all-items', handleExpandAll)
-    window.addEventListener('learning-collapse-all-items', handleCollapseAll)
-
-    return () => {
-      window.removeEventListener('learning-expand-all-items', handleExpandAll)
-      window.removeEventListener('learning-collapse-all-items', handleCollapseAll)
-    }
-  }, [accomplished, planning])
+  }, [collapseToken])
 
   const expandAllGroups = () => {
-    setExpandedGroups(new Set(accomplished.map(g => g.id)))
+    setExpandedGroups(new Set(accomplished.map((g) => g.id)))
   }
 
   const collapseAllGroups = () => {
@@ -76,7 +81,7 @@ export function LearningSection({
   }
 
   const expandAllGoals = () => {
-    setExpandedGoals(new Set(planning.map(g => g.id)))
+    setExpandedGoals(new Set(planning.map((g) => g.id)))
   }
 
   const collapseAllGoals = () => {
@@ -85,147 +90,94 @@ export function LearningSection({
 
   const toggleGroup = (id: string) => {
     setExpandedGroups((prev) => {
-      const newSet = new Set(prev)
-      if (newSet.has(id)) {
-        newSet.delete(id)
+      const next = new Set(prev)
+      if (next.has(id)) {
+        next.delete(id)
       } else {
-        newSet.add(id)
+        next.add(id)
       }
-      return newSet
+      return next
     })
   }
 
   const toggleGoal = (id: string) => {
     setExpandedGoals((prev) => {
-      const newSet = new Set(prev)
-      if (newSet.has(id)) {
-        newSet.delete(id)
+      const next = new Set(prev)
+      if (next.has(id)) {
+        next.delete(id)
       } else {
-        newSet.add(id)
+        next.add(id)
       }
-      return newSet
+      return next
     })
   }
 
   return (
     <div className="space-y-8">
-      {/* Education */}
       {education && education.length > 0 && (
-        <Education education={education} />
+        <Education
+          education={education}
+          expandToken={expandToken}
+          collapseToken={collapseToken}
+        />
       )}
 
-      {/* What I've Accomplished */}
       <div className="border-2 border-border rounded-lg bg-bg-secondary overflow-hidden">
-        <div
-          role="button"
-          tabIndex={0}
-          onClick={() => setIsAccomplishedExpanded(!isAccomplishedExpanded)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault()
-              setIsAccomplishedExpanded((prev) => !prev)
-            }
-          }}
-          className="w-full px-6 py-4 flex items-center justify-between gap-4 hover:bg-bg-primary transition-colors text-left cursor-pointer"
-          aria-label={isAccomplishedExpanded ? 'Collapse section' : 'Expand section'}
-        >
-          <div className="flex items-center gap-3">
+        <div className="px-6 py-4 flex items-center justify-between gap-4">
+          <button
+            type="button"
+            onClick={() => setIsAccomplishedExpanded(!isAccomplishedExpanded)}
+            className="flex items-center gap-3 hover:opacity-90 transition-opacity text-left"
+            aria-expanded={isAccomplishedExpanded}
+            aria-controls="learning-accomplished-panel"
+          >
             {isAccomplishedExpanded ? (
-              <svg
-                className="w-5 h-5 text-accent"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M20 12H4"
-                />
+              <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
               </svg>
             ) : (
-              <svg
-                className="w-5 h-5 text-accent"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 4v16m8-8H4"
-                />
+              <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
               </svg>
             )}
             <h3 className="text-2xl font-bold text-accent">What I&apos;ve Accomplished</h3>
-          </div>
+          </button>
           {isAccomplishedExpanded && accomplished.length > 0 && (
-            <div 
-              className="flex items-center gap-1 border border-border rounded-lg bg-bg-primary p-1"
-              onClick={(e) => e.stopPropagation()}
-            >
+            <div className="flex items-center gap-1 border border-border rounded-lg bg-bg-primary p-1">
               <button
-                onClick={(e) => {
-                  e.stopPropagation()
-                  expandAllGroups()
-                }}
+                type="button"
+                onClick={expandAllGroups}
                 className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded transition-colors"
                 aria-label="Expand all certification groups"
                 title="Expand all certification groups"
               >
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
                 <span className="sr-only">Expand all</span>
-                <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded border border-border bg-bg-primary px-2 py-1 text-xs text-text-primary opacity-0 shadow-sm transition-opacity group-hover:opacity-100 z-10">
-                  Expand all
-                </span>
               </button>
               <button
-                onClick={(e) => {
-                  e.stopPropagation()
-                  collapseAllGroups()
-                }}
+                type="button"
+                onClick={collapseAllGroups}
                 className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded transition-colors"
                 aria-label="Collapse all certification groups"
                 title="Collapse all certification groups"
               >
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 15l7-7 7 7"
-                  />
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
                 </svg>
                 <span className="sr-only">Collapse all</span>
-                <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded border border-border bg-bg-primary px-2 py-1 text-xs text-text-primary opacity-0 shadow-sm transition-opacity group-hover:opacity-100 z-10">
-                  Collapse all
-                </span>
               </button>
             </div>
           )}
         </div>
         <div
+          id="learning-accomplished-panel"
           className="overflow-hidden transition-all duration-300 ease-in-out"
-          style={{ maxHeight: typeof accomplishedHeight === 'number' ? `${accomplishedHeight}px` : 'none' }}
+          style={{
+            maxHeight:
+              typeof accomplishedHeight === 'number' ? `${accomplishedHeight}px` : 'none',
+          }}
         >
           <div ref={accomplishedContentRef} className="px-6 pb-6">
             {accomplished.length > 0 ? (
@@ -246,118 +198,61 @@ export function LearningSection({
         </div>
       </div>
 
-      {/* What I'm Planning This Year */}
       <div className="border-2 border-border rounded-lg bg-bg-secondary overflow-hidden">
-        <div
-          role="button"
-          tabIndex={0}
-          onClick={() => setIsPlanningExpanded(!isPlanningExpanded)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault()
-              setIsPlanningExpanded((prev) => !prev)
-            }
-          }}
-          className="w-full px-6 py-4 flex items-center justify-between gap-4 hover:bg-bg-primary transition-colors text-left cursor-pointer"
-          aria-label={isPlanningExpanded ? 'Collapse section' : 'Expand section'}
-        >
-          <div className="flex items-center gap-3">
+        <div className="px-6 py-4 flex items-center justify-between gap-4">
+          <button
+            type="button"
+            onClick={() => setIsPlanningExpanded(!isPlanningExpanded)}
+            className="flex items-center gap-3 hover:opacity-90 transition-opacity text-left"
+            aria-expanded={isPlanningExpanded}
+            aria-controls="learning-planning-panel"
+          >
             {isPlanningExpanded ? (
-              <svg
-                className="w-5 h-5 text-accent"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M20 12H4"
-                />
+              <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
               </svg>
             ) : (
-              <svg
-                className="w-5 h-5 text-accent"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 4v16m8-8H4"
-                />
+              <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
               </svg>
             )}
             <h3 className="text-2xl font-bold text-accent">What I&apos;m Planning This Year</h3>
-          </div>
+          </button>
           {isPlanningExpanded && planning.length > 0 && (
-            <div 
-              className="flex items-center gap-1 border border-border rounded-lg bg-bg-primary p-1"
-              onClick={(e) => e.stopPropagation()}
-            >
+            <div className="flex items-center gap-1 border border-border rounded-lg bg-bg-primary p-1">
               <button
-                onClick={(e) => {
-                  e.stopPropagation()
-                  expandAllGoals()
-                }}
+                type="button"
+                onClick={expandAllGoals}
                 className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded transition-colors"
                 aria-label="Expand all learning goals"
                 title="Expand all learning goals"
               >
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
                 <span className="sr-only">Expand all</span>
-                <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded border border-border bg-bg-primary px-2 py-1 text-xs text-text-primary opacity-0 shadow-sm transition-opacity group-hover:opacity-100 z-10">
-                  Expand all
-                </span>
               </button>
               <button
-                onClick={(e) => {
-                  e.stopPropagation()
-                  collapseAllGoals()
-                }}
+                type="button"
+                onClick={collapseAllGoals}
                 className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded transition-colors"
                 aria-label="Collapse all learning goals"
                 title="Collapse all learning goals"
               >
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 15l7-7 7 7"
-                  />
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
                 </svg>
                 <span className="sr-only">Collapse all</span>
-                <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded border border-border bg-bg-primary px-2 py-1 text-xs text-text-primary opacity-0 shadow-sm transition-opacity group-hover:opacity-100 z-10">
-                  Collapse all
-                </span>
               </button>
             </div>
           )}
         </div>
         <div
+          id="learning-planning-panel"
           className="overflow-hidden transition-all duration-300 ease-in-out"
-          style={{ maxHeight: typeof planningHeight === 'number' ? `${planningHeight}px` : 'none' }}
+          style={{
+            maxHeight: typeof planningHeight === 'number' ? `${planningHeight}px` : 'none',
+          }}
         >
           <div ref={planningContentRef} className="px-6 pb-6">
             {planning.length > 0 ? (

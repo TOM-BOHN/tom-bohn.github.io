@@ -8,9 +8,18 @@ interface MeasuresSectionProps {
   isExpanded: boolean
   onToggle: () => void
   onUpdate: (measures: V2MeMeasure[]) => void
+  expandItemsToken?: number
+  collapseItemsToken?: number
 }
 
-export function MeasuresSection({ measures, isExpanded, onToggle, onUpdate }: MeasuresSectionProps) {
+export function MeasuresSection({
+  measures,
+  isExpanded,
+  onToggle,
+  onUpdate,
+  expandItemsToken,
+  collapseItemsToken,
+}: MeasuresSectionProps) {
   return (
     <SortableMarkdownListSection
       title="Measures"
@@ -22,6 +31,8 @@ export function MeasuresSection({ measures, isExpanded, onToggle, onUpdate }: Me
       itemNoun="Measure"
       idPrefix="measure"
       showCompletedCheckbox
+      expandItemsToken={expandItemsToken}
+      collapseItemsToken={collapseItemsToken}
     />
   )
 }

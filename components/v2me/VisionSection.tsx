@@ -10,6 +10,8 @@ interface VisionSectionProps {
   isExpanded: boolean
   onToggle: () => void
   onUpdate: (vision: V2MeVision) => void
+  expandItemsToken?: number
+  collapseItemsToken?: number
 }
 
 function DragHandle() {
@@ -22,13 +24,22 @@ function DragHandle() {
   )
 }
 
-export function VisionSection({ vision, isExpanded, onToggle, onUpdate }: VisionSectionProps) {
+export function VisionSection({
+  vision,
+  isExpanded,
+  onToggle,
+  onUpdate,
+  expandItemsToken,
+  collapseItemsToken,
+}: VisionSectionProps) {
   const [isItemExpanded, setIsItemExpanded] = useState(true)
   const [isEditing, setIsEditing] = useState(false)
   const [editTitle, setEditTitle] = useState(vision.title)
   const [editDescription, setEditDescription] = useState(vision.description)
   const contentRef = useRef<HTMLDivElement>(null)
   const [height, setHeight] = useState(0)
+  const prevExpandToken = useRef(expandItemsToken)
+  const prevCollapseToken = useRef(collapseItemsToken)
 
   useEffect(() => {
     setEditTitle(vision.title)
@@ -42,19 +53,18 @@ export function VisionSection({ vision, isExpanded, onToggle, onUpdate }: Vision
   }, [isExpanded, isEditing, editTitle, editDescription, vision, isItemExpanded])
 
   useEffect(() => {
-    const handleExpandAll = () => {
+    if (expandItemsToken !== undefined && expandItemsToken !== prevExpandToken.current) {
+      prevExpandToken.current = expandItemsToken
       setIsItemExpanded(true)
     }
-    const handleCollapseAll = () => {
+  }, [expandItemsToken])
+
+  useEffect(() => {
+    if (collapseItemsToken !== undefined && collapseItemsToken !== prevCollapseToken.current) {
+      prevCollapseToken.current = collapseItemsToken
       setIsItemExpanded(false)
     }
-    window.addEventListener('v2me-expand-all-items', handleExpandAll)
-    window.addEventListener('v2me-collapse-all-items', handleCollapseAll)
-    return () => {
-      window.removeEventListener('v2me-expand-all-items', handleExpandAll)
-      window.removeEventListener('v2me-collapse-all-items', handleCollapseAll)
-    }
-  }, [])
+  }, [collapseItemsToken])
 
   const handleSave = () => {
     onUpdate({ id: vision.id, title: editTitle, description: editDescription })

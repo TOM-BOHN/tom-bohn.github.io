@@ -8,9 +8,18 @@ interface MethodsSectionProps {
   isExpanded: boolean
   onToggle: () => void
   onUpdate: (methods: V2MeMethod[]) => void
+  expandItemsToken?: number
+  collapseItemsToken?: number
 }
 
-export function MethodsSection({ methods, isExpanded, onToggle, onUpdate }: MethodsSectionProps) {
+export function MethodsSection({
+  methods,
+  isExpanded,
+  onToggle,
+  onUpdate,
+  expandItemsToken,
+  collapseItemsToken,
+}: MethodsSectionProps) {
   return (
     <SortableMarkdownListSection
       title="Methods"
@@ -22,6 +31,8 @@ export function MethodsSection({ methods, isExpanded, onToggle, onUpdate }: Meth
       itemNoun="Method"
       idPrefix="method"
       showCompletedCheckbox
+      expandItemsToken={expandItemsToken}
+      collapseItemsToken={collapseItemsToken}
     />
   )
 }
