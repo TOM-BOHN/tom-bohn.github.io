@@ -1,45 +1,19 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
 import type { ProjectTheme } from '@/lib/projects'
 import { ProjectTheme as ProjectThemeComponent } from './ProjectTheme'
 
 interface ProjectsSectionProps {
   themes: ProjectTheme[]
+  expandedThemes: Set<string>
+  onToggleTheme: (id: string) => void
 }
 
-export function ProjectsSection({ themes }: ProjectsSectionProps) {
-  const [expandedThemes, setExpandedThemes] = useState<Set<string>>(new Set())
-
-  useEffect(() => {
-    const handleExpandAll = () => {
-      setExpandedThemes(new Set(themes.map(t => t.id)))
-    }
-    const handleCollapseAll = () => {
-      setExpandedThemes(new Set())
-    }
-
-    window.addEventListener('projects-expand-all-items', handleExpandAll)
-    window.addEventListener('projects-collapse-all-items', handleCollapseAll)
-
-    return () => {
-      window.removeEventListener('projects-expand-all-items', handleExpandAll)
-      window.removeEventListener('projects-collapse-all-items', handleCollapseAll)
-    }
-  }, [themes])
-
-  const toggleTheme = (id: string) => {
-    setExpandedThemes((prev) => {
-      const newSet = new Set(prev)
-      if (newSet.has(id)) {
-        newSet.delete(id)
-      } else {
-        newSet.add(id)
-      }
-      return newSet
-    })
-  }
-
+export function ProjectsSection({
+  themes,
+  expandedThemes,
+  onToggleTheme,
+}: ProjectsSectionProps) {
   if (themes.length === 0) {
     return (
       <div className="text-center py-12 border border-border rounded-lg bg-bg-secondary">
@@ -58,7 +32,7 @@ export function ProjectsSection({ themes }: ProjectsSectionProps) {
           key={theme.id}
           theme={theme}
           isExpanded={expandedThemes.has(theme.id)}
-          onToggle={() => toggleTheme(theme.id)}
+          onToggle={() => onToggleTheme(theme.id)}
         />
       ))}
     </div>

@@ -8,6 +8,8 @@ interface ObstaclesSectionProps {
   isExpanded: boolean
   onToggle: () => void
   onUpdate: (obstacles: V2MeObstacle[]) => void
+  expandItemsToken?: number
+  collapseItemsToken?: number
 }
 
 export function ObstaclesSection({
@@ -15,6 +17,8 @@ export function ObstaclesSection({
   isExpanded,
   onToggle,
   onUpdate,
+  expandItemsToken,
+  collapseItemsToken,
 }: ObstaclesSectionProps) {
   return (
     <SortableMarkdownListSection
@@ -27,6 +31,8 @@ export function ObstaclesSection({
       itemNoun="Obstacle"
       idPrefix="obstacle"
       showCompletedCheckbox={false}
+      expandItemsToken={expandItemsToken}
+      collapseItemsToken={collapseItemsToken}
     />
   )
 }

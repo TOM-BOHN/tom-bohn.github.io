@@ -1,5 +1,7 @@
 # Quick Start Guide
 
+Requires **Node.js 20+** (see `.nvmrc`).
+
 ## Getting Started
 
 1. **Install dependencies**
@@ -61,7 +63,15 @@ Edit `data/links.json` (categories → link objects with `id`, `title`, `url`, o
 
 ### Certifications & Learning
 
-Edit `data/learning/learning.json`. Use the badge scripts under `scripts/*-badge/` to refresh Credly / Accredible / Trailhead data into `data/badges/` and then wire paths into learning.json.
+Edit `data/learning/learning.json`. Refresh badge extracts with:
+
+```bash
+npm run badges:credly
+npm run badges:accredible
+npm run badges:trailhead
+```
+
+Then wire image paths into `learning.json`. Details: `data/learning/README.md`.
 
 ### Hub
 
@@ -83,11 +93,11 @@ The header theme tray supports light, dark, and Xanga modes. Preference is store
 
 ## Tech Stack (short)
 
-Next.js 16 · React 19 · TypeScript · Tailwind CSS 3 · remark / react-markdown · @dnd-kit
+Next.js 16 · React 19 · TypeScript 5.9 · Tailwind CSS 3 · remark / react-markdown · @dnd-kit
 
 ## Deployment
 
-Work lands on `sandbox` first. A passing build opens a human-reviewed **sandbox → main** promotion PR; merging to `main` deploys via GitHub Actions. Details: `DEPLOYMENT.md` and `README.md`.
+Work lands on `sandbox` first. A passing build opens a human-reviewed **sandbox → main** promotion PR; merging to `main` deploys via GitHub Actions. Details: `DEPLOYMENT.md` and `README.md`. Page map: `SITE.md`.
 
 ## Built with Cursor AI
 

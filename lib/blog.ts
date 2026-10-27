@@ -55,10 +55,31 @@ export interface BlogPost {
 // from the rendered HTML content (tags stripped before counting words).
 const WORDS_PER_MINUTE = 225
 
-function estimateReadingTimeMinutes(html: string): number {
-  const text = html.replace(/<[^>]*>/g, ' ')
+function estimateReadingTimeMinutes(htmlContent: string): number {
+  const text = htmlContent.replace(/<[^>]*>/g, ' ')
   const wordCount = text.split(/\s+/).filter(Boolean).length
   return Math.max(1, Math.round(wordCount / WORDS_PER_MINUTE))
+}
+
+async function parsePostFile(slug: string, fullPath: string): Promise<BlogPost> {
+  const fileContents = fs.readFileSync(fullPath, 'utf8')
+  const { data, content } = matter(fileContents)
+
+  const processedContent = await remark().use(html).process(content)
+  const contentHtml = sanitizeBlogHtml(processedContent.toString())
+
+  const excerpt =
+    data.excerpt || content.split('\n\n')[0].substring(0, 200) + '...'
+
+  return {
+    slug,
+    title: data.title || slug,
+    date: data.date || new Date().toISOString(),
+    excerpt,
+    content: contentHtml,
+    mediumUrl: data.mediumUrl,
+    readingTimeMinutes: estimateReadingTimeMinutes(contentHtml),
+  }
 }
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
@@ -73,34 +94,11 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
       .map(async (fileName) => {
         const slug = fileName.replace(/\.md$/, '')
         const fullPath = path.join(postsDirectory, fileName)
-        const fileContents = fs.readFileSync(fullPath, 'utf8')
-        const { data, content } = matter(fileContents)
-
-        const processedContent = await remark().use(html).process(content)
-        const contentHtml = sanitizeBlogHtml(processedContent.toString())
-
-        // Get excerpt (first paragraph or first 200 chars)
-        const excerpt = data.excerpt || content.split('\n\n')[0].substring(0, 200) + '...'
-
-        return {
-          slug,
-          title: data.title || slug,
-          date: data.date || new Date().toISOString(),
-          excerpt,
-          content: contentHtml,
-          mediumUrl: data.mediumUrl,
-          readingTimeMinutes: estimateReadingTimeMinutes(contentHtml),
-        }
+        return parsePostFile(slug, fullPath)
       })
   )
 
-  return allPostsData.sort((a, b) => {
-    if (a.date < b.date) {
-      return 1
-    } else {
-      return -1
-    }
-  })
+  return allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1))
 }
 
 export async function getBlogPost(slug: string): Promise<BlogPost | null> {
@@ -110,21 +108,5 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
     return null
   }
 
-  const fileContents = fs.readFileSync(fullPath, 'utf8')
-  const { data, content } = matter(fileContents)
-
-  const processedContent = await remark().use(html).process(content)
-  const contentHtml = sanitizeBlogHtml(processedContent.toString())
-
-  const excerpt = data.excerpt || content.split('\n\n')[0].substring(0, 200) + '...'
-
-  return {
-    slug,
-    title: data.title || slug,
-    date: data.date || new Date().toISOString(),
-    excerpt,
-    content: contentHtml,
-    mediumUrl: data.mediumUrl,
-    readingTimeMinutes: estimateReadingTimeMinutes(contentHtml),
-  }
+  return parsePostFile(slug, fullPath)
 }
