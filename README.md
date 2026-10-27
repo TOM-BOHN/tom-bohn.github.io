@@ -105,7 +105,7 @@ Custom Tailwind theme with a Tableau color-blind–friendly blue–orange palett
 
 ## Contributing
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup, content workflows, and PR expectations. Quick orientation: [QUICKSTART.md](./QUICKSTART.md). Cloud agent notes: [CLOUD.md](./CLOUD.md).
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup, content workflows, and PR expectations. Quick orientation: [QUICKSTART.md](./QUICKSTART.md). Cloud agent notes: [CLOUD.md](./CLOUD.md). Architecture and agent invariants for Cursor/Cloud sessions: [AGENTS.md](./AGENTS.md).
 
 ## License
 
