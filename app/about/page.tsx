@@ -302,6 +302,7 @@ export default function About() {
               </a>
             </section>
             </ScrollReveal>
+            </div>
           </div>
     </PageShell>
   )

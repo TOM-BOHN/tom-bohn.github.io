@@ -23,6 +23,10 @@ updates:
       - dependency-name: tailwindcss
         update-types:
           - version-update:semver-major
+      # 5.6+ dropped several Simple Icons brand exports (SiTableau, SiSalesforce,
+      # SiSlack, SiOpenai, SiAmazon, SiDbt, …) used by Links/Hub. Stay on 5.5.0
+      # until those call sites migrate to Fa/Fa6 fallbacks.
+      - dependency-name: react-icons
     commit-message:
       prefix: "chore(deps)"
       include: scope
