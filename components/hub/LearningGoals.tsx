@@ -1,15 +1,9 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import type { LearningGoal } from '@/lib/hub'
 
-export interface LearningGoal {
-  id: string
-  title: string
-  description?: string
-  completed: boolean
-  targetDate?: string
-  notes?: string
-}
+export type { LearningGoal }
 
 interface LearningGoalItemProps {
   goal: LearningGoal

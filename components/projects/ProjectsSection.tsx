@@ -28,14 +28,6 @@ export function ProjectsSection({ themes }: ProjectsSectionProps) {
     }
   }, [themes])
 
-  const expandAllThemes = () => {
-    setExpandedThemes(new Set(themes.map(t => t.id)))
-  }
-
-  const collapseAllThemes = () => {
-    setExpandedThemes(new Set())
-  }
-
   const toggleTheme = (id: string) => {
     setExpandedThemes((prev) => {
       const newSet = new Set(prev)

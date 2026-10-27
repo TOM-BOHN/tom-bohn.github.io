@@ -9,10 +9,12 @@
 
 const fs = require('fs');
 const path = require('path');
+const { fromRoot, readJson, writeJson } = require('../_shared/fs-json');
+const { downloadImage, sanitizeFilename } = require('../_shared/download-image');
 
-const RAW_DATA_PATH = path.join(__dirname, '../../data/badges/accredible/raw.json');
-const CACHED_DATA_PATH = path.join(__dirname, '../../data/badges/accredible/cached.json');
-const BADGES_DIR = path.join(__dirname, '../../public/badges/accredible');
+const RAW_DATA_PATH = fromRoot('data', 'badges', 'accredible', 'raw.json');
+const CACHED_DATA_PATH = fromRoot('data', 'badges', 'accredible', 'cached.json');
+const BADGES_DIR = fromRoot('public', 'badges', 'accredible');
 
 // Ensure directories exist
 [path.dirname(RAW_DATA_PATH), path.dirname(CACHED_DATA_PATH), BADGES_DIR].forEach(dir => {
@@ -20,45 +22,6 @@ const BADGES_DIR = path.join(__dirname, '../../public/badges/accredible');
     fs.mkdirSync(dir, { recursive: true });
   }
 });
-
-function downloadImage(url, filepath) {
-  return new Promise((resolve, reject) => {
-    const https = require('https');
-    const http = require('http');
-    const protocol = url.startsWith('https') ? https : http;
-    
-    const file = fs.createWriteStream(filepath);
-    
-    protocol.get(url, (response) => {
-      if (response.statusCode === 301 || response.statusCode === 302) {
-        // Handle redirects
-        return downloadImage(response.headers.location, filepath)
-          .then(resolve)
-          .catch(reject);
-      }
-      
-      if (response.statusCode !== 200) {
-        file.close();
-        fs.unlinkSync(filepath);
-        reject(new Error(`Failed to download: ${response.statusCode}`));
-        return;
-      }
-      
-      response.pipe(file);
-      
-      file.on('finish', () => {
-        file.close();
-        resolve(filepath);
-      });
-    }).on('error', (err) => {
-      file.close();
-      if (fs.existsSync(filepath)) {
-        fs.unlinkSync(filepath);
-      }
-      reject(err);
-    });
-  });
-}
 
 async function processBadges() {
   console.log('Processing Accredible credential data...\n');
@@ -70,7 +33,7 @@ async function processBadges() {
     process.exit(1);
   }
   
-  const rawData = JSON.parse(fs.readFileSync(RAW_DATA_PATH, 'utf8'));
+  const rawData = readJson(RAW_DATA_PATH);
   console.log(`Found ${rawData.credentials.length} credentials in raw data`);
   
   const processedCredentials = [];
@@ -80,11 +43,7 @@ async function processBadges() {
     console.log(`\nProcessing credential ${i + 1}/${rawData.credentials.length}: ${cred.name}`);
     
     // Clean credential name for filename
-    const cleanName = cred.name
-      .replace(/[^a-z0-9]/gi, '-')
-      .replace(/-+/g, '-')
-      .toLowerCase()
-      .substring(0, 50);
+    const cleanName = sanitizeFilename(cred.name, { separator: '-', maxLength: 50 });
     
     const filename = `${cleanName}-${cred.id}.png`;
     const localPath = `/badges/accredible/${filename}`;
@@ -134,7 +93,7 @@ async function processBadges() {
   };
   
   // Write cached data
-  fs.writeFileSync(CACHED_DATA_PATH, JSON.stringify(cachedData, null, 2));
+  writeJson(CACHED_DATA_PATH, cachedData);
   console.log(`\n✓ Processed ${processedCredentials.length} credentials`);
   console.log(`✓ Cached data written to ${CACHED_DATA_PATH}`);
   

@@ -2,31 +2,15 @@
 
 import Image from 'next/image'
 import { useState, useRef, useEffect } from 'react'
+import type { BadgeImage, CertificationGroupData } from '@/lib/hub'
 
-export interface BadgeImage {
-  src: string
-  alt: string
-  url?: string
-}
-
-export interface CertificationGroupData {
-  id: string
-  title: string
-  description?: string
-  badgeImages: BadgeImage[]
-  learnMoreUrl?: string
-  viewCertsUrl?: string
-  metadata?: {
-    label: string
-    value: string
-  }[]
-}
+export type { BadgeImage, CertificationGroupData }
 
 interface BadgeImageProps {
   badge: BadgeImage
 }
 
-function BadgeImage({ badge }: BadgeImageProps) {
+function BadgeImageView({ badge }: BadgeImageProps) {
   const [imageError, setImageError] = useState(false)
 
   const content = (
@@ -187,7 +171,7 @@ export function CertificationGroup({ group, isExpanded: controlledExpanded, onTo
                   return 0
                 })
                 .map((badge, idx) => (
-                  <BadgeImage key={idx} badge={badge} />
+                  <BadgeImageView key={idx} badge={badge} />
                 ))}
             </div>
           ) : (

@@ -1,49 +1,28 @@
 # Data Directory
 
-This directory contains all data files for the website, organized by concern.
+JSON and related source data for the site, organized by concern.
 
 ## Structure
 
 ```
 data/
-├── badges/              # Badge/credential data by source
-│   ├── credly/          # Credly-specific badge data
-│   │   ├── raw.json     # Raw extracted badge data
-│   │   ├── cached.json  # Processed badge data with metadata
-│   │   └── organized.json # Badges organized by category
-│   ├── trailhead/       # Trailhead-specific badge data
-│   │   ├── raw.json     # Raw extracted badge data
-│   │   └── cached.json  # Processed badge data with metadata
-│   └── accredible/      # Accredible-specific credential data
-│       ├── raw.json     # Raw extracted credential data
-│       └── cached.json  # Processed credential data with metadata
-├── learning/            # Learning section data
-│   ├── learning.json    # Certification groups and learning goals
-│   ├── setup-notes.md   # Setup instructions for badge images
-│   └── README.md        # Learning section documentation
-├── hub/                 # Hub page data
-│   ├── hub.json        # Hub sections and links
-│   └── todos.md        # Hub page todos
-├── certifications.json  # Certifications page data
-├── links.json          # Links page data
-└── projects.json       # Projects page data
+├── badges/                 # Badge/credential extracts by source
+│   ├── credly/             # raw.json, cached.json, organized.json
+│   ├── trailhead/          # raw.json, cached.json
+│   └── accredible/         # raw.json, cached.json (+ mapping docs)
+├── learning/               # Certifications & Learning page
+│   ├── learning.json       # Education, certification groups, goals
+│   └── README.md
+├── hub/
+│   └── hub.json            # Hub sections and links
+├── links.json              # Links page categories
+├── projects.json           # Projects themes + artifacts
+├── v2me.json               # V2ME framework data
+└── medium-homepage.json    # Featured Medium articles for the homepage
 ```
 
-## Adding New Badge Sources
+Learning / certifications content lives in `data/learning/learning.json` (not a top-level `certifications.json`).
 
-When adding scripts for a new badge/credential platform (e.g., Credential.net), create a new subdirectory:
+## Adding Badge Sources
 
-```
-data/badges/
-└── credential-net/
-    ├── raw.json
-    ├── cached.json
-    └── organized.json
-```
-
-## File Locations
-
-- **Badge data**: `data/badges/{source}/`
-- **Learning data**: `data/learning/`
-- **Hub data**: `data/hub/`
-- **General site data**: `data/` (root level)
+Create `data/badges/<source>/` with `raw.json` / `cached.json` (and `organized.json` if needed), plus matching scripts under `scripts/<source>-badge/`.
