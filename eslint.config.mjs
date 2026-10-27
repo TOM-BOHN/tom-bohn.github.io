@@ -3,8 +3,9 @@ import nextCoreWebVitals from 'eslint-config-next/core-web-vitals'
 const config = [
   ...nextCoreWebVitals,
   {
+    files: ['components/ThemeProvider.tsx'],
     rules: {
-      // This project uses a common hydration-safe ThemeProvider pattern.
+      // Hydration-safe theme init sets state after mount; keep this scoped.
       'react-hooks/set-state-in-effect': 'off',
     },
   },
