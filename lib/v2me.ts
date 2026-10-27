@@ -1,5 +1,5 @@
-import fs from 'fs'
 import path from 'path'
+import { readJsonFile } from '@/lib/json'
 
 export interface V2MeValue {
   id: string
@@ -43,23 +43,20 @@ export interface V2MeData {
 
 const v2meFile = path.join(process.cwd(), 'data/v2me.json')
 
-export async function getV2Me(): Promise<V2MeData> {
-  if (!fs.existsSync(v2meFile)) {
-    return {
-      vision: {
-        id: 'vision-1',
-        title: 'Vision',
-        description: '',
-      },
-      values: [],
-      methods: [],
-      obstacles: [],
-      measures: [],
-    }
-  }
+const emptyV2Me: V2MeData = {
+  vision: {
+    id: 'vision-1',
+    title: 'Vision',
+    description: '',
+  },
+  values: [],
+  methods: [],
+  obstacles: [],
+  measures: [],
+}
 
-  const fileContents = fs.readFileSync(v2meFile, 'utf8')
-  const v2me = JSON.parse(fileContents)
+export async function getV2Me(): Promise<V2MeData> {
+  const v2me = readJsonFile<V2MeData & { vision?: V2MeVision | string }>(v2meFile, emptyV2Me)
   // Handle migration from old string vision to new object vision
   if (typeof v2me.vision === 'string') {
     v2me.vision = {
@@ -68,5 +65,5 @@ export async function getV2Me(): Promise<V2MeData> {
       description: v2me.vision,
     }
   }
-  return v2me
+  return v2me as V2MeData
 }

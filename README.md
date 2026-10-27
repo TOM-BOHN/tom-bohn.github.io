@@ -2,177 +2,112 @@
 
 Personal website built with Next.js, React, and TypeScript, featuring a modern design with a nostalgic Xanga mode toggle. Designed and implemented with the help of [Cursor AI](https://cursor.com).
 
-## 🌐 Live Site
+## Live Site
 
 Visit the site at [thomaslbohn.com](https://thomaslbohn.com)
 
-## 🛠️ Tech Stack
+## Tech Stack
 
-- **Framework**: [Next.js](https://nextjs.org/) 16.1.1 (App Router)
+- **Framework**: [Next.js](https://nextjs.org/) 16 (App Router, static export)
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **UI**: [React](https://react.dev/) 19 + [Tailwind CSS](https://tailwindcss.com/) 3
 - **Icons**: [react-icons](https://react-icons.github.io/react-icons/)
-- **Content**: Markdown with [remark](https://remark.js.org/) for blog posts
-- **Deployment**: GitHub Pages (static export)
+- **Content**: Markdown with [remark](https://remark.js.org/) / [react-markdown](https://github.com/remarkjs/react-markdown); HTML sanitized with [sanitize-html](https://github.com/apostrophecms/sanitize-html)
+- **Drag & drop**: [@dnd-kit](https://dndkit.com/) (V2ME reordering)
+- **Deployment**: GitHub Pages via GitHub Actions (`sandbox` → `main` promotion, then deploy)
 
-## ✨ Features
+## Features
 
-- 🏠 **Home/Landing page** - Introduction and featured work
-- 📝 **About page** - Professional background, technical expertise, and personal highlights
-- 📰 **Blog** - Markdown-based blog with Medium integration
-- 📧 **Contact page** - Multiple ways to get in touch
-- 💼 **Projects/Portfolio** - Theme-based project organization with artifacts and deliverables
-- 🔗 **Links** - Curated directory of tools, services, and documentation
-- 🎓 **Certifications & Learning** - Professional credentials and learning journey with expand/collapse controls
-- 🌐 **Hub** - Linktree-style page with all online presence
-- 📊 **V2ME** - Interactive personal V2MOM (Vision, Values, Methods, Obstacles, Measures) framework with drag-and-drop reordering, markdown editing, and JSON import/export
-- 🎨 **Xanga Mode** - 2000s nostalgia theme with:
-  - Customizable sidebar position (left, right, or hidden)
-  - Sidebar applets (Profile, Music Player, Weather, etc.)
-  - Compact SoundCloud player integration
-  - Retro color palette and styling
+- **Home** — Introduction and featured Medium articles
+- **About** — Professional background and personal highlights
+- **Blog** — Markdown posts with Medium sync
+- **Contact** — Email and LinkedIn
+- **Projects** — Theme-based portfolio with expand/collapse controls
+- **Links** — Curated directory of tools and docs
+- **Certifications & Learning** — Credentials, education, and learning goals
+- **Hub** — Linktree-style online presence
+- **V2ME** — Interactive V2MOM-style planner (Vision, Values, Methods, Obstacles, Measures) with drag-and-drop, markdown editing, and JSON import/export
+- **Xanga Mode** — Nostalgic theme with sidebar applets and SoundCloud player
 
-## 🚀 Development
+## Development
 
 ```bash
-# Install dependencies
 npm install
-
-# Run development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Export static site for GitHub Pages
-npm run export
+npm run dev      # http://localhost:3000
+npm run build    # static export → out/
+npm run lint     # ESLint (informational in promotion CI)
 ```
 
-The development server will be available at `http://localhost:3000`.
+Useful content scripts:
 
-## 📁 Project Structure
+```bash
+npm run sync:medium       # Import missing Medium posts + refresh homepage featured links
+npm run generate:icons    # Regenerate PWA/favicon PNGs from public/icons/icon.svg
+npm run generate:og-image # Regenerate Open Graph image
+```
+
+## Project Structure
 
 ```
 ├── app/                  # Next.js App Router pages
-│   ├── about/            # About page
-│   ├── blog/             # Blog listing and posts
-│   │   └── [slug]/       # Dynamic blog post pages
-│   ├── certifications/   # Certifications page
-│   ├── contact/          # Contact page
-│   ├── hub/              # Hub page
-│   ├── links/            # Links page
-│   ├── projects/         # Projects page
-│   ├── layout.tsx        # Root layout
-│   ├── page.tsx          # Home page
-│   ├── not-found.tsx     # 404 page
-│   └── globals.css       # Global styles
-├── components/           # React components
-│   ├── hub/              # Hub-related components
-│   ├── links/            # Links-related components
-│   ├── projects/         # Projects-related components
-│   ├── v2me/              # V2ME framework components
-│   ├── xanga/            # Xanga theme components
-│   │   └── applets/      # Xanga sidebar applets
-│   ├── Footer.tsx        # Site footer
-│   ├── Header.tsx        # Site header/navigation
-│   ├── ThemeProvider.tsx # Theme context provider
-│   ├── XangaShell.tsx    # Xanga theme shell
-│   └── XangaLayoutWrapper.tsx # Xanga sidebar state management
-├── content/              # Content files
-│   └── blog/             # Markdown blog posts
-├── data/                 # JSON data files
-│   ├── badges/           # Badge data (Credly, Accredible, Trailhead)
-│   ├── hub/              # Hub configuration
-│   ├── learning/         # Learning data
-│   ├── certifications.json
-│   ├── links.json
-│   ├── projects.json
-│   └── v2me.json         # V2ME framework data
-├── lib/                  # Utility functions
-│   ├── blog.ts           # Blog post utilities
-│   ├── certifications.ts # Certification utilities
-│   ├── hub.ts            # Hub utilities
-│   ├── links.ts          # Links utilities
-│   ├── projects.ts       # Projects utilities
-│   └── v2me.ts           # V2ME framework utilities
-├── scripts/              # Build and data scripts
-│   ├── credly-badge/     # Credly badge fetcher
-│   ├── accredible-badge/ # Accredible badge fetcher
-│   └── trailhead-badge/  # Trailhead badge fetcher
-└── public/               # Static assets
-    ├── icons/            # Site favicon and PWA icons (SVG + generated PNGs)
-    ├── images/           # General images (e.g. profile photo)
-    ├── badges/           # Badge images
-    └── education/        # Education images
+├── components/           # React components (hub, links, projects, v2me, xanga, shared chrome)
+├── content/blog/         # Markdown blog posts
+├── data/                 # JSON data (hub, learning, links, projects, v2me, badges, Medium homepage)
+├── lib/                  # Data loaders and shared helpers (json, blog, hub, …)
+├── scripts/              # Medium sync, icons/OG, Credly/Accredible/Trailhead badge pipelines
+├── public/               # Static assets (icons, images, badges, education)
+└── .github/              # Workflows + Dependabot config
 ```
 
-## 🚢 Deployment
+Shared UI building blocks:
 
-This site is configured for GitHub Pages. After building, the `out/` directory contains the static files ready for deployment.
+- `components/PageShell.tsx` — stars/nebula backgrounds + content column
+- `components/PageHeader.tsx` — role typewriter + ⟩ TITLE + optional actions
+- `components/ExpandCollapseControls.tsx` — expand/collapse control pair
 
-The site uses Next.js static export (`output: 'export'`) which generates a fully static site that can be hosted on GitHub Pages.
+## Branching & Deployment
 
-## 🌍 Custom Domain
+| Branch | Role |
+|--------|------|
+| `sandbox` | Integration branch for PRs (Dependabot and feature work target here) |
+| `main` | Production; deploys to GitHub Pages |
 
-The `CNAME` file is located in the `public/` directory. This ensures it's included in the static export and deployed to GitHub Pages, enabling the custom domain `thomaslbohn.com`.
+After a PR merges into `sandbox`, `.github/workflows/promote-sandbox-to-main.yml` runs `npm run build`. If the build passes and `sandbox` is ahead of `main`, it opens (or updates) a **sandbox → main** promotion PR for human review. Merging that PR triggers `.github/workflows/deploy.yml`.
 
-## 🖼️ Icons
+See `DEPLOYMENT.md` for custom domain / HTTPS details and `.cursor/rules/sandbox-to-main-promotion.mdc` for the promotion contract.
 
-Site icons live in `public/icons/`:
+## Custom Domain
 
-- **icon.svg** – Source favicon (TLB on orange–blue gradient), sized so TLB stays visible when shown in a circle (e.g. in search results).
-- **apple-touch-icon.png**, **android-chrome-192x192.png**, **android-chrome-512x512.png** – PNGs generated from the SVG.
+The `CNAME` under `public/` is included in the static export for `thomaslbohn.com`.
 
-To regenerate PNGs after editing the SVG: `npm run generate:icons` (requires `sharp` as a devDependency).
+## Content Management
 
-## 🖼️ Social Share Image
+| Content | Location |
+|---------|----------|
+| Blog posts | `content/blog/` (`YYYY-MM-DD-title.md` + frontmatter) |
+| Medium sync | `npm run sync:medium` |
+| Links | `data/links.json` |
+| Hub | `data/hub/hub.json` |
+| Learning / certifications | `data/learning/learning.json` |
+| Projects | `data/projects.json` |
+| V2ME | `data/v2me.json` (also editable in the UI) |
+| Badge pipelines | `data/badges/{credly,accredible,trailhead}/` + `scripts/*-badge/` |
 
-`public/images/og-image.png` is the Open Graph / Twitter Card image shown when a link to the site is shared. It's generated from `public/images/profile.jpg` plus the site's brand colors.
+## Design System
 
-To regenerate it after updating the profile photo or brand colors: `npm run generate:og-image` (requires `sharp` as a devDependency).
+Custom Tailwind theme with a Tableau color-blind–friendly blue–orange palette, dark/light/Xanga modes, and monospace accents.
 
-## 📝 Content Management
+## Dependency & Security Maintenance
 
-- **Blog Posts**: Written in Markdown and stored in `content/blog/`
-- **Medium Sync**: Run `npm run sync:medium` to import missing Medium posts into `content/blog/` and refresh homepage featured Medium links
-- **Links**: Managed via JSON files in `data/links.json`
-- **Hub Content**: Configured in `data/hub/hub.json`
-- **Learning Data**: Stored in `data/learning/learning.json`
+- Dependabot: `.github/dependabot.yml` — weekly grouped npm updates on `sandbox`; **Tailwind CSS major bumps are ignored** (v4 is a breaking migration; keep on v3 until an intentional upgrade).
+- After dependency changes, run `npm audit` and `npm run build`.
+- Prefer merging Dependabot PRs into `sandbox`, never directly to `main`.
 
-## 🎨 Design System
+## Contributing
 
-The site uses a custom design system built on Tailwind CSS with:
-- **Tableau Color Blind Palette** - Blue-orange diverging color scheme for accessibility
-- Consistent color palette (accent colors, text colors, backgrounds)
-- Responsive design patterns
-- Dark/light/Xanga theme support
-- Custom typography with monospace accents
-- Xanga theme with reduced borders, smaller fonts, and retro styling
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup, content workflows, and PR expectations. Quick orientation: [QUICKSTART.md](./QUICKSTART.md). Cloud agent notes: [CLOUD.md](./CLOUD.md).
 
-## 🎮 Interactive Features
-
-- **V2ME Framework**: 
-  - Drag-and-drop reordering of items
-  - Markdown editing with live preview
-  - JSON import/export functionality
-  - Progress tracking for Methods and Measures
-  - Expand/collapse controls at page and section levels
-
-- **Xanga Sidebar Controls**:
-  - Position sidebar on left, right, or hide completely
-  - Icon-based controls with hover tooltips
-  - State persistence across page reloads
-  - Dynamic header icon replacement when sidebar is hidden
-
-- **Page-Level Controls**:
-  - Expand/collapse all items on Learning, Projects, and V2ME pages
-  - Section-level expand/collapse for better content organization
-
-## 🤝 Contributing
-
-This is a personal website, but suggestions and feedback are welcome! Feel free to open an issue or submit a pull request.
-
-## 📄 License
+## License
 
 All rights reserved. This is a personal website and portfolio.
 

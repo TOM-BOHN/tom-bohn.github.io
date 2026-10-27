@@ -12,61 +12,15 @@
 
 const fs = require('fs');
 const path = require('path');
-const https = require('https');
-const http = require('http');
+const { fromRoot, readJson, writeJson } = require('../_shared/fs-json');
+const { downloadImage, sanitizeFilename } = require('../_shared/download-image');
 
-const badgesDir = path.join(process.cwd(), 'public', 'badges');
-const rawDataFile = path.join(process.cwd(), 'data', 'badges', 'credly', 'raw.json');
-const cachedDataFile = path.join(process.cwd(), 'data', 'badges', 'credly', 'cached.json');
+const badgesDir = fromRoot('public', 'badges');
+const rawDataFile = fromRoot('data', 'badges', 'credly', 'raw.json');
+const cachedDataFile = fromRoot('data', 'badges', 'credly', 'cached.json');
 
 if (!fs.existsSync(badgesDir)) {
   fs.mkdirSync(badgesDir, { recursive: true });
-}
-
-function downloadImage(url, filepath) {
-  return new Promise((resolve, reject) => {
-    if (!url || !url.startsWith('http')) {
-      reject(new Error('Invalid URL'));
-      return;
-    }
-    
-    const protocol = url.startsWith('https') ? https : http;
-    
-    const request = protocol.get(url, (response) => {
-      if (response.statusCode === 200) {
-        const fileStream = fs.createWriteStream(filepath);
-        response.pipe(fileStream);
-        fileStream.on('finish', () => {
-          fileStream.close();
-          resolve(filepath);
-        });
-      } else if (response.statusCode === 301 || response.statusCode === 302) {
-        downloadImage(response.headers.location, filepath)
-          .then(resolve)
-          .catch(reject);
-      } else {
-        reject(new Error(`Failed to download: ${response.statusCode}`));
-      }
-    });
-    
-    request.on('error', (err) => {
-      reject(err);
-    });
-    
-    request.setTimeout(10000, () => {
-      request.destroy();
-      reject(new Error('Download timeout'));
-    });
-  });
-}
-
-function sanitizeFilename(name) {
-  return name
-    .replace(/[^a-z0-9]/gi, '_')
-    .toLowerCase()
-    .replace(/_+/g, '_')
-    .replace(/^_|_$/g, '')
-    .substring(0, 100);
 }
 
 async function processBadges(badges) {
@@ -134,16 +88,16 @@ async function main() {
   }
   
   // Try reading from file
-  if (badges.length === 0 && fs.existsSync(rawDataFile)) {
-    const fileContent = fs.readFileSync(rawDataFile, 'utf8');
-    if (fileContent.trim()) {
-      try {
-        badges = JSON.parse(fileContent);
+  if (badges.length === 0) {
+    try {
+      const fromFile = readJson(rawDataFile, null);
+      if (Array.isArray(fromFile) && fromFile.length > 0) {
+        badges = fromFile;
         console.log(`✓ Read ${badges.length} badges from ${rawDataFile}`);
-      } catch (e) {
-        console.error('Failed to parse JSON from file:', e.message);
-        return;
       }
+    } catch (e) {
+      console.error('Failed to parse JSON from file:', e.message);
+      return;
     }
   }
   
@@ -170,7 +124,7 @@ No badge data found. Please provide badge data in one of these ways:
   const processed = await processBadges(badges);
   
   // Save cached data
-  fs.writeFileSync(cachedDataFile, JSON.stringify(processed, null, 2));
+  writeJson(cachedDataFile, processed);
   console.log(`\n✓ Cached ${processed.length} badges to ${cachedDataFile}`);
   
   // Generate summary

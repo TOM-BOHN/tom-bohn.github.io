@@ -1,121 +1,101 @@
 # Contributing
 
-This is a personal website, but if you have suggestions or find issues, feel free to open an issue or submit a pull request.
+This is a personal website, but suggestions and bug reports are welcome via issues or pull requests.
 
 ## Development Setup
 
 1. Clone the repository
 2. Install dependencies: `npm install`
 3. Run the development server: `npm run dev`
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+4. Open [http://localhost:3000](http://localhost:3000)
+
+Before opening a PR, run:
+
+```bash
+npm run build
+```
+
+`npm run build` is the hard gate used by promotion CI. `npm run lint` is informational and may report pre-existing findings unrelated to your change.
 
 ## Tech Stack
 
-- **Framework**: Next.js 16.1.1 (App Router)
+- **Framework**: Next.js 16 (App Router, `output: 'export'`)
 - **Language**: TypeScript
-- **Styling**: Tailwind CSS
+- **UI**: React 19 + Tailwind CSS 3
 - **Icons**: react-icons
-- **Content**: Markdown with remark and react-markdown
-- **Drag & Drop**: @dnd-kit (for V2ME reordering)
-- **Fonts**: Next.js Font Optimization (Open Sans)
+- **Content**: Markdown (remark / react-markdown) with sanitize-html
+- **Drag & Drop**: @dnd-kit (V2ME)
+- **Fonts**: Next.js font optimization (Open Sans)
+
+## Branching
+
+1. Branch from `sandbox` (not `main`).
+2. Open PRs targeting **`sandbox`**.
+3. After merge, automation validates the build and may open a **sandbox → main** promotion PR for human review. Do not push to `main` or merge the promotion PR unless you own production releases.
+
+Dependabot also targets `sandbox`. Tailwind CSS major updates are intentionally ignored in Dependabot config.
 
 ## Project Structure
 
 ```
 tom-bohn.github.io/
-├── app/                  # Next.js App Router pages
-│   ├── about/            # About page
-│   ├── blog/             # Blog listing and posts
-│   │   └── [slug]/       # Dynamic blog post pages
-│   ├── certifications/   # Certifications/Learning page
-│   ├── contact/          # Contact page
-│   ├── hub/              # Hub page
-│   ├── links/            # Links page
-│   ├── projects/         # Projects page
-│   ├── v2me/             # V2ME framework page
-│   ├── layout.tsx        # Root layout
-│   ├── page.tsx          # Home page
-│   ├── not-found.tsx     # 404 page
-│   └── globals.css       # Global styles
-├── components/           # React components
-│   ├── hub/              # Hub-related components
-│   ├── links/            # Links-related components
-│   ├── projects/         # Projects-related components
-│   ├── v2me/             # V2ME framework components
-│   ├── xanga/            # Xanga theme components
-│   │   └── applets/      # Xanga sidebar applets
-│   ├── Footer.tsx        # Site footer
-│   ├── Header.tsx        # Site header/navigation
-│   ├── ThemeProvider.tsx # Theme context provider
-│   ├── XangaShell.tsx    # Xanga theme shell
-│   └── XangaLayoutWrapper.tsx # Xanga sidebar state management
-├── lib/                  # Utility functions
-│   ├── blog.ts           # Blog post utilities
-│   ├── certifications.ts # Certification utilities
-│   ├── hub.ts            # Hub utilities
-│   ├── links.ts          # Links utilities
-│   ├── projects.ts       # Projects utilities
-│   └── v2me.ts           # V2ME framework utilities
-├── data/                 # JSON data files
-│   ├── badges/           # Badge data (Credly, Accredible, Trailhead)
-│   ├── hub/              # Hub configuration
-│   ├── learning/         # Learning data
-│   ├── certifications.json
-│   ├── links.json
-│   ├── projects.json
-│   └── v2me.json         # V2ME framework data
-├── content/              # Markdown content
-│   └── blog/             # Blog posts
-├── scripts/              # Build and data scripts
-│   ├── credly-badge/     # Credly badge fetcher
-│   ├── accredible-badge/ # Accredible badge fetcher
-│   └── trailhead-badge/  # Trailhead badge fetcher
+├── app/                  # App Router pages (about, blog, certifications, contact, hub, links, projects, v2me)
+├── components/           # Feature folders + shared PageShell / PageHeader / ExpandCollapseControls
+├── lib/                  # JSON/Markdown loaders (blog, hub/learning, links, projects, v2me, json helper)
+├── data/                 # Site JSON (hub, learning, links, projects, v2me, badges, medium-homepage)
+├── content/blog/         # Markdown posts
+├── scripts/              # Medium sync, icons/OG, badge pipelines (+ scripts/_shared helpers)
 ├── public/               # Static assets
-│   ├── icons/            # Site favicon and PWA icons
-│   ├── images/           # General images (e.g. profile photo)
-│   ├── badges/           # Badge images
-│   └── education/        # Education images
-└── .github/              # GitHub Actions workflows
+└── .github/              # deploy + promote-sandbox-to-main workflows, dependabot.yml
 ```
 
 ## Adding Content
 
 ### Blog Posts
-- Create markdown files in `content/blog/`
-- Format: `YYYY-MM-DD-title.md`
-- Include frontmatter with `title`, `date`, `excerpt`, and optional `mediumUrl`:
-  ```markdown
-  ---
-  title: "Your Post Title"
-  date: "2024-01-15"
-  excerpt: "A brief description"
-  mediumUrl: "https://medium.com/@yourusername/your-post-slug"  # Optional
-  ---
-  ```
-- To sync missing posts from Medium automatically and refresh homepage featured Medium links, run:
-  - `npm run sync:medium`
+
+- Create markdown in `content/blog/` as `YYYY-MM-DD-title.md`
+- Frontmatter: `title`, `date`, `excerpt`, optional `mediumUrl`
+- Or sync from Medium: `npm run sync:medium`
 
 ### Projects
-- Edit `data/projects.json`
-- Add project objects with: `id`, `title`, `description`, `url`, `tags`
+
+Edit `data/projects.json` (theme → artifacts structure). Legacy flat arrays are ignored by the loader.
 
 ### Links
-- Edit `data/links.json`
-- Organize by category with arrays of link objects
 
-### Certifications
-- Edit `data/certifications.json`
-- Add certification objects with relevant fields
+Edit `data/links.json` (category → link arrays).
 
-### Hub Links
-- Edit `data/hub/hub.json`
-- Add link objects for your online presence
+### Certifications & Learning
 
-### V2ME Framework
-- Edit `data/v2me.json`
-- Structure includes: `vision`, `values`, `methods`, `obstacles`, `measures`
-- Each item has: `id`, `title`, `description` (and `completed` for methods/measures)
-- Can be edited in the UI and exported/imported as JSON
+Edit `data/learning/learning.json` (education, accomplished certification groups, planning goals).  
+Badge images live under `public/badges/`; Credly / Accredible / Trailhead pipelines are under `scripts/*-badge/` (see `scripts/README.md` and each folder’s `INSTRUCTIONS.md`).
+
+### Hub
+
+Edit `data/hub/hub.json`.
+
+### V2ME
+
+Edit `data/v2me.json`, or use the on-page editor and JSON download/upload.  
+`vision` is an object `{ id, title, description }` (legacy string vision is migrated on load).
+
+## Scripts
+
+| Script | Purpose |
+|--------|---------|
+| `npm run sync:medium` | Import missing Medium posts + refresh homepage featured links |
+| `npm run generate:icons` | Rebuild favicon / PWA PNGs |
+| `npm run generate:og-image` | Rebuild Open Graph image |
+
+Badge processors (run from repo root):
+
+```bash
+node scripts/credly-badge/process-manual-badges.js
+node scripts/accredible-badge/process-accredible-badges.js
+node scripts/trailhead-badge/process-trailhead-badges.js
+```
+
+Shared helpers: `scripts/_shared/download-image.js`, `scripts/_shared/fs-json.js`.
 
 ## Building for Production
 
@@ -123,4 +103,4 @@ tom-bohn.github.io/
 npm run build
 ```
 
-This creates a static export in the `out/` directory ready for GitHub Pages.
+Static files land in `out/` for GitHub Pages. See `DEPLOYMENT.md` for domain and HTTPS setup.

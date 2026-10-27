@@ -2,7 +2,8 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { getBlogPosts } from '@/lib/blog'
 import { FaMedium } from 'react-icons/fa'
-import { RoleTypewriter } from '@/components/RoleTypewriter'
+import { PageShell } from '@/components/PageShell'
+import { PageHeader } from '@/components/PageHeader'
 import { ScrollReveal } from '@/components/ScrollReveal'
 
 export const metadata: Metadata = {
@@ -13,40 +14,30 @@ export default async function Blog() {
   const posts = await getBlogPosts()
 
   return (
-    <>
-      {/* Animated background elements for dark mode */}
-      <div className="stars-bg" aria-hidden="true" />
-      <div className="nebula-bg" aria-hidden="true" />
-      
-      <div className="container mx-auto px-4 py-12 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-12 fade-in-up">
-            <p className="text-sm text-accent mb-4 font-mono typewriter-cursor">
-              <RoleTypewriter />
-            </p>
-            <h1 className="text-2xl font-semibold mb-4 text-text-primary font-mono flex items-center gap-3">
-              <span className="text-accent-orange">{'⟩'}</span>
-              {'BLOG'}
-            </h1>
-<p className="text-text-secondary leading-loose text-lg">
+    <PageShell>
+      <PageHeader
+        title="BLOG"
+        description={
+          <p className="leading-loose text-lg">
             Frameworks, insights, and practical approaches to software engineering, data governance, and technical leadership.
           </p>
-          </div>
+        }
+      />
 
-          {posts.length === 0 ? (
-            <div className="text-center py-12 glass-card rounded-xl fade-in-up fade-in-up-delay-1">
-              <p className="text-text-secondary mb-4">No blog posts yet.</p>
-              <p className="text-text-secondary text-sm">
-                Check back soon for new content!
-              </p>
-            </div>
-          ) : (
-            <div className="space-y-8">
-              {posts.map((post, index) => (
-                <ScrollReveal key={post.slug} delayMs={Math.min(index, 4) * 80}>
-                <article
-                  className="glass-card shine-effect rounded-xl p-6 hover:border-accent transition-all"
-                >
+      {posts.length === 0 ? (
+        <div className="text-center py-12 glass-card rounded-xl fade-in-up fade-in-up-delay-1">
+          <p className="text-text-secondary mb-4">No blog posts yet.</p>
+          <p className="text-text-secondary text-sm">
+            Check back soon for new content!
+          </p>
+        </div>
+      ) : (
+        <div className="space-y-8">
+          {posts.map((post, index) => (
+            <ScrollReveal key={post.slug} delayMs={Math.min(index, 4) * 80}>
+              <article
+                className="glass-card shine-effect rounded-xl p-6 hover:border-accent transition-all"
+              >
                 <div className="flex items-start justify-between gap-4 mb-2">
                   <Link href={`/blog/${post.slug}/`} className="flex-1">
                     {post.title.includes(':') ? (
@@ -101,12 +92,10 @@ export default async function Blog() {
                   </svg>
                 </Link>
               </article>
-              </ScrollReveal>
-            ))}
-          </div>
-        )}
+            </ScrollReveal>
+          ))}
         </div>
-      </div>
-    </>
+      )}
+    </PageShell>
   )
 }

@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import type { Metadata } from 'next'
 import { RoleTypewriter } from '@/components/RoleTypewriter'
+import { PageShell } from '@/components/PageShell'
 import { ScrollReveal } from '@/components/ScrollReveal'
 
 export const metadata: Metadata = {
@@ -9,13 +10,7 @@ export const metadata: Metadata = {
 
 export default function About() {
   return (
-    <>
-      {/* Animated background elements for dark mode */}
-      <div className="stars-bg" aria-hidden="true" />
-      <div className="nebula-bg" aria-hidden="true" />
-      
-      <div className="container mx-auto px-4 py-12 relative z-10">
-        <div className="max-w-6xl mx-auto">
+    <PageShell>
           {/* Header section with role tag */}
           <div className="mb-12 fade-in-up">
             <p className="text-sm text-accent mb-4 font-mono typewriter-cursor">
@@ -308,9 +303,6 @@ export default function About() {
             </section>
             </ScrollReveal>
           </div>
-        </div>
-        </div>
-      </div>
-    </>
+    </PageShell>
   )
 }
