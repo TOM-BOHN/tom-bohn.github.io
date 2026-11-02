@@ -93,7 +93,7 @@ The header theme tray supports light, dark, and Xanga modes. Preference is store
 
 ## Tech Stack (short)
 
-Next.js 16 · React 19 · TypeScript 5.9 · Tailwind CSS 3 · remark / react-markdown · @dnd-kit
+Next.js 16 · React 19 · TypeScript 6.0 · Tailwind CSS 3 · remark / react-markdown · @dnd-kit
 
 ## Deployment
 
