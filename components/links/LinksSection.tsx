@@ -3,23 +3,27 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import type { Link } from '@/lib/links'
 import {
+  FaAws,
+  FaBrain,
+  FaChartBar,
   FaCode,
+  FaDatabase,
   FaDocker,
   FaFileAlt,
   FaGithub,
   FaLaptopCode,
   FaPenNib,
   FaRobot,
+  FaSalesforce,
   FaSearch,
   FaShieldAlt,
+  FaSlack,
 } from 'react-icons/fa'
 import {
-  SiAmazon,
   SiApacheairflow,
   SiApachespark,
   SiCloudflare,
   SiConfluence,
-  SiDbt,
   SiGoogle,
   SiGooglesheets,
   SiJira,
@@ -30,22 +34,18 @@ import {
   SiMysql,
   SiNextdotjs,
   SiNumpy,
-  SiOpenai,
   SiPandas,
   SiPostgresql,
   SiPypi,
   SiPython,
   SiPytorch,
   SiR,
-  SiSalesforce,
   SiScikitlearn,
   SiScipy,
   SiSelenium,
-  SiSlack,
   SiSnowflake,
   SiSnyk,
   SiSubstack,
-  SiTableau,
   SiTailwindcss,
   SiTensorflow,
 } from 'react-icons/si'
@@ -74,7 +74,7 @@ const iconMap: IconConfig[] = [
   // AI & Writing
   { match: ['github'], IconComponent: FaGithub, color: '#181717', bgColor: '#f6f8fa' },
   { match: ['cursor'], IconComponent: FaCode, color: '#ffffff', bgColor: '#111827' },
-  { match: ['chatgpt', 'openai'], IconComponent: SiOpenai, color: '#ffffff', bgColor: '#0f172a' },
+  { match: ['chatgpt', 'openai'], IconComponent: FaBrain, color: '#ffffff', bgColor: '#0f172a' },
   { match: ['claude', 'anthropic'], IconComponent: FaRobot, color: '#ffffff', bgColor: '#1f2937' },
   { match: ['grammarly'], IconComponent: FaPenNib, color: '#ffffff', bgColor: '#16a34a' },
   { match: ['perplexity'], IconComponent: FaSearch, color: '#0f172a', bgColor: '#e2e8f0' },
@@ -86,7 +86,7 @@ const iconMap: IconConfig[] = [
   
   // Cloud & Security
   { match: ['crowdstrike', 'falcon'], IconComponent: FaShieldAlt, color: '#b91c1c', bgColor: '#fee2e2' },
-  { match: ['amazon', 'aws', 'sagemaker', 's3'], IconComponent: SiAmazon, color: '#ff9900', bgColor: '#fff5e6' },
+  { match: ['amazon', 'aws', 'sagemaker', 's3'], IconComponent: FaAws, color: '#ff9900', bgColor: '#fff5e6' },
   { match: ['cloudflare'], IconComponent: SiCloudflare, color: '#f38020', bgColor: '#fff1e6' },
   { match: ['snyk'], IconComponent: SiSnyk, color: '#4c4a73', bgColor: '#efeff6' },
   
@@ -97,7 +97,7 @@ const iconMap: IconConfig[] = [
   { match: ['uv', 'python'], IconComponent: SiPython, color: '#3776ab', bgColor: '#e6f0fa' },
   
   // Languages & Frameworks - Put specific matches first
-  { match: ['salesforce'], IconComponent: SiSalesforce, color: '#00a1e0', bgColor: '#e6f5fc' },
+  { match: ['salesforce'], IconComponent: FaSalesforce, color: '#00a1e0', bgColor: '#e6f5fc' },
   { match: ['sql'], IconComponent: FaCode, color: '#336791', bgColor: '#e6f0fa' },
   { match: ['bash'], IconComponent: FaCode, color: '#4eaa25', bgColor: '#e6f7e6' },
   { match: ['r-project', 'r ', 'r'], IconComponent: SiR, color: '#276dc3', bgColor: '#e6f0fa' },
@@ -120,10 +120,10 @@ const iconMap: IconConfig[] = [
   
   // Data Engineering & ETL
   { match: ['apache airflow', 'airflow'], IconComponent: SiApacheairflow, color: '#017cee', bgColor: '#e6f5fc' },
-  { match: ['dbt'], IconComponent: SiDbt, color: '#ff694b', bgColor: '#ffe6e6' },
+  { match: ['dbt'], IconComponent: FaDatabase, color: '#ff694b', bgColor: '#ffe6e6' },
   
   // Data Visualization & BI
-  { match: ['tableau'], IconComponent: SiTableau, color: '#e97627', bgColor: '#fff5e6' },
+  { match: ['tableau'], IconComponent: FaChartBar, color: '#e97627', bgColor: '#fff5e6' },
   
   // Development & DevOps
   { match: ['git'], IconComponent: FaGithub, color: '#f05032', bgColor: '#fee2e2' },
@@ -139,7 +139,7 @@ const iconMap: IconConfig[] = [
   // Work Management
   { match: ['jira'], IconComponent: SiJira, color: '#0052cc', bgColor: '#e6f0fa' },
   { match: ['confluence'], IconComponent: SiConfluence, color: '#172b4d', bgColor: '#e6f0f5' },
-  { match: ['slack'], IconComponent: SiSlack, color: '#4a154b', bgColor: '#f0e6f5' },
+  { match: ['slack'], IconComponent: FaSlack, color: '#4a154b', bgColor: '#f0e6f5' },
   { match: ['google-workspace', 'google workspace'], IconComponent: SiGoogle, color: '#4285f4', bgColor: '#e6f0fa' },
   { match: ['lucidchart'], IconComponent: SiLucid, color: '#f59e0b', bgColor: '#fff5e6' },
 ]
