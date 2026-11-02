@@ -25,18 +25,12 @@ updates:
         # PRs are reviewable alone. Exclusion ≠ ignore — updates still open.
         exclude-patterns:
           - "tailwindcss"
-          - "react-icons"
           - "typescript"
           - "@types/node"
     ignore:
       # tracking: #102 — PostCSS plugin break on v4 (#77); restored in #79.
       # Remove this ignore in the Tailwind v4 migration PR that Fixes #102.
       - dependency-name: tailwindcss
-        update-types:
-          - version-update:semver-major
-      # tracking: #101 — 5.6+ removed Si* brands still used by Links/Hub.
-      # Remove this ignore in the icon migration PR that Fixes #101.
-      - dependency-name: react-icons
         update-types:
           - version-update:semver-major
       # tracking: #109 — TS 7 hard-crashes eslint (typescript-eslint unsupported).

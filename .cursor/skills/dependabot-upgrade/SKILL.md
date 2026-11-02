@@ -94,9 +94,9 @@ Before editing `.github/dependabot.yml`:
 ## Grouped updates
 
 Catch-all group `npm_and_yarn` excludes packages that need solo review
-(`tailwindcss`, `react-icons`, `typescript`, `@types/node`) — see
-`.github/dependabot.yml`. Excluding from a group is **not** an ignore: Dependabot
-still opens PRs; they are just not bundled with unrelated bumps.
+(`tailwindcss`, `typescript`, `@types/node`) — see `.github/dependabot.yml`.
+Excluding from a group is **not** an ignore: Dependabot still opens PRs; they
+are just not bundled with unrelated bumps.
 
 When a group PR contains one breaker:
 
@@ -111,7 +111,7 @@ These must stay linked to open issues until migrated:
 | Package | Scope | Tracking |
 |---------|-------|----------|
 | `tailwindcss` | majors | #102 |
-| `react-icons` | majors | #101 |
+| `typescript` | majors | #109 |
 
 If you find an ignore **without** an open tracking issue, open one before any
 other work on that package.

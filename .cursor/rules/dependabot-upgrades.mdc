@@ -16,4 +16,4 @@ Follow the full workflow in `.cursor/skills/dependabot-upgrade/SKILL.md`.
 3. **Red** → open a `migrate: …` issue (template: blocked-dependency-upgrade), do **not** merge red, and fix in a **dedicated** migration PR (`Fixes #N`) that removes any temporary ignore.
 4. Temporary Dependabot `ignore` only with `# tracking: #N` in YAML + matching docs. Prefer `semver-major` scope. No ignore without an open issue.
 
-Current tracked ignores: `tailwindcss` majors → #102; `react-icons` majors → #101.
+Current tracked ignores: `tailwindcss` majors → #102; `typescript` majors → #109.

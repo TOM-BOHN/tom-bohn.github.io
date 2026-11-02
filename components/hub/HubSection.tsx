@@ -6,10 +6,10 @@ import {
   FaGithub, 
   FaLinkedin, 
   FaMedium,
+  FaSalesforce,
 } from 'react-icons/fa'
 import { 
   SiCredly,
-  SiSalesforce,
   SiSubstack,
 } from 'react-icons/si'
 
@@ -74,7 +74,7 @@ function getBrandIcon(linkId: string, linkTitle: string) {
   }
   if (id.includes('trailhead') || title.includes('trailhead') || title.includes('salesforce')) {
     return { 
-      icon: <SiSalesforce className="w-8 h-8" />, 
+      icon: <FaSalesforce className="w-8 h-8" />, 
       color: '#00A1E0',
       bgColor: '#e6f7ff'
     }
