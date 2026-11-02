@@ -60,7 +60,7 @@ export default async function Blog() {
                       href={post.mediumUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-shrink-0 p-2 hover:bg-bg-primary rounded transition-colors"
+                      className="shrink-0 p-2 hover:bg-bg-primary rounded-sm transition-colors"
                       title="Read on Medium"
                       aria-label="Read on Medium"
                     >

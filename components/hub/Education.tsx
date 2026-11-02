@@ -41,7 +41,7 @@ function EducationCard({
         <div className="flex items-center h-7 pt-1">
           {isExpanded ? (
             <svg
-              className="w-5 h-5 text-accent flex-shrink-0"
+              className="w-5 h-5 text-accent shrink-0"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -50,7 +50,7 @@ function EducationCard({
             </svg>
           ) : (
             <svg
-              className="w-5 h-5 text-accent flex-shrink-0"
+              className="w-5 h-5 text-accent shrink-0"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -66,7 +66,7 @@ function EducationCard({
         </div>
         <div className="flex items-start gap-4 flex-1">
           {entry.logo && (
-            <div className="relative w-16 h-16 flex-shrink-0">
+            <div className="relative w-16 h-16 shrink-0">
               <Image
                 src={entry.logo}
                 alt={`${entry.institution} logo`}
@@ -185,7 +185,7 @@ export function Education({
             <button
               type="button"
               onClick={expandAllEntries}
-              className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded transition-colors"
+              className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded-sm transition-colors"
               aria-label="Expand all education entries"
               title="Expand all education entries"
             >
@@ -197,7 +197,7 @@ export function Education({
             <button
               type="button"
               onClick={collapseAllEntries}
-              className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded transition-colors"
+              className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded-sm transition-colors"
               aria-label="Collapse all education entries"
               title="Collapse all education entries"
             >

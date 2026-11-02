@@ -108,7 +108,7 @@ function ThemeMenu({ theme, setTheme }: { theme: Theme; setTheme: (t: Theme) => 
         aria-expanded={open}
         aria-label={`Theme: ${themeLabel(theme)}. Open theme menu`}
         title={`Theme: ${themeLabel(theme)}`}
-        className="relative w-9 h-9 flex items-center justify-center rounded text-accent hover:bg-bg-secondary transition-colors focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        className="relative w-9 h-9 flex items-center justify-center rounded-sm text-accent hover:bg-bg-secondary transition-colors focus:outline-hidden focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
       >
         <ThemeIcon theme={theme} />
         <span className="sr-only">Theme: {themeLabel(theme)}. Open theme menu</span>
@@ -118,7 +118,7 @@ function ThemeMenu({ theme, setTheme }: { theme: Theme; setTheme: (t: Theme) => 
         <div
           role="menu"
           aria-label="Choose theme"
-          className="absolute right-0 top-full z-20 mt-2 min-w-[140px] overflow-hidden rounded border border-border bg-bg-primary shadow-lg"
+          className="absolute right-0 top-full z-20 mt-2 min-w-[140px] overflow-hidden rounded-sm border border-border bg-bg-primary shadow-lg"
         >
           {THEME_OPTIONS.map((option) => {
             const isActive = theme === option.value
@@ -133,7 +133,7 @@ function ThemeMenu({ theme, setTheme }: { theme: Theme; setTheme: (t: Theme) => 
                   setOpen(false)
                   triggerRef.current?.focus()
                 }}
-                className={`flex w-full items-center gap-2.5 px-3 py-2 text-sm transition-colors focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent ${
+                className={`flex w-full items-center gap-2.5 px-3 py-2 text-sm transition-colors focus:outline-hidden focus-visible:outline-solid focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-accent ${
                   isActive
                     ? 'bg-bg-secondary text-accent font-semibold'
                     : 'text-text-primary hover:bg-bg-secondary'
@@ -201,7 +201,7 @@ function DesktopNavLink({
   return (
     <Link
       href={href}
-      className={`group relative flex items-center gap-1.5 pb-1 rounded transition-colors focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
+      className={`group relative flex items-center gap-1.5 pb-1 rounded transition-colors focus:outline-hidden focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
         isActive ? 'text-accent font-semibold' : 'text-text-secondary hover:text-accent-orange'
       }`}
       title={vip ? 'VIP Content - Login Required' : undefined}
@@ -279,7 +279,7 @@ export function Header() {
   }, [pathname])
 
   return (
-    <header className="border-b border-border bg-bg-primary sticky top-0 z-50 backdrop-blur-sm bg-opacity-90">
+    <header className="border-b border-border bg-bg-primary/90 sticky top-0 z-50 backdrop-blur-xs">
       <div className="container mx-auto px-4 py-4">
         <nav className="flex items-center justify-between">
           <div className="flex items-center space-x-6">
@@ -324,13 +324,13 @@ export function Header() {
             {showCollapsedIcon && layout && (
               <button
                 onClick={() => layout.restoreSidebar()}
-                className="relative group w-9 h-9 flex items-center justify-center rounded border border-accent/40 bg-accent/10 text-accent transition-colors hover:bg-accent hover:text-on-accent focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                className="relative group w-9 h-9 flex items-center justify-center rounded-sm border border-accent/40 bg-accent/10 text-accent transition-colors hover:bg-accent hover:text-on-accent focus:outline-hidden focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                 aria-label={`Restore ${layout.lastVisibleSide} sidebar`}
                 title="Restore sidebar"
               >
                 <RestoreSidebarIcon side={layout.lastVisibleSide} />
                 <span className="sr-only">Restore {layout.lastVisibleSide} sidebar</span>
-                <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded border border-border bg-bg-primary px-2 py-1 text-[11px] text-text-primary opacity-0 shadow-sm transition-opacity group-hover:opacity-100 z-10">
+                <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-sm border border-border bg-bg-primary px-2 py-1 text-[11px] text-text-primary opacity-0 shadow-xs transition-opacity group-hover:opacity-100 z-10">
                   Restore sidebar
                 </span>
               </button>
@@ -343,7 +343,7 @@ export function Header() {
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-nav"
               aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
-              className="md:hidden relative w-9 h-9 flex items-center justify-center rounded text-text-primary hover:bg-bg-secondary transition-colors focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              className="md:hidden relative w-9 h-9 flex items-center justify-center rounded-sm text-text-primary hover:bg-bg-secondary transition-colors focus:outline-hidden focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             >
               <HamburgerIcon open={mobileMenuOpen} />
             </button>
@@ -368,7 +368,7 @@ export function Header() {
                     <Link
                       key={item.href}
                       href={item.href}
-                      className={`px-4 py-1.5 rounded text-sm transition-colors flex-1 min-w-[70px] text-center focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
+                      className={`px-4 py-1.5 rounded text-sm transition-colors flex-1 min-w-[70px] text-center focus:outline-hidden focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
                         isActive
                           ? 'bg-accent text-on-accent'
                           : 'bg-bg-secondary text-text-secondary hover:bg-accent-orange hover:text-on-accent-orange'
@@ -396,7 +396,7 @@ export function Header() {
                     <Link
                       key={item.href}
                       href={item.href}
-                      className={`group relative px-3 py-1.5 rounded text-sm transition-colors flex items-center justify-center gap-1.5 flex-1 min-w-[70px] focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
+                      className={`group relative px-3 py-1.5 rounded text-sm transition-colors flex items-center justify-center gap-1.5 flex-1 min-w-[70px] focus:outline-hidden focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
                         isActive
                           ? 'bg-accent text-on-accent'
                           : 'bg-bg-secondary text-text-secondary hover:bg-accent-orange hover:text-on-accent-orange'
@@ -419,7 +419,7 @@ export function Header() {
                     <Link
                       key={item.href}
                       href={item.href}
-                      className={`group relative px-3 py-1.5 rounded text-sm transition-colors flex items-center justify-center gap-1.5 flex-1 min-w-[70px] focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
+                      className={`group relative px-3 py-1.5 rounded text-sm transition-colors flex items-center justify-center gap-1.5 flex-1 min-w-[70px] focus:outline-hidden focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
                         isActive
                           ? 'bg-accent text-on-accent'
                           : 'bg-bg-secondary text-text-secondary hover:bg-accent-orange hover:text-on-accent-orange'

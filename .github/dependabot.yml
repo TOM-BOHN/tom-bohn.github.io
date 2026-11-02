@@ -28,11 +28,6 @@ updates:
           - "typescript"
           - "@types/node"
     ignore:
-      # tracking: #102 — PostCSS plugin break on v4 (#77); restored in #79.
-      # Remove this ignore in the Tailwind v4 migration PR that Fixes #102.
-      - dependency-name: tailwindcss
-        update-types:
-          - version-update:semver-major
       # tracking: #109 — TS 7 hard-crashes eslint (typescript-eslint unsupported).
       # On ~6.0.x for now. Remove when the TS 7 migration PR Fixes #109.
       - dependency-name: typescript

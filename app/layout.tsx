@@ -96,7 +96,7 @@ export default function RootLayout({
       <body className={`${openSans.className} ${openSans.variable}`} suppressHydrationWarning>
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:rounded focus:bg-accent focus:px-4 focus:py-2 focus:text-on-accent focus:shadow-lg"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-100 focus:rounded-sm focus:bg-accent focus:px-4 focus:py-2 focus:text-on-accent focus:shadow-lg"
         >
           Skip to content
         </a>
@@ -104,7 +104,7 @@ export default function RootLayout({
           <XangaLayoutWrapper>
             <div className="min-h-screen flex flex-col">
               <Header />
-              <main id="main-content" className="flex-grow">
+              <main id="main-content" className="grow">
                 <XangaShell>{children}</XangaShell>
               </main>
               <Footer />

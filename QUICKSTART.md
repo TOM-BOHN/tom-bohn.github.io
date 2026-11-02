@@ -87,13 +87,12 @@ The header theme tray supports light, dark, and Xanga modes. Preference is store
 
 ## Customization
 
-- Colors / theme tokens: `app/globals.css`
-- Tailwind theme extensions: `tailwind.config.ts`
+- Colors / theme tokens: `app/globals.css` (`:root` / `[data-theme]` + `@theme inline`)
 - Shared page chrome: `components/PageShell.tsx`, `components/PageHeader.tsx`
 
 ## Tech Stack (short)
 
-Next.js 16 · React 19 · TypeScript 6.0 · Tailwind CSS 3 · remark / react-markdown · @dnd-kit
+Next.js 16 · React 19 · TypeScript 6.0 · Tailwind CSS 4 · remark / react-markdown · @dnd-kit
 
 ## Deployment
 

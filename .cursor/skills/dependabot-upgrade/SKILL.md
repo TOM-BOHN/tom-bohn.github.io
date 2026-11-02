@@ -110,7 +110,6 @@ These must stay linked to open issues until migrated:
 
 | Package | Scope | Tracking |
 |---------|-------|----------|
-| `tailwindcss` | majors | #102 |
 | `typescript` | majors | #109 |
 
 If you find an ignore **without** an open tracking issue, open one before any
@@ -120,4 +119,4 @@ other work on that package.
 
 - Do not push to `main` or merge sandbox→main promotion PRs unless asked.
 - Do not “fix” a failed major by only widening an ignore.
-- Do not migrate Tailwind v4 or react-icons icons inside an unrelated feature PR.
+- Do not migrate react-icons icons inside an unrelated feature PR.

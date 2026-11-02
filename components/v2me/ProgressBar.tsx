@@ -13,7 +13,7 @@ export function ProgressBar({ progress }: ProgressBarProps) {
       </div>
       <div className="w-full bg-bg-secondary rounded-full h-3 overflow-hidden border border-border">
         <div
-          className="h-full bg-gradient-to-r from-accent to-accent-orange transition-all duration-300 ease-out"
+          className="h-full bg-linear-to-r from-accent to-accent-orange transition-all duration-300 ease-out"
           style={{ width: `${progress}%` }}
         />
       </div>

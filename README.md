@@ -10,7 +10,7 @@ Visit the site at [thomaslbohn.com](https://thomaslbohn.com)
 
 - **Framework**: [Next.js](https://nextjs.org/) 16 (App Router, static export)
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **UI**: [React](https://react.dev/) 19 + [Tailwind CSS](https://tailwindcss.com/) 3
+- **UI**: [React](https://react.dev/) 19 + [Tailwind CSS](https://tailwindcss.com/) 4
 - **Icons**: [react-icons](https://react-icons.github.io/react-icons/)
 - **Content**: Markdown with [remark](https://remark.js.org/) / [react-markdown](https://github.com/remarkjs/react-markdown); HTML sanitized with [sanitize-html](https://github.com/apostrophecms/sanitize-html)
 - **Drag & drop**: [@dnd-kit](https://dndkit.com/) (V2ME reordering)
@@ -104,7 +104,7 @@ Custom Tailwind theme with a Tableau color-blind–friendly blue–orange palett
 
 ## Dependency & Security Maintenance
 
-- Dependabot: `.github/dependabot.yml` — weekly grouped npm updates on `sandbox`; **Tailwind CSS major bumps are ignored** (v4 is a breaking migration; keep on v3 until an intentional upgrade). **`react-icons` is pinned at 5.5.0** (5.6+ dropped Simple Icons brands used by Links/Hub).
+- Dependabot: `.github/dependabot.yml` — weekly grouped npm updates on `sandbox`. Tailwind is on **v4** (majors no longer ignored; closed #102). Temporary ignore remains for TypeScript majors (#109). `react-icons` is on **^5.7** (Fa fallbacks for brands dropped from Simple Icons — see #101).
 - After dependency changes, run `npm audit` and `npm run build`.
 - Prefer merging Dependabot PRs into `sandbox`, never directly to `main`.
 - Vulnerability reporting: [SECURITY.md](./SECURITY.md).

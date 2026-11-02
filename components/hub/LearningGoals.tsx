@@ -43,12 +43,12 @@ function LearningGoalItem({ goal, onToggle, isExpanded: controlledExpanded, onTo
       <div className="flex items-start gap-3 p-4">
         <button
           onClick={handleToggleExpanded}
-          className="flex items-start gap-3 hover:bg-bg-secondary transition-colors text-left flex-1 rounded -ml-1 pl-1 pr-2 py-1"
+          className="flex items-start gap-3 hover:bg-bg-secondary transition-colors text-left flex-1 rounded-sm -ml-1 pl-1 pr-2 py-1"
         >
           <div className="flex items-center h-6 pt-1.5">
             {isExpanded ? (
               <svg
-                className="w-5 h-5 text-accent flex-shrink-0"
+                className="w-5 h-5 text-accent shrink-0"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -62,7 +62,7 @@ function LearningGoalItem({ goal, onToggle, isExpanded: controlledExpanded, onTo
               </svg>
             ) : (
               <svg
-                className="w-5 h-5 text-accent flex-shrink-0"
+                className="w-5 h-5 text-accent shrink-0"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -100,7 +100,7 @@ function LearningGoalItem({ goal, onToggle, isExpanded: controlledExpanded, onTo
             onChange={(e) => {
               onToggle(goal.id)
             }}
-            className="w-5 h-5 text-accent border-border rounded focus:ring-accent focus:ring-2 cursor-pointer flex-shrink-0"
+            className="w-5 h-5 text-accent border-border rounded-sm focus:ring-accent focus:ring-2 cursor-pointer shrink-0"
             aria-label={`Mark "${goal.title}" as ${goal.completed ? 'incomplete' : 'complete'}`}
           />
         </div>

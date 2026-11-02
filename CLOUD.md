@@ -13,7 +13,7 @@ see root [`AGENTS.md`](./AGENTS.md).
 2. Run the production build:
    - `npm run build`
 
-Target PRs at **`sandbox`** (not `main`). Promotion to production is handled by `.github/workflows/promote-sandbox-to-main.yml` after a green build. Keep Tailwind CSS on **v3** unless an intentional v4 migration is requested (Dependabot ignores Tailwind majors).
+Target PRs at **`sandbox`** (not `main`). Promotion to production is handled by `.github/workflows/promote-sandbox-to-main.yml` after a green build. Tailwind CSS is on **v4** (`@tailwindcss/postcss` + `@import "tailwindcss"` + `@theme inline` in `app/globals.css`).
 
 ## Build failure workflow (mandatory)
 

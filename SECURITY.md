@@ -27,6 +27,5 @@ You should receive an acknowledgment within a few days. Please allow reasonable 
 - Dependency updates are managed with Dependabot (`.github/dependabot.yml`), targeting `sandbox`. After bumps, run `npm audit` and `npm run build`.
 - Failed upgrades are tracked as migrations, not permanent freezes. Workflow: `.cursor/skills/dependabot-upgrade/SKILL.md`.
 - Temporary Dependabot ignores (must cite an open issue; remove when the migration PR lands):
-  - Tailwind CSS **majors** → [#102](https://github.com/TOM-BOHN/tom-bohn.github.io/issues/102)
   - TypeScript **majors** (TS 7 breaks eslint until typescript-eslint supports it) → [#109](https://github.com/TOM-BOHN/tom-bohn.github.io/issues/109)
 - Do not add a new ignore without a linked open tracking issue and build/API failure evidence.
