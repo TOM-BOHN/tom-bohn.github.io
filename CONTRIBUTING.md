@@ -23,7 +23,7 @@ npm run build
 ## Tech Stack
 
 - **Framework**: Next.js 16 (App Router, `output: 'export'`)
-- **Language**: TypeScript 5.9
+- **Language**: TypeScript 6.0
 - **UI**: React 19 + Tailwind CSS 3
 - **Icons**: react-icons **5.5.0** (pinned — see `AGENTS.md`)
 - **Content**: Markdown (remark / react-markdown) with sanitize-html
