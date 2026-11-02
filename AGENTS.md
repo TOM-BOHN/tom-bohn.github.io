@@ -46,10 +46,9 @@ Configured in `.github/dependabot.yml` (targets `sandbox`).
 Current temporary ignores (each must stay linked to an open issue):
 
 - **Tailwind majors** — PostCSS/`npm run build` break (#77 → restored #79). Tracking: **#102**.
-- **react-icons majors** — pin **5.5.0**; 5.6+ removed `Si*` brands used by Links/Hub. Tracking: **#101**.
 - **TypeScript majors** — TS 7 builds but hard-crashes `npm run lint` (`typescript-eslint` unsupported). On **6.0.x**. Tracking: **#109**.
 
-Excluded from catch-all group (solo PRs, not ignored): `@types/node`. GitHub Actions majors are grouped monthly and reviewed on CI.
+`react-icons` is unblocked (Fa fallbacks for removed Si* brands; see #101). Excluded from catch-all group (solo PRs, not ignored): `@types/node`. GitHub Actions majors are grouped monthly and reviewed on CI.
 
 ## Content / automation pointers
 
