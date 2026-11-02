@@ -29,4 +29,5 @@ You should receive an acknowledgment within a few days. Please allow reasonable 
 - Temporary Dependabot ignores (must cite an open issue; remove when the migration PR lands):
   - Tailwind CSS **majors** → [#102](https://github.com/TOM-BOHN/tom-bohn.github.io/issues/102)
   - `react-icons` **majors** (pin 5.5.0) → [#101](https://github.com/TOM-BOHN/tom-bohn.github.io/issues/101)
+  - TypeScript **majors** (TS 7 breaks eslint until typescript-eslint supports it) → [#109](https://github.com/TOM-BOHN/tom-bohn.github.io/issues/109)
 - Do not add a new ignore without a linked open tracking issue and build/API failure evidence.
