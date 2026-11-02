@@ -1,7 +1,8 @@
 # Dependabot configuration.
 # Policy: prefer opening update PRs so they can be reviewed and built. Only
-# ignore a package when a prior update caused a proven break (or API removal)
-# that is not yet migrated. Document each ignore in AGENTS.md + SECURITY.md.
+# ignore a package when a prior update caused a proven break AND an open
+# tracking issue exists with acceptance criteria to remove the ignore.
+# Workflow: .cursor/skills/dependabot-upgrade/SKILL.md
 #
 # npm: weekly grouped updates on sandbox. github-actions: monthly grouped.
 version: 2
@@ -20,26 +21,21 @@ updates:
       npm_and_yarn:
         patterns:
           - "*"
-        # Keep migration-blocked or major-sensitive packages out of the catch-all
-        # group so their PRs are reviewable on their own (not bundled with
-        # unrelated patch/minor bumps). They are still updated — just not ignored.
+        # Keep migration-sensitive packages out of the catch-all group so their
+        # PRs are reviewable alone. Exclusion ≠ ignore — updates still open.
         exclude-patterns:
           - "tailwindcss"
           - "react-icons"
           - "typescript"
           - "@types/node"
     ignore:
-      # Proven break: Dependabot #77 major-bumped Tailwind 3→4; PostCSS plugin
-      # API moved and `npm run build` failed. Restored in #79. Stay on v3 until
-      # an intentional v4 migration (config + `@tailwind` CSS).
+      # tracking: #102 — PostCSS plugin break on v4 (#77); restored in #79.
+      # Remove this ignore in the Tailwind v4 migration PR that Fixes #102.
       - dependency-name: tailwindcss
         update-types:
           - version-update:semver-major
-      # Proven break: 5.6+ removed Simple Icons brand exports still imported by
-      # Links/Hub (`SiTableau`, `SiSalesforce`, `SiSlack`, `SiOpenai`, `SiAmazon`,
-      # `SiDbt`, …). Exact pin 5.5.0 in package.json. Ignore majors only so any
-      # future 5.5.x security patch can still open a PR; unblock by migrating
-      # those call sites to Fa/Fa6 (or equivalent).
+      # tracking: #101 — 5.6+ removed Si* brands still used by Links/Hub.
+      # Remove this ignore in the icon migration PR that Fixes #101.
       - dependency-name: react-icons
         update-types:
           - version-update:semver-major

@@ -1,0 +1,80 @@
+name: Blocked dependency upgrade
+description: Track a Dependabot/dependency bump that failed build or CI until a dedicated migration lands.
+title: "migrate: <package> <from> → <to>"
+labels: ["dependencies"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A failed upgrade is a **migration with an exit**, not a forever-ignore.
+        Workflow: `.cursor/skills/dependabot-upgrade/SKILL.md`
+  - type: input
+    id: package
+    attributes:
+      label: Package
+      placeholder: e.g. tailwindcss, react-icons, typescript
+    validations:
+      required: true
+  - type: input
+    id: from_version
+    attributes:
+      label: Current version
+      placeholder: e.g. ^3.4.19 or 5.5.0
+    validations:
+      required: true
+  - type: input
+    id: to_version
+    attributes:
+      label: Target version
+      placeholder: e.g. ^4.3.3 or 5.6.0
+    validations:
+      required: true
+  - type: dropdown
+    id: ecosystem
+    attributes:
+      label: Ecosystem
+      options:
+        - npm
+        - github-actions
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Failure evidence
+      description: Command(s) run, error excerpt, and link to the Dependabot/upgrade PR.
+      placeholder: |
+        `npm run build` failed with:
+        …
+        Dependabot PR: #…
+    validations:
+      required: true
+  - type: textarea
+    id: blast_radius
+    attributes:
+      label: Blast radius
+      description: Files, features, or workflows likely to need changes.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      value: |
+        - [ ] Dedicated migration PR targeting `sandbox`
+        - [ ] `npm run build` green (Actions: workflow green)
+        - [ ] Remove any temporary Dependabot ignore for this package
+        - [ ] PR body includes `Fixes #<this issue>`
+    validations:
+      required: true
+  - type: dropdown
+    id: temporary_ignore
+    attributes:
+      label: Temporary Dependabot ignore needed?
+      description: Only if Dependabot would keep re-opening the same breaker. Must cite this issue in dependabot.yml.
+      options:
+        - "No — leave Dependabot able to re-propose"
+        - "Yes — majors only (semver-major)"
+        - "Yes — all updates (justify in evidence)"
+    validations:
+      required: true

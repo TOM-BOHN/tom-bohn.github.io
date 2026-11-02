@@ -36,7 +36,7 @@ npm run build
 2. Open PRs targeting **`sandbox`**.
 3. After merge, automation validates the build and may open a **sandbox → main** promotion PR for human review. Do not push to `main` or merge the promotion PR unless you own production releases.
 
-Dependabot also targets `sandbox`. Tailwind CSS majors and `react-icons` bumps are intentionally ignored in Dependabot config.
+Dependabot also targets `sandbox`. If an upgrade fails `npm run build`, open a `migrate: …` issue and land a dedicated migration PR — do not forever-ignore. See `.cursor/skills/dependabot-upgrade/SKILL.md`. Temporary ignores (Tailwind / `react-icons` majors) must stay linked to open tracking issues (#102, #101).
 
 ## Project Structure
 

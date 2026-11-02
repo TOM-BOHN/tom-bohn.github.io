@@ -37,17 +37,22 @@ Personal site: Next.js 16 App Router, React 19, TypeScript, Tailwind CSS **3**, 
 - Page-level expand/collapse uses **React state + incrementing tokens** (`expandItemsToken` / `collapseItemsToken`) — do not reintroduce `window` CustomEvents.
 - JSON upload must accept object-shaped `vision`, not only legacy strings.
 
-## Dependency footguns
+## Dependency upgrades
 
-Configured in `.github/dependabot.yml` (targets `sandbox`). Prefer opening update PRs; only ignore proven breakages:
+Configured in `.github/dependabot.yml` (targets `sandbox`).
 
-- **Tailwind**: majors ignored — v4 broke the PostCSS/`npm run build` path when Dependabot applied it (#77 → fixed in #79). Stay on **v3** until an intentional migration.
-- **react-icons**: majors ignored; pin **5.5.0**. 5.6+ removed Simple Icons brands used by Links/Hub (`SiTableau`, `SiSalesforce`, `SiSlack`, `SiOpenai`, `SiAmazon`, `SiDbt`, …). Unblock by migrating those call sites to Fa/Fa6 (or equivalent).
-- **TypeScript / `@types/node`**: not ignored. Excluded from the catch-all npm group so majors open as dedicated PRs (avoids #97-style bundling with unrelated bumps). Evaluate on build evidence, not a permanent ignore.
-- GitHub Actions updates are **grouped** monthly. Majors are not ignored — review and land them when CI is green.
+**Convention when an upgrade breaks:** do not forever-ignore. Open a `migrate: …` issue → fix in a dedicated PR (`Fixes #N`) → remove any temporary ignore. Full workflow: `.cursor/skills/dependabot-upgrade/SKILL.md` (rule: `.cursor/rules/dependabot-upgrades.mdc`). Issue form: `.github/ISSUE_TEMPLATE/blocked-dependency-upgrade.yml`.
+
+Current temporary ignores (each must stay linked to an open issue):
+
+- **Tailwind majors** — PostCSS/`npm run build` break (#77 → restored #79). Tracking: **#102**.
+- **react-icons majors** — pin **5.5.0**; 5.6+ removed `Si*` brands used by Links/Hub. Tracking: **#101**.
+
+Not ignored (excluded from catch-all group so majors open as solo PRs): TypeScript, `@types/node`. GitHub Actions majors are grouped monthly and reviewed on CI.
 
 ## Content / automation pointers
 
+- Dependabot / blocked upgrades: `.cursor/skills/dependabot-upgrade/SKILL.md` + `.cursor/rules/dependabot-upgrades.mdc`
 - Medium blog sync workflow: `.cursor/rules/medium-blog-sync.mdc` + `npm run sync:medium`
 - Badge pipelines: `npm run badges:credly` / `badges:accredible` / `badges:trailhead` (see `scripts/README.md`)
 - Human docs: `SITE.md` (site reader), `README.md`, `CONTRIBUTING.md`, `QUICKSTART.md`, `DEPLOYMENT.md`, `SECURITY.md`
