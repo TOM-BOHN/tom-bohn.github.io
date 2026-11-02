@@ -39,20 +39,19 @@ Personal site: Next.js 16 App Router, React 19, TypeScript, Tailwind CSS **3**, 
 
 ## Dependency footguns
 
-Configured in `.github/dependabot.yml` (targets `sandbox`):
+Configured in `.github/dependabot.yml` (targets `sandbox`). Prefer opening update PRs; only ignore proven breakages:
 
-- **Tailwind**: stay on **v3**. Majors ignored — v4 broke the build when Dependabot applied it (#79 / #81).
-- **react-icons**: pin **5.5.0**. 5.6+ removed Simple Icons brands used by Links/Hub (`SiTableau`, `SiSalesforce`, `SiSlack`, `SiOpenai`, `SiAmazon`, `SiDbt`, …). Don’t bump without migrating those call sites to Fa/Fa6 (or equivalent).
-- **TypeScript**: stay on **5.9**. Majors ignored — do not take Dependabot jumps to 6+/7 until Next tooling is validated (TS 7 is the Go rewrite).
-- **@types/node**: majors ignored — keep the types line aligned with CI Node **20** (currently on the 22.x DefinitelyTyped line).
-- GitHub Actions updates are **grouped** monthly; Action **majors** are ignored.
+- **Tailwind**: majors ignored — v4 broke the PostCSS/`npm run build` path when Dependabot applied it (#77 → fixed in #79). Stay on **v3** until an intentional migration.
+- **react-icons**: majors ignored; pin **5.5.0**. 5.6+ removed Simple Icons brands used by Links/Hub (`SiTableau`, `SiSalesforce`, `SiSlack`, `SiOpenai`, `SiAmazon`, `SiDbt`, …). Unblock by migrating those call sites to Fa/Fa6 (or equivalent).
+- **TypeScript / `@types/node`**: not ignored. Excluded from the catch-all npm group so majors open as dedicated PRs (avoids #97-style bundling with unrelated bumps). Evaluate on build evidence, not a permanent ignore.
+- GitHub Actions updates are **grouped** monthly. Majors are not ignored — review and land them when CI is green.
 
 ## Content / automation pointers
 
 - Medium blog sync workflow: `.cursor/rules/medium-blog-sync.mdc` + `npm run sync:medium`
 - Badge pipelines: `npm run badges:credly` / `badges:accredible` / `badges:trailhead` (see `scripts/README.md`)
 - Human docs: `SITE.md` (site reader), `README.md`, `CONTRIBUTING.md`, `QUICKSTART.md`, `DEPLOYMENT.md`, `SECURITY.md`
-- Runtime: Node **20+** (`.nvmrc`, `engines`); TypeScript **5.9** (do not bump to 6+/7 while `eslint-config-next` peers require `<6.1`)
+- Runtime: Node **20+** (`.nvmrc`, `engines`). TypeScript is currently **5.9**; majors are allowed via dedicated Dependabot PRs — require a green `npm run build` before merging.
 
 ## Prefer when editing UI
 

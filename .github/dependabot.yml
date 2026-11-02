@@ -1,7 +1,9 @@
 # Dependabot configuration.
-# npm: weekly grouped updates on sandbox. Tailwind majors and react-icons are
-# ignored (see comments). github-actions: monthly, also grouped so one Actions
-# bump does not open a PR per workflow action.
+# Policy: prefer opening update PRs so they can be reviewed and built. Only
+# ignore a package when a prior update caused a proven break (or API removal)
+# that is not yet migrated. Document each ignore in AGENTS.md + SECURITY.md.
+#
+# npm: weekly grouped updates on sandbox. github-actions: monthly grouped.
 version: 2
 updates:
   - package-ecosystem: npm
@@ -18,24 +20,27 @@ updates:
       npm_and_yarn:
         patterns:
           - "*"
+        # Keep migration-blocked or major-sensitive packages out of the catch-all
+        # group so their PRs are reviewable on their own (not bundled with
+        # unrelated patch/minor bumps). They are still updated — just not ignored.
         exclude-patterns:
           - "tailwindcss"
+          - "react-icons"
+          - "typescript"
+          - "@types/node"
     ignore:
+      # Proven break: Dependabot #77 major-bumped Tailwind 3→4; PostCSS plugin
+      # API moved and `npm run build` failed. Restored in #79. Stay on v3 until
+      # an intentional v4 migration (config + `@tailwind` CSS).
       - dependency-name: tailwindcss
         update-types:
           - version-update:semver-major
-      # 5.6+ dropped several Simple Icons brand exports (SiTableau, SiSalesforce,
-      # SiSlack, SiOpenai, SiAmazon, SiDbt, …) used by Links/Hub. Stay on 5.5.0
-      # until those call sites migrate to Fa/Fa6 fallbacks.
+      # Proven break: 5.6+ removed Simple Icons brand exports still imported by
+      # Links/Hub (`SiTableau`, `SiSalesforce`, `SiSlack`, `SiOpenai`, `SiAmazon`,
+      # `SiDbt`, …). Exact pin 5.5.0 in package.json. Ignore majors only so any
+      # future 5.5.x security patch can still open a PR; unblock by migrating
+      # those call sites to Fa/Fa6 (or equivalent).
       - dependency-name: react-icons
-      # Stay on TypeScript 5.9 until Next/eslint-config-next are validated on
-      # 6+/7 (TS 7 is the Go rewrite). Grouped majors keep landing in #97-style PRs.
-      - dependency-name: typescript
-        update-types:
-          - version-update:semver-major
-      # Align @types/node with CI/engines Node 20 (and the current 22 types line).
-      # Majors track Node releases and pull APIs we do not run in production CI.
-      - dependency-name: "@types/node"
         update-types:
           - version-update:semver-major
     commit-message:
@@ -48,19 +53,14 @@ updates:
       interval: monthly
     open-pull-requests-limit: 3
     target-branch: sandbox
+    # Use the existing `dependencies` label only — `github-actions` is not
+    # defined in this repo (Dependabot errored on missing labels in #85–#89).
     labels:
       - dependencies
-      - github-actions
     groups:
       github-actions:
         patterns:
           - "*"
-    # Major Actions bumps (e.g. checkout v4→v7) often need a deliberate review;
-    # keep them out of the monthly grouped PR until we're ready.
-    ignore:
-      - dependency-name: "*"
-        update-types:
-          - version-update:semver-major
     commit-message:
       prefix: "chore(ci)"
       include: scope
