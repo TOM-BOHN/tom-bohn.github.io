@@ -37,7 +37,7 @@ export default function Contact() {
             <ScrollReveal>
             <div className="glass-card shine-effect rounded-xl p-6">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-btn-primary to-btn-primary-hover rounded-xl flex items-center justify-center icon-bounce shadow-lg">
+                <div className="w-12 h-12 bg-linear-to-br from-btn-primary to-btn-primary-hover rounded-xl flex items-center justify-center icon-bounce shadow-lg">
                   <FaEnvelope className="w-6 h-6 text-btn-primary-text" />
                 </div>
                 <h2 className="text-2xl font-semibold text-text-primary">Email</h2>
@@ -46,7 +46,7 @@ export default function Contact() {
               <p className="text-text-primary text-lg font-mono">{email}</p>
               <button
                 onClick={copyToClipboard}
-                className="p-2 hover:bg-bg-primary rounded transition-colors group"
+                className="p-2 hover:bg-bg-primary rounded-sm transition-colors group"
                 title="Copy email to clipboard"
                 aria-label="Copy email to clipboard"
               >
@@ -77,7 +77,7 @@ export default function Contact() {
               {/* Shares the same primary tokens as the Email badge above (rather
                   than a fixed brand-orange) so the two contact channels read as
                   one consistent color instead of an arbitrary blue/orange pair. */}
-              <div className="w-12 h-12 bg-gradient-to-br from-btn-primary to-btn-primary-hover rounded-xl flex items-center justify-center icon-bounce shadow-lg">
+              <div className="w-12 h-12 bg-linear-to-br from-btn-primary to-btn-primary-hover rounded-xl flex items-center justify-center icon-bounce shadow-lg">
                 <FaLinkedin className="w-6 h-6 text-btn-primary-text" />
               </div>
               <h2 className="text-2xl font-semibold text-text-primary">LinkedIn</h2>

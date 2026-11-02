@@ -46,13 +46,13 @@ export function NavigationApplet() {
           <Link
             key={item.href}
             href={item.href}
-            className="relative group flex items-center justify-center w-12 h-12 border-2 border-border bg-bg-secondary text-text-primary hover:bg-accent hover:text-on-accent transition-colors rounded"
+            className="relative group flex items-center justify-center w-12 h-12 border-2 border-border bg-bg-secondary text-text-primary hover:bg-accent hover:text-on-accent transition-colors rounded-sm"
             aria-label={item.label}
             title={item.tooltip}
           >
             <Icon />
             <span className="sr-only">{item.label}</span>
-            <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded border border-border bg-bg-primary px-2 py-1 text-[11px] text-text-primary opacity-0 shadow-sm transition-opacity group-hover:opacity-100 z-10">
+            <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-sm border border-border bg-bg-primary px-2 py-1 text-[11px] text-text-primary opacity-0 shadow-xs transition-opacity group-hover:opacity-100 z-10">
               {item.tooltip}
             </span>
           </Link>

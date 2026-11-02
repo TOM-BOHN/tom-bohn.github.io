@@ -116,7 +116,7 @@ export function HubSection({
       >
         {isExpanded ? (
           <svg
-            className="w-5 h-5 text-accent flex-shrink-0"
+            className="w-5 h-5 text-accent shrink-0"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -130,7 +130,7 @@ export function HubSection({
           </svg>
         ) : (
           <svg
-            className="w-5 h-5 text-accent flex-shrink-0"
+            className="w-5 h-5 text-accent shrink-0"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

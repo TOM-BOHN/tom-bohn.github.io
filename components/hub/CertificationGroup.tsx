@@ -83,7 +83,7 @@ export function CertificationGroup({ group, isExpanded: controlledExpanded, onTo
         <div className="flex items-center h-7 pt-1">
           {isExpanded ? (
             <svg
-              className="w-5 h-5 text-accent flex-shrink-0"
+              className="w-5 h-5 text-accent shrink-0"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -97,7 +97,7 @@ export function CertificationGroup({ group, isExpanded: controlledExpanded, onTo
             </svg>
           ) : (
             <svg
-              className="w-5 h-5 text-accent flex-shrink-0"
+              className="w-5 h-5 text-accent shrink-0"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"

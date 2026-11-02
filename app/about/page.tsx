@@ -48,7 +48,7 @@ export default function About() {
                   </div>
                 </div>
                 {/* Bottom border accent with gradient */}
-                <div className="h-1.5 bg-gradient-to-r from-accent-orange-hover via-accent-orange to-accent rounded-b-lg" />
+                <div className="h-1.5 bg-linear-to-r from-accent-orange-hover via-accent-orange to-accent rounded-b-lg" />
               </div>
             </div>
 

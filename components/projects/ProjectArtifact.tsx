@@ -31,7 +31,7 @@ export function ProjectArtifact({ artifact }: ProjectArtifactProps) {
           {artifact.title}
         </h4>
         <span
-          className={`px-2 py-1 rounded text-xs font-medium border ${typeColors[artifact.type]}`}
+          className={`px-2 py-1 rounded-sm text-xs font-medium border ${typeColors[artifact.type]}`}
         >
           {typeLabels[artifact.type]}
         </span>
