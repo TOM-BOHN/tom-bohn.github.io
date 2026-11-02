@@ -231,11 +231,11 @@ export function LinksSection({ title, links, isExpanded, onToggle }: LinksSectio
         aria-label={isExpanded ? 'Collapse section' : 'Expand section'}
       >
         {isExpanded ? (
-          <svg className="w-5 h-5 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 text-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
           </svg>
         ) : (
-          <svg className="w-5 h-5 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 text-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
           </svg>
         )}
@@ -255,7 +255,7 @@ export function LinksSection({ title, links, isExpanded, onToggle }: LinksSectio
                   className="group flex items-center sm:items-start gap-3 border border-border rounded-lg p-4 hover:border-accent hover:shadow-md transition-all bg-bg-primary w-full"
                 >
                   <div
-                    className={`w-9 h-9 rounded-md flex items-center justify-center flex-shrink-0 ${
+                    className={`w-9 h-9 rounded-md flex items-center justify-center shrink-0 ${
                       !brand.bgColor ? 'bg-accent' : ''
                     }`}
                     style={{

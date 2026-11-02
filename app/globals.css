@@ -1,6 +1,51 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+/*
+  Theme colors are plain CSS custom properties (e.g. `var(--accent)`) whose
+  values change per theme (light/dark/xanga). `@theme inline` registers them
+  as Tailwind color utilities without re-emitting intermediate --color-* vars
+  on :root, so utilities resolve the live theme token and opacity modifiers
+  (bg-accent/10, border-accent-orange/40) work via color-mix at use sites.
+*/
+@theme inline {
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-orange: var(--accent-orange);
+  --color-accent-orange-hover: var(--accent-orange-hover);
+  --color-on-accent: var(--on-accent);
+  --color-on-accent-orange: var(--on-accent-orange);
+  /* Same "one hue per theme" tokens .gradient-btn uses (blue in light,
+     orange in dark/xanga). Exposed as utilities so brand badges/buttons that
+     aren't full .gradient-btn elements can share the primary CTA color. */
+  --color-btn-primary: var(--btn-primary-from);
+  --color-btn-primary-hover: var(--btn-primary-to);
+  --color-btn-primary-text: var(--btn-primary-text);
+  --color-border: var(--border);
+  --color-link: var(--link);
+  --color-link-hover: var(--link-hover);
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
 :root {
   /* Tableau Color Blind Palette - Blue Orange Diverging (10 colors) */
@@ -300,8 +345,8 @@ html[data-theme="xanga"] body a[class*="bg-accent"]:not([class*="hover:bg-accent
 }
 
 /* Same fix for the shared "primary" badge/button tokens (bg-btn-primary,
-   text-btn-primary-text - see tailwind.config.ts) used by things like the
-   "Read on Medium" buttons so they resolve to the theme's primary hue
+   text-btn-primary-text - see @theme inline in this file) used by things like
+   the "Read on Medium" buttons so they resolve to the theme's primary hue
    instead of being pinned to orange - those are also plain <a> tags, so
    they'd otherwise inherit Xanga's blanket link color/hover-box styling. */
 html[data-theme="xanga"] body a[class*="bg-btn-primary"],

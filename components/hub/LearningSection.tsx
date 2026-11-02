@@ -147,7 +147,7 @@ export function LearningSection({
               <button
                 type="button"
                 onClick={expandAllGroups}
-                className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded transition-colors"
+                className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded-sm transition-colors"
                 aria-label="Expand all certification groups"
                 title="Expand all certification groups"
               >
@@ -159,7 +159,7 @@ export function LearningSection({
               <button
                 type="button"
                 onClick={collapseAllGroups}
-                className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded transition-colors"
+                className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded-sm transition-colors"
                 aria-label="Collapse all certification groups"
                 title="Collapse all certification groups"
               >
@@ -223,7 +223,7 @@ export function LearningSection({
               <button
                 type="button"
                 onClick={expandAllGoals}
-                className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded transition-colors"
+                className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded-sm transition-colors"
                 aria-label="Expand all learning goals"
                 title="Expand all learning goals"
               >
@@ -235,7 +235,7 @@ export function LearningSection({
               <button
                 type="button"
                 onClick={collapseAllGoals}
-                className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded transition-colors"
+                className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded-sm transition-colors"
                 aria-label="Collapse all learning goals"
                 title="Collapse all learning goals"
               >

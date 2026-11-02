@@ -24,7 +24,7 @@ npm run build
 
 - **Framework**: Next.js 16 (App Router, `output: 'export'`)
 - **Language**: TypeScript 6.0
-- **UI**: React 19 + Tailwind CSS 3
+- **UI**: React 19 + Tailwind CSS 4
 - **Icons**: react-icons **^5.7** (Fa fallbacks for brands dropped from Simple Icons — see #101)
 - **Content**: Markdown (remark / react-markdown) with sanitize-html
 - **Drag & Drop**: @dnd-kit (V2ME)
@@ -36,7 +36,7 @@ npm run build
 2. Open PRs targeting **`sandbox`**.
 3. After merge, automation validates the build and may open a **sandbox → main** promotion PR for human review. Do not push to `main` or merge the promotion PR unless you own production releases.
 
-Dependabot also targets `sandbox`. If an upgrade fails `npm run build`, open a `migrate: …` issue and land a dedicated migration PR — do not forever-ignore. See `.cursor/skills/dependabot-upgrade/SKILL.md`. Temporary ignores (Tailwind / TypeScript majors) must stay linked to open tracking issues (#102, #109).
+Dependabot also targets `sandbox`. If an upgrade fails `npm run build`, open a `migrate: …` issue and land a dedicated migration PR — do not forever-ignore. See `.cursor/skills/dependabot-upgrade/SKILL.md`. Temporary ignores (TypeScript majors → #109) must stay linked to open tracking issues.
 
 ## Project Structure
 

@@ -16,7 +16,7 @@ interface VisionSectionProps {
 
 function DragHandle() {
   return (
-    <div className="flex-shrink-0 cursor-grab active:cursor-grabbing text-text-secondary hover:text-text-primary transition-colors p-1">
+    <div className="shrink-0 cursor-grab active:cursor-grabbing text-text-secondary hover:text-text-primary transition-colors p-1">
       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8h16M4 16h16" />
       </svg>
@@ -86,11 +86,11 @@ export function VisionSection({
           aria-label={isExpanded ? 'Collapse Vision section' : 'Expand Vision section'}
         >
           {isExpanded ? (
-            <svg className="w-5 h-5 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 text-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
             </svg>
           ) : (
-            <svg className="w-5 h-5 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 text-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
             </svg>
           )}
@@ -101,27 +101,27 @@ export function VisionSection({
           <div className="flex items-center gap-1 border border-border rounded-lg bg-bg-primary p-1">
             <button
               onClick={() => setIsItemExpanded(true)}
-              className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded transition-colors"
+              className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded-sm transition-colors"
               aria-label="Expand item"
               title="Expand item"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
-              <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded border border-border bg-bg-primary px-2 py-1 text-xs text-text-primary opacity-0 shadow-sm transition-opacity group-hover:opacity-100 z-10">
+              <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-sm border border-border bg-bg-primary px-2 py-1 text-xs text-text-primary opacity-0 shadow-xs transition-opacity group-hover:opacity-100 z-10">
                 Expand
               </span>
             </button>
             <button
               onClick={() => setIsItemExpanded(false)}
-              className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded transition-colors"
+              className="relative group p-1.5 text-accent hover:bg-bg-secondary rounded-sm transition-colors"
               aria-label="Collapse item"
               title="Collapse item"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
               </svg>
-              <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded border border-border bg-bg-primary px-2 py-1 text-xs text-text-primary opacity-0 shadow-sm transition-opacity group-hover:opacity-100 z-10">
+              <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-sm border border-border bg-bg-primary px-2 py-1 text-xs text-text-primary opacity-0 shadow-xs transition-opacity group-hover:opacity-100 z-10">
                 Collapse
               </span>
             </button>
@@ -130,7 +130,7 @@ export function VisionSection({
       </div>
       <div className={`transition-all duration-300 ease-in-out ${isExpanded ? 'overflow-visible' : 'overflow-hidden'}`} style={{ maxHeight: isExpanded ? '9999px' : `${height}px` }}>
         <div ref={contentRef} className="px-5 pb-5 pt-2">
-          <div className="border border-border rounded bg-bg-primary p-3 overflow-visible">
+          <div className="border border-border rounded-sm bg-bg-primary p-3 overflow-visible">
             <div className="flex items-start gap-2">
               <div suppressHydrationWarning>
                 <DragHandle />
@@ -145,14 +145,14 @@ export function VisionSection({
                         onChange={(e) => setEditTitle(e.target.value)}
                         onClick={(e) => e.stopPropagation()}
                         placeholder="Vision title..."
-                        className="w-full px-2 py-1 border border-border rounded bg-bg-secondary text-text-primary placeholder-text-secondary/50 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent text-sm font-medium"
+                        className="w-full px-2 py-1 border border-border rounded-sm bg-bg-secondary text-text-primary placeholder-text-secondary/50 focus:outline-hidden focus:ring-2 focus:ring-accent focus:border-transparent text-sm font-medium"
                       />
                       <textarea
                         value={editDescription}
                         onChange={(e) => setEditDescription(e.target.value)}
                         onClick={(e) => e.stopPropagation()}
                         placeholder="Vision description (Markdown supported)..."
-                        className="w-full min-h-[120px] px-2 py-1 border border-border rounded bg-bg-secondary text-text-primary placeholder-text-secondary/50 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent resize-y text-sm font-mono"
+                        className="w-full min-h-[120px] px-2 py-1 border border-border rounded-sm bg-bg-secondary text-text-primary placeholder-text-secondary/50 focus:outline-hidden focus:ring-2 focus:ring-accent focus:border-transparent resize-y text-sm font-mono"
                       />
                       <div className="flex items-center justify-end">
                         <div className="flex gap-2">
@@ -161,7 +161,7 @@ export function VisionSection({
                               e.stopPropagation()
                               handleCancel()
                             }}
-                            className="text-xs text-text-secondary hover:text-text-primary px-2 py-1 border border-border rounded"
+                            className="text-xs text-text-secondary hover:text-text-primary px-2 py-1 border border-border rounded-sm"
                           >
                             Cancel
                           </button>
@@ -170,7 +170,7 @@ export function VisionSection({
                               e.stopPropagation()
                               handleSave()
                             }}
-                            className="text-xs text-accent hover:text-accent-hover px-2 py-1 border border-accent rounded bg-accent/10"
+                            className="text-xs text-accent hover:text-accent-hover px-2 py-1 border border-accent rounded-sm bg-accent/10"
                           >
                             Apply
                           </button>
@@ -186,7 +186,7 @@ export function VisionSection({
                             e.stopPropagation()
                             setIsEditing(true)
                           }}
-                          className="group relative text-accent hover:text-accent-hover p-1.5 rounded transition-colors"
+                          className="group relative text-accent hover:text-accent-hover p-1.5 rounded-sm transition-colors"
                           title="Edit"
                         >
                           <FaEdit className="w-3.5 h-3.5" />
@@ -214,7 +214,7 @@ export function VisionSection({
                   <button onClick={() => setIsItemExpanded(true)} className="flex-1 text-left" aria-label="Expand vision">
                     <div className="flex items-center gap-2">
                       <span className="text-sm text-text-primary">{vision.title || 'Untitled vision'}</span>
-                      <svg className="w-4 h-4 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4 text-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                       </svg>
                     </div>
@@ -225,7 +225,7 @@ export function VisionSection({
                       setIsEditing(true)
                       setIsItemExpanded(true)
                     }}
-                    className="group relative text-accent hover:text-accent-hover p-1.5 rounded transition-colors flex-shrink-0"
+                    className="group relative text-accent hover:text-accent-hover p-1.5 rounded-sm transition-colors shrink-0"
                     title="Edit"
                   >
                     <FaEdit className="w-3.5 h-3.5" />

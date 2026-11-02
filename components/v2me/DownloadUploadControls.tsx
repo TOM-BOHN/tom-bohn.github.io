@@ -15,7 +15,7 @@ export function DownloadUploadControls({
     <div className="flex items-center gap-2">
       <button
         onClick={onDownload}
-        className="flex items-center gap-2 px-3 py-1.5 text-sm bg-bg-secondary hover:bg-bg-primary border border-border rounded transition-colors text-text-primary"
+        className="flex items-center gap-2 px-3 py-1.5 text-sm bg-bg-secondary hover:bg-bg-primary border border-border rounded-sm transition-colors text-text-primary"
         title="Download V2Me as JSON"
       >
         <FaDownload className="w-3.5 h-3.5" />
@@ -23,7 +23,7 @@ export function DownloadUploadControls({
       </button>
       <button
         onClick={onUpload}
-        className="flex items-center gap-2 px-3 py-1.5 text-sm bg-bg-secondary hover:bg-bg-primary border border-border rounded transition-colors text-text-primary"
+        className="flex items-center gap-2 px-3 py-1.5 text-sm bg-bg-secondary hover:bg-bg-primary border border-border rounded-sm transition-colors text-text-primary"
         title="Upload V2Me JSON file"
       >
         <FaUpload className="w-3.5 h-3.5" />
