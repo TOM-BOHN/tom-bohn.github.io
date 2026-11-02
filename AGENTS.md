@@ -43,6 +43,8 @@ Configured in `.github/dependabot.yml` (targets `sandbox`):
 
 - **Tailwind**: stay on **v3**. Majors ignored — v4 broke the build when Dependabot applied it (#79 / #81).
 - **react-icons**: pin **5.5.0**. 5.6+ removed Simple Icons brands used by Links/Hub (`SiTableau`, `SiSalesforce`, `SiSlack`, `SiOpenai`, `SiAmazon`, `SiDbt`, …). Don’t bump without migrating those call sites to Fa/Fa6 (or equivalent).
+- **TypeScript**: stay on **5.9**. Majors ignored — do not take Dependabot jumps to 6+/7 until Next tooling is validated (TS 7 is the Go rewrite).
+- **@types/node**: majors ignored — keep the types line aligned with CI Node **20** (currently on the 22.x DefinitelyTyped line).
 - GitHub Actions updates are **grouped** monthly; Action **majors** are ignored.
 
 ## Content / automation pointers

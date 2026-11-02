@@ -28,6 +28,16 @@ updates:
       # SiSlack, SiOpenai, SiAmazon, SiDbt, …) used by Links/Hub. Stay on 5.5.0
       # until those call sites migrate to Fa/Fa6 fallbacks.
       - dependency-name: react-icons
+      # Stay on TypeScript 5.9 until Next/eslint-config-next are validated on
+      # 6+/7 (TS 7 is the Go rewrite). Grouped majors keep landing in #97-style PRs.
+      - dependency-name: typescript
+        update-types:
+          - version-update:semver-major
+      # Align @types/node with CI/engines Node 20 (and the current 22 types line).
+      # Majors track Node releases and pull APIs we do not run in production CI.
+      - dependency-name: "@types/node"
+        update-types:
+          - version-update:semver-major
     commit-message:
       prefix: "chore(deps)"
       include: scope
