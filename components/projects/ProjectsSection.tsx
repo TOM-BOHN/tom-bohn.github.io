@@ -26,7 +26,7 @@ export function ProjectsSection({
   }
 
   return (
-    <div className="space-y-8">
+    <div className="flex flex-col gap-8">
       {themes.map((theme) => (
         <ProjectThemeComponent
           key={theme.id}
