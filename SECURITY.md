@@ -25,4 +25,8 @@ You should receive an acknowledgment within a few days. Please allow reasonable 
 
 - This is a **static** Next.js export (`output: 'export'`). There is no server-side application runtime or database in production.
 - Dependency updates are managed with Dependabot (`.github/dependabot.yml`), targeting `sandbox`. After bumps, run `npm audit` and `npm run build`.
-- Intentionally pinned / ignored updates: Tailwind CSS majors (stay on v3) and `react-icons` above 5.5.0 (see `AGENTS.md`).
+- Failed upgrades are tracked as migrations, not permanent freezes. Workflow: `.cursor/skills/dependabot-upgrade/SKILL.md`.
+- Temporary Dependabot ignores (must cite an open issue; remove when the migration PR lands):
+  - Tailwind CSS **majors** → [#102](https://github.com/TOM-BOHN/tom-bohn.github.io/issues/102)
+  - `react-icons` **majors** (pin 5.5.0) → [#101](https://github.com/TOM-BOHN/tom-bohn.github.io/issues/101)
+- Do not add a new ignore without a linked open tracking issue and build/API failure evidence.

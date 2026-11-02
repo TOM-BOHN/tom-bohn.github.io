@@ -1,7 +1,10 @@
 # Dependabot configuration.
-# npm: weekly grouped updates on sandbox. Tailwind majors and react-icons are
-# ignored (see comments). github-actions: monthly, also grouped so one Actions
-# bump does not open a PR per workflow action.
+# Policy: prefer opening update PRs so they can be reviewed and built. Only
+# ignore a package when a prior update caused a proven break AND an open
+# tracking issue exists with acceptance criteria to remove the ignore.
+# Workflow: .cursor/skills/dependabot-upgrade/SKILL.md
+#
+# npm: weekly grouped updates on sandbox. github-actions: monthly grouped.
 version: 2
 updates:
   - package-ecosystem: npm
@@ -18,16 +21,24 @@ updates:
       npm_and_yarn:
         patterns:
           - "*"
+        # Keep migration-sensitive packages out of the catch-all group so their
+        # PRs are reviewable alone. Exclusion ≠ ignore — updates still open.
         exclude-patterns:
           - "tailwindcss"
+          - "react-icons"
+          - "typescript"
+          - "@types/node"
     ignore:
+      # tracking: #102 — PostCSS plugin break on v4 (#77); restored in #79.
+      # Remove this ignore in the Tailwind v4 migration PR that Fixes #102.
       - dependency-name: tailwindcss
         update-types:
           - version-update:semver-major
-      # 5.6+ dropped several Simple Icons brand exports (SiTableau, SiSalesforce,
-      # SiSlack, SiOpenai, SiAmazon, SiDbt, …) used by Links/Hub. Stay on 5.5.0
-      # until those call sites migrate to Fa/Fa6 fallbacks.
+      # tracking: #101 — 5.6+ removed Si* brands still used by Links/Hub.
+      # Remove this ignore in the icon migration PR that Fixes #101.
       - dependency-name: react-icons
+        update-types:
+          - version-update:semver-major
     commit-message:
       prefix: "chore(deps)"
       include: scope
@@ -38,19 +49,14 @@ updates:
       interval: monthly
     open-pull-requests-limit: 3
     target-branch: sandbox
+    # Use the existing `dependencies` label only — `github-actions` is not
+    # defined in this repo (Dependabot errored on missing labels in #85–#89).
     labels:
       - dependencies
-      - github-actions
     groups:
       github-actions:
         patterns:
           - "*"
-    # Major Actions bumps (e.g. checkout v4→v7) often need a deliberate review;
-    # keep them out of the monthly grouped PR until we're ready.
-    ignore:
-      - dependency-name: "*"
-        update-types:
-          - version-update:semver-major
     commit-message:
       prefix: "chore(ci)"
       include: scope
